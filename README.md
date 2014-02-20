@@ -8,13 +8,13 @@ XADREZ_ES2 é o projeto da disciplina de Engenharia de Software 2, do desenvolvi
 * [João Felipe Nicolaci Pimentel](https://www.facebook.com/joaofelipenp)
 * [Luis Antônio Vieira Junior](https://www.facebook.com/LuisVieiraJR)
 * [Roberto Sampaio](https://www.facebook.com/roberto.sampaio.39)
-* [Thayanne Viegas Antão](https://www.facebook.com/thayanne.viegas)
+* [Thayanne Antão Viegas](https://www.facebook.com/thayanne.viegas)
 
 #Professor
 
 * [Leonardo Gresta Paulino Murta](https://www.facebook.com/leonardo.g.p.murta?)
 
-#License
+#Licensa
 
 Copyright (c) 2014 GRUPO-ES2-GJLRT
 
