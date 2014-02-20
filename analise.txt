@@ -1,0 +1,20 @@
+• Analise com o seu grupo como o processo uniﬁcado será utilizado no trabalho 
+–Qual será a duração de uma iteração? 
+Uma semana. 
+
+–O que vocês pretendem entregar em cada iteração? 
+Ao final de cada iteração, esperamos entregar um pedaço do projeto rodando.
+
+–Como e quando vocês vão se reunir para atingir esse objetivo? 
+Internet. Discussões estarão abertas a qualquer momento em um grupo no facebook, mas podemos marcar horário para usar o chat, se necessário
+
+–Qual será o papel de cada membro do grupo? 
+Ainda não está decidido
+
+–Quais são os riscos envolvidos?
+Reprovar na matéria e não se formar
+Decepcionar o usuário
+
+–Quais decisões arquiteturais precisam ser tomadas (linguagem, SO, etc.)?
+SO: Windows, Linux e Mac OS
+Linguagem: Python, por ser multiplataforma, por experiência do grupo com a linguagem e com projetos de IA nela
