@@ -7,7 +7,8 @@ Ao final de cada iteração, esperamos entregar um software parcial, funcionando
 
 
 –Como e quando vocês vão se reunir para atingir esse objetivo? 
-Nossas discussões serão feitas através da internet, em um grupo no facebook. Ou caso se torne necessário podemos marcar algum tipo de encontro.
+Nossas discussões serão feitas através da internet, em um grupo no facebook
+Caso se torne necessário podemos marcar uma reunião do grupo, presencial ou via internet
 
 
 –Qual será o papel de cada membro do grupo?
