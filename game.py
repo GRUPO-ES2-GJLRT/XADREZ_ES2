@@ -15,11 +15,11 @@ class Game(object):
         self.width = width
         self.height = height
         self.running = True
-        self.scene = Scene()
-
-
+        self.scene = None
+        
     def loop(self):
         '''Infinite loop for the game'''
+        self.scene = Scene(self)
         last_frame_time = 0
 
         while self.running:
@@ -27,7 +27,7 @@ class Game(object):
             delta_time = current_time - last_frame_time
             last_frame_time = current_time
 
-            self.scene.loop(self, delta_time)
+            self.scene.loop(delta_time)
 
 
 def main():
