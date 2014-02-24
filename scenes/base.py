@@ -33,6 +33,15 @@ class Scene(object):
 
         pygame.display.flip()
 
+    def center_rect(self, text, y):
+        """ Returns the text rect in position (center, y) """
+        rect = text.get_rect()
+        rect.center = (
+            self.game.screen.get_rect().center[0], 
+            y
+        )
+        return rect
+
     def draw(self, delta_time):
         '''This function should draw the scene. 
         Override it in a subclass!
@@ -54,3 +63,24 @@ class Scene(object):
         event is the received event
         '''
         pass
+
+
+class GameText(object):
+
+    def __init__(self, font, text, antialias, color, rect=None):
+        self.font = font
+        self.text = text
+        self.antialias = antialias
+        self.color = color
+        self.surface = None
+        self.redraw()
+        self.rect = self.surface.get_rect()
+        if rect:
+            self.rect = rect
+        
+    def redraw(self):
+        self.surface = self.font.render(self.text, self.antialias, self.color)
+
+    def blit(self, screen):
+        screen.blit(self.surface, self.rect.topleft)
+
