@@ -1,0 +1,5 @@
+ipdb
+numpy
+PyOpenGL
+PyObjC
+pygame==1.9.1release
