@@ -14,8 +14,10 @@ bin
 include
 var
 sdist
+share
 develop-eggs
 .installed.cfg
+.Python
 lib
 lib64
 __pycache__
@@ -37,4 +39,3 @@ nosetests.xml
 .pydevproject
 
 #Other
-.Python
