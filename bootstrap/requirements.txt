@@ -2,4 +2,5 @@ ipdb
 numpy
 PyOpenGL
 PyObjC
-pygame==1.9.1release
+py2app
+hg+http://bitbucket.org/pygame/pygame
