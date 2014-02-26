@@ -1,7 +1,10 @@
+# coding: UTF-8
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 import pygame
 
-from base import Scene, GameText
-from i18n import TITLE, ONE_PLAYER, TWO_PLAYERS, QUIT
+from .base import Scene, GameText
+from locales.i18n import TITLE, ONE_PLAYER, TWO_PLAYERS, QUIT
 
 
 class MainMenu(Scene):

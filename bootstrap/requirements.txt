@@ -1,6 +1,0 @@
-ipdb
-numpy
-PyOpenGL
-PyObjC
-py2app
-hg+http://bitbucket.org/pygame/pygame

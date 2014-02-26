@@ -1,3 +1,6 @@
+# coding: UTF-8
+from __future__ import absolute_import, division, print_function, unicode_literals
+
 import pygame
 
 
@@ -12,7 +15,7 @@ class Scene(object):
         self.game = game
 
     def loop(self, delta_time):
-        '''This function is called in the game loop. 
+        """This function is called in the game loop.
 
         Arguments:
         delta_time is the time in seconds (float) passed since 
@@ -20,7 +23,7 @@ class Scene(object):
 
         It calls the method self.event for each event and calls the method
             self.draw once to draw the screen
-        '''
+        """
         self.game.screen.fill((0, 0, 0))
 
         self.draw(delta_time)
@@ -34,7 +37,7 @@ class Scene(object):
         pygame.display.flip()
 
     def center_rect(self, text, y):
-        """ Returns the text rect in position (center, y) """
+        """Returns the text rect in position (center, y) """
         rect = text.get_rect()
         rect.center = (
             self.game.screen.get_rect().center[0], 
@@ -43,17 +46,17 @@ class Scene(object):
         return rect
 
     def draw(self, delta_time):
-        '''This function should draw the scene. 
+        """This function should draw the scene.
         Override it in a subclass!
 
         Arguments:
         delta_time is the time in seconds (float) passed since 
             the last game loop execution
-        '''
+        """
         pass
 
     def event(self, delta_time, event):
-        '''This function should process the events. 
+        """This function should process the events.
         Override it in a subclass!
 
         Arguments:
@@ -61,7 +64,7 @@ class Scene(object):
         delta_time is the time in seconds (float) passed since 
             the last game loop execution
         event is the received event
-        '''
+        """
         pass
 
 
