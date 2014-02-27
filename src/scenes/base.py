@@ -36,6 +36,12 @@ class Scene(object):
 
         pygame.display.flip()
 
+    def place_rect(self, text, x, y):
+        rect = text.get_rect()
+        rect.center = (x, y)
+        return rect
+
+
     def center_rect(self, text, y):
         """Returns the text rect in position (center, y) """
         rect = text.get_rect()

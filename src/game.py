@@ -4,7 +4,8 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import time
 import pygame
 
-from scenes.main_menu import MainMenu as Scene
+from locales.i18n import *
+from scenes.main_menu import MainMenu
 
 WIDTH, HEIGHT = 1024, 768
 
@@ -13,7 +14,7 @@ class Game(object):
 
     def __init__(self, width, height):
         pygame.init()
-        pygame.display.set_caption(u'XADREZ ES2')
+        pygame.display.set_caption(TITLE)
         self.screen = pygame.display.set_mode((width, height))
         self.width = width
         self.height = height
@@ -22,7 +23,7 @@ class Game(object):
         
     def loop(self):
         """Infinite loop for the game"""
-        self.scene = Scene(self)
+        self.scene = MainMenu(self)
         last_frame_time = 0
 
         while self.running:

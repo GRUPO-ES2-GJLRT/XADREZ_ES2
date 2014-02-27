@@ -1,7 +1,9 @@
 # coding: UTF-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-TITLE = u"Operação Xadrez"
-ONE_PLAYER = u"Um Jogador"
-TWO_PLAYERS = u"Dois Jogadores"
-QUIT = u"Sair"
+BACK = u"Return"
+CONFIG = u"Config"
+ONE_PLAYER = u"One Player"
+QUIT = u"Quit"
+TITLE = u"CHESS"
+TWO_PLAYERS = u"Two Players"
