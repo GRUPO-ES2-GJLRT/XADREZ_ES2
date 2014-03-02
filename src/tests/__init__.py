@@ -5,10 +5,12 @@ from .test_rook import TestRook
 from .test_knight import TestKnight
 from .test_bishop import TestBishop
 from .test_queen import TestQueen
+from .test_king import TestKing
 
 __all__ = [
     b'TestRook',
     b'TestKnight',
     b'TestBishop',
     b'TestQueen',
+    b'TestKing',
 ]
