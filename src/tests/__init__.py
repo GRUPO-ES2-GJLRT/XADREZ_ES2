@@ -4,9 +4,11 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from .test_tower import TestTower
 from .test_horse import TestHorse
 from .test_bishop import TestBishop
+from .test_queen import TestQueen
 
 __all__ = [
     b'TestTower',
     b'TestHorse',
     b'TestBishop',
+    b'TestQueen',
 ]

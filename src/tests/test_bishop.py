@@ -39,7 +39,7 @@ class TestBishop(unittest.TestCase):
         bishop = Bishop(board, 'white', 4, 4)
         possible_moves = set([
             (0, 0), (1, 1), (2, 2), (3, 3), (5, 5), (6, 6), (7, 7),
-            (1, 7), (2, 6), (3, 5), (5, 3), (6, 2), (7, 1)
+            (1, 7), (2, 6), (3, 5), (5, 3), (6, 2), (7, 1),
         ])
 
         self.assertEqual(bishop.possible_moves(), possible_moves)
