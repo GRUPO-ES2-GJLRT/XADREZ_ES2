@@ -3,27 +3,29 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 from .piece import LinearExplorationPiece
 
-class Tower(LinearExplorationPiece):
+class Bishop(LinearExplorationPiece):
 
     def possible_moves(self):
         result = set()
-
-        for y in xrange(self.y + 1, 8):
-            position = (self.x, y)
+        # Top Left
+        for i in xrange(1, min(self.x, self.y) + 1):
+            position = (self.x - i, self.y - i)
             if not self.explore_position_and_continue(position, result):
                 break
-        for y in xrange(self.y - 1, -1, -1):
-            position = (self.x, y)
+        # Top Right
+        for i in xrange(1, min(8 - self.x, self.y) + 1):
+            position = (self.x + i, self.y - i)
             if not self.explore_position_and_continue(position, result):
                 break
-        for x in xrange(self.x + 1, 8):
-            position = (x, self.y)
+        # Bottom Left
+        for i in xrange(1, min(self.x, 8 - self.y) + 1):
+            position = (self.x - i, self.y + i)
             if not self.explore_position_and_continue(position, result):
                 break
-        for x in xrange(self.x - 1, -1, -1):
-            position = (x, self.y)
+        # Bottom Right
+        for i in xrange(1, min(8 - self.x, 8 - self.y) + 1):
+            position = (self.x + i, self.y + i)
             if not self.explore_position_and_continue(position, result):
                 break
 
         return result
-
