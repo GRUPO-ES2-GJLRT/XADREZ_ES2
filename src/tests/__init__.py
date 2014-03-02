@@ -2,7 +2,10 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from .test_tower import TestTower
+from .test_horse import TestHorse
+
 
 __all__ = [
     b'TestTower',
+    b'TestHorse',
 ]

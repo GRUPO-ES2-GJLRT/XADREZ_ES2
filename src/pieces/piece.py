@@ -13,3 +13,14 @@ class Piece(object):
     def possible_moves(self):
         """ Return the possible moves for the piece """
         pass
+
+    def valid_move(self, position):
+    	""" Checks if a position is not occupied by an ally 
+    	and is inside the board 
+    	"""
+        if not self.board.valid(position):
+            return False
+        piece = self.board[position]
+        if piece and piece.color == self.color:
+            return False
+        return True

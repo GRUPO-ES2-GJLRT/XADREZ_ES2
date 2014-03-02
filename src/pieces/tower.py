@@ -1,13 +1,13 @@
 # coding: UTF-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-from piece import Piece
+from .piece import Piece
 
 class Tower(Piece):
 
     def possible_moves(self):
         result = set()
-        
+
         for y in xrange(self.y + 1, 8):
             position = (self.x, y)
             if not self.explore_position_and_continue(position, result):
@@ -28,10 +28,8 @@ class Tower(Piece):
         return result
 
     def explore_position_and_continue(self, position, result):
+        if self.valid_move(position):
+            result.add(position)
+        # continue if there is no piece
         piece = self.board[position]
-        if piece:
-            if piece.color != self.color:
-                result.add(position)
-            return False
-        result.add(position)
-        return True
+        return not piece 
