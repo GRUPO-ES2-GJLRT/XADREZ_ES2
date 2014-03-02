@@ -3,7 +3,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 from .piece import Piece
 
-class Horse(Piece):
+class Knight(Piece):
 
     def possible_moves(self):
         moves = [
