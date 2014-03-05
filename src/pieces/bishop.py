@@ -5,6 +5,9 @@ from .piece import LinearExplorationPiece
 
 class Bishop(LinearExplorationPiece):
 
+    def name(self):
+        return "bishop"
+
     def possible_moves(self):
         result = set()
         # Top Left

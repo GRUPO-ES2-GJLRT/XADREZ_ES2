@@ -5,5 +5,8 @@ from .piece import Piece
 
 class Pawn(Piece):
 
+    def name(self):
+        return "pawn"
+
     def possible_moves(self):
         return set()

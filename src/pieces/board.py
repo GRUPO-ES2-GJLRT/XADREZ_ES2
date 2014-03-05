@@ -14,6 +14,10 @@ class Board(object):
         self.board_data = [
             [None for x in xrange(8)] for y in xrange(8)
         ]
+        self.pieces = {
+            'white': [],
+            'black': [],
+        }
         if new_game:
             # Pawn
             for x in xrange(8):
@@ -54,6 +58,15 @@ class Board(object):
         This is called in the creation of Piece.
         """
         self.board_data[piece.x][piece.y] = piece
+        self.pieces[piece.color].append(piece)
+
+    def remove(self, position):
+        """ Remove piece from board. """
+        piece = self[position[0]][position[1]]
+        if piece:
+            self.board_data[piece.x][piece.y] = None    
+            self.pieces[piece.color].remove(piece)
+
 
     def valid(self, position):
     	""" Checks if position tuple is inside the board """

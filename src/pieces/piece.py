@@ -10,6 +10,14 @@ class Piece(object):
         self.y = y
         board.add(self)
 
+    def name(self):
+        """ Return the piece name used by the image """
+        pass
+
+    def position(self):
+        """ Return the piece position x, y """
+        return (self.x, self.y)
+
     def possible_moves(self):
         """ Return the possible moves for the piece """
         pass

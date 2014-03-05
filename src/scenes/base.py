@@ -2,7 +2,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import pygame
-
+import sys, os
 
 class Scene(object):
 
@@ -12,6 +12,7 @@ class Scene(object):
         Arguments:
         game is a Game instance
         """
+        self.assets_dir = os.path.join(sys.argv[0], '..', '..', 'assets')
         self.game = game
 
     def loop(self, delta_time):

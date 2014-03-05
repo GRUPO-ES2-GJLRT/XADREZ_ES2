@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import pygame
 
 from .base import Scene, GameText
+from .chess import Chess
 from locales.i18n import *
 
 
@@ -31,7 +32,7 @@ class MainMenu(Scene):
         )
 
         def one_player_click(game):
-            game.scene = Scene(game) #TODO: Change to One Player Scene
+            game.scene = Chess(game) #TODO: Change to One Player Scene
 
         one_player.click = one_player_click
 

@@ -5,6 +5,9 @@ from .piece import LinearExplorationPiece
 
 class Rook(LinearExplorationPiece):
 
+    def name(self):
+        return "rook"
+
     def possible_moves(self):
         result = set()
         # Bottom

@@ -5,6 +5,9 @@ from .piece import Piece
 
 class Knight(Piece):
 
+    def name(self):
+        return "knight"
+
     def possible_moves(self):
         moves = [
             (self.x - 2, self.y - 1), (self.x - 2, self.y + 1),
