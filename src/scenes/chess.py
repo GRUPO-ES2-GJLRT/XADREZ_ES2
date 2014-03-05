@@ -11,7 +11,7 @@ from locales.i18n import *
 MARGIN = 28
 BORDER = 2
 
-
+RIGHT_MARGIN = 14
 
 
 class Chess(Scene):
@@ -26,8 +26,17 @@ class Chess(Scene):
             self.game.width - (MARGIN + 2 * BORDER), 
             self.game.height - (MARGIN + 2 * BORDER)
         )
+        horizontal = True
         self.square_size = (max_board_size // 8)
         self.board_size = self.square_size * 8
+        if self.game.width - self.board_size < 3 * self.square_size:
+            max_board_size = min(
+                self.game.width - (MARGIN + 2 * BORDER), 
+                self.game.height - (MARGIN + 2 * BORDER) - 100
+            )
+            horizontal = False
+            self.square_size = (max_board_size // 8)
+            self.board_size = self.square_size * 8
         self.board_image = pygame.transform.scale(self.board_image, (self.board_size, self.board_size)) 
 
         # Labels
@@ -66,6 +75,55 @@ class Chess(Scene):
         # Pieces / Board
         self.board = Board()
 
+        # Times
+        time_font = pygame.font.SysFont("", 48)
+        self.white_image = self.piece_images['white_king']
+        self.black_image = self.piece_images['black_king']
+        
+        self.white_time = GameText(time_font, str("20:00"), True, (128, 128, 128))
+        self.black_time = GameText(time_font, str("20:00"), True, (128, 128, 128))
+
+        if horizontal:
+            self.white_image_position = (
+                self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN), 
+                self.game.height - (MARGIN + 2*BORDER) - self.square_size,
+            )
+            self.white_time.rect = self.place_rect(
+                self.white_time.surface,
+                self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN) + self.square_size + MARGIN + RIGHT_MARGIN, 
+                self.game.height - (MARGIN + 2*BORDER) - self.square_size // 2
+            )
+            self.black_image_position = (
+                self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN), 
+                BORDER,
+            )
+            self.black_time.rect = self.place_rect(
+                self.black_time.surface,
+                self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN) + self.square_size + MARGIN + RIGHT_MARGIN, 
+                BORDER + self.square_size // 2,
+            )
+        else:
+            self.white_image_position = (
+                self.board_size + (MARGIN + 2*BORDER) - self.square_size, 
+                self.board_size + 2*BORDER + MARGIN,
+            )
+            self.white_time.rect = self.place_rect(
+                self.white_time.surface,
+                self.board_size + (MARGIN + 2*BORDER) - self.square_size - MARGIN - RIGHT_MARGIN, 
+                self.board_size + 2*BORDER + MARGIN + self.square_size // 2,
+            )
+            self.black_image_position = (
+                MARGIN + 2*BORDER, 
+                self.board_size + 2*BORDER + MARGIN,
+            )
+            self.black_time.rect = self.place_rect(
+                self.black_time.surface,
+                MARGIN + 2*BORDER + self.square_size + MARGIN + RIGHT_MARGIN, 
+                self.board_size + 2*BORDER + MARGIN + self.square_size // 2,
+            )
+        
+
+        # Selected
         self.square = None
     
     def draw(self, delta_time):
@@ -95,8 +153,11 @@ class Chess(Scene):
         for color, pieces  in self.board.pieces.items():
             for piece in pieces:
                 self.game.screen.blit(self.piece_images['%s_%s'%(piece.color, piece.name())], self.position_rect(piece.position()))
-
-
+        # Times
+        self.game.screen.blit(self.white_image, self.white_image_position)
+        self.game.screen.blit(self.black_image, self.black_image_position)
+        self.white_time.blit(self.game.screen)
+        self.black_time.blit(self.game.screen)
 
     def position_rect(self, position):
         return (
