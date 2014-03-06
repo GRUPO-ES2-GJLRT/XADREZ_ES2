@@ -21,7 +21,9 @@ class Chess(Scene):
         super(Chess, self).__init__(*args, **kwargs)
 
         # Board Image
-        self.board_image = pygame.image.load(os.path.join(self.assets_dir, 'chess_board.png'))
+
+        print(os.path.abspath(self.assets_dir))
+        self.board_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'chess_board.png')))
         max_board_size = min(
             self.game.width - (MARGIN + 2 * BORDER), 
             self.game.height - (MARGIN + 2 * BORDER)
@@ -65,8 +67,8 @@ class Chess(Scene):
         pieces = ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']
         self.piece_images = {}
         for piece in pieces:
-            white_image = pygame.image.load(os.path.join(self.assets_dir, 'white_%s.png' % piece))
-            black_image = pygame.image.load(os.path.join(self.assets_dir, 'black_%s.png' % piece))
+            white_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'white_%s.png' % piece)))
+            black_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'black_%s.png' % piece)))
             self.piece_images["white_%s" % piece] = pygame.transform.scale(white_image, 
                 (self.square_size, self.square_size)) 
             self.piece_images["black_%s" % piece] = pygame.transform.scale(black_image, 
@@ -179,4 +181,3 @@ class Chess(Scene):
         """Checks for mouse hover and mouse click"""
         if event.type == pygame.MOUSEBUTTONUP:
             self.square = self.get_square(event.pos)
-
