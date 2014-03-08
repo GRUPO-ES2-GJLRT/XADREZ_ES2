@@ -22,6 +22,7 @@ class ConfigMenu(Scene):
         )
 
         menu_font = pygame.font.SysFont("", self.game.relative_x(0.05))
+        label_font = pygame.font.SysFont("", self.game.relative_x(0.04))
 
         # Back Button
         back = GameText(menu_font, BACK, True, (128, 128, 128))
@@ -47,6 +48,7 @@ class ConfigMenu(Scene):
         ok = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'ok.png')))
         self.ok = pygame.transform.scale(ok, (50, 50))
 
+        #Minutes Field
         self.minutes = GameText(menu_font, "10", True, (192, 192, 192))
         self.minutes.rect = self.place_rect(
             self.minutes.surface,
@@ -54,30 +56,105 @@ class ConfigMenu(Scene):
             self.game.relative_y(0.30),
         )
 
-        # Plus Button
-        plus = GameText(menu_font, PLUS, True, (128, 128, 128))
-        plus.rect = self.place_rect(
-            plus.surface,
+        # Number of moves Field
+        self.moves = GameText(menu_font, "10", True, (192, 192, 192))
+        self.moves.rect = self.place_rect(
+            self.moves.surface,
+            self.game.relative_x(0.85),
+            self.game.relative_y(0.40),
+        )
+
+        # Bonus Field
+        self.bonus = GameText(menu_font, "10", True, (192, 192, 192))
+        self.bonus.rect = self.place_rect(
+            self.bonus.surface,
+            self.game.relative_x(0.85),
+            self.game.relative_y(0.40),
+        )
+
+        #Label 1
+        label_1 = GameText(label_font, "Minutes:", True, (96, 96, 96))
+        label_1.rect = self.place_rect(
+            label_1.surface,
+            self.game.relative_x(0.72),
+            self.game.relative_y(0.302),
+        )
+
+        #Label 2  Can be blank or "Moves", or "Bonus"
+        label_2 = GameText(label_font, "", True, (96, 96, 96))
+        label_2.rect = self.place_rect(
+            label_2.surface,
+            self.game.relative_x(0.665),
+            self.game.relative_y(0.402),
+        )
+
+        # Plus Button 1
+        plus_1 = GameText(menu_font, PLUS, True, (128, 128, 128))
+        plus_1.rect = self.place_rect(
+            plus_1.surface,
             self.game.relative_x(0.80),
             self.game.relative_y(0.30),
         )
 
-        # Minus Button
-        minus = GameText(menu_font, MINUS, True, (128, 128, 128))
-        minus.rect = self.place_rect(
-            minus.surface,
+        # Minus Button 1
+        minus_1 = GameText(menu_font, MINUS, True, (128, 128, 128))
+        minus_1.rect = self.place_rect(
+            minus_1.surface,
             self.game.relative_x(0.90),
             self.game.relative_y(0.30),
         )
 
-        def plus_click(game):
+        # Plus Button 2
+        plus_2 = GameText(menu_font, PLUS, True, (128, 128, 128))
+        plus_2.rect = self.place_rect(
+            plus_2.surface,
+            self.game.relative_x(0.80),
+            self.game.relative_y(0.40),
+        )
+
+        # Minus Button 2
+        minus_2 = GameText(menu_font, MINUS, True, (128, 128, 128))
+        minus_2.rect = self.place_rect(
+            minus_2.surface,
+            self.game.relative_x(0.90),
+            self.game.relative_y(0.40),
+        )
+
+        def plus_1_click(game):
             self.minutes.text = str(int(self.minutes.text) + 1)
+            self.minutes.redraw()
 
-        def minus_click(game):
-            self.minutes.text = str(int(self.minutes.text) - 1)
+        def minus_1_click(game):
+            minutes = int(self.minutes.text)
+            if minutes > 0:
+                self.minutes.text = str(int(minutes) - 1)
+                self.minutes.redraw()
 
-        plus.click = plus_click
-        minus.click = minus_click
+        def plus_2_click(game):
+            if self.option == self.options["moves_per_minutes"]:
+                self.moves.text = str(int(self.moves.text) + 1)
+                self.moves.redraw()
+            else:
+                self.bonus.text = str(int(self.bonus.text) + 1)
+                self.bonus.redraw()
+
+        def minus_2_click(game):
+            if self.option == self.options["moves_per_minutes"]:
+                value = int(self.moves.text)
+                if value > 0:
+                    self.moves.text = str(int(self.moves.text) - 1)
+                    self.moves.redraw()
+            else:
+                value = int(self.bonus.text)
+                if value > 0:
+                    self.bonus.text = str(int(self.bonus.text) - 1)
+                    self.bonus.redraw()
+
+
+        plus_1.click = plus_1_click
+        minus_1.click = minus_1_click
+        plus_2.click = plus_2_click
+        minus_2.click = minus_2_click
 
         # Minutes_per_Game Button
         minutes_per_game = GameText(menu_font, MINUTES_PER_GAME, True, (128, 128, 128))
@@ -90,6 +167,7 @@ class ConfigMenu(Scene):
         def minutes_per_game_click(game):
             self.ok_position = (50, 200)
             self.option = self.options["minutes_per_game"]
+            update_labels_and_fields()
 
         minutes_per_game.click = minutes_per_game_click;
 
@@ -104,6 +182,7 @@ class ConfigMenu(Scene):
         def moves_per_minutes_click(game):
             self.ok_position = (50, 280)
             self.option = self.options["moves_per_minutes"]
+            update_labels_and_fields()
 
         moves_per_minutes.click = moves_per_minutes_click;
 
@@ -118,6 +197,7 @@ class ConfigMenu(Scene):
         def fischer_time_click(game):
             self.ok_position = (50, 360)
             self.option = self.options["fischer_game"]
+            update_labels_and_fields()
 
         fischer_time.click = fischer_time_click;
 
@@ -129,13 +209,48 @@ class ConfigMenu(Scene):
             self.game.relative_y(0.92),
         )
 
+        #The options will change when the game mode change
+        def update_labels_and_fields():
+            if self.option == self.options["minutes_per_game"]:
+                label_2.text = ""
+                label_2.redraw()
+                if self.moves in self.texts:
+                    self.texts.remove(self.moves)
+                if self.bonus in self.texts:
+                    self.texts.remove(self.bonus)
+                if plus_2 in self.texts:
+                    self.texts.remove(plus_2)
+                    self.texts.remove(minus_2)
+                    self.buttons.remove(plus_2)
+                    self.buttons.remove(minus_2)
+            elif self.option == self.options["moves_per_minutes"]:
+                label_2.text = MOVES_LABEL
+                label_2.redraw()
+                if self.moves not in self.texts:
+                    self.texts.append(self.moves)
+                if self.bonus in self.texts:
+                    self.texts.remove(self.bonus)
+                if plus_2 not in self.texts:
+                    self.texts.extend((plus_2, minus_2))
+                    self.buttons.extend((plus_2, minus_2))
+            else:
+                label_2.text = BONUS_LABEL
+                label_2.redraw()
+                if self.bonus not in self.texts:
+                    self.texts.append(self.bonus)
+                if self.moves in self.texts:
+                    self.texts.remove(self.moves)
+                if plus_2 not in self.texts:
+                    self.texts.extend((plus_2, minus_2))
+                    self.buttons.extend((plus_2, minus_2))
+
         def quit_click(game):
             game.running = False
 
         quit.click = quit_click
 
-        self.texts = [title, back, quit, minutes_per_game, moves_per_minutes, fischer_time, self.minutes, plus, minus]
-        self.buttons = [back, quit, minutes_per_game, moves_per_minutes, fischer_time, plus, minus]
+        self.texts = [title, back, quit, minutes_per_game, moves_per_minutes, fischer_time, self.minutes, plus_1, minus_1, label_1, label_2]
+        self.buttons = [back, quit, minutes_per_game, moves_per_minutes, fischer_time, plus_1, minus_1]
     
     def draw(self, delta_time):
         """Draws MainMenu"""
