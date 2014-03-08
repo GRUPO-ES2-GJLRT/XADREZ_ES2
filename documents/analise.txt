@@ -1,17 +1,14 @@
 –Qual será a duração de uma iteração? 
-Uma semana. 
+Duas semanas. 
 
 
 –O que vocês pretendem entregar em cada iteração? 
 Ao final de cada iteração, esperamos entregar um software parcial, funcionando.
-    Iteracao 1 (23/02 - 01/03): Telas do sistema, e peças no tabuleiro
-    Iteracao 2 (02/03 - 08/03): Jogadores movendo as peças corretamente, alternando entre eles
-    Iteracao 3 (09/03 - 15/03): Modo multiplayer com relógio
-    Iteracao 4 (16/03 - 22/03): IA
-    Iteracao 5 (23/03 - 29/03): Prova ES2 & IA
-    Iteracao 6 (30/03 - 05/04): Seminário & IA
-    Iteracao 7 (06/04 - 12/04): IA
-    Iteracao 8 em diante: Melhorias na aplicação
+    Iteracao 1 (23/02 - 08/03): Telas do sistema, e peças no tabuleiro
+    Iteracao 2 (09/03 - 22/03): Jogadores movendo as peças corretamente, alternando entre eles, verificando vitória
+    Iteracao 3 (23/03 - 05/04): Relógio & IA. Prova ES2, Seminário
+    Iteracao 4 (06/04 - 19/04): IA
+    Iteracao 5 em diante: Melhorias na aplicação
 
 
 –Como e quando vocês vão se reunir para atingir esse objetivo? 
