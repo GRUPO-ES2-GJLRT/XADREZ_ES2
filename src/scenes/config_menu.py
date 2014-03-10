@@ -4,7 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import pygame, os
 
 from .base import Scene, GameText
-from locales.i18n import *
+from consts.i18n import *
 
 
 class ConfigMenu(Scene):

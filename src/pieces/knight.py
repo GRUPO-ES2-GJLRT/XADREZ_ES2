@@ -8,7 +8,7 @@ class Knight(Piece):
     def name(self):
         return "knight"
 
-    def possible_moves(self):
+    def possible_moves(self, hindered=True):
         moves = [
             (self.x - 2, self.y - 1), (self.x - 2, self.y + 1),
             (self.x - 1, self.y - 2), (self.x - 1, self.y + 2),

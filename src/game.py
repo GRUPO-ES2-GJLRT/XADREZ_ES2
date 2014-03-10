@@ -4,7 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import time
 import pygame
 
-from locales.i18n import *
+from consts.i18n import *
 from scenes.main_menu import MainMenu
 
 WIDTH, HEIGHT = 1024, 768

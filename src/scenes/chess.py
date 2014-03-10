@@ -6,7 +6,9 @@ import os
 
 from .base import Scene, GameText
 from pieces.board import Board
-from locales.i18n import *
+from consts.i18n import *
+from consts.colors import BLACK, WHITE
+
 
 MARGIN = 28
 BORDER = 2
@@ -64,14 +66,18 @@ class Chess(Scene):
 
 
         # Images
+        color = {
+            WHITE: 'white',
+            BLACK: 'black',
+        }
         pieces = ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']
         self.piece_images = {}
         for piece in pieces:
-            white_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'white_%s.png' % piece)))
-            black_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'black_%s.png' % piece)))
-            self.piece_images["white_%s" % piece] = pygame.transform.scale(white_image, 
+            white_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, "%s_%s.png" % (color[WHITE], piece))))
+            black_image = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, "%s_%s.png" % (color[BLACK], piece))))
+            self.piece_images["%s_%s" % (WHITE, piece)] = pygame.transform.scale(white_image, 
                 (self.square_size, self.square_size)) 
-            self.piece_images["black_%s" % piece] = pygame.transform.scale(black_image, 
+            self.piece_images["%s_%s" % (BLACK, piece)] = pygame.transform.scale(black_image, 
                 (self.square_size, self.square_size)) 
 
         # Pieces / Board
@@ -79,8 +85,8 @@ class Chess(Scene):
 
         # Times
         time_font = pygame.font.SysFont("", 48)
-        self.white_image = self.piece_images['white_king']
-        self.black_image = self.piece_images['black_king']
+        self.white_image = self.piece_images['%s_king' % WHITE]
+        self.black_image = self.piece_images['%s_king' % BLACK]
         
         self.white_time = GameText(time_font, str("20:00"), True, (128, 128, 128))
         self.black_time = GameText(time_font, str("20:00"), True, (128, 128, 128))

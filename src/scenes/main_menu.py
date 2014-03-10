@@ -5,7 +5,7 @@ import pygame
 
 from .base import Scene, GameText
 from .chess import Chess
-from locales.i18n import *
+from consts.i18n import *
 
 
 class MainMenu(Scene):

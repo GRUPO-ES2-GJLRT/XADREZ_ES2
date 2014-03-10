@@ -1,6 +1,8 @@
 # coding: UTF-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+from consts.colors import next
+
 class Piece(object):
 
     def __init__(self, board, color, x, y):
@@ -8,6 +10,7 @@ class Piece(object):
         self.color = color
         self.x = x
         self.y = y
+        self.has_moved = False
         board.add(self)
 
     def name(self):
@@ -18,8 +21,10 @@ class Piece(object):
         """ Return the piece position x, y """
         return (self.x, self.y)
 
-    def possible_moves(self):
-        """ Return the possible moves for the piece """
+    def possible_moves(self, hindered=True):
+        """ Return the possible moves for the piece 
+        hindered: It may check for hindered positions on board
+        """
         pass
 
     def valid_move(self, position):
@@ -32,6 +37,17 @@ class Piece(object):
         if piece and piece.color == self.color:
             return False
         return True
+
+    def is_hindered(self, position=None, hindered=None):
+        """ Checks if a position is hindered by an enemy
+        If not provided, position is the piece position
+        """
+        if position == None:
+            position = self.position()
+        position = (position[0], position[1])
+        if hindered == None:
+            hindered = self.board.hindered(next(self.color))
+        return position in hindered
 
 class LinearExplorationPiece(Piece):
     
