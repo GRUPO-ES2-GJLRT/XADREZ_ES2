@@ -2,6 +2,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from .piece import Piece
+from consts.moves import NORMAL
 
 class Knight(Piece):
 
@@ -16,6 +17,6 @@ class Knight(Piece):
             (self.x + 1, self.y - 2), (self.x + 1, self.y + 2),
         ]
         
-        return set(position for position in moves if self.valid_move(position))
+        return {position:NORMAL for position in moves if self.valid_move(position)}
 
     

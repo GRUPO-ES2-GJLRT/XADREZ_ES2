@@ -1,7 +1,8 @@
 # coding: UTF-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-from consts.colors import WHITE, BLACK
+from consts.colors import WHITE, BLACK, next
+from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING
 
 from .pawn import Pawn
 from .rook import Rook
@@ -47,6 +48,7 @@ class Board(object):
             King(self, WHITE, 4, 0)
             King(self, BLACK, 4, 7)
         self.last_move = None
+        self.current_color = WHITE
 
     def __getitem__(self, position):
         """ Access the board position 
@@ -82,3 +84,46 @@ class Board(object):
         for piece in self.pieces[color]:
             result = result.union(piece.possible_moves(hindered=False))
         return result
+
+    def physically_move(self, piece, new_position):
+        """ Move a piece to new_position """
+        self.board_data[piece.x][piece.y] = None
+        piece.has_moved = True
+        self.remove(new_position)
+        piece.position = new_position
+        self.board_data[piece.x][piece.y] = piece
+
+    def move(self, original_position, new_position):
+        """ Move a piece from original_position to new_position """
+        if (not self.valid(original_position) or not self.valid(new_position) or
+            original_position == new_position):
+            return False
+        piece = self[original_position]
+        if not piece or piece.color != self.current_color:
+            return False
+        possible_moves = piece.possible_moves()
+        if not new_position in possible_moves:
+            return False
+            
+        self.physically_move(piece, new_position)
+        
+        move_type = possible_moves[new_position]
+        if move_type == QUEENSIDE_CASTLING:
+            rook = self[(0, original_position[1])]
+            self.physically_move(rook, (3, original_position[1]))
+        if move_type == KINGSIDE_CASTLING:
+            rook = self[(7, original_position[1])]
+            self.physically_move(rook, (5, original_position[1]))
+        if move_type in (RIGHT_EN_PASSANT, LEFT_EN_PASSANT):
+            self.remove((new_position[0], original_position[1]))
+        if move_type in PROMOTION:
+            color = piece.color
+            self.remove(new_position)
+            # ToDo: Definir promotion
+            queen = Queen(self, color, new_position[0], new_position[1])
+            queen.has_moved = True  
+
+        self.last_move = (self.current_color, original_position, new_position)
+        self.current_color = next(self.current_color)
+        
+        return True

@@ -160,7 +160,7 @@ class Chess(Scene):
         # Pieces
         for color, pieces  in self.board.pieces.items():
             for piece in pieces:
-                self.game.screen.blit(self.piece_images['%s_%s'%(piece.color, piece.name())], self.position_rect(piece.position()))
+                self.game.screen.blit(self.piece_images['%s_%s'%(piece.color, piece.name())], self.position_rect(piece.position))
         # Times
         self.game.screen.blit(self.white_image, self.white_image_position)
         self.game.screen.blit(self.black_image, self.black_image_position)

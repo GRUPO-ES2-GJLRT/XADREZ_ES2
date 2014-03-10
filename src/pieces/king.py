@@ -3,7 +3,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 from .piece import Piece
 from consts.colors import BLACK, WHITE, next
-from consts.moves import CASTLING
+from consts.moves import KINGSIDE_CASTLING, QUEENSIDE_CASTLING, NORMAL
 
 class King(Piece):
 
@@ -34,7 +34,7 @@ class King(Piece):
                 not self.is_hindered(position=(self.x + 1, self.y), hindered=hindered_positions) and
                 not self.board[(self.x + 1, self.y)] and 
                 not self.board[(self.x + 2, self.y)]):
-                moves.append((self.x + 2, self.y, CASTLING))
+                moves.append((self.x + 2, self.y, KINGSIDE_CASTLING))
 
             queenside = self.board[(self.x - 4, self.y)]
             # King's new position shouldn't be hindered
@@ -46,16 +46,17 @@ class King(Piece):
                 not self.board[(self.x - 1, self.y)] and 
                 not self.board[(self.x - 2, self.y)] and 
                 not self.board[(self.x - 3, self.y)]):
-                moves.append((self.x - 2, self.y, CASTLING))
+                moves.append((self.x - 2, self.y, QUEENSIDE_CASTLING))
 
-        return set(
-            position for position in moves if self.valid_move(position) and
+        return {
+            (position[0], position[1]):(position[2] if len(position) == 3 else NORMAL)
+            for position in moves if self.valid_move(position) and
             not self.is_hindered(position=position, hindered=hindered_positions)
-        )
+        }
 
     def starting_position(self):
         """ Return True if king hasn't moved and is in the starting position """
         if self.has_moved:
             return False
-        return self.position() == ((4, 0) if self.color == WHITE else (4, 7))
+        return self.position == ((4, 0) if self.color == WHITE else (4, 7))
 

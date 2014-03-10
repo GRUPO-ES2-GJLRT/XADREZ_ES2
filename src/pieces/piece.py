@@ -2,6 +2,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from consts.colors import next
+from consts.moves import NORMAL
 
 class Piece(object):
 
@@ -17,9 +18,16 @@ class Piece(object):
         """ Return the piece name used by the image """
         pass
 
+    @property
     def position(self):
         """ Return the piece position x, y """
         return (self.x, self.y)
+
+    @position.setter
+    def position(self, value):
+        """ sets x, y """
+        self.x = value[0]
+        self.y = value[1]
 
     def possible_moves(self, hindered=True):
         """ Return the possible moves for the piece 
@@ -43,7 +51,7 @@ class Piece(object):
         If not provided, position is the piece position
         """
         if position == None:
-            position = self.position()
+            position = self.position
         position = (position[0], position[1])
         if hindered == None:
             hindered = self.board.hindered(next(self.color))
@@ -53,7 +61,7 @@ class LinearExplorationPiece(Piece):
     
     def explore_position_and_continue(self, position, result):
         if self.valid_move(position):
-            result.add(position)
+            result[position] = NORMAL
         # stop if invalid position
         if not self.board.valid(position):
             return False

@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import unittest
 
 from consts.colors import WHITE, BLACK
+from consts.moves import to_move_dict
 
 from pieces.board import Board
 from pieces.bishop import Bishop
@@ -13,7 +14,7 @@ class TestBishop(unittest.TestCase):
     def test_bishop_at_0_0_and_no_other_pieces_at_board_can_move_in_diagonal_1_1_to_7_7(self):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 0, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7),
         ])
 
@@ -22,7 +23,7 @@ class TestBishop(unittest.TestCase):
     def test_bishop_at_7_7_and_no_other_pieces_at_board_can_move_in_diagonal_0_0_to_6_6(self):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 7, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), 
         ])
 
@@ -31,7 +32,7 @@ class TestBishop(unittest.TestCase):
     def test_bishop_at_0_7_and_no_other_pieces_at_board_can_move_in_diagonal_0_7_to_7_0(self):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 0, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1), (7, 0) 
         ])
 
@@ -40,7 +41,7 @@ class TestBishop(unittest.TestCase):
     def test_bishop_at_4_4_and_no_other_pieces_at_board_can_move_in_diagonals_0_0_to_7_7_and_1_7_to_7_1(self):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 4, 4)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (0, 0), (1, 1), (2, 2), (3, 3), (5, 5), (6, 6), (7, 7),
             (1, 7), (2, 6), (3, 5), (5, 3), (6, 2), (7, 1),
         ])
@@ -51,7 +52,7 @@ class TestBishop(unittest.TestCase):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 0, 0)
         Bishop(board, WHITE, 4, 4)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (1, 1), (2, 2), (3, 3)
         ])
 
@@ -64,7 +65,7 @@ class TestBishop(unittest.TestCase):
         Bishop(board, WHITE, 6, 6)
         Bishop(board, WHITE, 2, 6)
         Bishop(board, WHITE, 6, 2)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 3), (5, 5),
             (3, 5), (5, 3),
         ])
@@ -75,7 +76,7 @@ class TestBishop(unittest.TestCase):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 0, 0)
         Bishop(board, BLACK, 4, 4)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (1, 1), (2, 2), (3, 3), (4, 4),
         ])
 

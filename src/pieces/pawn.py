@@ -2,7 +2,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from consts.colors import WHITE, BLACK
-from consts.moves import EN_PASSANT, PROMOTION
+from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, to_move_dict
 
 from .piece import Piece
 
@@ -39,24 +39,26 @@ class Pawn(Piece):
             if piece and piece.name() == "pawn" and distance == 2:
                 if self.color == WHITE:
                     if piece.x == self.x - 1:
-                        walk_moves.append((self.x - 1, self.y + 1, EN_PASSANT))
+                        walk_moves.append((self.x - 1, self.y + 1, LEFT_EN_PASSANT))
                     if piece.x == self.x + 1:
-                        walk_moves.append((self.x + 1, self.y + 1, EN_PASSANT))   
+                        walk_moves.append((self.x + 1, self.y + 1, RIGHT_EN_PASSANT))   
                 else:
                     if piece.x == self.x - 1:
-                        walk_moves.append((self.x - 1, self.y - 1, EN_PASSANT))
+                        walk_moves.append((self.x - 1, self.y - 1, LEFT_EN_PASSANT))
                     if piece.x == self.x + 1:
-                        walk_moves.append((self.x + 1, self.y - 1, EN_PASSANT)) 
+                        walk_moves.append((self.x + 1, self.y - 1, RIGHT_EN_PASSANT)) 
 
-        result = set(self.update_promotion(position) for position in attack_moves if self.valid_attack_move(position, hindered))
+        result = {(position[0], position[1]):self.modifier(position) for position in attack_moves if self.valid_attack_move(position, hindered)}
         if hindered:
-            result = result.union(set(self.update_promotion(position) for position in walk_moves if self.valid_walk_move(position)))
+            result = dict(result, **({(position[0], position[1]):self.modifier(position) for position in walk_moves if self.valid_walk_move(position)}))
         return result
 
-    def update_promotion(self, position): 
+    def modifier(self, position): 
         if (self.color == WHITE and position[1] == 7) or (self.color == BLACK and position[1] == 0):
-            return (position[0], position[1], PROMOTION)
-        return position
+            return PROMOTION
+        if len(position) == 3:
+            return position[2]
+        return NORMAL
 
     def valid_walk_move(self, position):
         """ Checks if a position is not occupied by a piece 

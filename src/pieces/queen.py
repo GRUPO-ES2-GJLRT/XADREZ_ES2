@@ -10,4 +10,4 @@ class Queen(Bishop, Rook):
         return "queen"
 
     def possible_moves(self, hindered=True):
-        return Bishop.possible_moves(self).union(Rook.possible_moves(self))
+        return dict(Bishop.possible_moves(self), **Rook.possible_moves(self))

@@ -9,7 +9,7 @@ class Rook(LinearExplorationPiece):
         return "rook"
 
     def possible_moves(self, hindered=True):
-        result = set()
+        result = {}
         # Bottom
         for y in xrange(self.y + 1, 8):
             position = (self.x, y)

@@ -4,7 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import unittest
 
 from consts.colors import WHITE, BLACK
-from consts.moves import CASTLING
+from consts.moves import KINGSIDE_CASTLING, QUEENSIDE_CASTLING, to_move_dict
 
 from pieces.board import Board
 from pieces.king import King
@@ -15,7 +15,7 @@ class TestKingMove(unittest.TestCase):
     def test_king_at_4_4_can_move_to_8_positions(self):
         board = Board(new_game=False)
         king = King(board, WHITE, 4, 4)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 3), (4, 3), (5, 3), (5, 4), (5, 5), (4, 5), (3, 5), (3, 4) 
         ])
 
@@ -24,7 +24,7 @@ class TestKingMove(unittest.TestCase):
     def test_king_at_0_0_can_move_to_3_positions(self):
         board = Board(new_game=False)
         king = King(board, WHITE, 0, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (0, 1), (1, 0), (1, 1)
         ])
 
@@ -34,7 +34,7 @@ class TestKingMove(unittest.TestCase):
         board = Board(new_game=False)
         king = King(board, WHITE, 0, 0)
         King(board, WHITE, 1, 1)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (0, 1), (1, 0), 
         ])
 
@@ -46,7 +46,7 @@ class TestKingMove(unittest.TestCase):
         King(board, WHITE, 0, 1)
         King(board, WHITE, 1, 0)
         King(board, WHITE, 1, 1)
-        possible_moves = set()
+        possible_moves = {}
 
         self.assertEqual(king.possible_moves(), possible_moves)
 
@@ -54,7 +54,7 @@ class TestKingMove(unittest.TestCase):
         board = Board(new_game=False)
         king = King(board, WHITE, 0, 0)
         King(board, BLACK, 2, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (0, 1), 
         ])
 
@@ -67,9 +67,9 @@ class TestKingCastling(unittest.TestCase):
         board = Board(new_game=False)
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 7, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
-            (6, 0, CASTLING)
+            (6, 0, KINGSIDE_CASTLING)
         ])
 
         self.assertEqual(king.possible_moves(), possible_moves)
@@ -79,7 +79,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 7, 0)
         Rook(board, WHITE, 6, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -90,7 +90,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 7, 0)
         Rook(board, WHITE, 5, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), 
         ])
 
@@ -101,7 +101,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         king.has_moved = True
         Rook(board, WHITE, 7, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -112,7 +112,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 7, 0)
         rook.has_moved = True
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -123,7 +123,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 7, 0)
         Rook(board, BLACK, 5, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), 
         ])
 
@@ -134,7 +134,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 7, 0)
         Rook(board, BLACK, 6, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -145,7 +145,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 7, 0)
         Rook(board, BLACK, 4, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (5, 1), (5, 0),
         ])
 
@@ -155,9 +155,9 @@ class TestKingCastling(unittest.TestCase):
         board = Board(new_game=False)
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 0, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
-            (2, 0, CASTLING)
+            (2, 0, QUEENSIDE_CASTLING)
         ])
 
         self.assertEqual(king.possible_moves(), possible_moves)
@@ -167,7 +167,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 0, 0)
         Rook(board, WHITE, 1, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -178,7 +178,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 0, 0)
         Rook(board, WHITE, 2, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -189,7 +189,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         Rook(board, WHITE, 0, 0)
         Rook(board, WHITE, 3, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -200,7 +200,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         king.has_moved = True
         Rook(board, WHITE, 0, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -211,7 +211,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 0, 0)
         rook.has_moved = True
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -222,7 +222,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 0, 0)
         Rook(board, BLACK, 3, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (4, 1), (5, 1), (5, 0),
         ])
 
@@ -233,7 +233,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 0, 0)
         Rook(board, BLACK, 2, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
 
@@ -244,7 +244,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, WHITE, 4, 0)
         rook = Rook(board, WHITE, 0, 0)
         Rook(board, BLACK, 4, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 0), (3, 1), (5, 1), (5, 0),
         ])
 
@@ -254,9 +254,9 @@ class TestKingCastling(unittest.TestCase):
         board = Board(new_game=False)
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 7, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
-            (6, 7, CASTLING)
+            (6, 7, KINGSIDE_CASTLING)
         ])
 
         self.assertEqual(king.possible_moves(), possible_moves)
@@ -266,7 +266,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 7, 7)
         Rook(board, BLACK, 6, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -277,7 +277,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 7, 7)
         Rook(board, BLACK, 5, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), 
         ])
 
@@ -288,7 +288,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         king.has_moved = True
         Rook(board, BLACK, 7, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -299,7 +299,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 7, 7)
         rook.has_moved = True
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -310,7 +310,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 7, 7)
         Rook(board, WHITE, 5, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6),
         ])
 
@@ -321,7 +321,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 7, 7)
         Rook(board, WHITE, 6, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -332,7 +332,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 7, 7)
         Rook(board, WHITE, 4, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (5, 6), (5, 7),
         ])
 
@@ -342,9 +342,9 @@ class TestKingCastling(unittest.TestCase):
         board = Board(new_game=False)
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 0, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
-            (2, 7, CASTLING)
+            (2, 7, QUEENSIDE_CASTLING)
         ])
 
         self.assertEqual(king.possible_moves(), possible_moves)
@@ -354,7 +354,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 0, 7)
         Rook(board, BLACK, 1, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -365,7 +365,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 0, 7)
         Rook(board, BLACK, 2, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -376,7 +376,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         Rook(board, BLACK, 0, 7)
         Rook(board, BLACK, 3, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -387,7 +387,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         king.has_moved = True
         Rook(board, BLACK, 0, 7)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -398,7 +398,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 0, 7)
         rook.has_moved = True
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -409,7 +409,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 0, 7)
         Rook(board, WHITE, 3, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (4, 6), (5, 6), (5, 7),
         ])
 
@@ -420,7 +420,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 0, 7)
         Rook(board, WHITE, 2, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
 
@@ -431,7 +431,7 @@ class TestKingCastling(unittest.TestCase):
         king = King(board, BLACK, 4, 7)
         rook = Rook(board, BLACK, 0, 7)
         Rook(board, WHITE, 4, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 7), (3, 6), (5, 6), (5, 7),
         ])
 

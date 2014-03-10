@@ -9,7 +9,7 @@ class Bishop(LinearExplorationPiece):
         return "bishop"
 
     def possible_moves(self, hindered=True):
-        result = set()
+        result = {}
         # Top Left
         for i in xrange(1, min(self.x, self.y) + 1):
             position = (self.x - i, self.y - i)

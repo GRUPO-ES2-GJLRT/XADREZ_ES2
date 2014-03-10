@@ -4,6 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import unittest
 
 from consts.colors import WHITE, BLACK
+from consts.moves import to_move_dict
 
 from pieces.board import Board
 from pieces.knight import Knight
@@ -13,7 +14,7 @@ class TestKnight(unittest.TestCase):
     def test_knight_at_4_4_can_move_to_8_positions(self):
         board = Board(new_game=False)
         knight = Knight(board, WHITE, 4, 4)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (3, 2), (5, 2), (6, 3), (6, 5), (5, 6), (3, 6), (2, 5), (2, 3) 
         ])
 
@@ -22,7 +23,7 @@ class TestKnight(unittest.TestCase):
     def test_knight_at_0_0_can_move_to_2_positions(self):
         board = Board(new_game=False)
         knight = Knight(board, WHITE, 0, 0)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (2, 1), (1, 2)
         ])
 
@@ -32,7 +33,7 @@ class TestKnight(unittest.TestCase):
         board = Board(new_game=False)
         knight = Knight(board, WHITE, 0, 0)
         Knight(board, WHITE, 2, 1)
-        possible_moves = set([
+        possible_moves = to_move_dict([
             (1, 2)
         ])
 
@@ -43,6 +44,6 @@ class TestKnight(unittest.TestCase):
         knight = Knight(board, WHITE, 0, 0)
         Knight(board, WHITE, 2, 1)
         Knight(board, WHITE, 1, 2)
-        possible_moves = set()
+        possible_moves = {}
 
         self.assertEqual(knight.possible_moves(), possible_moves)
