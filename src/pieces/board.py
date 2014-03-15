@@ -2,7 +2,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from consts.colors import WHITE, BLACK, next
-from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING
+from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING, CHECK
 
 from .pawn import Pawn
 from .rook import Rook
@@ -20,6 +20,10 @@ class Board(object):
         self.pieces = {
             WHITE: [],
             BLACK: [],
+        }
+        self.kings = {
+            WHITE: None,
+            BLACK: None,
         }
         if new_game:
             # Pawn
@@ -62,6 +66,10 @@ class Board(object):
     	""" Add piece to the board.
         This is called in the creation of Piece.
         """
+        if not piece:
+            return
+        if piece.__class__ == King:
+            self.kings[piece.color] = piece
         self.board_data[piece.x][piece.y] = piece
         self.pieces[piece.color].append(piece)
 
@@ -87,14 +95,23 @@ class Board(object):
 
     def physically_move(self, piece, new_position):
         """ Move a piece to new_position """
+        old_piece = self[new_position]
         self.board_data[piece.x][piece.y] = None
         piece.has_moved = True
         self.remove(new_position)
         piece.position = new_position
         self.board_data[piece.x][piece.y] = piece
+        return old_piece
+
+    def current_king(self):
+        return self.kings[self.current_color]
 
     def move(self, original_position, new_position):
-        """ Move a piece from original_position to new_position """
+        """ Move a piece from original_position to new_position 
+        Returns False if the movement ins't valid
+        Returns True, if it is valid
+        Returns CHECK, if it is check
+        """
         if (not self.valid(original_position) or not self.valid(new_position) or
             original_position == new_position):
             return False
@@ -105,9 +122,18 @@ class Board(object):
         if not new_position in possible_moves:
             return False
             
-        self.physically_move(piece, new_position)
-        
+        old_piece = self.physically_move(piece, new_position)
+
         move_type = possible_moves[new_position]
+
+        if move_type not in [QUEENSIDE_CASTLING, KINGSIDE_CASTLING]:
+            #ToDO: verificar se teve xeque no current_color, reverter movimento e retornar false
+            invalid_check = False
+            if invalid_check:
+                self.physically_move(piece, original_position)
+                self.add(old_piece)
+                return False
+
         if move_type == QUEENSIDE_CASTLING:
             rook = self[(0, original_position[1])]
             self.physically_move(rook, (3, original_position[1]))
@@ -119,11 +145,11 @@ class Board(object):
         if move_type in PROMOTION:
             color = piece.color
             self.remove(new_position)
-            # ToDo: Definir promotion
             queen = Queen(self, color, new_position[0], new_position[1])
             queen.has_moved = True  
 
         self.last_move = (self.current_color, original_position, new_position)
         self.current_color = next(self.current_color)
         
+        #ToDo: verificar se teve xeque no novo current_color e retornar CHECK
         return True

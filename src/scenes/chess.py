@@ -8,13 +8,18 @@ from .base import Scene, GameText
 from pieces.board import Board
 from consts.i18n import *
 from consts.colors import BLACK, WHITE
-
+from consts.moves import CHECK
 
 MARGIN = 28
 BORDER = 2
 
 RIGHT_MARGIN = 14
 
+# States
+SELECT = 0
+PLAY = 1
+
+CHECK_COUNTDOWN = 0.5
 
 class Chess(Scene):
 
@@ -83,6 +88,14 @@ class Chess(Scene):
         # Pieces / Board
         self.board = Board()
 
+        arrow_down = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'arrow_down.png')))
+        arrow_down  = pygame.transform.scale(arrow_down, (self.square_size // 2, self.square_size // 2)) 
+
+        arrow_up = pygame.transform.rotate(arrow_down, 180)
+        arrow_left = pygame.transform.rotate(arrow_down, 270)
+        arrow_right = pygame.transform.rotate(arrow_down, 90)
+
+
         # Times
         time_font = pygame.font.SysFont("", 48)
         self.white_image = self.piece_images['%s_king' % WHITE]
@@ -101,6 +114,11 @@ class Chess(Scene):
                 self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN) + self.square_size + MARGIN + RIGHT_MARGIN, 
                 self.game.height - (MARGIN + 2*BORDER) - self.square_size // 2
             )
+            self.white_arrow = arrow_down
+            self.white_arrow_position = (
+                self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN) + self.square_size // 4, 
+                self.game.height - (MARGIN + 2*BORDER) - self.square_size - self.square_size // 2,
+            )
             self.black_image_position = (
                 self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN), 
                 BORDER,
@@ -110,6 +128,11 @@ class Chess(Scene):
                 self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN) + self.square_size + MARGIN + RIGHT_MARGIN, 
                 BORDER + self.square_size // 2,
             )
+            self.black_arrow = arrow_up
+            self.black_arrow_position = (
+                self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN) + self.square_size // 4, 
+                BORDER + self.square_size,
+            )
         else:
             self.white_image_position = (
                 self.board_size + (MARGIN + 2*BORDER) - self.square_size, 
@@ -117,8 +140,13 @@ class Chess(Scene):
             )
             self.white_time.rect = self.place_rect(
                 self.white_time.surface,
-                self.board_size + (MARGIN + 2*BORDER) - self.square_size - MARGIN - RIGHT_MARGIN, 
+                self.board_size + (MARGIN + 2*BORDER) - self.square_size - MARGIN - RIGHT_MARGIN - self.square_size // 2, 
                 self.board_size + 2*BORDER + MARGIN + self.square_size // 2,
+            )
+            self.white_arrow = arrow_right
+            self.white_arrow_position = (
+                self.board_size + (MARGIN + 2*BORDER) - self.square_size - self.square_size // 2, 
+                self.board_size + 2*BORDER + MARGIN + self.square_size // 4,
             )
             self.black_image_position = (
                 MARGIN + 2*BORDER, 
@@ -126,13 +154,44 @@ class Chess(Scene):
             )
             self.black_time.rect = self.place_rect(
                 self.black_time.surface,
-                MARGIN + 2*BORDER + self.square_size + MARGIN + RIGHT_MARGIN, 
+                MARGIN + 2*BORDER + self.square_size + MARGIN + RIGHT_MARGIN + self.square_size // 2, 
                 self.board_size + 2*BORDER + MARGIN + self.square_size // 2,
+            )
+            self.black_arrow = arrow_left
+            self.black_arrow_position = (
+                MARGIN + 2*BORDER + self.square_size, 
+                self.board_size + 2*BORDER + MARGIN + self.square_size // 4,
             )
         
 
         # Selected
-        self.square = None
+        self.selected = None
+        self.fail = None
+        self.check = None
+        self.state = SELECT
+
+        # Messages
+        check_font = pygame.font.SysFont("", 148)
+        self.check_message = GameText(check_font, CHECK_MESSAGE, True, (255, 255, 255), style="outline", other_color=(50, 50, 50))
+        self.check_message.rect = self.place_rect(
+            self.check_message.surface, 
+            self.board_size // 2 + MARGIN + BORDER,
+            self.board_size // 2 + BORDER,
+        )
+
+        self.countdown = 0
+
+    def draw_square(self, square, color):
+        if square:
+            pygame.draw.rect(self.game.screen, color, self.position_rect(square))
+            position = self.position_rect(square)
+            label = GameText(pygame.font.SysFont("", 26), str(square), True, (128, 128, 128))
+            label.rect = self.place_rect(
+                label.surface,
+                position[0] + self.square_size // 2,
+                position[1] + self.square_size // 2,
+            )
+            label.blit(self.game.screen)
     
     def draw(self, delta_time):
         """Draws Chess game"""
@@ -147,16 +206,9 @@ class Chess(Scene):
         for label in self.labels:
             label.blit(self.game.screen)
         # Selected
-        if self.square:
-            pygame.draw.rect(self.game.screen, (0, 223, 0), self.position_rect(self.square))
-            position = self.position_rect(self.square)
-            label = GameText(pygame.font.SysFont("", 26), str(self.square), True, (128, 128, 128))
-            label.rect = self.place_rect(
-                label.surface,
-                position[0] + self.square_size // 2,
-                position[1] + self.square_size // 2,
-            )
-            label.blit(self.game.screen)
+        self.draw_square(self.selected, (0, 223, 0))
+        self.draw_square(self.fail, (255, 150, 150))
+        self.draw_square(self.check, (204, 153, 255))
         # Pieces
         for color, pieces  in self.board.pieces.items():
             for piece in pieces:
@@ -166,6 +218,15 @@ class Chess(Scene):
         self.game.screen.blit(self.black_image, self.black_image_position)
         self.white_time.blit(self.game.screen)
         self.black_time.blit(self.game.screen)
+        # Arrow
+        if self.board.current_color == WHITE:
+            self.game.screen.blit(self.white_arrow, self.white_arrow_position)
+        else:
+            self.game.screen.blit(self.black_arrow, self.black_arrow_position) 
+        # Messages
+        self.countdown = max(self.countdown - delta_time, 0)
+        if self.countdown:
+            self.check_message.blit(self.game.screen)
 
     def position_rect(self, position):
         return (
@@ -186,4 +247,27 @@ class Chess(Scene):
     def event(self, delta_time, event):
         """Checks for mouse hover and mouse click"""
         if event.type == pygame.MOUSEBUTTONUP:
-            self.square = self.get_square(event.pos)
+            square = self.get_square(event.pos)
+            if square:
+                piece = self.board[square]
+                if piece and piece.color == self.board.current_color:
+                    self.selected = square
+                    self.state = PLAY
+                elif self.state == PLAY:
+                    self.play_event(square, piece)
+
+    def play_event(self, square, piece):
+        movement = self.board.move(self.selected, square)
+        self.fail = None
+        self.check = None
+        if movement:
+            self.state = SELECT
+            self.selected = None
+            if movement == CHECK:
+                self.check = self.board.current_king().position
+                self.countdown = CHECK_COUNTDOWN
+            # Verificar vitória aqui
+        else:
+            self.fail = square
+
+

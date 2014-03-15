@@ -75,21 +75,52 @@ class Scene(object):
         pass
 
 
+
 class GameText(object):
 
-    def __init__(self, font, text, antialias, color, rect=None):
+    def __init__(self, font, text, antialias, color, rect=None, style="normal", other_color=None):
         self.font = font
         self.text = text
         self.antialias = antialias
         self.color = color
         self.surface = None
+        self.style = style
+        self.other_color = other_color if other_color else self.color
         self.redraw()
         self.rect = self.surface.get_rect()
         if rect:
             self.rect = rect
         
+    def hollow(self):
+        notcolor = [c^0xFF for c in self.other_color]
+        base = self.font.render(self.text, 0, self.other_color, notcolor)
+        size = base.get_width() + 2, base.get_height() + 2
+        img = pygame.Surface(size, 16)
+        img.fill(notcolor)
+        base.set_colorkey(0)
+        img.blit(base, (0, 0))
+        img.blit(base, (2, 0))
+        img.blit(base, (0, 2))
+        img.blit(base, (2, 2))
+        base.set_colorkey(0)
+        base.set_palette_at(1, notcolor)
+        img.blit(base, (1, 1))
+        img.set_colorkey(notcolor)
+        return img
+
     def redraw(self):
-        self.surface = self.font.render(self.text, self.antialias, self.color)
+        if self.style == "hollow":
+            self.surface = self.hollow()
+        elif self.style == "outline":
+            base = self.font.render(self.text, 0, self.color)
+            outline = self.hollow()
+            img = pygame.Surface(outline.get_size(), 16)
+            img.blit(base, (1, 1))
+            img.blit(outline, (0, 0))
+            img.set_colorkey(0)
+            self.surface = img
+        else:
+            self.surface = self.font.render(self.text, self.antialias, self.color)
 
     def blit(self, screen):
         screen.blit(self.surface, self.rect.topleft)

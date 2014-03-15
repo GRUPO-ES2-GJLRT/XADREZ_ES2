@@ -14,3 +14,5 @@ to_move_dict = lambda lis: {
 	(position[0], position[1]):(position[2] if len(position) == 3 else NORMAL) 
 	for position in lis
 } 
+
+CHECK = "check"
