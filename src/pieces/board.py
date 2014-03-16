@@ -152,4 +152,4 @@ class Board(object):
         self.current_color = next(self.current_color)
         
         #ToDo: verificar se teve xeque no novo current_color e retornar CHECK
-        return True
+        return CHECK

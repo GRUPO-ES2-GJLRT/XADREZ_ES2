@@ -17,6 +17,7 @@ class Scene(object):
         self.assets_dir = os.path.join(sys.argv[0], '..', '..', 'assets')
         self.data_dir = os.path.join(sys.argv[0], '..', '..', 'data')
         self.game = game
+        self.thread_events = []
 
     def loop(self, delta_time):
         """This function is called in the game loop.
@@ -35,6 +36,8 @@ class Scene(object):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.game.running = False
+                for thread_event in self.thread_events:
+                    thread_event.set()
             else:
                 self.event(delta_time, event)
 
