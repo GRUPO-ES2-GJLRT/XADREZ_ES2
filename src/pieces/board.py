@@ -153,16 +153,20 @@ class Board(object):
         self.current_color = next(self.current_color)
 
         #ToDo: verificar se teve xeque no novo current_color e retornar CHECK
-        return CHECK
+
+        if self.in_check():
+            return CHECK
 
     def in_check(self):
-        king = self.kings[self.current_color]
-        check = king.is_hindered()
-        return check
+        return self.kings[self.current_color].is_hindered()
 
     def in_check_mate(self):
         king = self.kings[self.current_color]
-        possibilities = king.possible_moves()
-        if self.in_check() and len(possibilities) == 0:
-            return True
-        return False
+        return self.in_check() and len(king.possible_moves()) == 0
+
+    def stalemate(self):
+        prey_pieces = 0
+        for piece in self.pieces[self.current_color]:
+            if len(piece.possible_moves()) == 0:
+                prey_pieces += 1
+        return prey_pieces == len(self.pieces[self.current_color]) and not self.in_check()
