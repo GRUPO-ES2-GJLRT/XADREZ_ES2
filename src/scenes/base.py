@@ -2,7 +2,9 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import pygame
-import sys, os
+import sys, os, json
+
+from consts.default import TIMER, MINUTES, MOVES, BONUS
 
 class Scene(object):
 
@@ -13,6 +15,7 @@ class Scene(object):
         game is a Game instance
         """
         self.assets_dir = os.path.join(sys.argv[0], '..', '..', 'assets')
+        self.data_dir = os.path.join(sys.argv[0], '..', '..', 'data')
         self.game = game
 
     def loop(self, delta_time):
@@ -36,6 +39,27 @@ class Scene(object):
                 self.event(delta_time, event)
 
         pygame.display.flip()
+
+    def load_stored_config(self):
+        data = {
+            'option': TIMER,
+            'minutes': MINUTES,
+            'moves': MOVES,
+            'bonus': BONUS,
+        }
+
+        file_path = os.path.abspath(os.path.join(self.data_dir, 'config.json'))
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as f:
+                data.update(json.load(f))
+        return data
+
+    def set_text_position(self, text, x, y):
+        text.rect = self.place_rect(
+            text.surface,
+            self.game.relative_x(x),
+            self.game.relative_y(y),
+        )
 
     def place_rect(self, text, x, y):
         rect = text.get_rect()
