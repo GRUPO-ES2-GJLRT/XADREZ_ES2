@@ -2,7 +2,8 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 from consts.colors import WHITE, BLACK, next
-from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING, CHECK
+from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING, \
+    CHECK
 
 from .pawn import Pawn
 from .rook import Rook
@@ -60,10 +61,10 @@ class Board(object):
         """
         if not self.valid(position):
             return None
-        return self.board_data[position[0]][position[1]] 
+        return self.board_data[position[0]][position[1]]
 
     def add(self, piece):
-    	""" Add piece to the board.
+        """ Add piece to the board.
         This is called in the creation of Piece.
         """
         if not piece:
@@ -77,13 +78,13 @@ class Board(object):
         """ Remove piece from board. """
         piece = self[position]
         if piece:
-            self.board_data[piece.x][piece.y] = None    
+            self.board_data[piece.x][piece.y] = None
             self.pieces[piece.color].remove(piece)
 
 
     def valid(self, position):
-    	""" Checks if position tuple is inside the board """
-    	return 0 <= position[0] < 8 and 0 <= position[1] < 8 
+        """ Checks if position tuple is inside the board """
+        return 0 <= position[0] < 8 and 0 <= position[1] < 8
 
 
     def hindered(self, color):
@@ -113,7 +114,7 @@ class Board(object):
         Returns CHECK, if it is check
         """
         if (not self.valid(original_position) or not self.valid(new_position) or
-            original_position == new_position):
+                    original_position == new_position):
             return False
         piece = self[original_position]
         if not piece or piece.color != self.current_color:
@@ -121,7 +122,7 @@ class Board(object):
         possible_moves = piece.possible_moves()
         if not new_position in possible_moves:
             return False
-            
+
         old_piece = self.physically_move(piece, new_position)
 
         move_type = possible_moves[new_position]
@@ -146,15 +147,22 @@ class Board(object):
             color = piece.color
             self.remove(new_position)
             queen = Queen(self, color, new_position[0], new_position[1])
-            queen.has_moved = True  
+            queen.has_moved = True
 
         self.last_move = (self.current_color, original_position, new_position)
         self.current_color = next(self.current_color)
-        
+
         #ToDo: verificar se teve xeque no novo current_color e retornar CHECK
         return CHECK
 
     def in_check(self):
-        king = self.current_king()
+        king = self.kings[self.current_color]
         check = king.is_hindered()
         return check
+
+    def in_check_mate(self):
+        king = self.kings[self.current_color]
+        possibilities = king.possible_moves()
+        if self.in_check() and len(possibilities) == 0:
+            return True
+        return False
