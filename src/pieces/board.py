@@ -153,3 +153,8 @@ class Board(object):
         
         #ToDo: verificar se teve xeque no novo current_color e retornar CHECK
         return CHECK
+
+    def in_check(self):
+        king = self.current_king()
+        check = king.is_hindered()
+        return check
