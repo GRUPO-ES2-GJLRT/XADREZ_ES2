@@ -6,8 +6,10 @@
 # Packages
 *.egg
 *.egg-info
+.DS_Store
 dist
 build
+data
 eggs
 parts
 bin
@@ -40,3 +42,4 @@ nosetests.xml
 .pydevproject
 
 #Other
+config.json

@@ -197,6 +197,12 @@ class ConfigMenu(Scene):
             'moves': int(self.moves.text),
             'bonus': int(self.bonus.text),
         }
+
+        try:
+            os.makedirs(os.path.abspath(self.data_dir))
+        except:
+            pass
+
         with open(os.path.abspath(os.path.join(self.data_dir, 'config.json')), 'w') as f:
             json.dump(data, f)
         
