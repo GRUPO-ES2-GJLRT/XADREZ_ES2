@@ -26,6 +26,10 @@ class Board(object):
             WHITE: None,
             BLACK: None,
         }
+        self.moves = {
+            WHITE: 0,
+            BLACK: 0,
+        }
         if new_game:
             # Pawn
             for x in xrange(8):
@@ -170,3 +174,8 @@ class Board(object):
             if len(piece.possible_moves()) == 0:
                 prey_pieces += 1
         return prey_pieces == len(self.pieces[self.current_color]) and not self.in_check()
+
+    def impass(self):
+        if len(self.pieces[self.current_color]) == 1 and len(self.kings[self.current_color].possible_moves) > 0:
+            self.moves[self.current_color] += 1
+        return self.moves[self.current_color] >= 20
