@@ -14,7 +14,6 @@ class ConfigMenu(Scene):
         """ConfigMenu constructor. Creates texts and buttons"""
         super(ConfigMenu, self).__init__(*args, **kwargs)
 
-
         # Load current config
         data = self.load_stored_config()
 
@@ -40,7 +39,6 @@ class ConfigMenu(Scene):
 
         back.click = back_click
 
-    
         # Timer
         self.option = data['option']
 
@@ -188,7 +186,6 @@ class ConfigMenu(Scene):
         self.buttons = default_buttons
 
         update_labels_and_fields()
-    
 
     def save(self):
         data = {
@@ -205,14 +202,12 @@ class ConfigMenu(Scene):
 
         with open(os.path.abspath(os.path.join(self.data_dir, 'config.json')), 'w') as f:
             json.dump(data, f)
-        
 
     def draw(self, delta_time):
         """Draws MainMenu"""
         for text in self.texts:
             text.blit(self.game.screen)
         self.game.screen.blit(self.ok, self.ok_position)
-
 
     def event(self, delta_time, event):
         """Checks for mouse hover and mouse click"""

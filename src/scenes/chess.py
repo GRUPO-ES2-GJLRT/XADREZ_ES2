@@ -23,6 +23,7 @@ END = 2
 
 CHECK_COUNTDOWN = 0.5
 
+
 class Chess(Scene):
 
     def __init__(self, *args, **kwargs):
@@ -72,7 +73,6 @@ class Chess(Scene):
             )
             self.labels.append(label)
 
-
         # Images
         color = {
             WHITE: 'white',
@@ -92,12 +92,11 @@ class Chess(Scene):
         self.board = Board()
 
         arrow_down = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'arrow_down.png')))
-        arrow_down  = pygame.transform.scale(arrow_down, (self.square_size // 2, self.square_size // 2)) 
+        arrow_down = pygame.transform.scale(arrow_down, (self.square_size // 2, self.square_size // 2))
 
         arrow_up = pygame.transform.rotate(arrow_down, 180)
         arrow_left = pygame.transform.rotate(arrow_down, 270)
         arrow_right = pygame.transform.rotate(arrow_down, 90)
-
 
         # Times
         time_font = pygame.font.SysFont("", 48)
@@ -165,7 +164,6 @@ class Chess(Scene):
                 MARGIN + 2*BORDER + self.square_size, 
                 self.board_size + 2*BORDER + MARGIN + self.square_size // 4,
             )
-        
 
         # Selected
         self.selected = None
@@ -196,7 +194,6 @@ class Chess(Scene):
             self.board_size // 2 + BORDER,
         )
 
-
         self.countdown = 0
 
         # Timers
@@ -211,8 +208,6 @@ class Chess(Scene):
         # Winner
         self.white_wins = False
         self.black_wins = False
-
-
 
     def update_timers(self):
         self.white_time.text = self.white_timer.minutes_to_text()
@@ -296,7 +291,6 @@ class Chess(Scene):
         if 0 > px or px > 7 or 0 > py or py > 7:
             return None
         return (px, 7 - py)
-
 
     def event(self, delta_time, event):
         """Checks for mouse hover and mouse click"""
