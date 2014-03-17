@@ -165,15 +165,12 @@ class Board(object):
         return self.kings[self.current_color].is_hindered()
 
     def in_check_mate(self):
-        king = self.kings[self.current_color]
-        return self.in_check() and len(king.possible_moves()) == 0
+        return self.in_check() and len(self.kings[self.current_color].possible_moves())
 
     def stalemate(self):
-        prey_pieces = 0
-        for piece in self.pieces[self.current_color]:
-            if len(piece.possible_moves()) == 0:
-                prey_pieces += 1
-        return prey_pieces == len(self.pieces[self.current_color]) and not self.in_check()
+        moves = set([len(piece.possible_moves()) for piece in self.pieces[self.current_color]])
+
+        return not self.in_check() and len(moves) == 1 and moves[0] == 0
 
     def impass(self):
         if len(self.pieces[self.current_color]) == 1 and len(self.kings[self.current_color].possible_moves) > 0:
