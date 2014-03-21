@@ -67,6 +67,21 @@ class TestQueen(unittest.TestCase):
 
         self.assertEqual(queen.possible_moves(), possible_moves)
 
+    def test_queen_at_0_0_with_ignored_allies_in_1_0_and_1_1_can_move_to_all_line_0_and_column_0_and_diagonal_0_0_to_7_7(self):
+        board = Board(new_game=False)
+        queen = Queen(board, WHITE, 0, 0)
+        a1 = Queen(board, WHITE, 1, 0)
+        a2 = Queen(board, WHITE, 1, 1)
+        a1.ignored = True
+        a2.ignored = True
+        possible_moves = to_move_dict([
+            (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7),
+            (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
+            (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
+        ])
+
+        self.assertEqual(queen.possible_moves(), possible_moves)
+
     def test_queen_at_0_0_with_allies_in_1_0_and_0_1_can_move_to_all_diagonal_0_0_to_7_7(self):
         board = Board(new_game=False)
         queen = Queen(board, WHITE, 0, 0)

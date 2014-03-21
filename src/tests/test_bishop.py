@@ -58,6 +58,17 @@ class TestBishop(unittest.TestCase):
 
         self.assertEqual(bishop.possible_moves(), possible_moves)
 
+    def test_bishop_at_0_0_and_an_ignored_ally_in_4_4_can_move_in_diagonal_1_1_to_7_7(self):
+        board = Board(new_game=False)
+        bishop = Bishop(board, WHITE, 0, 0)
+        ally = Bishop(board, WHITE, 4, 4)
+        ally.ignored = True
+        possible_moves = to_move_dict([
+            (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7),
+        ])
+
+        self.assertEqual(bishop.possible_moves(), possible_moves)
+
     def test_bishop_at_4_4_surround_by_allies_with_distance_2_has_4_possible_moves(self):
         board = Board(new_game=False)
         bishop = Bishop(board, WHITE, 4, 4)

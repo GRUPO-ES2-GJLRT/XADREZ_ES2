@@ -10,7 +10,7 @@ class King(Piece):
     def name(self):
         return "king"
 
-    def possible_moves(self, hindered=True):
+    def possible_moves(self, hindered=True, hindered_positions=None):
         moves = [
             (self.x - 1, self.y - 1), (self.x - 1, self.y + 1), 
             (self.x + 1, self.y - 1), (self.x + 1, self.y + 1),
@@ -18,7 +18,8 @@ class King(Piece):
             (self.x - 1, self.y), (self.x + 1, self.y),
         ]
 
-        hindered_positions = self.board.hindered(next(self.color)) if hindered else set()
+        if not hindered_positions:
+            hindered_positions = self.board.hindered(next(self.color)) if hindered else set()
         
         # Castling
         # Just valid for hindered = True

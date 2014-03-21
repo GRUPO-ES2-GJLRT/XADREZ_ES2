@@ -8,7 +8,7 @@ class Rook(LinearExplorationPiece):
     def name(self):
         return "rook"
 
-    def possible_moves(self, hindered=True):
+    def possible_moves(self, hindered=True, hindered_positions=None):
         result = {}
         # Bottom
         for y in xrange(self.y + 1, 8):

@@ -51,6 +51,18 @@ class TestRook(unittest.TestCase):
 
         self.assertEqual(rook.possible_moves(), possible_moves)
 
+    def test_rook_at_0_0_with_ignored_ally_in_0_1_can_move_to_all_line_0_and_column_0(self):
+        board = Board(new_game=False)
+        rook = Rook(board, WHITE, 0, 0)
+        ally = Rook(board, WHITE, 0, 1)
+        ally.ignored = True
+        possible_moves = to_move_dict([
+            (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
+            (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
+        ])
+        
+        self.assertEqual(rook.possible_moves(), possible_moves)
+
     def test_rook_at_0_0_with_ally_in_1_0_can_move_to_all_column_0(self):
         board = Board(new_game=False)
         rook = Rook(board, WHITE, 0, 0)

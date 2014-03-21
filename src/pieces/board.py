@@ -1,6 +1,8 @@
 # coding: UTF-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
+from copy import deepcopy
+
 from consts.colors import WHITE, BLACK, next
 from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING, \
     CHECK
@@ -90,12 +92,23 @@ class Board(object):
         """ Checks if position tuple is inside the board """
         return 0 <= position[0] < 8 and 0 <= position[1] < 8
 
-
     def hindered(self, color):
         """ Returns the hindered position by a color """
         result = set()
         for piece in self.pieces[color]:
             result = result.union(piece.possible_moves(hindered=False))
+        return result
+
+    def possible_moves(self, color):
+        """ Returns the possible moves positions by a color """
+        result = {}
+        for piece in self.pieces[color]:
+            moves = piece.possible_moves()
+            for move in moves:
+                nboard = deepcopy(self)
+                nboard.current_color = color
+                if nboard.move(piece.position, move):
+                    result[(piece.position, move)] = nboard
         return result
 
     def physically_move(self, piece, new_position):
@@ -132,8 +145,7 @@ class Board(object):
         move_type = possible_moves[new_position]
 
         if move_type not in [QUEENSIDE_CASTLING, KINGSIDE_CASTLING]:
-            #ToDO: verificar se teve xeque no current_color, reverter movimento e retornar false
-            invalid_check = False
+            invalid_check = self.in_check()
             if invalid_check:
                 self.physically_move(piece, original_position)
                 self.add(old_piece)
@@ -156,21 +168,25 @@ class Board(object):
         self.last_move = (self.current_color, original_position, new_position)
         self.current_color = next(self.current_color)
 
-        #ToDo: verificar se teve xeque no novo current_color e retornar CHECK
-
         if self.in_check():
             return CHECK
+        return True
 
-    def in_check(self):
-        return self.kings[self.current_color].is_hindered()
+    def in_check(self, hindered=None, color=None):
+        if not color:
+            color = self.current_color
+        king = self.kings[color]
+        if king:
+            return king.is_hindered(hindered=hindered)
+        return False
 
-    def in_check_mate(self):
-        return self.in_check() and len(self.kings[self.current_color].possible_moves())
+    def in_checkmate(self, hindered=None):
+        return self.in_check(hindered=hindered) and not self.kings[self.current_color].possible_moves(hindered_positions=hindered)
 
     def stalemate(self):
-        moves = set([len(piece.possible_moves()) for piece in self.pieces[self.current_color]])
+        moves = self.possible_moves(self.current_color)
 
-        return not self.in_check() and len(moves) == 1 and moves[0] == 0
+        return not self.in_check() and len(moves) == 0
 
     def impass(self):
         if len(self.pieces[self.current_color]) == 1 and len(self.kings[self.current_color].possible_moves) > 0:

@@ -9,5 +9,5 @@ class Queen(Bishop, Rook):
     def name(self):
         return "queen"
 
-    def possible_moves(self, hindered=True):
+    def possible_moves(self, hindered=True, hindered_positions=None):
         return dict(Bishop.possible_moves(self), **Rook.possible_moves(self))

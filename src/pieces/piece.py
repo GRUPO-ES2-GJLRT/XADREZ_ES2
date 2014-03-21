@@ -12,6 +12,7 @@ class Piece(object):
         self.x = x
         self.y = y
         self.has_moved = False
+        self.ignored = False
         board.add(self)
 
     def name(self):
@@ -29,7 +30,7 @@ class Piece(object):
         self.x = value[0]
         self.y = value[1]
 
-    def possible_moves(self, hindered=True):
+    def possible_moves(self, hindered=True, hindered_positions=None):
         """ Return the possible moves for the piece 
         hindered: It may check for hindered positions on board
         """
@@ -42,7 +43,7 @@ class Piece(object):
         if not self.board.valid(position):
             return False
         piece = self.board[position]
-        if piece and piece.color == self.color:
+        if piece and not piece.ignored and piece.color == self.color:
             return False
         return True
 
@@ -67,4 +68,4 @@ class LinearExplorationPiece(Piece):
             return False
         # continue if there is no piece
         piece = self.board[position]
-        return not piece 
+        return not piece or (piece and piece.ignored)

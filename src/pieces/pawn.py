@@ -11,7 +11,7 @@ class Pawn(Piece):
     def name(self):
         return "pawn"
 
-    def possible_moves(self, hindered=True):
+    def possible_moves(self, hindered=True, hindered_positions=None):
         """ If hindered == False, it will return the attack moves """
         walk_moves = []
         attack_moves = []

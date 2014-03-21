@@ -8,7 +8,7 @@ class Bishop(LinearExplorationPiece):
     def name(self):
         return "bishop"
 
-    def possible_moves(self, hindered=True):
+    def possible_moves(self, hindered=True, hindered_positions=None):
         result = {}
         # Top Left
         for i in xrange(1, min(self.x, self.y) + 1):
