@@ -8,7 +8,7 @@ from .base import Scene, GameText
 from pieces.board import Board
 from consts.i18n import *
 from consts.colors import BLACK, WHITE
-from consts.moves import CHECK
+from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS
 
 MARGIN = 28
@@ -180,6 +180,13 @@ class Chess(Scene):
             self.board_size // 2 + BORDER,
         )
 
+        self.draw_message = GameText(message_font, DRAW_MESSAGE, True, (30, 144, 255), style="outline", other_color=(255, 255, 255))
+        self.draw_message.rect = self.place_rect(
+            self.draw_message.surface, 
+            self.board_size // 2 + MARGIN + BORDER,
+            self.board_size // 2 + BORDER,
+        )
+
         self.black_wins_message = GameText(message_font, BLACK_WINS_MESSAGE, True, (50, 50, 50), style="outline", other_color=(255, 255, 255))
         self.black_wins_message.rect = self.place_rect(
             self.black_wins_message.surface, 
@@ -208,6 +215,7 @@ class Chess(Scene):
         # Winner
         self.white_wins = False
         self.black_wins = False
+        self.draw_state = False
 
     def update_timers(self):
         self.white_time.text = self.white_timer.minutes_to_text()
@@ -226,6 +234,9 @@ class Chess(Scene):
             self.white_wins_message.blit(self.game.screen)
         if self.black_wins:
             self.black_wins_message.blit(self.game.screen)
+        if self.draw_state:
+            self.draw_message.blit(self.game.screen)
+
 
     def draw_square(self, square, color):
         if square:
@@ -314,11 +325,19 @@ class Chess(Scene):
             self.state = SELECT
             self.selected = None
             status = self.board.status()
-            print(status)
             if status == CHECK:
                 self.check = self.board.current_king().position
                 self.countdown = CHECK_COUNTDOWN
-            # Verificar vitória aqui
+            elif status == CHECKMATE:
+                self.state = END
+                if self.board.current_color == BLACK:
+                    self.white_wins = True
+                else:
+                    self.black_wins = True
+            elif status in [STALEMATE, FIFTY_MOVE]:
+                self.draw_state = True
+                self.state = END
+
             if self.board.current_color == BLACK:
                 self.white_timer.stop_turn()
                 self.black_timer.start_turn()

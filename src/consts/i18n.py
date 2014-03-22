@@ -17,3 +17,5 @@ BONUS_LABEL = u"Bonus:"
 CHECK_MESSAGE = u"Check"
 BLACK_WINS_MESSAGE = u"Black Wins"
 WHITE_WINS_MESSAGE = u"White Wins"
+DRAW_MESSAGE = u"Draw"
+
