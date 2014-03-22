@@ -313,7 +313,9 @@ class Chess(Scene):
         if movement:
             self.state = SELECT
             self.selected = None
-            if movement == CHECK:
+            status = self.board.status()
+            print(status)
+            if status == CHECK:
                 self.check = self.board.current_king().position
                 self.countdown = CHECK_COUNTDOWN
             # Verificar vitória aqui

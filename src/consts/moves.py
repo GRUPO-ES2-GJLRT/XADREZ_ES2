@@ -16,3 +16,6 @@ to_move_dict = lambda lis: {
 } 
 
 CHECK = "check"
+CHECKMATE = "checkmate"
+STALEMATE = "stalemate"
+FIFTY_MOVE = "fifty move"

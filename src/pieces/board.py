@@ -5,7 +5,7 @@ from copy import deepcopy
 
 from consts.colors import WHITE, BLACK, next
 from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING, \
-    CHECK
+    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 
 from .pawn import Pawn
 from .rook import Rook
@@ -87,6 +87,17 @@ class Board(object):
             self.board_data[piece.x][piece.y] = None
             self.pieces[piece.color].remove(piece)
 
+    def clone(self):
+        """ Clones this board """
+        new_board = Board(new_game=False)
+        new_board.moves = self.moves
+        new_board.last_move = self.last_move
+        new_board.current_color = self.current_color
+        for piece in self.pieces[WHITE]:
+            piece.__class__(new_board, piece.color, piece.x, piece.y)
+        for piece in self.pieces[BLACK]:
+            piece.__class__(new_board, piece.color, piece.x, piece.y)
+        return new_board
 
     def valid(self, position):
         """ Checks if position tuple is inside the board """
@@ -105,7 +116,7 @@ class Board(object):
         for piece in self.pieces[color]:
             moves = piece.possible_moves()
             for move in moves:
-                nboard = deepcopy(self)
+                nboard = self.clone()
                 nboard.current_color = color
                 if nboard.move(piece.position, move):
                     result[(piece.position, move)] = nboard
@@ -129,6 +140,7 @@ class Board(object):
         Returns False if the movement ins't valid
         Returns True, if it is valid
         Returns CHECK, if it is check
+        Returns CHECKMATE, if it is checkmate
         """
         if (not self.valid(original_position) or not self.valid(new_position) or
                     original_position == new_position):
@@ -149,6 +161,7 @@ class Board(object):
             if invalid_check:
                 self.physically_move(piece, original_position)
                 self.add(old_piece)
+                piece.has_moved = False
                 return False
 
         if move_type == QUEENSIDE_CASTLING:
@@ -166,10 +179,18 @@ class Board(object):
             queen.has_moved = True
 
         self.last_move = (self.current_color, original_position, new_position)
+
+        if piece.__class__ == Pawn or old_piece:
+            self.moves = {
+                WHITE: 0,
+                BLACK: 0,
+            }
+        else:
+            self.moves[self.current_color] += 1
+
         self.current_color = next(self.current_color)
 
-        if self.in_check():
-            return CHECK
+        
         return True
 
     def in_check(self, hindered=None, color=None):
@@ -181,14 +202,27 @@ class Board(object):
         return False
 
     def in_checkmate(self, hindered=None):
-        return self.in_check(hindered=hindered) and not self.kings[self.current_color].possible_moves(hindered_positions=hindered)
+        if self.in_check(hindered=hindered):
+            for move, board in self.possible_moves(self.current_color).items():
+                if not board.in_check(color=self.current_color):
+                    return False
+            return True
+        return False
 
-    def stalemate(self):
-        moves = self.possible_moves(self.current_color)
+    def stalemate(self, hindered=None):
+        return not self.in_check(hindered=hindered) and len(self.possible_moves(self.current_color)) == 0
 
-        return not self.in_check() and len(moves) == 0
-
-    def impass(self):
-        if len(self.pieces[self.current_color]) == 1 and len(self.kings[self.current_color].possible_moves) > 0:
-            self.moves[self.current_color] += 1
-        return self.moves[self.current_color] >= 20
+    def status(self):
+        king = self.current_king()
+        king.ignored = True
+        hindered = self.hindered(next(self.current_color))
+        king.ignored = False
+        if self.in_checkmate(hindered=hindered):
+            return CHECKMATE
+        if self.in_check(hindered=hindered):
+            return CHECK
+        if self.stalemate(hindered=hindered):
+            return STALEMATE
+        if self.moves[WHITE] >= 50 or self.moves[BLACK] >= 50:
+            return FIFTY_MOVE
+        return NORMAL
