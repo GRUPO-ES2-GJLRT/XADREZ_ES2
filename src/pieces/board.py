@@ -90,7 +90,10 @@ class Board(object):
     def clone(self):
         """ Clones this board """
         new_board = Board(new_game=False)
-        new_board.moves = self.moves
+        new_board.moves = {
+            WHITE: self.moves[WHITE],
+            BLACK: self.moves[BLACK],
+        }
         new_board.last_move = self.last_move
         new_board.current_color = self.current_color
         for piece in self.pieces[WHITE]:
@@ -187,7 +190,7 @@ class Board(object):
             }
         else:
             self.moves[self.current_color] += 1
-
+            
         self.current_color = next(self.current_color)
 
         
@@ -201,27 +204,32 @@ class Board(object):
             return king.is_hindered(hindered=hindered)
         return False
 
-    def in_checkmate(self, hindered=None):
+    def in_checkmate(self, hindered=None, possible_moves=None):
+        if possible_moves == None:
+            possible_moves = self.possible_moves(self.current_color)
         if self.in_check(hindered=hindered):
-            for move, board in self.possible_moves(self.current_color).items():
+            for move, board in possible_moves.items():
                 if not board.in_check(color=self.current_color):
                     return False
             return True
         return False
 
-    def stalemate(self, hindered=None):
-        return not self.in_check(hindered=hindered) and len(self.possible_moves(self.current_color)) == 0
+    def stalemate(self, hindered=None, possible_moves=None):
+        if possible_moves == None:
+            possible_moves = self.possible_moves(self.current_color)
+        return not self.in_check(hindered=hindered) and len(possible_moves) == 0
 
     def status(self):
         king = self.current_king()
         king.ignored = True
         hindered = self.hindered(next(self.current_color))
         king.ignored = False
-        if self.in_checkmate(hindered=hindered):
+        possible_moves = self.possible_moves(self.current_color)
+        if self.in_checkmate(hindered=hindered, possible_moves=possible_moves):
             return CHECKMATE
         if self.in_check(hindered=hindered):
             return CHECK
-        if self.stalemate(hindered=hindered):
+        if self.stalemate(hindered=hindered, possible_moves=possible_moves):
             return STALEMATE
         if self.moves[WHITE] >= 50 or self.moves[BLACK] >= 50:
             return FIFTY_MOVE
