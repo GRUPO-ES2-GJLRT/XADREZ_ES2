@@ -26,9 +26,9 @@ CHECK_COUNTDOWN = 0.5
 
 class Chess(Scene):
 
-    def __init__(self, *args, **kwargs):
-        """ConfigMenu constructor. Creates texts and buttons"""
-        super(Chess, self).__init__(*args, **kwargs)
+    def __init__(self, game, one_player, selected_level, *args, **kwargs):
+        """Criando tela de jogo"""
+        super(Chess, self).__init__(game, *args, **kwargs)
 
         # Load current config
         data = self.load_stored_config()
@@ -90,6 +90,12 @@ class Chess(Scene):
 
         # Pieces / Board
         self.board = Board()
+
+        if one_player:
+            from artificial_intelligence import ArtificialIntelligence
+            self.ia = ArtificialIntelligence(self.board, selected_level)
+        else:
+            self.ia = None
 
         arrow_down = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'arrow_down.png')))
         arrow_down = pygame.transform.scale(arrow_down, (self.square_size // 2, self.square_size // 2))
@@ -341,11 +347,11 @@ class Chess(Scene):
             if self.board.current_color == BLACK:
                 self.white_timer.stop_turn()
                 self.black_timer.start_turn()
+                if self.ia:
+                    self.ia.play()
             else:
                 self.white_timer.start_turn()
                 self.black_timer.stop_turn()
             
         else:
             self.fail = square
-
-

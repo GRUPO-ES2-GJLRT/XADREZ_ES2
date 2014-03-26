@@ -32,7 +32,7 @@ class MainMenu(Scene):
         )
 
         def one_player_click(game):
-            game.scene = Scene(game) #TODO: Change to One Player Scene
+            game.scene = Chess(game=game, one_player=True, selected_level=0) #TODO: Change to Two Players Scene
 
         one_player.click = one_player_click
 
@@ -44,7 +44,7 @@ class MainMenu(Scene):
         )
 
         def two_players_click(game):
-            game.scene = Chess(game) #TODO: Change to Two Players Scene
+            game.scene = Chess(game=game, one_player=False, selected_level=None) #TODO: Change to Two Players Scene
 
         two_players.click = two_players_click
 
