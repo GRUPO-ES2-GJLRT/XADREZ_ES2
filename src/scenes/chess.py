@@ -348,7 +348,18 @@ class Chess(Scene):
                 self.white_timer.stop_turn()
                 self.black_timer.start_turn()
                 if self.ia:
-                    self.ia.play()
+                    movement = self.ia.play()
+                    if movement:
+                        status = self.board.status()
+                        if status == CHECK:
+                            self.check = self.board.current_king().position
+                            self.countdown = CHECK_COUNTDOWN
+                        elif status == CHECKMATE:
+                            self.state = END
+                            self.white_wins = True
+                        elif status in [STALEMATE, FIFTY_MOVE]:
+                            self.draw_state = True
+                            self.state = END
             else:
                 self.white_timer.start_turn()
                 self.black_timer.stop_turn()
