@@ -14,8 +14,8 @@ class Scene(object):
         Arguments:
         game is a Game instance
         """
-        self.assets_dir = os.path.join(sys.argv[0], '..', '..', 'assets')
-        self.data_dir = os.path.join(sys.argv[0], '..', '..', 'data')
+        self.assets_dir = os.path.abspath(os.path.join(sys.argv[0], '..', '..', 'assets'))
+        self.data_dir = os.path.abspath(os.path.join(sys.argv[0], '..', '..', 'data'))
         self.game = game
         self.thread_events = []
 
