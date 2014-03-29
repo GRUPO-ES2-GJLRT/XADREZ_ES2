@@ -11,7 +11,7 @@ from pygame import (
 
 from os import path
 
-from .base import Scene, GameText
+from .base import Scene, GameText, GameDiv, ImageElement, RectElement, GameTextElement
 from pieces.board import Board
 from consts.i18n import *
 from consts.colors import BLACK, WHITE
@@ -36,7 +36,7 @@ class Chess(Scene):
     def __init__(self, game, one_player, selected_level, *args, **kwargs):
         """Inicializando o jogo"""
         super(Chess, self).__init__(game, *args, **kwargs)
-
+        self.main_div = GameDiv()
         # Game Instance
         self.game = game
 
@@ -217,14 +217,7 @@ class Chess(Scene):
         """Draws Chess game"""
         # Background
         self.game.screen.fill((238, 223, 204))
-        # Border
-        draw.rect(self.game.screen, (0, 0, 0), 
-            (MARGIN, 0, self.board_size + 2 * BORDER, self.board_size + 2 * BORDER))
-        # Chess Board
-        self.game.screen.blit(self.board_image, (MARGIN + BORDER, BORDER))
-        # Labels
-        for label in self.labels:
-            label.blit(self.game.screen)
+        self.main_div.draw(self.game.screen)
         # Selected
         self.draw_square(self.selected, (0, 223, 0))
         self.draw_square(self.fail, (255, 150, 150))
@@ -353,27 +346,32 @@ class Chess(Scene):
             (self.board_size, self.board_size)
         )
 
+        border_div = RectElement((0, 0, 0), self.board_size + 2 * BORDER, 
+            self.board_size + 2 * BORDER, x=MARGIN)
+        self.main_div.children.append(border_div)
+        board_div = GameDiv(BORDER, BORDER)
+        border_div.children.append(board_div)
+        board_div.children.append(ImageElement(self.board_image))
+        
+
         self.create_board_labels()
         self.load_piece_images()
 
     def create_board_labels(self):
         _font = font.SysFont("", 26)
-        self.labels = []
+        left_label_div = GameDiv(x=13, y=BORDER + self.square_size // 2)
+        down_label_div = GameDiv(
+            x=MARGIN + BORDER + self.square_size // 2, 
+            y=17 + self.board_size + BORDER
+        )
+        self.main_div.children.append(left_label_div)
+        self.main_div.children.append(down_label_div)
 
         for i, label_text in enumerate(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']):
-            self.labels.append(GameText(_font, str(i + 1), True, (128, 128, 128)))
-            self.labels[-1].rect = self.place_rect(
-                self.labels[-1].surface,
-                13,
-                BORDER + (7 - i) * self.square_size + self.square_size // 2,
-            )
-
-            self.labels.append(GameText(_font, str(label_text), True, (128, 128, 128)))
-            self.labels[-1].rect = self.place_rect(
-                self.labels[-1].surface,
-                MARGIN + 2 * BORDER + i * self.square_size + self.square_size // 2,
-                17 + self.board_size + BORDER,
-            )
+            left_label_div.children.append(GameTextElement(_font, str(i + 1), 
+                True, (128, 128, 128), y=(7 - i) * self.square_size))
+            down_label_div.children.append(GameTextElement(_font, str(label_text), 
+                True, (128, 128, 128), x=i * self.square_size))
 
     def load_piece_images(self):
         self.piece_images = {}

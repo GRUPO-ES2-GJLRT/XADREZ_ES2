@@ -152,3 +152,55 @@ class GameText(object):
     def blit(self, screen):
         screen.blit(self.surface, self.rect.topleft)
 
+  
+
+
+class GameDiv(object):
+
+    def __init__(self, x=0, y=0, children=None):
+        if not children:
+            children = []
+        self.x = x
+        self.y = y
+        self.children = children
+
+    def draw(self, screen, x=0, y=0):
+        self.draw_element(screen, x=self.x + x, y=self.y + y)
+        for child in self.children:
+            child.draw(screen, x=self.x + x, y=self.y + y)
+
+    def draw_element(self, screen, x=0, y=0):
+        pass
+
+
+class ImageElement(GameDiv):
+
+    def __init__(self, image, x=0, y=0, children=None):
+        super(ImageElement, self).__init__(x, y, children)
+        self.image = image
+
+    def draw_element(self, screen, x=0, y=0):
+        screen.blit(self.image, (x, y))
+
+
+class RectElement(GameDiv):
+
+    def __init__(self, color, size_x, size_y, x=0, y=0, children=None):
+        super(RectElement, self).__init__(x, y, children)
+        self.color = color
+        self.size_x = size_x
+        self.size_y = size_y
+
+    def draw_element(self, screen, x=0, y=0):
+        pygame.draw.rect(screen, self.color, (x, y, self.size_x, self.size_y))
+
+
+class GameTextElement(GameDiv, GameText):
+    def __init__(self, font, text, antialias, color, rect=None, style="normal", other_color=None, x=0, y=0, children=None):
+        GameDiv.__init__(self, x, y, children)
+        GameText.__init__(self, font, text, antialias, color, rect=rect, style=style, other_color=other_color)
+
+    def draw_element(self, screen, x=0, y=0):
+        rect = self.surface.get_rect()
+        rect.center = (x, y)
+        screen.blit(self.surface, rect.topleft)
