@@ -1,5 +1,6 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from pygame import (
     image,
@@ -15,13 +16,14 @@ from consts.colors import BLACK, WHITE
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS
 
-from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER, RIGHT_MARGIN
+from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 # States
 SELECT = 0
 PLAY = 1
 END = 2
 
 CHECK_COUNTDOWN = 0.5
+
 
 class Chess(Scene, ChessInterface):
 
@@ -44,7 +46,7 @@ class Chess(Scene, ChessInterface):
             self.ia = ArtificialIntelligence(self.board, selected_level)
         else:
             self.ia = None
-        # Marked squares 
+        # Marked squares
         self.selected = None
         self.fail = None
         self.check = None
@@ -58,7 +60,7 @@ class Chess(Scene, ChessInterface):
         self.white_timer = TIMER_CLASS[self.config['option']](self.config)
         self.black_timer = TIMER_CLASS[self.config['option']](self.config)
         self.thread_events = [self.white_timer.event, self.black_timer.event]
-        
+
         self.white_timer.start()
         self.black_timer.start()
         self.white_timer.start_turn()
@@ -84,7 +86,7 @@ class Chess(Scene, ChessInterface):
             self.horizontal = False
             self.square_size = (max_board_size // 8)
             self.board_size = self.square_size * 8
-       
+
     def load_images(self):
         """ Loads images from the assets_dir """
         # Board
@@ -99,20 +101,23 @@ class Chess(Scene, ChessInterface):
         for color in [BLACK, WHITE]:
             for piece in ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']:
                 self.piece_images["%s_%s" % (color, piece)] = transform.scale(
-                    image.load(path.join(self.assets_dir, "%s_%s.png" % (color, piece))),
+                    image.load(path.join(
+                        self.assets_dir, "%s_%s.png" % (color, piece))),
                     (self.square_size, self.square_size)
                 )
 
         # Arrows
-        self.arrow_down = image.load(path.join(self.assets_dir, 'arrow_down.png'))
-        self.arrow_down = transform.scale(self.arrow_down, (self.square_size // 2, self.square_size // 2))
+        self.arrow_down = image.load(path.join(
+            self.assets_dir, 'arrow_down.png'))
+        self.arrow_down = transform.scale(
+            self.arrow_down, (self.square_size // 2, self.square_size // 2))
         self.arrow_up = transform.rotate(self.arrow_down, 180)
         self.arrow_left = transform.rotate(self.arrow_down, 270)
         self.arrow_right = transform.rotate(self.arrow_down, 90)
 
     def update_timers(self):
         self.white_time.text = self.white_timer.minutes_to_text()
-        self.black_time.text = self.black_timer.minutes_to_text() 
+        self.black_time.text = self.black_timer.minutes_to_text()
         self.white_time.redraw()
         self.black_time.redraw()
         if self.white_timer.lose:
@@ -121,7 +126,7 @@ class Chess(Scene, ChessInterface):
         if self.black_timer.lose:
             self.state = END
             self.white_wins = True
-    
+
     def draw(self, delta_time):
         """Draws Chess game"""
         # Messages
@@ -196,11 +201,6 @@ class Chess(Scene, ChessInterface):
             else:
                 self.white_timer.start_turn()
                 self.black_timer.stop_turn()
-            
+
         else:
             self.fail = square
-
-
-
-
-    

@@ -1,18 +1,17 @@
 # coding: UTF-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import pygame, os, json
+import pygame
+import os
+import json
+
 from functools import partial
 
-from .base import Scene, GameText
 import scenes.main_menu
 
-from consts.i18n import *
-from consts.default import TIMER_OPTIONS, TIMER, MINUTES, MOVES, BONUS
-
-
-from .interfaces.config_menu_interface import ConfigMenuInterface
-
+from scenes.base import Scene
+from consts.default import TIMER_OPTIONS
+from scenes.interfaces.config_menu_interface import ConfigMenuInterface
 
 class ConfigMenu(Scene, ConfigMenuInterface):
 

@@ -4,7 +4,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import pygame
 from consts.i18n import *
 
-from .base import Scene, GameText
+from .base import Scene
 from .chess import Chess
 from .config_menu import ConfigMenu
 from .interfaces.main_menu_interface import MainMenuInterface
