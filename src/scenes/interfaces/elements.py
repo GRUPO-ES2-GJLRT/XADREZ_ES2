@@ -1,3 +1,7 @@
+# coding: UTF-8
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
 import pygame
 
 
@@ -47,7 +51,8 @@ class GameDiv(object):
 
 class ImageElement(GameDiv):
 
-    def __init__(self, image, x=0, y=0, children=None, condition=None, name=""):
+    def __init__(self, image,
+                 x=0, y=0, children=None, condition=None, name=""):
         super(ImageElement, self).__init__(x, y, children, condition, name)
         self.image = image
 
@@ -57,9 +62,8 @@ class ImageElement(GameDiv):
 
 class RectElement(GameDiv):
 
-    def __init__(
-            self, color, size_x, size_y, 
-            x=0, y=0, children=None, condition=None, name=""):
+    def __init__(self, color, size_x, size_y,
+                 x=0, y=0, children=None, condition=None, name=""):
         super(RectElement, self).__init__(x, y, children, condition, name)
         self.color = color
         self.size_x = size_x
@@ -70,10 +74,9 @@ class RectElement(GameDiv):
 
 
 class GameTextElement(GameDiv):
-    def __init__(
-            self, font, text="", color=(0,0,0), antialias=True, style="normal", 
-            other_color=None, click=None, motion=None, 
-            x=0, y=0, children=None, condition=None, name=""):
+    def __init__(self, font, text="", color=(0, 0, 0), antialias=True,
+                 style="normal", other_color=None, click=None, motion=None,
+                 x=0, y=0, children=None, condition=None, name=""):
         super(GameTextElement, self).__init__(x, y, children, condition, name)
         self.font = font
         self.text = text
@@ -94,7 +97,7 @@ class GameTextElement(GameDiv):
         self.motion_fn = motion
 
     def hollow(self):
-        notcolor = [c^0xFF for c in self.other_color]
+        notcolor = [c ^ 0xFF for c in self.other_color]
         base = self.font.render(self.text, 0, self.other_color, notcolor)
         size = base.get_width() + 2, base.get_height() + 2
         img = pygame.Surface(size, 16)
@@ -122,7 +125,8 @@ class GameTextElement(GameDiv):
             img.set_colorkey(0)
             self.surface = img
         else:
-            self.surface = self.font.render(self.text, self.antialias, self.color)
+            self.surface = self.font.render(self.text,
+                                            self.antialias, self.color)
 
     def draw_element(self, screen, x=0, y=0):
         rect = self.surface.get_rect()
@@ -144,31 +148,33 @@ class GameTextElement(GameDiv):
 class ChessElement(GameDiv):
     def position_rect(self, position, x=0, y=0):
         return (
-            x + position[0]*self.square_size, 
-            y + (7 - position[1])*self.square_size, 
-            self.square_size, 
+            x + position[0] * self.square_size,
+            y + (7 - position[1]) * self.square_size,
+            self.square_size,
             self.square_size
         )
 
 
 class PiecesElement(ChessElement):
-    def __init__(self, board, square_size, piece_images, x=0, y=0, children=None, condition=None, name=""):
+    def __init__(self, board, square_size, piece_images,
+                 x=0, y=0, children=None, condition=None, name=""):
         super(PiecesElement, self).__init__(x, y, children, condition, name)
         self.board = board
         self.square_size = square_size
         self.piece_images = piece_images
 
     def draw_element(self, screen, x=0, y=0):
-        for color, pieces  in self.board.pieces.items():
+        for color, pieces in self.board.pieces.items():
             for piece in pieces:
                 screen.blit(
-                    self.piece_images['%s_%s'%(piece.color, piece.name())], 
+                    self.piece_images['%s_%s' % (piece.color, piece.name())],
                     self.position_rect(piece.position, x=x, y=y)
                 )
 
 
 class SquareElement(ChessElement):
-    def __init__(self, color, square_size, square, x=0, y=0, children=None, condition=None, name=""):
+    def __init__(self, color, square_size, square,
+                 x=0, y=0, children=None, condition=None, name=""):
         super(SquareElement, self).__init__(x, y, children, condition, name)
         self.color = color
         self.square = square
@@ -177,4 +183,5 @@ class SquareElement(ChessElement):
     def draw_element(self, screen, x=0, y=0):
         square = self.square()
         if square:
-            pygame.draw.rect(screen, self.color, self.position_rect(square, x=x, y=y))
+            pygame.draw.rect(screen, self.color,
+                             self.position_rect(square, x=x, y=y))

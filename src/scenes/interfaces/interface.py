@@ -1,13 +1,18 @@
+# coding: UTF-8
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
+
 class Interface(object):
-    
+
     def interface(self):
-        """ Returns an interface element hierarchy 
+        """ Returns an interface element hierarchy
         It should be overrided
         """
         pass
 
     def resize(self):
-        """ Adjusts the size according to the orientation 
+        """ Adjusts the size according to the orientation
         It may be overrided
         """
         pass

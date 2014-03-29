@@ -1,5 +1,6 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import random
 
@@ -21,7 +22,9 @@ class ArtificialIntelligence():
         if self.level == 0:
             possible_moves = self.board.possible_moves(BLACK)
             if not len(possible_moves) == 0:
-                move = possible_moves.keys()[random.randint(0, len(possible_moves.keys()) - 1)]
+                move = possible_moves.keys()[
+                    random.randint(0, len(possible_moves.keys()) - 1)
+                ]
                 return self.board.move(move[0], move[1])
 
             return None

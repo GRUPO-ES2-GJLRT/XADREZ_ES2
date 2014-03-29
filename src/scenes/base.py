@@ -1,21 +1,27 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import pygame
-import sys, os, json
+import sys
+import os
+import json
 
 from consts.default import TIMER, MINUTES, MOVES, BONUS
+
 
 class Scene(object):
 
     def __init__(self, game):
-        """ Scene constructor 
+        """ Scene constructor
 
         Arguments:
         game is a Game instance
         """
-        self.assets_dir = os.path.abspath(os.path.join(sys.argv[0], '..', '..', 'assets'))
-        self.data_dir = os.path.abspath(os.path.join(sys.argv[0], '..', '..', 'data'))
+        self.assets_dir = os.path.abspath(
+            os.path.join(sys.argv[0], '..', '..', 'assets'))
+        self.data_dir = os.path.abspath(
+            os.path.join(sys.argv[0], '..', '..', 'data'))
         self.game = game
         self.thread_events = []
 
@@ -23,7 +29,7 @@ class Scene(object):
         """This function is called in the game loop.
 
         Arguments:
-        delta_time is the time in seconds (float) passed since 
+        delta_time is the time in seconds (float) passed since
             the last execution
 
         It calls the method self.event for each event and calls the method
@@ -73,7 +79,7 @@ class Scene(object):
         """Returns the text rect in position (center, y) """
         rect = text.get_rect()
         rect.center = (
-            self.game.screen.get_rect().center[0], 
+            self.game.screen.get_rect().center[0],
             y
         )
         return rect
@@ -83,7 +89,7 @@ class Scene(object):
         Override it in a subclass!
 
         Arguments:
-        delta_time is the time in seconds (float) passed since 
+        delta_time is the time in seconds (float) passed since
             the last game loop execution
         """
         pass
@@ -94,7 +100,7 @@ class Scene(object):
 
         Arguments:
         game is a Game instance
-        delta_time is the time in seconds (float) passed since 
+        delta_time is the time in seconds (float) passed since
             the last game loop execution
         event is the received event
         """

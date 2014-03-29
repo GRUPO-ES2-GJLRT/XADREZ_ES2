@@ -1,5 +1,6 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import pygame
 import os
@@ -12,6 +13,7 @@ import scenes.main_menu
 from scenes.base import Scene
 from consts.default import TIMER_OPTIONS
 from scenes.interfaces.config_menu_interface import ConfigMenuInterface
+
 
 class ConfigMenu(Scene, ConfigMenuInterface):
 
@@ -30,7 +32,8 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.show_bonus = False
 
         # Load images
-        ok = pygame.image.load(os.path.abspath(os.path.join(self.assets_dir, 'ok.png')))
+        ok = pygame.image.load(
+            os.path.abspath(os.path.join(self.assets_dir, 'ok.png')))
         self.ok_image = pygame.transform.scale(ok, (50, 50))
 
         self.define_clicks()
@@ -76,11 +79,13 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.minutes_minus_click = partial(minus, element=lambda: self.minutes)
         self.moves_minus_click = partial(minus, element=lambda: self.moves)
         self.bonus_minus_click = partial(minus, element=lambda: self.bonus)
-        self.minutes_per_game_click = partial(set_option, option="minutes_per_game")
-        self.moves_per_minutes_click = partial(set_option, option="moves_per_minutes")
-        self.fischer_time_click = partial(set_option, option="fischer_game")
+        self.minutes_per_game_click = partial(set_option,
+                                              option="minutes_per_game")
+        self.moves_per_minutes_click = partial(set_option,
+                                               option="moves_per_minutes")
+        self.fischer_time_click = partial(set_option,
+                                          option="fischer_game")
         self.motion = motion
-
 
     def update_labels_and_fields(self):
         self.show_bonus = False
@@ -108,7 +113,8 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         except:
             pass
 
-        with open(os.path.abspath(os.path.join(self.data_dir, 'config.json')), 'w') as f:
+        with open(os.path.abspath(os.path.join(self.data_dir, 'config.json')),
+                  'w') as f:
             json.dump(data, f)
 
     def draw(self, delta_time):
@@ -121,5 +127,3 @@ class ConfigMenu(Scene, ConfigMenuInterface):
             self.main_div.motion(event.pos)
         elif event.type == pygame.MOUSEBUTTONUP:
             self.main_div.click(event.pos)
-
-

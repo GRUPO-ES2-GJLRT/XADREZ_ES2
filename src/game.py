@@ -1,10 +1,12 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
 
 import time
 import pygame
 
-from consts.i18n import *
+from consts.i18n import TITLE
 from scenes.main_menu import MainMenu
 
 WIDTH, HEIGHT = 1024, 768
@@ -20,7 +22,7 @@ class Game(object):
         self.height = height
         self.running = True
         self.scene = None
-        
+
     def loop(self):
         """Infinite loop for the game"""
         self.scene = MainMenu(self)

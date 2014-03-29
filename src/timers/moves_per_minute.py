@@ -1,10 +1,12 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from datetime import timedelta
 
 from .minutes_per_game import MinutesPerGameTimer
 from .base import PlayerTimer
+
 
 class MovesPerMinuteTimer(MinutesPerGameTimer):
 
@@ -18,13 +20,12 @@ class MovesPerMinuteTimer(MinutesPerGameTimer):
         MinutesPerGameTimer.update_time(self, delta)
         self.count_up += delta
         if self.count_up.seconds >= 60.0:
-            if current_moves < self.expected_moves:
+            if self.current_moves < self.expected_moves:
                 self.lose = True
                 self.event.set()
             else:
                 self.count_up = timedelta(0)
                 self.current_moves = 0
-
 
     def stop_turn(self):
         PlayerTimer.stop_turn(self)

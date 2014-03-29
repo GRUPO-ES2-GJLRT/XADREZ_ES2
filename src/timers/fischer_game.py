@@ -1,10 +1,12 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from datetime import timedelta
 
 from .minutes_per_game import MinutesPerGameTimer
 from .base import PlayerTimer
+
 
 class FischerGameTimer(MinutesPerGameTimer):
 

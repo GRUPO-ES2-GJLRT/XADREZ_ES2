@@ -1,13 +1,14 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import pygame
-from consts.i18n import *
 
 from .base import Scene
 from .chess import Chess
 from .config_menu import ConfigMenu
 from .interfaces.main_menu_interface import MainMenuInterface
+
 
 class MainMenu(Scene, MainMenuInterface):
 
@@ -19,10 +20,12 @@ class MainMenu(Scene, MainMenuInterface):
 
     def define_clicks(self):
         def one_player_click(it):
-            self.game.scene = Chess(game=self.game, one_player=True, selected_level=0) 
+            self.game.scene = Chess(game=self.game, one_player=True,
+                                    selected_level=0)
 
         def two_players_click(it):
-            self.game.scene = Chess(game=self.game, one_player=False, selected_level=None) 
+            self.game.scene = Chess(game=self.game, one_player=False,
+                                    selected_level=None)
 
         def configurations_click(it):
             self.game.scene = ConfigMenu(self.game)
@@ -53,4 +56,3 @@ class MainMenu(Scene, MainMenuInterface):
             self.main_div.motion(event.pos)
         elif event.type == pygame.MOUSEBUTTONUP:
             self.main_div.click(event.pos)
-
