@@ -101,6 +101,13 @@ class Scene(object):
         """
         pass
 
+    def extract_fields(self, o):
+        if o.name:
+            setattr(self, o.name, o)
+        for child in o.children:
+            self.extract_fields(child)
+
+
 
 
 class GameText(object):
@@ -157,7 +164,7 @@ class GameText(object):
 
 class GameDiv(object):
 
-    def __init__(self, x=0, y=0, children=None, condition=None):
+    def __init__(self, x=0, y=0, children=None, condition=None, name=""):
         if not children:
             children = []
         if not condition:
@@ -166,6 +173,7 @@ class GameDiv(object):
         self.x = x
         self.y = y
         self.children = children
+        self.name = name
 
     def draw(self, screen, x=0, y=0):
         if not self.condition():
@@ -180,8 +188,8 @@ class GameDiv(object):
 
 class ImageElement(GameDiv):
 
-    def __init__(self, image, x=0, y=0, children=None, condition=None):
-        super(ImageElement, self).__init__(x, y, children, condition)
+    def __init__(self, image, x=0, y=0, children=None, condition=None, name=""):
+        super(ImageElement, self).__init__(x, y, children, condition, name)
         self.image = image
 
     def draw_element(self, screen, x=0, y=0):
@@ -190,8 +198,8 @@ class ImageElement(GameDiv):
 
 class RectElement(GameDiv):
 
-    def __init__(self, color, size_x, size_y, x=0, y=0, children=None, condition=None):
-        super(RectElement, self).__init__(x, y, children, condition)
+    def __init__(self, color, size_x, size_y, x=0, y=0, children=None, condition=None, name=""):
+        super(RectElement, self).__init__(x, y, children, condition, name)
         self.color = color
         self.size_x = size_x
         self.size_y = size_y
@@ -201,8 +209,8 @@ class RectElement(GameDiv):
 
 
 class GameTextElement(GameDiv, GameText):
-    def __init__(self, font, text, antialias, color, rect=None, style="normal", other_color=None, x=0, y=0, children=None, condition=None):
-        GameDiv.__init__(self, x, y, children, condition)
+    def __init__(self, font, text, antialias, color, rect=None, style="normal", other_color=None, x=0, y=0, children=None, condition=None, name=""):
+        GameDiv.__init__(self, x, y, children, condition, name)
         GameText.__init__(self, font, text, antialias, color, rect=rect, style=style, other_color=other_color)
 
     def draw_element(self, screen, x=0, y=0):
@@ -222,8 +230,8 @@ class ChessElement(GameDiv):
 
 
 class PiecesElement(ChessElement):
-    def __init__(self, board, square_size, piece_images, x=0, y=0, children=None, condition=None):
-        super(PiecesElement, self).__init__(x, y, children, condition)
+    def __init__(self, board, square_size, piece_images, x=0, y=0, children=None, condition=None, name=""):
+        super(PiecesElement, self).__init__(x, y, children, condition, name)
         self.board = board
         self.square_size = square_size
         self.piece_images = piece_images
@@ -237,8 +245,8 @@ class PiecesElement(ChessElement):
                 )
 
 class SquareElement(ChessElement):
-    def __init__(self, color, square_size, square, x=0, y=0, children=None, condition=None):
-        super(SquareElement, self).__init__(x, y, children, condition)
+    def __init__(self, color, square_size, square, x=0, y=0, children=None, condition=None, name=""):
+        super(SquareElement, self).__init__(x, y, children, condition, name)
         self.color = color
         self.square = square
         self.square_size = square_size

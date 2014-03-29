@@ -31,69 +31,37 @@ END = 2
 
 CHECK_COUNTDOWN = 0.5
 
-
 class Chess(Scene):
 
     def __init__(self, game, one_player, selected_level, *args, **kwargs):
         """Inicializando o jogo"""
         super(Chess, self).__init__(game, *args, **kwargs)
-        self.main_div = GameDiv()
         # Game Instance
         self.game = game
-
+        # Estimating board size and orientation
+        self.calculate_size()
+        # Loading images
+        self.load_images()
         # Creating the Game Board
-        self.create_board()
-
-
+        self.board = Board()
+        # Loading configurations
         self.config = self.load_stored_config()
-
-        # Pieces / Board
-
+        # Loading players
         if one_player:
             from artificial_intelligence import ArtificialIntelligence
             self.ia = ArtificialIntelligence(self.board, selected_level)
         else:
             self.ia = None
-
-        
-
-        # Side info
-        self.create_side_info()
-
-        # Selected
+        # Marked squares 
         self.selected = None
         self.fail = None
         self.check = None
-        self.state = SELECT
-
-        # Winner
+        # Game states and countdown for check message
         self.countdown = 0
         self.white_wins = False
         self.black_wins = False
         self.draw_state = False
-
-        # Messages
-        message_font = font.SysFont("", 148)
-        messages = GameDiv(
-            x=self.board_size // 2 + MARGIN + BORDER, 
-            y=self.board_size // 2 + BORDER,
-            children=[
-                GameTextElement(message_font, CHECK_MESSAGE, True, (30, 144, 255), 
-                    style="outline", other_color=(255, 255, 255), 
-                    condition=lambda: self.countdown),
-                GameTextElement(message_font, DRAW_MESSAGE, True, (30, 144, 255), 
-                    style="outline", other_color=(255, 255, 255),
-                    condition=lambda: self.draw_state),
-                GameTextElement(message_font, BLACK_WINS_MESSAGE, True, (50, 50, 50), 
-                    style="outline", other_color=(255, 255, 255),
-                    condition=lambda: self.black_wins),
-                GameTextElement(message_font, WHITE_WINS_MESSAGE, True, (255, 255, 255), 
-                    style="outline", other_color=(50, 50, 50),
-                    condition=lambda: self.white_wins)
-            ]
-        )
-        self.main_div.children.append(messages)
-
+        self.state = SELECT
         # Timers
         self.white_timer = TIMER_CLASS[self.config['option']](self.config)
         self.black_timer = TIMER_CLASS[self.config['option']](self.config)
@@ -102,8 +70,215 @@ class Chess(Scene):
         self.white_timer.start()
         self.black_timer.start()
         self.white_timer.start_turn()
+        # Creating interface
+        self.create_interface()
+
+    def calculate_size(self):
+        """ Calculates the board size, square size and the orientation. """
+        max_board_size = min(
+            self.game.width - (MARGIN + 2 * BORDER),
+            self.game.height - (MARGIN + 2 * BORDER)
+        )
+
+        self.horizontal = True
+        self.square_size = (max_board_size // 8)
+        self.board_size = self.square_size * 8
+        if self.game.width - self.board_size < 3 * self.square_size:
+            max_board_size = min(
+                self.game.width - (MARGIN + 2 * BORDER),
+                self.game.height - (MARGIN + 2 * BORDER) - 100
+            )
+
+            self.horizontal = False
+            self.square_size = (max_board_size // 8)
+            self.board_size = self.square_size * 8
+       
+    def load_images(self):
+        """ Loads images from the assets_dir """
+        # Board
+        self.board_image = transform.scale(
+            image.load(path.join(self.assets_dir, 'chess_board.png')),
+            (self.board_size, self.board_size)
+        )
+
+        # Pieces
+        self.piece_images = {}
+
+        for color in [BLACK, WHITE]:
+            for piece in ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']:
+                self.piece_images["%s_%s" % (color, piece)] = transform.scale(
+                    image.load(path.join(self.assets_dir, "%s_%s.png" % (color, piece))),
+                    (self.square_size, self.square_size)
+                )
+
+        # Arrows
+        self.arrow_down = image.load(path.join(self.assets_dir, 'arrow_down.png'))
+        self.arrow_down = transform.scale(self.arrow_down, (self.square_size // 2, self.square_size // 2))
+        self.arrow_up = transform.rotate(self.arrow_down, 180)
+        self.arrow_left = transform.rotate(self.arrow_down, 270)
+        self.arrow_right = transform.rotate(self.arrow_down, 90)
+
+    def create_interface(self):
+        """ Creates interface """
+        _font = font.SysFont("", 26)
+        time_font = font.SysFont("", 48)
+        message_font = font.SysFont("", 148)
+        interface = GameDiv(name="main_div", children=[
+            RectElement(x=MARGIN, color=(0, 0, 0),
+                size_x=self.board_size + 2 * BORDER,
+                size_y=self.board_size + 2 * BORDER,
+                children=[
+                    GameDiv(x=BORDER, y=BORDER, children=[
+                        ImageElement(self.board_image),
+                        SquareElement(
+                            color=(0, 223, 0),
+                            square_size=self.square_size, 
+                            square=lambda: self.selected
+                        ),
+                        SquareElement(
+                            color=(255, 150, 150),
+                            square_size=self.square_size, 
+                            square=lambda: self.fail
+                        ),
+                        SquareElement(
+                            color=(204, 153, 255),
+                            square_size=self.square_size, 
+                            square=lambda: self.check
+                        ),
+                        PiecesElement(
+                            board=self.board,
+                            square_size=self.square_size,
+                            piece_images=self.piece_images,
+                        ),
+                    ]),
+                ],
+            ),
+            GameDiv(x=13, y=BORDER + self.square_size // 2, children=[
+                GameTextElement(y=(7 - i) * self.square_size,
+                    font=_font, 
+                    text=str(label_text), 
+                    antialias=True, 
+                    color=(128, 128, 128), 
+                ) for i, label_text in enumerate(['1', '2', '3', '4', '5', '6', '7', '8'])
+            ]),
+            GameDiv(x=MARGIN + BORDER + self.square_size // 2, 
+                y=17 + self.board_size + BORDER, children=[
+                GameTextElement(x=i * self.square_size,
+                    font=_font, 
+                    text=str(label_text), 
+                    antialias=True, 
+                    color=(128, 128, 128), 
+                ) for i, label_text in enumerate(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'])
+            ]),
+            GameDiv(name="info_div", children=[
+                GameDiv(name="white_div", children=[
+                    GameTextElement(name="white_time", y=self.square_size // 2,
+                        font=time_font, 
+                        text=str("20:00"), 
+                        antialias=True, 
+                        color=(128, 128, 128),
+                    ),
+                    ImageElement(self.piece_images['%s_king' % WHITE]),
+                    ImageElement(name="white_arrow",
+                        image=None, 
+                        condition=lambda: self.board.current_color == WHITE
+                    ),
+                ]),
+                GameDiv(name="black_div", children=[
+                    GameTextElement(name="black_time", y=self.square_size // 2,
+                        font=time_font, 
+                        text=str("20:00"), 
+                        antialias=True, 
+                        color=(128, 128, 128),
+                    ),
+                    ImageElement(self.piece_images['%s_king' % BLACK]),
+                    ImageElement(name="black_arrow",
+                        image=None, 
+                        condition=lambda: self.board.current_color == BLACK
+                    ),
+                ]),
+            ]),
+            GameDiv(x=self.board_size // 2 + MARGIN + BORDER, 
+                y=self.board_size // 2 + BORDER, children=[
+                GameTextElement(
+                    font=message_font, 
+                    text=CHECK_MESSAGE, 
+                    antialias=True, 
+                    color=(30, 144, 255), 
+                    style="outline", 
+                    other_color=(255, 255, 255), 
+                    condition=lambda: self.countdown
+                ),
+                GameTextElement(
+                    font=message_font, 
+                    text=DRAW_MESSAGE, 
+                    antialias=True, 
+                    color=(30, 144, 255), 
+                    style="outline", 
+                    other_color=(255, 255, 255),
+                    condition=lambda: self.draw_state
+                ),
+                GameTextElement(
+                    font=message_font, 
+                    text=BLACK_WINS_MESSAGE, 
+                    antialias=True, 
+                    color=(50, 50, 50), 
+                    style="outline", 
+                    other_color=(255, 255, 255),
+                    condition=lambda: self.black_wins
+                ),
+                GameTextElement(
+                    font=message_font, 
+                    text=WHITE_WINS_MESSAGE, 
+                    antialias=True, 
+                    color=(255, 255, 255), 
+                    style="outline", 
+                    other_color=(50, 50, 50),
+                    condition=lambda: self.white_wins
+                ),
+            ]),
+        ])
 
 
+        self.extract_fields(interface)
+        self.adjust_info_position()
+
+    def adjust_info_position(self):
+        if self.horizontal:
+            self.info_div.x = self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN)
+            self.info_div.y = 0
+
+            self.white_div.x = 0
+            self.white_div.y = self.game.height - (MARGIN + 2*BORDER) - self.square_size
+            self.white_time.x = self.square_size + MARGIN + RIGHT_MARGIN
+            self.white_arrow.image = self.arrow_down
+            self.white_arrow.x = self.square_size // 4
+            self.white_arrow.y = -self.square_size // 2
+
+            self.black_div.x = 0
+            self.black_div.y = BORDER
+            self.black_time.x = self.square_size + MARGIN + RIGHT_MARGIN
+            self.black_time.y = self.square_size // 2
+            self.black_arrow.image = self.arrow_up
+            self.black_arrow.x = self.square_size // 4
+            self.black_arrow.y = self.square_size
+        else:
+            self.info_div.x = 0
+            self.info_div.y = self.board_size + 2*BORDER + MARGIN
+
+            self.white_div.x = self.board_size + (MARGIN + 2*BORDER) - self.square_size
+            self.white_div.y = 0
+            self.white_time.x = - MARGIN - RIGHT_MARGIN - self.square_size // 2
+            self.white_arrow.image = self.arrow_right
+            self.white_arrow.x = -self.square_size // 2
+            self.white_arrow.y = self.square_size // 4
+            
+            self.black_div.x = MARGIN + 2*BORDER
+            self.black_div.y = 0
+            self.black_time.x = self.square_size + MARGIN + RIGHT_MARGIN + self.square_size // 2
+            self.black_arrow.image = self.arrow_left
+            self.black_arrow.x = self.square_size
+            self.black_arrow.y = self.square_size // 4
 
     def update_timers(self):
         self.white_time.text = self.white_timer.minutes_to_text()
@@ -195,143 +370,7 @@ class Chess(Scene):
         else:
             self.fail = square
 
-    def create_board(self):
-        self.board = Board()
-
-        max_board_size = min(
-            self.game.width - (MARGIN + 2 * BORDER),
-            self.game.height - (MARGIN + 2 * BORDER)
-        )
-
-        self.horizontal = True
-        self.square_size = (max_board_size // 8)
-        self.board_size = self.square_size * 8
-        if self.game.width - self.board_size < 3 * self.square_size:
-            max_board_size = min(
-                self.game.width - (MARGIN + 2 * BORDER),
-                self.game.height - (MARGIN + 2 * BORDER) - 100
-            )
-
-            self.horizontal = False
-            self.square_size = (max_board_size // 8)
-            self.board_size = self.square_size * 8
-
-        self.board_image = transform.scale(
-            image.load(path.join(self.assets_dir, 'chess_board.png')),
-            (self.board_size, self.board_size)
-        )
-        self.load_piece_images()
-
-        border_div = RectElement((0, 0, 0), self.board_size + 2 * BORDER, 
-            self.board_size + 2 * BORDER, x=MARGIN)
-        self.main_div.children.append(border_div)
-        board_div = GameDiv(BORDER, BORDER)
-        border_div.children.append(board_div)
-        board_div.children.append(ImageElement(self.board_image))
-        board_div.children.append(SquareElement((0, 223, 0), self.square_size, 
-            lambda: self.selected))
-        board_div.children.append(SquareElement((255, 150, 150), self.square_size, 
-            lambda: self.fail))
-        board_div.children.append(SquareElement((204, 153, 255), self.square_size, 
-            lambda: self.check))
-        board_div.children.append(PiecesElement(self.board, self.square_size, self.piece_images))
-
-        self.create_board_labels()
-        
-
-    def create_board_labels(self):
-        _font = font.SysFont("", 26)
-        left_label_div = GameDiv(x=13, y=BORDER + self.square_size // 2)
-        down_label_div = GameDiv(
-            x=MARGIN + BORDER + self.square_size // 2, 
-            y=17 + self.board_size + BORDER
-        )
-        self.main_div.children.append(left_label_div)
-        self.main_div.children.append(down_label_div)
-
-        for i, label_text in enumerate(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']):
-            left_label_div.children.append(GameTextElement(_font, str(i + 1), 
-                True, (128, 128, 128), y=(7 - i) * self.square_size))
-            down_label_div.children.append(GameTextElement(_font, str(label_text), 
-                True, (128, 128, 128), x=i * self.square_size))
-
-    def load_piece_images(self):
-        self.piece_images = {}
-
-        for color in [BLACK, WHITE]:
-            for piece in ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']:
-                self.piece_images["%s_%s" % (color, piece)] = transform.scale(
-                    image.load(path.join(self.assets_dir, "%s_%s.png" % (color, piece))),
-                    (self.square_size, self.square_size)
-                )
-
-    def create_side_info(self):
-        self.arrow_down = image.load(path.join(self.assets_dir, 'arrow_down.png'))
-        self.arrow_down = transform.scale(self.arrow_down, (self.square_size // 2, self.square_size // 2))
-
-        self.arrow_up = transform.rotate(self.arrow_down, 180)
-        self.arrow_left = transform.rotate(self.arrow_down, 270)
-        self.arrow_right = transform.rotate(self.arrow_down, 90)
-
-        time_font = font.SysFont("", 48)
-        white_image = self.piece_images['%s_king' % WHITE]
-        black_image = self.piece_images['%s_king' % BLACK]
-        
-        self.white_time = GameTextElement(time_font, str("20:00"), True, (128, 128, 128), y=self.square_size // 2)
-        self.black_time = GameTextElement(time_font, str("20:00"), True, (128, 128, 128), y=self.square_size // 2)
-
-        self.white_arrow = ImageElement(None, 
-            condition=lambda: self.board.current_color == WHITE)
-        self.black_arrow = ImageElement(None, 
-            condition=lambda: self.board.current_color == BLACK)
-
-        self.info_div = GameDiv()
-        self.white_div = GameDiv(children=[
-            self.white_time, ImageElement(white_image), self.white_arrow,
-        ])
-        self.black_div = GameDiv(children=[
-            self.black_time, ImageElement(black_image), self.black_arrow,
-        ])
-        self.info_div.children = [self.white_div, self.black_div]
-
-        self.main_div.children.append(self.info_div)
-        self.adjust_info_position()
 
 
-    def adjust_info_position(self):
-        if self.horizontal:
-            self.info_div.x = self.board_size + (MARGIN + 2*BORDER + RIGHT_MARGIN)
-            self.info_div.y = 0
 
-            self.white_div.x = 0
-            self.white_div.y = self.game.height - (MARGIN + 2*BORDER) - self.square_size
-            self.white_time.x = self.square_size + MARGIN + RIGHT_MARGIN
-            self.white_arrow.image = self.arrow_down
-            self.white_arrow.x = self.square_size // 4
-            self.white_arrow.y = -self.square_size // 2
-
-            self.black_div.x = 0
-            self.black_div.y = BORDER
-            self.black_time.x = self.square_size + MARGIN + RIGHT_MARGIN
-            self.black_time.y = self.square_size // 2
-            self.black_arrow.image = self.arrow_up
-            self.black_arrow.x = self.square_size // 4
-            self.black_arrow.y = self.square_size
-        else:
-            self.info_div.x = 0
-            self.info_div.y = self.board_size + 2*BORDER + MARGIN
-
-            self.white_div.x = self.board_size + (MARGIN + 2*BORDER) - self.square_size
-            self.white_div.y = 0
-            self.white_time.x = - MARGIN - RIGHT_MARGIN - self.square_size // 2
-            self.white_arrow.image = self.arrow_right
-            self.white_arrow.x = -self.square_size // 2
-            self.white_arrow.y = self.square_size // 4
-            
-            self.black_div.x = MARGIN + 2*BORDER
-            self.black_div.y = 0
-            self.black_time.x = self.square_size + MARGIN + RIGHT_MARGIN + self.square_size // 2
-            self.black_arrow.image = self.arrow_left
-            self.black_arrow.x = self.square_size
-            self.black_arrow.y = self.square_size // 4
-
+    
