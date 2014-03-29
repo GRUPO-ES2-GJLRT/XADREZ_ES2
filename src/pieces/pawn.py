@@ -1,10 +1,14 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from consts.colors import WHITE, BLACK
-from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, to_move_dict
+from consts.moves import (
+    LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL,
+)
 
 from .piece import Piece
+
 
 class Pawn(Piece):
 
@@ -15,7 +19,7 @@ class Pawn(Piece):
         """ If hindered == False, it will return the attack moves """
         walk_moves = []
         attack_moves = []
-        
+
         if self.color == WHITE:
             front = (self.x, self.y + 1)
             walk_moves.append(front)
@@ -23,7 +27,7 @@ class Pawn(Piece):
             attack_moves.append((self.x + 1, self.y + 1))
             if self.y == 1 and not self.board[front]:
                 walk_moves.append((self.x, self.y + 2))
-        
+
         else:
             front = (self.x, self.y - 1)
             walk_moves.append(front)
@@ -35,33 +39,50 @@ class Pawn(Piece):
         # En Passant
         if hindered and self.board.last_move:
             piece = self.board[self.board.last_move[2]]
-            distance = abs(self.board.last_move[1][1] - self.board.last_move[2][1])
+            distance = abs(self.board.last_move[1][1] -
+                           self.board.last_move[2][1])
             if piece and piece.name() == "pawn" and distance == 2:
                 if self.color == WHITE:
                     if piece.x == self.x - 1:
-                        walk_moves.append((self.x - 1, self.y + 1, LEFT_EN_PASSANT))
+                        walk_moves.append(
+                            (self.x - 1, self.y + 1, LEFT_EN_PASSANT))
                     if piece.x == self.x + 1:
-                        walk_moves.append((self.x + 1, self.y + 1, RIGHT_EN_PASSANT))   
+                        walk_moves.append(
+                            (self.x + 1, self.y + 1, RIGHT_EN_PASSANT))
                 else:
                     if piece.x == self.x - 1:
-                        walk_moves.append((self.x - 1, self.y - 1, LEFT_EN_PASSANT))
+                        walk_moves.append(
+                            (self.x - 1, self.y - 1, LEFT_EN_PASSANT))
                     if piece.x == self.x + 1:
-                        walk_moves.append((self.x + 1, self.y - 1, RIGHT_EN_PASSANT)) 
+                        walk_moves.append(
+                            (self.x + 1, self.y - 1, RIGHT_EN_PASSANT))
 
-        result = {(position[0], position[1]):self.modifier(position) for position in attack_moves if self.valid_attack_move(position, hindered)}
+        result = {
+            (position[0], position[1]): self.modifier(position)
+            for position in attack_moves
+            if self.valid_attack_move(position, hindered)
+        }
         if hindered:
-            result = dict(result, **({(position[0], position[1]):self.modifier(position) for position in walk_moves if self.valid_walk_move(position)}))
+            result = dict(
+                result,
+                **({
+                    (position[0], position[1]): self.modifier(position)
+                    for position in walk_moves
+                    if self.valid_walk_move(position)
+                })
+            )
         return result
 
-    def modifier(self, position): 
-        if (self.color == WHITE and position[1] == 7) or (self.color == BLACK and position[1] == 0):
+    def modifier(self, position):
+        if ((self.color == WHITE and position[1] == 7) or
+                (self.color == BLACK and position[1] == 0)):
             return PROMOTION
         if len(position) == 3:
             return position[2]
         return NORMAL
 
     def valid_walk_move(self, position):
-        """ Checks if a position is not occupied by a piece 
+        """ Checks if a position is not occupied by a piece
         and is inside the board
         """
         if not self.board.valid(position):
@@ -72,7 +93,7 @@ class Pawn(Piece):
         return True
 
     def valid_attack_move(self, position, hindered):
-        """ Checks if a position is occupied by an enemy piece 
+        """ Checks if a position is occupied by an enemy piece
         and is inside the board
         """
         if not hindered:
@@ -83,4 +104,3 @@ class Pawn(Piece):
         if piece and piece.color != self.color:
             return True
         return False
-

@@ -1,7 +1,9 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from .piece import LinearExplorationPiece
+
 
 class Rook(LinearExplorationPiece):
 
@@ -32,4 +34,3 @@ class Rook(LinearExplorationPiece):
                 break
 
         return result
-
