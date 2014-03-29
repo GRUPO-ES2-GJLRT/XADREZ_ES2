@@ -8,16 +8,15 @@ from .elements import (
     PiecesElement, 
     SquareElement,
 )
-from ..chess import Chess
-from ..config_menu import ConfigMenu
+
 from consts.i18n import *
 
 class MainMenuInterface(Interface):
 
     def interface(self):
         title_font = pygame.font.SysFont("", self.game.relative_x(0.1))
-        meno_font_size = self.game.relative_x(0.05)
-        menu_font = pygame.font.SysFont("", meno_font_size)
+        menu_font_size = self.game.relative_x(0.05)
+        menu_font = pygame.font.SysFont("", menu_font_size)
 
         return GameDiv(name="main_div", children=[
             GameTextElement(name="title",
@@ -44,7 +43,7 @@ class MainMenuInterface(Interface):
                 antialias=True, 
                 color=(128, 128, 128),
                 x=self.game.center_x(),
-                y=self.game.relative_y(0.45) + meno_font_size // 2 + self.game.relative_x(0.04),
+                y=self.game.relative_y(0.45) + menu_font_size // 2 + self.game.relative_x(0.04),
                 click=self.two_players_click,
                 motion=self.motion,
             ),
