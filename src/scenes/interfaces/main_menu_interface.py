@@ -2,14 +2,13 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-
 import pygame
+
 from .interface import Interface
-from .elements import (
+from scenes.elements import (
     GameDiv,
     GameTextElement,
 )
-
 from consts.i18n import (
     TITLE,
     ONE_PLAYER,

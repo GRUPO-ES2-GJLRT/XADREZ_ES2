@@ -3,20 +3,23 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import font
+
 from .interface import Interface
-from .elements import (
+
+from scenes.elements import (
     GameDiv,
-    ImageElement,
-    RectElement,
     GameTextElement,
+    ImageElement,
     PiecesElement,
-    SquareElement,
+    RectElement,
+    SquareElement
 )
 
 from consts.colors import BLACK, WHITE
 from consts.i18n import (
     CHECK_MESSAGE, DRAW_MESSAGE, BLACK_WINS_MESSAGE, WHITE_WINS_MESSAGE
 )
+
 
 MARGIN = 28
 BORDER = 2

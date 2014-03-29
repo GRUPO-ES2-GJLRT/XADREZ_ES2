@@ -2,7 +2,7 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-from .piece import LinearExplorationPiece
+from .linear_exploration_piece import LinearExplorationPiece
 
 
 class Rook(LinearExplorationPiece):

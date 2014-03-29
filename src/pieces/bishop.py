@@ -2,7 +2,7 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-from pieces.piece import LinearExplorationPiece
+from .linear_exploration_piece import LinearExplorationPiece
 
 
 class Bishop(LinearExplorationPiece):

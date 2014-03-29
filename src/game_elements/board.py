@@ -9,12 +9,14 @@ from consts.moves import (
     CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE,
 )
 
-from pieces.pawn import Pawn
-from pieces.rook import Rook
-from pieces.knight import Knight
-from pieces.bishop import Bishop
-from pieces.queen import Queen
-from pieces.king import King
+from pieces import (
+    Pawn,
+    Rook,
+    Bishop,
+    Queen,
+    Knight,
+    King
+)
 
 
 class Board(object):

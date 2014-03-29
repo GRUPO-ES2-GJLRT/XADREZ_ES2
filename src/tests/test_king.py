@@ -5,8 +5,7 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import KINGSIDE_CASTLING, QUEENSIDE_CASTLING, to_move_dict
-
-from pieces.board import Board
+from game_elements.board import Board
 from pieces.king import King
 from pieces.rook import Rook
 

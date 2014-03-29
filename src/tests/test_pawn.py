@@ -5,8 +5,7 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, to_move_dict
-
-from pieces.board import Board
+from game_elements.board import Board
 from pieces.pawn import Pawn
 
 class TestPawnMove(unittest.TestCase):

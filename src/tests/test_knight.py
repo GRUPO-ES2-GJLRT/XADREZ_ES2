@@ -3,10 +3,9 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import unittest
 
-from consts.colors import WHITE, BLACK
+from consts.colors import WHITE
 from consts.moves import to_move_dict
-
-from pieces.board import Board
+from game_elements.board import Board
 from pieces.knight import Knight
 
 class TestKnight(unittest.TestCase):

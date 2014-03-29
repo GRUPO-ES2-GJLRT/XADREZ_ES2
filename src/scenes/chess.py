@@ -2,20 +2,19 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
+from os import path
+
 from pygame import (
     image,
     transform,
     MOUSEBUTTONUP
 )
 
-from os import path
-
 from .base import Scene
-from pieces.board import Board
+from game_elements import Board, AIPlayer
 from consts.colors import BLACK, WHITE
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS
-
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 # States
 SELECT = 0
@@ -27,43 +26,40 @@ CHECK_COUNTDOWN = 0.5
 
 class Chess(Scene, ChessInterface):
 
-    def __init__(self, game, one_player, selected_level, *args, **kwargs):
-        """Inicializando o jogo"""
+    def __init__(self, game, level, *args, **kwargs):
         super(Chess, self).__init__(game, *args, **kwargs)
-        # Game Instance
+
         self.game = game
-        # Estimating board size and orientation
+
         self.calculate_size()
-        # Loading images
         self.load_images()
-        # Creating the Game Board
         self.board = Board()
-        # Loading configurations
         self.config = self.load_stored_config()
-        # Loading players
-        if one_player:
-            from artificial_intelligence import ArtificialIntelligence
-            self.ia = ArtificialIntelligence(self.board, selected_level)
-        else:
-            self.ia = None
+
+        self.ia = AIPlayer(self.board, level) if level is not None else None
+
         # Marked squares
         self.selected = None
         self.fail = None
         self.check = None
+
         # Game states and countdown for check message
         self.countdown = 0
         self.white_wins = False
         self.black_wins = False
         self.draw_state = False
         self.state = SELECT
+
         # Timers
         self.white_timer = TIMER_CLASS[self.config['option']](self.config)
         self.black_timer = TIMER_CLASS[self.config['option']](self.config)
         self.thread_events = [self.white_timer.event, self.black_timer.event]
 
+        # Starting timers
         self.white_timer.start()
         self.black_timer.start()
         self.white_timer.start_turn()
+
         # Creating interface
         self.create_interface()
 
@@ -185,6 +181,7 @@ class Chess(Scene, ChessInterface):
             if self.board.current_color == BLACK:
                 self.white_timer.stop_turn()
                 self.black_timer.start_turn()
+
                 if self.ia:
                     movement = self.ia.play()
                     if movement:
@@ -198,6 +195,9 @@ class Chess(Scene, ChessInterface):
                         elif status in [STALEMATE, FIFTY_MOVE]:
                             self.draw_state = True
                             self.state = END
+
+                self.black_timer.stop_turn()
+                self.white_timer.start_turn()
             else:
                 self.white_timer.start_turn()
                 self.black_timer.stop_turn()
