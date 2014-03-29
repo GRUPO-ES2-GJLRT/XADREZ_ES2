@@ -22,7 +22,27 @@ class GameDiv(object):
         for child in self.children:
             child.draw(screen, x=self.x + x, y=self.y + y)
 
+    def click(self, pos, x=0, y=0):
+        if not self.condition():
+            return
+        self.click_element(pos, x=self.x + x, y=self.y + y)
+        for child in self.children:
+            child.click(pos, x=self.x + x, y=self.y + y)
+
+    def motion(self, pos, x=0, y=0):
+        if not self.condition():
+            return
+        self.motion_element(pos, x=self.x + x, y=self.y + y)
+        for child in self.children:
+            child.motion(pos, x=self.x + x, y=self.y + y)
+
     def draw_element(self, screen, x=0, y=0):
+        pass
+
+    def click_element(self, pos, x=0, y=0):
+        pass
+
+    def motion_element(self, pos, x=0, y=0):
         pass
 
 
@@ -49,14 +69,34 @@ class RectElement(GameDiv):
 
 
 class GameTextElement(GameDiv, GameText):
-    def __init__(self, font, text, antialias, color, rect=None, style="normal", other_color=None, x=0, y=0, children=None, condition=None, name=""):
+    def __init__(self, font, text, antialias, color, rect=None, style="normal", other_color=None, click=None, motion=None, x=0, y=0, children=None, condition=None, name=""):
         GameDiv.__init__(self, x, y, children, condition, name)
         GameText.__init__(self, font, text, antialias, color, rect=rect, style=style, other_color=other_color)
+        rect = self.surface.get_rect()
+        rect.center = (x, y)
+        self.rect = rect
+        if not click:
+            click = lambda it: None
+        if not motion:
+            motion = lambda it, collides: None
+        self.click_fn = click
+        self.motion_fn = motion
 
     def draw_element(self, screen, x=0, y=0):
         rect = self.surface.get_rect()
         rect.center = (x, y)
         screen.blit(self.surface, rect.topleft)
+
+    def click_element(self, pos, x=0, y=0):
+        rect = self.surface.get_rect()
+        rect.center = (x, y)
+        if rect.collidepoint(pos):
+            self.click_fn(self)
+
+    def motion_element(self, pos, x=0, y=0):
+        rect = self.surface.get_rect()
+        rect.center = (x, y)
+        self.motion_fn(self, rect.collidepoint(pos))
 
 
 class ChessElement(GameDiv):

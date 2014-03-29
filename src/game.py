@@ -37,6 +37,12 @@ class Game(object):
         result = value * size
         return int(max(0, min(size - 1, result)))
 
+    def center_x(self):
+        return self.screen.get_rect().center[0]
+
+    def center_y(self):
+        return self.screen.get_rect().center[1]
+
     def relative_x(self, x):
         """Returns the coordinate X relative to the screen width
         Arguments:
