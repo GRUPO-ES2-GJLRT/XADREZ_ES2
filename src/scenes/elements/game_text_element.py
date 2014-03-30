@@ -3,10 +3,13 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import Surface
-from.game_div import GameDiv
+from.game_div import GameDiv, LazyAttribute
 
 
 class GameTextElement(GameDiv):
+
+    font = LazyAttribute("_font")
+
     def __init__(self, font, text="", color=(0, 0, 0), antialias=True,
                  style="normal", other_color=None, click=None, motion=None,
                  x=0, y=0, children=None, condition=None, name=""):
@@ -22,7 +25,7 @@ class GameTextElement(GameDiv):
         self.redraw()
 
         rect = self.surface.get_rect()
-        rect.center = (x, y)
+        rect.center = (self.x, self.y)
         self.rect = rect
 
         if not click:

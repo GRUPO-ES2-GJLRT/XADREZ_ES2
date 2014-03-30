@@ -44,6 +44,10 @@ class Scene(object):
                 self.game.running = False
                 for thread_event in self.thread_events:
                     thread_event.set()
+            elif event.type == pygame.VIDEORESIZE:
+                self.game.resize(event.dict['size'])
+                self.resize()
+                self.draw(0.0)
             else:
                 self.event(delta_time, event)
 
@@ -103,5 +107,11 @@ class Scene(object):
         delta_time is the time in seconds (float) passed since
             the last game loop execution
         event is the received event
+        """
+        pass
+
+    def resize(self):
+        """This function should resize the elements.
+        Override it in a subclass!
         """
         pass

@@ -91,14 +91,13 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.show_bonus = False
         self.show_moves = False
         if self.option == TIMER_OPTIONS["minutes_per_game"]:
-            self.ok.y = self.game.relative_y(0.26)
+            self.ok.y = lambda: self.game.relative_y(0.26)
         elif self.option == TIMER_OPTIONS["moves_per_minutes"]:
-            self.ok.y = self.game.relative_y(0.36)
+            self.ok.y = lambda: self.game.relative_y(0.36)
             self.show_moves = True
         else:
-            self.ok.y = self.game.relative_y(0.46)
+            self.ok.y = lambda: self.game.relative_y(0.46)
             self.show_bonus = True
-            self.show_bonus = (50, 360)
 
     def save(self):
         data = {
@@ -127,3 +126,6 @@ class ConfigMenu(Scene, ConfigMenuInterface):
             self.main_div.motion(event.pos)
         elif event.type == pygame.MOUSEBUTTONUP:
             self.main_div.click(event.pos)
+
+    def resize(self):
+        ConfigMenuInterface.resize(self)

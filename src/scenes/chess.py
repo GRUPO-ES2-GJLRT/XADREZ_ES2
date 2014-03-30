@@ -2,11 +2,8 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-from os import path
 
 from pygame import (
-    image,
-    transform,
     MOUSEBUTTONUP
 )
 
@@ -33,8 +30,6 @@ class Chess(Scene, ChessInterface):
         self.game = game
         self.board = Board()
 
-        self.calculate_size()
-        self.load_images()
         self.create_interface()
 
         # Marked squares
@@ -72,58 +67,11 @@ class Chess(Scene, ChessInterface):
         self.fail = None
         self.current_player.end_turn()
 
-        self.current_player = self.black if self.current_player.color == WHITE \
-                                         else self.white
+        self.current_player = (self.black
+                               if self.current_player.color == WHITE
+                               else self.white)
 
         self.current_player.start_turn()
-
-    def calculate_size(self):
-        """ Calculates the board size, square size and the orientation. """
-        max_board_size = min(
-            self.game.width - (MARGIN + 2 * BORDER),
-            self.game.height - (MARGIN + 2 * BORDER)
-        )
-
-        self.horizontal = True
-        self.square_size = (max_board_size // 8)
-        self.board_size = self.square_size * 8
-        if self.game.width - self.board_size < 3 * self.square_size:
-            max_board_size = min(
-                self.game.width - (MARGIN + 2 * BORDER),
-                self.game.height - (MARGIN + 2 * BORDER) - 100
-            )
-
-            self.horizontal = False
-            self.square_size = (max_board_size // 8)
-            self.board_size = self.square_size * 8
-
-    def load_images(self):
-        self.board_image = transform.scale(
-            image.load(path.join(self.assets_dir, 'chess_board.png')),
-            (self.board_size, self.board_size)
-        )
-
-        self.piece_images = {}
-        for color in [BLACK, WHITE]:
-            for piece in ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']:
-                self.piece_images["%s_%s" % (color, piece)] = transform.scale(
-                    image.load(path.join(
-                        self.assets_dir,
-                        "%s_%s.png" % (color, piece))
-                    ),
-                    (self.square_size, self.square_size)
-                )
-
-        self.arrow_down = image.load(
-            path.join(self.assets_dir, 'arrow_down.png')
-        )
-        self.arrow_down = transform.scale(
-            self.arrow_down,
-            (self.square_size // 2, self.square_size // 2)
-        )
-        self.arrow_up = transform.rotate(self.arrow_down, 180)
-        self.arrow_left = transform.rotate(self.arrow_down, 270)
-        self.arrow_right = transform.rotate(self.arrow_down, 90)
 
     def update_timers(self):
         self.white_time.text = self.white.timer.minutes_to_text()
@@ -200,4 +148,6 @@ class Chess(Scene, ChessInterface):
             self.current_player.state = END
             self.state = GAME_DRAW
 
+    def resize(self):
+        ChessInterface.resize(self)
 

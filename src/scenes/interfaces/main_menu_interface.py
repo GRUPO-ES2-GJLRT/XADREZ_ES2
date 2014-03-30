@@ -21,9 +21,10 @@ from consts.i18n import (
 class MainMenuInterface(Interface):
 
     def interface(self):
-        title_font = pygame.font.SysFont("", self.game.relative_x(0.1))
-        menu_font_size = self.game.relative_x(0.05)
-        menu_font = pygame.font.SysFont("", menu_font_size)
+        title_font_size = lambda: self.game.relative_x(0.1)
+        title_font = lambda: pygame.font.SysFont("", title_font_size())
+        menu_font_size = lambda: self.game.relative_x(0.05)
+        menu_font = lambda: pygame.font.SysFont("", menu_font_size())
 
         return GameDiv(name="main_div", children=[
             GameTextElement(
@@ -32,8 +33,8 @@ class MainMenuInterface(Interface):
                 text=TITLE,
                 antialias=True,
                 color=(192, 192, 192),
-                x=self.game.center_x(),
-                y=self.game.relative_y(0.1),
+                x=lambda: self.game.center_x(),
+                y=lambda: self.game.relative_y(0.1),
             ),
             GameTextElement(
                 name="one_player",
@@ -41,8 +42,8 @@ class MainMenuInterface(Interface):
                 text=ONE_PLAYER,
                 antialias=True,
                 color=(128, 128, 128),
-                x=self.game.center_x(),
-                y=self.game.relative_y(0.45),
+                x=lambda: self.game.center_x(),
+                y=lambda: self.game.relative_y(0.45),
                 click=self.one_player_click,
                 motion=self.motion,
             ),
@@ -52,9 +53,9 @@ class MainMenuInterface(Interface):
                 text=TWO_PLAYERS,
                 antialias=True,
                 color=(128, 128, 128),
-                x=self.game.center_x(),
-                y=(self.game.relative_y(0.45) + menu_font_size // 2 +
-                   self.game.relative_x(0.04)),
+                x=lambda: self.game.center_x(),
+                y=lambda: (self.game.relative_y(0.45) + menu_font_size() // 2 +
+                           self.game.relative_x(0.04)),
                 click=self.two_players_click,
                 motion=self.motion,
             ),
@@ -64,8 +65,8 @@ class MainMenuInterface(Interface):
                 text=CONFIG,
                 antialias=True,
                 color=(128, 128, 128),
-                x=self.game.relative_x(0.10),
-                y=self.game.relative_y(0.92),
+                x=lambda: self.game.relative_x(0.10),
+                y=lambda: self.game.relative_y(0.92),
                 click=self.configurations_click,
                 motion=self.motion,
             ),
@@ -75,9 +76,12 @@ class MainMenuInterface(Interface):
                 text=QUIT,
                 antialias=True,
                 color=(128, 128, 128),
-                x=self.game.relative_x(0.91),
-                y=self.game.relative_y(0.92),
+                x=lambda: self.game.relative_x(0.91),
+                y=lambda: self.game.relative_y(0.92),
                 click=self.quit_click,
                 motion=self.motion,
             ),
         ])
+
+    def resize(self):
+        self.main_div.call('redraw')

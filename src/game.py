@@ -4,6 +4,9 @@ from __future__ import (absolute_import, division,
 
 import time
 import pygame
+from pygame.locals import (
+    HWSURFACE, DOUBLEBUF, RESIZABLE
+)
 
 from consts.i18n import TITLE
 
@@ -15,9 +18,7 @@ class Game(object):
     def __init__(self, width, height):
         pygame.init()
         pygame.display.set_caption(TITLE)
-        self.screen = pygame.display.set_mode((width, height))
-        self.width = width
-        self.height = height
+        self.resize((width, height))
         self.running = True
         self.scene = None
 
@@ -32,6 +33,13 @@ class Game(object):
             last_frame_time = current_time
 
             self.scene.loop(delta_time)
+
+    def resize(self, size):
+        self.width = size[0]
+        self.height = size[1]
+        self.screen = pygame.display.set_mode((self.width, self.height),
+                                              HWSURFACE | DOUBLEBUF |
+                                              RESIZABLE)
 
     def __relative(self, value, size):
         result = value * size

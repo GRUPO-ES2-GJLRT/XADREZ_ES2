@@ -4,9 +4,13 @@ from __future__ import (absolute_import, division,
 
 from pygame import draw
 from .chess_element import ChessElement
+from .game_div import LazyAttribute
 
 
 class SquareElement(ChessElement):
+
+    square_size = LazyAttribute("_square_size")
+
     def __init__(self, color, square_size, square,
                  x=0, y=0, children=None, condition=None, name=""):
         super(SquareElement, self).__init__(x, y, children, condition, name)

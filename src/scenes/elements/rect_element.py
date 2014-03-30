@@ -3,10 +3,13 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import draw
-from.game_div import GameDiv
+from.game_div import GameDiv, LazyAttribute
 
 
 class RectElement(GameDiv):
+
+    size_x = LazyAttribute("_size_x")
+    size_y = LazyAttribute("_size_y")
 
     def __init__(self, color, size_x, size_y,
                  x=0, y=0, children=None, condition=None, name=""):

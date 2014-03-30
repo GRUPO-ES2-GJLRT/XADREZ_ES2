@@ -54,3 +54,6 @@ class MainMenu(Scene, MainMenuInterface):
             self.main_div.motion(event.pos)
         elif event.type == pygame.MOUSEBUTTONUP:
             self.main_div.click(event.pos)
+
+    def resize(self):
+        MainMenuInterface.resize(self)

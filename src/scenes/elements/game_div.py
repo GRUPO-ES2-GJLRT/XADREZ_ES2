@@ -3,9 +3,6 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 
-import types
-
-
 class LazyAttribute(object):
 
     def __init__(self, name):
@@ -16,7 +13,7 @@ class LazyAttribute(object):
 
     def __set__(self, instance, value):
         instance.__dict__[self.name] = (
-            value if isinstance(value, types.FunctionType) else lambda: value)
+            value if callable(value) else lambda: value)
 
     def __delete__(self, instance):
         del instance.__dict__[self.name]
@@ -37,6 +34,13 @@ class GameDiv(object):
         self.y = y
         self.children = children
         self.name = name
+
+    def call(self, name):
+        method = getattr(self, name, None)
+        if callable(method):
+            method()
+        for child in self.children:
+            child.call(name)
 
     def draw(self, screen, x=0, y=0):
         if not self.condition():
