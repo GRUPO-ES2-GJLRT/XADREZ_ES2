@@ -3,9 +3,29 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 import pygame
+import types
+
+
+class LazyAttribute(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.name]()
+
+    def __set__(self, instance, value):
+        instance.__dict__[self.name] = (
+            value if isinstance(value, types.FunctionType) else lambda: value)
+
+    def __delete__(self, instance):
+        del instance.__dict__[self.name]
 
 
 class GameDiv(object):
+
+    x = LazyAttribute('_x')
+    y = LazyAttribute('_y')
 
     def __init__(self, x=0, y=0, children=None, condition=None, name=""):
         if not children:
