@@ -15,8 +15,8 @@ SUCH_HARD_MUCH_DIFFICULT = 3
 
 class AIPlayer(Player):
 
-    def __init__(self, board, level, *args, **kwargs):
-        super(AIPlayer, self).__init__(level, *args, **kwargs)
+    def __init__(self, color, timer, level,  board, *args, **kwargs):
+        super(AIPlayer, self).__init__(color, timer, *args, **kwargs)
         self.level = level
         self.board = board
 
