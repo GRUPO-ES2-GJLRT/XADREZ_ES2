@@ -3,7 +3,6 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from consts.colors import next
-from consts.moves import NORMAL
 
 
 class Piece(object):
@@ -59,16 +58,3 @@ class Piece(object):
         if hindered is None:
             hindered = self.board.hindered(next(self.color))
         return position in hindered
-
-
-class LinearExplorationPiece(Piece):
-
-    def explore_position_and_continue(self, position, result):
-        if self.valid_move(position):
-            result[position] = NORMAL
-        # stop if invalid position
-        if not self.board.valid(position):
-            return False
-        # continue if there is no piece
-        piece = self.board[position]
-        return not piece or (piece and piece.ignored)

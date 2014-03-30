@@ -3,20 +3,26 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import font
+
 from .interface import Interface
-from .elements import (
+
+from scenes.elements import (
     GameDiv,
-    ImageElement,
-    RectElement,
     GameTextElement,
+    ImageElement,
     PiecesElement,
-    SquareElement,
+    RectElement,
+    SquareElement
 )
 
 from consts.colors import BLACK, WHITE
 from consts.i18n import (
     CHECK_MESSAGE, DRAW_MESSAGE, BLACK_WINS_MESSAGE, WHITE_WINS_MESSAGE
 )
+
+GAME_DRAW = 0
+WHITE_WINS = 1
+BLACK_WINS = 2
 
 MARGIN = 28
 BORDER = 2
@@ -128,7 +134,7 @@ class ChessInterface(Interface):
                     color=(30, 144, 255),
                     style="outline",
                     other_color=(255, 255, 255),
-                    condition=lambda: self.draw_state
+                    condition=lambda: self.state == GAME_DRAW
                 ),
                 GameTextElement(
                     font=message_font,
@@ -137,7 +143,7 @@ class ChessInterface(Interface):
                     color=(50, 50, 50),
                     style="outline",
                     other_color=(255, 255, 255),
-                    condition=lambda: self.black_wins
+                    condition=lambda: self.state == BLACK_WINS
                 ),
                 GameTextElement(
                     font=message_font,
@@ -146,7 +152,7 @@ class ChessInterface(Interface):
                     color=(255, 255, 255),
                     style="outline",
                     other_color=(50, 50, 50),
-                    condition=lambda: self.white_wins
+                    condition=lambda: self.state == WHITE_WINS
                 ),
             ]),
         ])

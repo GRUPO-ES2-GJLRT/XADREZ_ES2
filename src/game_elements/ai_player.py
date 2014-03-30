@@ -5,6 +5,7 @@ from __future__ import (absolute_import, division,
 import random
 
 from consts.colors import BLACK
+from .player import Player
 
 EASY = 0
 MEDIUM = 1
@@ -12,9 +13,10 @@ HARD = 2
 SUCH_HARD_MUCH_DIFFICULT = 3
 
 
-class ArtificialIntelligence():
+class AIPlayer(Player):
 
-    def __init__(self, board, level):
+    def __init__(self, color, timer, level,  board, *args, **kwargs):
+        super(AIPlayer, self).__init__(color, timer, *args, **kwargs)
         self.level = level
         self.board = board
 

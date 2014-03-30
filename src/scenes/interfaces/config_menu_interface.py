@@ -3,13 +3,13 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 import pygame
+
 from .interface import Interface
-from .elements import (
+from scenes.elements import (
     GameDiv,
     ImageElement,
     GameTextElement,
 )
-
 from consts.i18n import (
     CONFIG,
     BACK,

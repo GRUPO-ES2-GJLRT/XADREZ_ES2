@@ -29,7 +29,7 @@ class PlayerTimer(threading.Thread):
         self.stopped = False
         self.last_time = datetime.now()
 
-    def stop_turn(self):
+    def end_turn(self):
         self.stopped = True
 
     def update_time(self, delta):

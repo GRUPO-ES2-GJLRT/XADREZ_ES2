@@ -5,8 +5,7 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import CHECK, CHECKMATE, STALEMATE, NORMAL, FIFTY_MOVE
-
-from pieces.board import Board
+from game_elements.board import Board
 from pieces.knight import Knight
 from pieces.king import King
 from pieces.bishop import Bishop

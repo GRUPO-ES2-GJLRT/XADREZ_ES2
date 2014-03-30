@@ -20,12 +20,10 @@ class MainMenu(Scene, MainMenuInterface):
 
     def define_clicks(self):
         def one_player_click(it):
-            self.game.scene = Chess(game=self.game, one_player=True,
-                                    selected_level=0)
+            self.game.scene = Chess(game=self.game, level=0)
 
         def two_players_click(it):
-            self.game.scene = Chess(game=self.game, one_player=False,
-                                    selected_level=None)
+            self.game.scene = Chess(game=self.game, level=None)
 
         def configurations_click(it):
             self.game.scene = ConfigMenu(self.game)

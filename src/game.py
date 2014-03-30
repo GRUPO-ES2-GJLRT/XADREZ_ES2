@@ -2,12 +2,10 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-
 import time
 import pygame
 
 from consts.i18n import TITLE
-from scenes.main_menu import MainMenu
 
 WIDTH, HEIGHT = 1024, 768
 
@@ -24,7 +22,7 @@ class Game(object):
         self.scene = None
 
     def loop(self):
-        """Infinite loop for the game"""
+        from scenes.main_menu import MainMenu
         self.scene = MainMenu(self)
         last_frame_time = 0
 
