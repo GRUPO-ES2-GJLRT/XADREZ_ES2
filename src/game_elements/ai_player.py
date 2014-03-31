@@ -28,6 +28,9 @@ class AIPlayer(Player):
         threading.Thread(target=self.ai_move).start()
 
     def ai_move(self):
+        if not self.chess.state is None:
+            return
+
         if self.level == EASY:
             moved = False
             while not moved:

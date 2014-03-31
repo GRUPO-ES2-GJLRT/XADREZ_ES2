@@ -127,6 +127,9 @@ class Chess(Scene, ChessInterface):
             for color, player in self.players.items():
                 player.state = END
             self.state = GAME_DRAW
+            for threaded_event in self.thread_events:
+                threaded_event.set()
+
 
     def win(self, color):
         for player in self.players.values():
