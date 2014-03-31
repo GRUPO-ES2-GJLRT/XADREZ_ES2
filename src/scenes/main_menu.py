@@ -19,11 +19,14 @@ class MainMenu(Scene, MainMenuInterface):
         self.create_interface()
 
     def define_clicks(self):
+        def ai_vs_ai_click(it):
+            self.game.scene = Chess(game=self.game, level_white=0, level_black=0)
+
         def one_player_click(it):
-            self.game.scene = Chess(game=self.game, level=0)
+            self.game.scene = Chess(game=self.game, level_white=None, level_black=0)
 
         def two_players_click(it):
-            self.game.scene = Chess(game=self.game, level=None)
+            self.game.scene = Chess(game=self.game, level_white=None, level_black=None)
 
         def configurations_click(it):
             self.game.scene = ConfigMenu(self.game)
@@ -38,6 +41,7 @@ class MainMenu(Scene, MainMenuInterface):
                 it.color = (128, 128, 128)
             it.redraw()
 
+        self.ai_vs_ai_click = ai_vs_ai_click
         self.one_player_click = one_player_click
         self.two_players_click = two_players_click
         self.configurations_click = configurations_click

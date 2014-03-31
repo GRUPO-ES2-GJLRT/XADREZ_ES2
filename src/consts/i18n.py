@@ -4,6 +4,7 @@ from __future__ import (absolute_import, division,
 
 BACK = u"Return"
 CONFIG = u"Config"
+AI_VS_AI = u'AI vs AI'
 ONE_PLAYER = u"One Player"
 QUIT = u"Quit"
 TITLE = u"CHESS"

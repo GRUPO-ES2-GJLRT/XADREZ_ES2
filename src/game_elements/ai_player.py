@@ -3,7 +3,9 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 import random
-
+import sys
+import threading
+from time import sleep
 from .player import Player
 
 EASY = 0
@@ -20,10 +22,10 @@ class AIPlayer(Player):
         self.board = chess.board
 
     def start_turn(self):
+        if not self.chess.game.running:
+            sys.exit()
         Player.start_turn(self)
-        #import threading
-        #threading.Timer(1, self.ai_move).start()
-        self.ai_move()
+        threading.Thread(target=self.ai_move).start()
 
     def ai_move(self):
         if self.level == 0:
@@ -33,6 +35,7 @@ class AIPlayer(Player):
                 if not len(possible_moves) == 0:
                     move = random.choice(list(possible_moves))
                     self.select(move[0])
+                    sleep(1)
                     moved = self.play(move[1])
                 else:
                     moved = True

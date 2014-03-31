@@ -11,6 +11,7 @@ from scenes.elements import (
 )
 from consts.i18n import (
     TITLE,
+    AI_VS_AI,
     ONE_PLAYER,
     TWO_PLAYERS,
     CONFIG,
@@ -35,6 +36,18 @@ class MainMenuInterface(Interface):
                 color=(192, 192, 192),
                 x=lambda: self.game.center_x(),
                 y=lambda: self.game.relative_y(0.1),
+            ),
+            GameTextElement(
+                name="ai_vs_ai",
+                font=menu_font,
+                text=AI_VS_AI,
+                antialias=True,
+                color=(128, 128, 128),
+                x=lambda: self.game.center_x(),
+                y=lambda: (self.game.relative_y(0.45) - menu_font_size() // 2 -
+                           self.game.relative_x(0.04)),
+                click=self.ai_vs_ai_click,
+                motion=self.motion,
             ),
             GameTextElement(
                 name="one_player",

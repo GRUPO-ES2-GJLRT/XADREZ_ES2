@@ -7,6 +7,7 @@ from pygame import (
     MOUSEBUTTONUP
 )
 
+import sys
 from .base import Scene
 from game_elements import Board, create_player
 from game_elements.player import END
@@ -29,7 +30,7 @@ WINS = {
 
 class Chess(Scene, ChessInterface):
 
-    def __init__(self, game, level, *args, **kwargs):
+    def __init__(self, game, level_white, level_black, *args, **kwargs):
         super(Chess, self).__init__(game, *args, **kwargs)
 
         self.game = game
@@ -47,7 +48,7 @@ class Chess(Scene, ChessInterface):
         self.countdown = 0
         self.state = None
 
-        self.initialize_players(level)
+        self.initialize_players(level_white, level_black)
 
     @property
     def current_player(self):
@@ -57,12 +58,12 @@ class Chess(Scene, ChessInterface):
     def other_player(self):
         return self.players[next(self.board.current_color)]
 
-    def initialize_players(self, level):
+    def initialize_players(self, level_white, level_black):
         config = self.load_stored_config()
 
         new_timer = lambda: TIMER_CLASS[config['option']](config)
-        white = create_player(WHITE, new_timer(), self)
-        black = create_player(BLACK, new_timer(), self, level)
+        white = create_player(WHITE, new_timer(), self, level_white)
+        black = create_player(BLACK, new_timer(), self, level_black)
         self.players = {
             WHITE: white,
             BLACK: black,
@@ -85,7 +86,9 @@ class Chess(Scene, ChessInterface):
         return (px, 7 - py)
 
     def event(self, delta_time, event):
-        """Checks for mouse hover and mouse click"""
+        if not self.game.running:
+            sys.exit()
+
         if event.type == MOUSEBUTTONUP:
             if self.current_player.state == END:
                 return
@@ -104,6 +107,7 @@ class Chess(Scene, ChessInterface):
             self.change_turn()
             self.verify_status(self.board.status())
             return True
+
         self.fail = square
         return False
 
@@ -128,6 +132,9 @@ class Chess(Scene, ChessInterface):
         for player in self.players.values():
             player.state = END
         self.state = WINS[color]
+
+        for threaded_event in self.thread_events:
+            threaded_event.set()
 
     def resize(self):
         ChessInterface.resize(self)
