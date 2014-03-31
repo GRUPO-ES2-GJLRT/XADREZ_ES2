@@ -28,7 +28,7 @@ class AIPlayer(Player):
         threading.Thread(target=self.ai_move).start()
 
     def ai_move(self):
-        if self.level == 0:
+        if self.level == EASY:
             moved = False
             while not moved:
                 possible_moves = self.chess.board.possible_moves(self.color)
@@ -39,3 +39,9 @@ class AIPlayer(Player):
                     moved = self.play(move[1])
                 else:
                     moved = True
+        elif self.level == MEDIUM:
+            raise Exception
+        elif self.level == HARD:
+            raise Exception
+        elif self.level == SUCH_HARD_MUCH_DIFFICULT:
+            raise Exception
