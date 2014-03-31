@@ -1,18 +1,22 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
-
-from copy import deepcopy
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from consts.colors import WHITE, BLACK, next
-from consts.moves import LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL, QUEENSIDE_CASTLING, KINGSIDE_CASTLING, \
-    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
+from consts.moves import (
+    LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL,
+    QUEENSIDE_CASTLING, KINGSIDE_CASTLING,
+    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE,
+)
 
-from .pawn import Pawn
-from .rook import Rook
-from .knight import Knight
-from .bishop import Bishop
-from .queen import Queen
-from .king import King
+from pieces import (
+    Pawn,
+    Rook,
+    Bishop,
+    Queen,
+    Knight,
+    King
+)
 
 
 class Board(object):
@@ -33,36 +37,12 @@ class Board(object):
             BLACK: 0,
         }
         if new_game:
-            # Pawn
-            for x in xrange(8):
-                Pawn(self, WHITE, x, 1)
-                Pawn(self, BLACK, x, 6)
-            # Rook
-            Rook(self, WHITE, 0, 0)
-            Rook(self, WHITE, 7, 0)
-            Rook(self, BLACK, 0, 7)
-            Rook(self, BLACK, 7, 7)
-            # Knight
-            Knight(self, WHITE, 1, 0)
-            Knight(self, WHITE, 6, 0)
-            Knight(self, BLACK, 1, 7)
-            Knight(self, BLACK, 6, 7)
-            # Bishop
-            Bishop(self, WHITE, 2, 0)
-            Bishop(self, WHITE, 5, 0)
-            Bishop(self, BLACK, 2, 7)
-            Bishop(self, BLACK, 5, 7)
-            # Queen
-            Queen(self, WHITE, 3, 0)
-            Queen(self, BLACK, 3, 7)
-            # King
-            King(self, WHITE, 4, 0)
-            King(self, BLACK, 4, 7)
+            self.create_pieces()
         self.last_move = None
         self.current_color = WHITE
 
     def __getitem__(self, position):
-        """ Access the board position 
+        """ Access the board position
         Usage: board[(x, y)]
         """
         if not self.valid(position):
@@ -86,6 +66,32 @@ class Board(object):
         if piece:
             self.board_data[piece.x][piece.y] = None
             self.pieces[piece.color].remove(piece)
+
+    def create_pieces(self):
+        for x in xrange(8):
+            Pawn(self, WHITE, x, 1)
+            Pawn(self, BLACK, x, 6)
+
+        Rook(self, WHITE, 0, 0)
+        Rook(self, WHITE, 7, 0)
+        Rook(self, BLACK, 0, 7)
+        Rook(self, BLACK, 7, 7)
+
+        Knight(self, WHITE, 1, 0)
+        Knight(self, WHITE, 6, 0)
+        Knight(self, BLACK, 1, 7)
+        Knight(self, BLACK, 6, 7)
+
+        Bishop(self, WHITE, 2, 0)
+        Bishop(self, WHITE, 5, 0)
+        Bishop(self, BLACK, 2, 7)
+        Bishop(self, BLACK, 5, 7)
+
+        Queen(self, WHITE, 3, 0)
+        Queen(self, BLACK, 3, 7)
+
+        King(self, WHITE, 4, 0)
+        King(self, BLACK, 4, 7)
 
     def clone(self):
         """ Clones this board """
@@ -139,14 +145,15 @@ class Board(object):
         return self.kings[self.current_color]
 
     def move(self, original_position, new_position):
-        """ Move a piece from original_position to new_position 
+        """ Move a piece from original_position to new_position
         Returns False if the movement ins't valid
         Returns True, if it is valid
         Returns CHECK, if it is check
         Returns CHECKMATE, if it is checkmate
         """
-        if (not self.valid(original_position) or not self.valid(new_position) or
-                    original_position == new_position):
+        if (not self.valid(original_position) or
+                not self.valid(new_position) or
+                original_position == new_position):
             return False
         piece = self[original_position]
         if not piece or piece.color != self.current_color:
@@ -190,10 +197,9 @@ class Board(object):
             }
         else:
             self.moves[self.current_color] += 1
-            
+
         self.current_color = next(self.current_color)
 
-        
         return True
 
     def in_check(self, hindered=None, color=None):
@@ -205,7 +211,7 @@ class Board(object):
         return False
 
     def in_checkmate(self, hindered=None, possible_moves=None):
-        if possible_moves == None:
+        if possible_moves is None:
             possible_moves = self.possible_moves(self.current_color)
         if self.in_check(hindered=hindered):
             for move, board in possible_moves.items():
@@ -215,9 +221,10 @@ class Board(object):
         return False
 
     def stalemate(self, hindered=None, possible_moves=None):
-        if possible_moves == None:
+        if possible_moves is None:
             possible_moves = self.possible_moves(self.current_color)
-        return not self.in_check(hindered=hindered) and len(possible_moves) == 0
+        return (not self.in_check(hindered=hindered) and
+                len(possible_moves) == 0)
 
     def status(self):
         king = self.current_king()

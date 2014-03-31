@@ -1,8 +1,9 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from consts.colors import next
-from consts.moves import NORMAL
+
 
 class Piece(object):
 
@@ -31,14 +32,14 @@ class Piece(object):
         self.y = value[1]
 
     def possible_moves(self, hindered=True, hindered_positions=None):
-        """ Return the possible moves for the piece 
+        """ Return the possible moves for the piece
         hindered: It may check for hindered positions on board
         """
         pass
 
     def valid_move(self, position):
-        """ Checks if a position is not occupied by an ally 
-        and is inside the board 
+        """ Checks if a position is not occupied by an ally
+        and is inside the board
         """
         if not self.board.valid(position):
             return False
@@ -51,21 +52,9 @@ class Piece(object):
         """ Checks if a position is hindered by an enemy
         If not provided, position is the piece position
         """
-        if position == None:
+        if position is None:
             position = self.position
         position = (position[0], position[1])
-        if hindered == None:
+        if hindered is None:
             hindered = self.board.hindered(next(self.color))
         return position in hindered
-
-class LinearExplorationPiece(Piece):
-    
-    def explore_position_and_continue(self, position, result):
-        if self.valid_move(position):
-            result[position] = NORMAL
-        # stop if invalid position
-        if not self.board.valid(position):
-            return False
-        # continue if there is no piece
-        piece = self.board[position]
-        return not piece or (piece and piece.ignored)

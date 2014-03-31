@@ -1,11 +1,14 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import time
 import pygame
+from pygame.locals import (
+    HWSURFACE, DOUBLEBUF, RESIZABLE
+)
 
-from consts.i18n import *
-from scenes.main_menu import MainMenu
+from consts.i18n import TITLE
 
 WIDTH, HEIGHT = 1024, 768
 
@@ -15,14 +18,12 @@ class Game(object):
     def __init__(self, width, height):
         pygame.init()
         pygame.display.set_caption(TITLE)
-        self.screen = pygame.display.set_mode((width, height))
-        self.width = width
-        self.height = height
+        self.resize((width, height))
         self.running = True
         self.scene = None
-        
+
     def loop(self):
-        """Infinite loop for the game"""
+        from scenes.main_menu import MainMenu
         self.scene = MainMenu(self)
         last_frame_time = 0
 
@@ -33,9 +34,22 @@ class Game(object):
 
             self.scene.loop(delta_time)
 
+    def resize(self, size):
+        self.width = size[0]
+        self.height = size[1]
+        self.screen = pygame.display.set_mode((self.width, self.height),
+                                              HWSURFACE | DOUBLEBUF |
+                                              RESIZABLE)
+
     def __relative(self, value, size):
         result = value * size
         return int(max(0, min(size - 1, result)))
+
+    def center_x(self):
+        return self.screen.get_rect().center[0]
+
+    def center_y(self):
+        return self.screen.get_rect().center[1]
 
     def relative_x(self, x):
         """Returns the coordinate X relative to the screen width

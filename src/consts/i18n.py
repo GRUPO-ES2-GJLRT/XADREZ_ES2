@@ -1,8 +1,10 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 BACK = u"Return"
 CONFIG = u"Config"
+AI_VS_AI = u'AI vs AI'
 ONE_PLAYER = u"One Player"
 QUIT = u"Quit"
 TITLE = u"CHESS"
@@ -12,10 +14,10 @@ MOVES_PER_MINUTES = u"Moves per Minutes"
 FISCHER_TIME = u"Fischer Time"
 PLUS = u"+"
 MINUS = u"-"
+MINUTES_LABEL = u"Minutes:"
 MOVES_LABEL = u"Moves:"
 BONUS_LABEL = u"Bonus:"
 CHECK_MESSAGE = u"Check"
 BLACK_WINS_MESSAGE = u"Black Wins"
 WHITE_WINS_MESSAGE = u"White Wins"
 DRAW_MESSAGE = u"Draw"
-

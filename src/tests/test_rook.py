@@ -5,8 +5,7 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import to_move_dict
-
-from pieces.board import Board
+from game_elements.board import Board
 from pieces.rook import Rook
 
 class TestRook(unittest.TestCase):

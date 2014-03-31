@@ -1,9 +1,12 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
 
 import threading
 
-from datetime import datetime, timedelta
+from datetime import datetime
+
 
 class PlayerTimer(threading.Thread):
 
@@ -12,7 +15,8 @@ class PlayerTimer(threading.Thread):
         self.event = threading.Event()
         self.stopped = True
         self.last_time = datetime.now()
-        self.lose = False
+        self.player = None
+        self.lost = False
 
     def run(self):
         while not self.event.wait(0.5):
@@ -21,12 +25,17 @@ class PlayerTimer(threading.Thread):
                 delta = (new_time - self.last_time)
                 self.update_time(delta)
                 self.last_time = new_time
-                
+
+    def lose(self):
+        self.lost = True
+        if self.player:
+            self.player.lose()
+
     def start_turn(self):
         self.stopped = False
         self.last_time = datetime.now()
 
-    def stop_turn(self):
+    def end_turn(self):
         self.stopped = True
 
     def update_time(self, delta):
