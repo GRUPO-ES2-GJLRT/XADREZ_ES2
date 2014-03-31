@@ -8,9 +8,9 @@ from pygame import (
 )
 
 from .base import Scene
-from game_elements import Board, Player, AIPlayer
-from game_elements.player import PLAY, END
-from consts.colors import BLACK, WHITE
+from game_elements import Board, create_player
+from game_elements.player import END
+from consts.colors import BLACK, WHITE, next
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
@@ -21,6 +21,11 @@ GAME_DRAW = 0
 WHITE_WINS = 1
 BLACK_WINS = 2
 
+WINS = {
+    WHITE: WHITE_WINS,
+    BLACK: BLACK_WINS,
+}
+
 
 class Chess(Scene, ChessInterface):
 
@@ -29,7 +34,8 @@ class Chess(Scene, ChessInterface):
 
         self.game = game
         self.board = Board()
-
+        self.white_minutes = lambda: "20:00"
+        self.black_minutes = lambda: "20:00"
         self.create_interface()
 
         # Marked squares
@@ -43,54 +49,31 @@ class Chess(Scene, ChessInterface):
 
         self.initialize_players(level)
 
+    @property
+    def current_player(self):
+        return self.players[self.board.current_color]
+
+    @property
+    def other_player(self):
+        return self.players[next(self.board.current_color)]
+
     def initialize_players(self, level):
         config = self.load_stored_config()
 
-        self.white = Player(WHITE, TIMER_CLASS[config['option']](config))
-
-        if level is None:
-            self.black = Player(BLACK, TIMER_CLASS[config['option']](config))
-        else:
-            self.black = AIPlayer(
-                BLACK,
-                TIMER_CLASS[config['option']](config),
-                level,
-                self.board
-            )
-
-        self.thread_events = [self.white.timer.event, self.black.timer.event]
-        self.current_player = self.white
+        new_timer = lambda: TIMER_CLASS[config['option']](config)
+        white = create_player(WHITE, new_timer(), self)
+        black = create_player(BLACK, new_timer(), self, level)
+        self.players = {
+            WHITE: white,
+            BLACK: black,
+        }
+        self.white_minutes = lambda: white.timer.minutes_to_text()
+        self.black_minutes = lambda: black.timer.minutes_to_text()
+        self.thread_events = [white.timer.event, black.timer.event]
         self.current_player.start_turn()
-
-    def change_turn(self):
-        self.selected = None
-        self.fail = None
-        self.current_player.end_turn()
-
-        self.current_player = (self.black
-                               if self.current_player.color == WHITE
-                               else self.white)
-
-        self.current_player.start_turn()
-
-    def update_timers(self):
-        self.white_time.text = self.white.timer.minutes_to_text()
-        self.black_time.text = self.black.timer.minutes_to_text()
-
-        self.white_time.redraw()
-        self.black_time.redraw()
-
-        if self.current_player.timer.lose:
-            self.current_player.state = END
-            if self.current_player.color == WHITE:
-                self.state = BLACK_WINS
-            else:
-                self.state = WHITE_WINS
 
     def draw(self, delta_time):
         self.countdown = max(self.countdown - delta_time, 0)
-        self.update_timers()
-
         self.game.screen.fill((238, 223, 204))
         self.main_div.draw(self.game.screen)
 
@@ -103,23 +86,16 @@ class Chess(Scene, ChessInterface):
 
     def event(self, delta_time, event):
         """Checks for mouse hover and mouse click"""
-        if isinstance(self.current_player, AIPlayer):
-            return
-
         if event.type == MOUSEBUTTONUP:
             if self.current_player.state == END:
                 return
-
             square = self.get_square(event.pos)
-            if square:
-                piece = self.board[square]
-                if piece and piece.color == self.current_player.color:
-                    self.selected = square
-                    self.current_player.state = PLAY
-                elif self.current_player.state == PLAY:
-                    self.play_event(square)
+            self.current_player.click(square)
 
-    def play_event(self, square):
+    def select(self, square):
+        self.selected = square
+
+    def play(self, square):
         self.fail = None
         self.check = None
 
@@ -127,27 +103,31 @@ class Chess(Scene, ChessInterface):
         if movement:
             self.change_turn()
             self.verify_status(self.board.status())
+            return True
+        self.fail = square
+        return False
 
-            if isinstance(self.current_player, AIPlayer) and not self.current_player.state == END:
-                movement = self.current_player.play()
-                if movement:
-                    self.change_turn()
-                    self.verify_status(self.board.status())
-        else:
-            self.fail = square
+    def change_turn(self):
+        self.selected = None
+        self.fail = None
+        self.other_player.end_turn()
+        self.current_player.start_turn()
 
     def verify_status(self, status):
         if status == CHECK:
             self.check = self.board.current_king().position
             self.countdown = CHECK_COUNTDOWN
         elif status == CHECKMATE:
-            self.current_player.state = END
-            self.state = BLACK_WINS if self.current_player.color == WHITE \
-                                    else WHITE_WINS
+            self.current_player.lose()
         elif status in [STALEMATE, FIFTY_MOVE]:
-            self.current_player.state = END
+            for color, player in self.players.items():
+                player.state = END
             self.state = GAME_DRAW
+
+    def win(self, color):
+        for player in self.players.values():
+            player.state = END
+        self.state = WINS[color]
 
     def resize(self):
         ChessInterface.resize(self)
-

@@ -50,6 +50,7 @@ class ChessInterface(Interface):
     def interface(self):
         self.calculate_size()
         self.load_images()
+
         _font = lambda: font.SysFont("", int(0.03 * self.board_size))
         time_font = lambda: font.SysFont("", int(0.06 * self.board_size))
         message_font = lambda: font.SysFont("", int(0.2 * self.board_size))
@@ -143,8 +144,9 @@ class ChessInterface(Interface):
                                            if self.horizontal
                                            else - MRM - self.square_size // 2),
                                 y=lambda: self.square_size // 2,
+                                text=lambda: self.white_minutes(),
+                                redraw=True,
                                 font=time_font,
-                                text=str("20:00"),
                                 antialias=True,
                                 color=(128, 128, 128),
                             ),
@@ -184,8 +186,9 @@ class ChessInterface(Interface):
                                            else (self.square_size + MRM +
                                                  self.square_size // 2)),
                                 y=lambda: self.square_size // 2,
+                                text=lambda: self.black_minutes(),
+                                redraw=True,
                                 font=time_font,
-                                text=str("20:00"),
                                 antialias=True,
                                 color=(128, 128, 128),
                             ),

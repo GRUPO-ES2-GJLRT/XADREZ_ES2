@@ -21,7 +21,7 @@ class MovesPerMinuteTimer(MinutesPerGameTimer):
         self.count_up += delta
         if self.count_up.seconds >= 60.0:
             if self.current_moves < self.expected_moves:
-                self.lose = True
+                self.lose()
                 self.event.set()
             else:
                 self.count_up = timedelta(0)

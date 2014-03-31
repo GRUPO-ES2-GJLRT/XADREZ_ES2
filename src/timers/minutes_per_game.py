@@ -19,7 +19,7 @@ class MinutesPerGameTimer(PlayerTimer):
         self.time -= delta
         if self.time < self.zero:
             self.time = self.zero
-            self.lose = True
+            self.lose()
             self.event.set()
 
     def minutes_to_text(self):

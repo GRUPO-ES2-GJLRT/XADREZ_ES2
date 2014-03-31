@@ -9,9 +9,11 @@ from.game_div import GameDiv, LazyAttribute
 class GameTextElement(GameDiv):
 
     font = LazyAttribute("_font")
+    text = LazyAttribute("_text")
 
     def __init__(self, font, text="", color=(0, 0, 0), antialias=True,
                  style="normal", other_color=None, click=None, motion=None,
+                 redraw=False,
                  x=0, y=0, children=None, condition=None, name=""):
         super(GameTextElement, self).__init__(x, y, children, condition, name)
 
@@ -22,6 +24,8 @@ class GameTextElement(GameDiv):
         self.surface = None
         self.style = style
         self.other_color = other_color if other_color else self.color
+        self._redraw = redraw
+
         self.redraw()
 
         rect = self.surface.get_rect()
@@ -69,6 +73,8 @@ class GameTextElement(GameDiv):
                                             self.antialias, self.color)
 
     def draw_element(self, screen, x=0, y=0):
+        if self._redraw:
+            self.redraw()
         rect = self.surface.get_rect()
         rect.center = (x, y)
         screen.blit(self.surface, rect.topleft)

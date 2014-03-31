@@ -15,18 +15,25 @@ SUCH_HARD_MUCH_DIFFICULT = 3
 
 class AIPlayer(Player):
 
-    def __init__(self, color, timer, level,  board, *args, **kwargs):
-        super(AIPlayer, self).__init__(color, timer, *args, **kwargs)
+    def __init__(self, color, timer, chess, level, *args, **kwargs):
+        super(AIPlayer, self).__init__(color, timer, chess, *args, **kwargs)
         self.level = level
-        self.board = board
+        self.board = chess.board
 
-    def play(self):
+    def start_turn(self):
+        Player.start_turn(self)
+        #import threading
+        #threading.Timer(5, self.ai_move).start()
+        self.ai_move()
+
+    def ai_move(self):
         if self.level == 0:
-            possible_moves = self.board.possible_moves(BLACK)
-            if not len(possible_moves) == 0:
-                move = possible_moves.keys()[
-                    random.randint(0, len(possible_moves.keys()) - 1)
-                ]
-                return self.board.move(move[0], move[1])
-
-            return None
+            moved = False
+            while not moved:
+                possible_moves = self.chess.board.possible_moves(BLACK)
+                if not len(possible_moves) == 0:
+                    move = random.choice(list(possible_moves))
+                    self.select(move[0])
+                    moved = self.play(move[1])
+                else:
+                    moved = True
