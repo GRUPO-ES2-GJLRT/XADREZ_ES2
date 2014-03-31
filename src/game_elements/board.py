@@ -37,31 +37,7 @@ class Board(object):
             BLACK: 0,
         }
         if new_game:
-            # Pawn
-            for x in xrange(8):
-                Pawn(self, WHITE, x, 1)
-                Pawn(self, BLACK, x, 6)
-            # Rook
-            Rook(self, WHITE, 0, 0)
-            Rook(self, WHITE, 7, 0)
-            Rook(self, BLACK, 0, 7)
-            Rook(self, BLACK, 7, 7)
-            # Knight
-            Knight(self, WHITE, 1, 0)
-            Knight(self, WHITE, 6, 0)
-            Knight(self, BLACK, 1, 7)
-            Knight(self, BLACK, 6, 7)
-            # Bishop
-            Bishop(self, WHITE, 2, 0)
-            Bishop(self, WHITE, 5, 0)
-            Bishop(self, BLACK, 2, 7)
-            Bishop(self, BLACK, 5, 7)
-            # Queen
-            Queen(self, WHITE, 3, 0)
-            Queen(self, BLACK, 3, 7)
-            # King
-            King(self, WHITE, 4, 0)
-            King(self, BLACK, 4, 7)
+            self.create_pieces()
         self.last_move = None
         self.current_color = WHITE
 
@@ -90,6 +66,32 @@ class Board(object):
         if piece:
             self.board_data[piece.x][piece.y] = None
             self.pieces[piece.color].remove(piece)
+
+    def create_pieces(self):
+        for x in xrange(8):
+            Pawn(self, WHITE, x, 1)
+            Pawn(self, BLACK, x, 6)
+
+        Rook(self, WHITE, 0, 0)
+        Rook(self, WHITE, 7, 0)
+        Rook(self, BLACK, 0, 7)
+        Rook(self, BLACK, 7, 7)
+
+        Knight(self, WHITE, 1, 0)
+        Knight(self, WHITE, 6, 0)
+        Knight(self, BLACK, 1, 7)
+        Knight(self, BLACK, 6, 7)
+
+        Bishop(self, WHITE, 2, 0)
+        Bishop(self, WHITE, 5, 0)
+        Bishop(self, BLACK, 2, 7)
+        Bishop(self, BLACK, 5, 7)
+
+        Queen(self, WHITE, 3, 0)
+        Queen(self, BLACK, 3, 7)
+
+        King(self, WHITE, 4, 0)
+        King(self, BLACK, 4, 7)
 
     def clone(self):
         """ Clones this board """
