@@ -241,3 +241,8 @@ class Board(object):
         if self.moves[WHITE] >= 50 or self.moves[BLACK] >= 50:
             return FIFTY_MOVE
         return NORMAL
+
+    def has_piece(self, position, color):
+        for piece in self.pieces[color]:
+            if piece.position == position:
+                return True
