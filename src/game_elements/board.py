@@ -246,3 +246,12 @@ class Board(object):
         for piece in self.pieces[color]:
             if piece.position == position:
                 return True
+
+    def possible_killing_moves(self, color):
+        enemy = BLACK if color == WHITE else WHITE
+        killing_moves = {}
+        for move in self.possible_moves(color):
+            if self.has_piece(move[1], enemy):
+                killing_moves[move] = None
+
+        return killing_moves
