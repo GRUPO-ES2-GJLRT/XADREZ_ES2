@@ -20,7 +20,7 @@ class MainMenu(Scene, MainMenuInterface):
 
     def define_clicks(self):
         def ai_vs_ai_click(it):
-            self.game.scene = Chess(game=self.game, level_white=0, level_black=1)
+            self.game.scene = Chess(game=self.game, level_white=1, level_black=1)
 
         def one_player_click(it):
             self.game.scene = Chess(game=self.game, level_white=None, level_black=0)

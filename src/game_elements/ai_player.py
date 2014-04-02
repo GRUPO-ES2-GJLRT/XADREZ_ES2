@@ -6,7 +6,7 @@ import random
 import sys
 import threading
 from time import sleep
-from .player import Player
+from .player import Player, END
 
 SOOO_EASY = 0
 EASY = 1
@@ -33,21 +33,32 @@ class AIPlayer(Player):
         sleep(1)
 
     def ai_move(self):
-        if not self.chess.state is None:
+        if not self.chess.state is None and not self.state == END:
             return
 
         if self.level == SOOO_EASY:
-            move = random.choice(list(
-                self.chess.board.possible_moves(self.color)
-            ))
+            moves = list(self.chess.board.possible_moves(self.color))
+
+            while not moves:
+                moves = list(self.chess.board.possible_moves(self.color))
+
+            move = random.choice(moves)
             self.select(move[0])
             self.play(move[1])
 
         elif self.level == EASY:
-            move = random.choice(list(
+            moves = list(
                 self.chess.board.possible_killing_moves(self.color) or
                 self.chess.board.possible_moves(self.color)
-            ))
+            )
+
+            while not moves:
+                moves = list(
+                    self.chess.board.possible_killing_moves(self.color) or
+                    self.chess.board.possible_moves(self.color)
+                )
+
+            move = random.choice(moves)
             self.select(move[0])
             self.play(move[1])
 
