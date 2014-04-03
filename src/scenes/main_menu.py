@@ -20,13 +20,16 @@ class MainMenu(Scene, MainMenuInterface):
 
     def define_clicks(self):
         def ai_vs_ai_click(it):
-            self.game.scene = Chess(game=self.game, level_white=1, level_black=1)
+            self.game.scene = Chess(
+                game=self.game, level_white=1, level_black=1)
 
         def one_player_click(it):
-            self.game.scene = Chess(game=self.game, level_white=None, level_black=0)
+            self.game.scene = Chess(
+                game=self.game, level_white=None, level_black=0)
 
         def two_players_click(it):
-            self.game.scene = Chess(game=self.game, level_white=None, level_black=None)
+            self.game.scene = Chess(
+                game=self.game, level_white=None, level_black=None)
 
         def configurations_click(it):
             self.game.scene = ConfigMenu(self.game)
@@ -36,9 +39,9 @@ class MainMenu(Scene, MainMenuInterface):
 
         def motion(it, collides):
             if collides:
-                it.color = (192, 192, 192)
+                it.color = self.button_hover
             else:
-                it.color = (128, 128, 128)
+                it.color = self.button_color
             it.redraw()
 
         self.ai_vs_ai_click = ai_vs_ai_click

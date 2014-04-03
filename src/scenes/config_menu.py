@@ -66,9 +66,9 @@ class ConfigMenu(Scene, ConfigMenuInterface):
 
         def motion(it, collides):
             if collides:
-                it.color = (192, 192, 192)
+                it.color = self.button_hover
             else:
-                it.color = (128, 128, 128)
+                it.color = self.button_color
             it.redraw()
 
         self.back_click = back_click

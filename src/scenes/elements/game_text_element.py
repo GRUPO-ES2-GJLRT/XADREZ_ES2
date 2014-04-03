@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import Surface
-from.game_div import GameDiv, LazyAttribute
+from .game_div import GameDiv, LazyAttribute
 
 
 class GameTextElement(GameDiv):
@@ -89,3 +89,8 @@ class GameTextElement(GameDiv):
         rect = self.surface.get_rect()
         rect.center = (x, y)
         self.motion_fn(self, rect.collidepoint(pos))
+
+    def calculate_rect(self, x=0, y=0):
+        rect = self.surface.get_rect()
+        rect.center = (self.x + x, self.y + y)
+        return rect
