@@ -3,7 +3,8 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import Surface
-from .game_div import GameDiv, LazyAttribute
+from .game_div import GameDiv
+from .others import LazyAttribute
 
 
 class GameTextElement(GameDiv):
@@ -17,7 +18,7 @@ class GameTextElement(GameDiv):
                  x=0, y=0, children=None, condition=None, name=""):
         super(GameTextElement, self).__init__(x, y, children, condition, name)
 
-        self.font = font
+        self.font = font.get()
         self.text = text
         self.antialias = antialias
         self.color = color

@@ -27,6 +27,12 @@ class Player(object):
         self.timer.end_turn()
         self.state = None
 
+    def pause_turn(self):
+        self.timer.end_turn()
+
+    def resume_turn(self):
+        self.timer.start_turn()
+
     def lose(self):
         self.chess.win(next(self.color))
 

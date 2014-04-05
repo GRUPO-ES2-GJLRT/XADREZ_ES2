@@ -3,13 +3,14 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from .chess_element import ChessElement
-from .game_div import LazyAttribute
+from .others import LazyAttribute
 
 
 class PiecesElement(ChessElement):
 
     square_size = LazyAttribute("_square_size")
     piece_images = LazyAttribute("_piece_images")
+    board = LazyAttribute("_board")
 
     def __init__(self, board, square_size, piece_images,
                  x=0, y=0, children=None, condition=None, name=""):
@@ -23,6 +24,7 @@ class PiecesElement(ChessElement):
         for color, pieces in self.board.pieces.items():
             for piece in pieces:
                 screen.blit(
-                    self.piece_images['%s_%s' % (piece.color, piece.name())],
+                    self.piece_images['%s_%s' %
+                                      (piece.color, piece.name())].get(),
                     self.position_rect(piece.position, x=x, y=y)
                 )

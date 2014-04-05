@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division,
 
 from pygame import draw
 from .chess_element import ChessElement
-from .game_div import LazyAttribute
+from .others import LazyAttribute
 
 
 class SquareElement(ChessElement):

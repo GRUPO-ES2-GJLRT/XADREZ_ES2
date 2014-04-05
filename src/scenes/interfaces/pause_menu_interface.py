@@ -11,16 +11,14 @@ from scenes.elements import (
     ButtonGroup,
 )
 from consts.i18n import (
-    TITLE,
-    AI_VS_AI,
-    ONE_PLAYER,
-    TWO_PLAYERS,
-    CONFIG,
-    QUIT,
+    PAUSE,
+    RESUME,
+    RESTART,
+    EXIT,
 )
 
 
-class MainMenuInterface(MenuInterface):
+class PauseMenuInterface(MenuInterface):
 
     def interface(self):
         MenuInterface.interface(self)
@@ -32,7 +30,7 @@ class MainMenuInterface(MenuInterface):
             GameTextElement(
                 name="title",
                 font=self.title_font,
-                text=TITLE,
+                text=PAUSE,
                 antialias=True,
                 color=self.title_color,
                 style="outline",
@@ -45,78 +43,42 @@ class MainMenuInterface(MenuInterface):
                 padding=10,
                 children=[
                     GameTextElement(
-                        name="ai_vs_ai",
+                        name="resume",
                         font=self.menu_font,
-                        text=AI_VS_AI,
+                        text=RESUME,
                         antialias=True,
                         color=self.button_color,
                         x=lambda: self.game.center_x(),
                         y=lambda: (self.game.relative_y(0.45) -
                                    self.menu_font.size // 2 -
                                    self.game.relative_x(0.04)),
-                        click=self.ai_vs_ai_click,
+                        click=self.resume_click,
                         motion=self.motion,
                     ),
                     GameTextElement(
-                        name="one_player",
+                        name="restart",
                         font=self.menu_font,
-                        text=ONE_PLAYER,
+                        text=RESTART,
                         antialias=True,
                         color=self.button_color,
                         x=lambda: self.game.center_x(),
                         y=lambda: self.game.relative_y(0.45),
-                        click=self.one_player_click,
+                        click=self.restart_click,
                         motion=self.motion,
                     ),
                     GameTextElement(
-                        name="two_players",
+                        name="exit",
                         font=self.menu_font,
-                        text=TWO_PLAYERS,
+                        text=EXIT,
                         antialias=True,
                         color=self.button_color,
                         x=lambda: self.game.center_x(),
                         y=lambda: (self.game.relative_y(0.45) +
                                    self.menu_font.size // 2 +
                                    self.game.relative_x(0.04)),
-                        click=self.two_players_click,
+                        click=self.exit_click,
                         motion=self.motion,
                     ),
                 ]
             ),
-            ButtonGroup(
-                color=self.button_background,
-                padding=5,
-                radius=0.3,
-                children=[
-                    GameTextElement(
-                        name="configurations",
-                        font=self.menu_font,
-                        text=CONFIG,
-                        antialias=True,
-                        color=self.button_color,
-                        x=lambda: self.game.relative_x(0.10),
-                        y=lambda: self.game.relative_y(0.92),
-                        click=self.configurations_click,
-                        motion=self.motion,
-                    ),
-                ]
-            ),
-            ButtonGroup(
-                color=self.button_background,
-                padding=5,
-                radius=0.3,
-                children=[
-                    GameTextElement(
-                        name="quit",
-                        font=self.menu_font,
-                        text=QUIT,
-                        antialias=True,
-                        color=self.button_color,
-                        x=lambda: self.game.relative_x(0.91),
-                        y=lambda: self.game.relative_y(0.92),
-                        click=self.quit_click,
-                        motion=self.motion,
-                    ),
-                ]
-            )
         ])

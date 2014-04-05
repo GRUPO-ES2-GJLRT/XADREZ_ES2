@@ -2,7 +2,7 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-from.game_div import GameDiv
+from .game_div import GameDiv
 
 
 class ChessElement(GameDiv):

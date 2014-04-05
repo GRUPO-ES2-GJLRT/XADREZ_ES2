@@ -1,6 +1,7 @@
 import pygame
 
-from .game_div import GameDiv, LazyAttribute
+from .game_div import GameDiv
+from .others import LazyAttribute
 from .game_text_element import GameTextElement
 
 

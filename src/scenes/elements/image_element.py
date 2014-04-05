@@ -2,7 +2,8 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-from .game_div import GameDiv, LazyAttribute
+from .game_div import GameDiv
+from .others import LazyAttribute
 
 
 class ImageElement(GameDiv):
@@ -17,4 +18,4 @@ class ImageElement(GameDiv):
     def draw_element(self, screen, x=0, y=0):
         if not self.image:
             return
-        screen.blit(self.image, (x, y))
+        screen.blit(self.image.get(), (x, y))

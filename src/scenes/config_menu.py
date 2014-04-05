@@ -31,11 +31,6 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.show_moves = False
         self.show_bonus = False
 
-        # Load images
-        ok = pygame.image.load(
-            os.path.abspath(os.path.join(self.assets_dir, 'ok.png')))
-        self.ok_image = pygame.transform.scale(ok, (50, 50))
-
         self.define_clicks()
         self.create_interface()
         self.update_labels_and_fields()

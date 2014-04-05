@@ -3,7 +3,8 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from pygame import draw
-from.game_div import GameDiv, LazyAttribute
+from.game_div import GameDiv
+from .others import LazyAttribute
 
 
 class RectElement(GameDiv):

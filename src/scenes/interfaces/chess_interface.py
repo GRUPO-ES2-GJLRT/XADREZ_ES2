@@ -2,14 +2,7 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
-from os import path
 from functools import partial
-
-from pygame import (
-    font,
-    image,
-    transform,
-)
 
 from .interface import Interface
 
@@ -19,7 +12,9 @@ from scenes.elements import (
     ImageElement,
     PiecesElement,
     RectElement,
-    SquareElement
+    SquareElement,
+    Font,
+    Image,
 )
 
 from consts.colors import BLACK, WHITE
@@ -51,9 +46,9 @@ class ChessInterface(Interface):
         self.calculate_size()
         self.load_images()
 
-        _font = lambda: font.SysFont("", int(0.03 * self.board_size))
-        time_font = lambda: font.SysFont("", int(0.06 * self.board_size))
-        message_font = lambda: font.SysFont("", int(0.2 * self.board_size))
+        _font = Font(size=lambda: int(0.03 * self.board_size))
+        time_font = Font(size=lambda: int(0.06 * self.board_size))
+        message_font = Font(size=lambda: int(0.2 * self.board_size))
         return GameDiv(name="main_div", children=[
             RectElement(
                 x=MARGIN,
@@ -66,7 +61,7 @@ class ChessInterface(Interface):
                         y=BORDER,
                         children=[
                             ImageElement(
-                                image=lambda: self.board_image
+                                image=self.board_image
                             ),
                             SquareElement(
                                 color=(0, 223, 0),
@@ -84,7 +79,7 @@ class ChessInterface(Interface):
                                 square=lambda: self.check
                             ),
                             PiecesElement(
-                                board=self.board,
+                                board=lambda: self.board,
                                 square_size=lambda: self.square_size,
                                 piece_images=lambda: self.piece_images,
                             ),
@@ -151,8 +146,7 @@ class ChessInterface(Interface):
                                 color=(128, 128, 128),
                             ),
                             ImageElement(
-                                image=lambda: self.piece_images['%s_king' %
-                                                                WHITE]
+                                image=self.piece_images['%s_king' % WHITE]
                             ),
                             ImageElement(
                                 name="white_arrow",
@@ -193,8 +187,7 @@ class ChessInterface(Interface):
                                 color=(128, 128, 128),
                             ),
                             ImageElement(
-                                image=lambda: self.piece_images['%s_king' %
-                                                                BLACK]
+                                image=self.piece_images['%s_king' % BLACK]
                             ),
                             ImageElement(
                                 name="black_arrow",
@@ -279,41 +272,39 @@ class ChessInterface(Interface):
             self.board_size = self.square_size * 8
 
     def load_images(self):
-        self.board_image_original = image.load(
-            path.join(self.assets_dir, 'chess_board.png'))
+        self.board_image = Image(
+            'chess_board.png',
+            lambda: (self.board_size, self.board_size)
+        )
 
-        self.piece_images_original = {}
+        self.piece_images = {}
         for color in [BLACK, WHITE]:
             for piece in ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']:
-                img = image.load(path.join(
-                    self.assets_dir,
-                    "%s_%s.png" % (color, piece))
+                img = Image(
+                    "%s_%s.png" % (color, piece),
+                    lambda: (self.square_size, self.square_size)
                 )
-                self.piece_images_original["%s_%s" % (color, piece)] = img
+                self.piece_images["%s_%s" % (color, piece)] = img
 
-        self.arrow_down_original = image.load(
-            path.join(self.assets_dir, 'arrow_down.png')
+        self.arrow_down = Image(
+            'arrow_down.png',
+            lambda: (self.square_size // 2, self.square_size // 2)
         )
+        self.arrow_up = self.arrow_down.rotate(180)
+        self.arrow_left = self.arrow_down.rotate(270)
+        self.arrow_right = self.arrow_down.rotate(90)
+
         self.transform_images()
 
     def transform_images(self):
-        self.board_image = transform.scale(
-            self.board_image_original,
-            (self.board_size, self.board_size)
-        )
-        self.piece_images = {}
-        for key, piece_image in self.piece_images_original.items():
-            self.piece_images[key] = transform.scale(
-                piece_image,
-                (self.square_size, self.square_size)
-            )
-        self.arrow_down = transform.scale(
-            self.arrow_down_original,
-            (self.square_size // 2, self.square_size // 2)
-        )
-        self.arrow_up = transform.rotate(self.arrow_down, 180)
-        self.arrow_left = transform.rotate(self.arrow_down, 270)
-        self.arrow_right = transform.rotate(self.arrow_down, 90)
+        self.board_image.transform()
+
+        for key, piece_image in self.piece_images.items():
+            self.piece_images[key].transform()
+        self.arrow_down.transform()
+        self.arrow_up.transform()
+        self.arrow_left.transform()
+        self.arrow_right.transform()
 
     def resize(self):
         self.calculate_size()

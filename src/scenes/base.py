@@ -18,8 +18,6 @@ class Scene(object):
         Arguments:
         game is a Game instance
         """
-        self.assets_dir = os.path.abspath(
-            os.path.join(sys.argv[0], '..', '..', 'assets'))
         self.data_dir = os.path.abspath(
             os.path.join(sys.argv[0], '..', '..', 'data'))
         self.game = game
@@ -116,3 +114,7 @@ class Scene(object):
         Override it in a subclass!
         """
         pass
+
+    def free_events(self):
+        for threaded_event in self.thread_events:
+            threaded_event.set()
