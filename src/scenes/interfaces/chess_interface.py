@@ -19,12 +19,8 @@ from scenes.elements import (
 
 from consts.colors import BLACK, WHITE
 from consts.i18n import (
-    CHECK_MESSAGE, DRAW_MESSAGE, BLACK_WINS_MESSAGE, WHITE_WINS_MESSAGE
+    CHECK_MESSAGE,
 )
-
-GAME_DRAW = 0
-WHITE_WINS = 1
-BLACK_WINS = 2
 
 MARGIN = 28
 BORDER = 2
@@ -219,33 +215,6 @@ class ChessInterface(Interface):
                         style="outline",
                         other_color=(255, 255, 255),
                         condition=lambda: self.countdown
-                    ),
-                    GameTextElement(
-                        font=message_font,
-                        text=DRAW_MESSAGE,
-                        antialias=True,
-                        color=(30, 144, 255),
-                        style="outline",
-                        other_color=(255, 255, 255),
-                        condition=lambda: self.state == GAME_DRAW
-                    ),
-                    GameTextElement(
-                        font=message_font,
-                        text=BLACK_WINS_MESSAGE,
-                        antialias=True,
-                        color=(50, 50, 50),
-                        style="outline",
-                        other_color=(255, 255, 255),
-                        condition=lambda: self.state == BLACK_WINS
-                    ),
-                    GameTextElement(
-                        font=message_font,
-                        text=WHITE_WINS_MESSAGE,
-                        antialias=True,
-                        color=(255, 255, 255),
-                        style="outline",
-                        other_color=(50, 50, 50),
-                        condition=lambda: self.state == WHITE_WINS
                     ),
                 ]
             ),

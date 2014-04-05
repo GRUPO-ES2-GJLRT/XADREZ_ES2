@@ -18,6 +18,7 @@ from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 from .pause_menu import PauseMenu
+from .end_menu import EndMenu
 
 CHECK_COUNTDOWN = 0.5
 
@@ -68,6 +69,7 @@ class Chess(Scene, ChessInterface):
         self.state = None
 
         self.initialize_players()
+        self.game.scene = self
 
     def initialize_players(self):
         config = self.load_stored_config()
@@ -138,19 +140,18 @@ class Chess(Scene, ChessInterface):
         elif status == CHECKMATE:
             self.current_player.lose()
         elif status in [STALEMATE, FIFTY_MOVE]:
-            for color, player in self.players.items():
-                player.state = END
-            self.state = GAME_DRAW
-            for threaded_event in self.thread_events:
-                threaded_event.set()
+            self.end_game(GAME_DRAW)
 
     def win(self, color):
+        self.end_game(WINS[color])
+
+    def end_game(self, state):
         for player in self.players.values():
             player.state = END
-        self.state = WINS[color]
-
+        self.state = state
         for threaded_event in self.thread_events:
             threaded_event.set()
+        self.game.scene = EndMenu(game=self.game, chess=self)
 
     def resize(self):
         ChessInterface.resize(self)

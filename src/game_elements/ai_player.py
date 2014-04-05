@@ -38,7 +38,7 @@ class AIPlayer(Player):
 
     def select(self, square):
         super(AIPlayer, self).select(square)
-        sleep(1)
+        sleep(0.1)
 
     def ai_move(self):
         if not self.chess.state is None and not self.state == END:
@@ -71,6 +71,8 @@ class AIPlayer(Player):
                 )
 
             move = random.choice(moves)
+            if self.chess.state == scenes.chess.PAUSE:
+                return
             self.select(move[0])
             self.play(move[1])
 
