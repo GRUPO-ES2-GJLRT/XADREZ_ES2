@@ -22,3 +22,15 @@ class RectElement(GameDiv):
 
     def draw_element(self, screen, x=0, y=0):
         draw.rect(screen, self.color, (x, y, self.size_x, self.size_y))
+
+    def start_x(self):
+        return min(0, super(RectElement, self).start_x())
+
+    def start_y(self):
+        return min(0, super(RectElement, self).start_y())
+
+    def width(self):
+        return max(self.size_x, super(RectElement, self).width())
+
+    def height(self):
+        return max(self.size_y, super(RectElement, self).height())

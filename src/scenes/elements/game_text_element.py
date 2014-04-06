@@ -102,7 +102,16 @@ class GameTextElement(GameDiv):
         self.set_rect_position(rect, x, y)
         self.motion_fn(self, rect.collidepoint(pos))
 
-    def calculate_rect(self, x=0, y=0):
-        rect = self.surface.get_rect()
-        self.set_rect_position(rect, self.x + x, self.y + y)
-        return rect
+    def start_x(self):
+        return self.rect[0] - self.x
+
+    def start_y(self):
+        return self.rect[1] - self.y
+
+    def width(self):
+        return max(self.rect[2],
+                   super(GameTextElement, self).width())
+
+    def height(self):
+        return max(self.rect[3],
+                   super(GameTextElement, self).height())

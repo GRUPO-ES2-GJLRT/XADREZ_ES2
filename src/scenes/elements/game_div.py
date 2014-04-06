@@ -61,3 +61,21 @@ class GameDiv(object):
 
     def motion_element(self, pos, x=0, y=0):
         pass
+
+    def start_x(self):
+        return (min(child.x + child.start_x() for child in self.children)
+                if self.children else 0)
+
+    def start_y(self):
+        return (min(child.y + child.start_y() for child in self.children)
+                if self.children else 0)
+
+    def width(self):
+        return (max(c.x + c.width() + c.start_x()
+                    for c in self.children) - self.start_x()
+                if self.children else 0)
+
+    def height(self):
+        return (max(c.y + c.height() + c.start_y()
+                    for c in self.children) - self.start_y()
+                if self.children else 0)

@@ -2,7 +2,6 @@ import pygame
 
 from .game_div import GameDiv
 from .others import LazyAttribute
-from .game_text_element import GameTextElement
 
 
 def AAfilledRoundedRect(surface, rect, color, radius=0.4):
@@ -62,20 +61,33 @@ class ButtonGroup(GameDiv):
         self.define_rect = define_rect
 
     def draw_element(self, screen, x=0, y=0):
-        if not self.define_rect:
-            rects = [child.calculate_rect(x=x, y=y) for child in self.children
-                     if isinstance(child, GameTextElement)]
-            min_x = min(rects, key=lambda x: x[0])[0]
-            min_y = min(rects, key=lambda x: x[1])[1]
-            width = max(x[0] + x[2] - min_x for x in rects)
-            height = max(x[1] + x[3] - min_y for x in rects)
-            rect = [min_x - self.padding, min_y - self.padding,
-                    width + 2 * self.padding, height + 2 * self.padding]
-            rect[0] -= self.extra_padding[0]
-            rect[1] -= self.extra_padding[1]
-            rect[2] += self.extra_padding[0] + self.extra_padding[2]
-            rect[3] += self.extra_padding[1] + self.extra_padding[3]
-        else:
-            rect = self.define_rect
+        rect = [self.start_x() + x - self.x, self.start_y() + y - self.y,
+                self.width(), self.height()]
 
         AAfilledRoundedRect(screen, rect, self.color, self.radius)
+
+    def start_x(self):
+        if not self.define_rect:
+            return (super(ButtonGroup, self).start_x()
+                    - self.padding - self.extra_padding[0])
+        return self.x + self.define_rect[0]
+
+    def start_y(self):
+        if not self.define_rect:
+            return (super(ButtonGroup, self).start_y()
+                    - self.padding - self.extra_padding[1])
+        return self.y + self.define_rect[1]
+
+    def width(self):
+        if not self.define_rect:
+            return (super(ButtonGroup, self).width()
+                    + self.padding + self.extra_padding[0]
+                    + self.extra_padding[2])
+        return self.define_rect[2]
+
+    def height(self):
+        if not self.define_rect:
+            return (super(ButtonGroup, self).height()
+                    + self.padding + self.extra_padding[1]
+                    + self.extra_padding[3])
+        return self.define_rect[3]

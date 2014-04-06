@@ -47,6 +47,8 @@ class ListOptionElement(GameDiv):
         )
         self.children.append(self.label_element)
 
+        self.elements = []
+
         for i, (option, text) in enumerate(self.options):
             next = self.options[(i + 1) % len(options)]
             element = GameTextElement(
@@ -56,14 +58,20 @@ class ListOptionElement(GameDiv):
                 color=option_color,
                 style=style,
                 other_color=other_color,
-                topleft=True,
+                top=True,
                 redraw=redraw,
-                x=lambda: self.label_element.rect[2],
+                x=lambda: (self.label_element.width() +
+                           (max(e.width() // 2 for e in self.elements)
+                            if self.elements else 0)),
                 motion=motion,
                 click=partial(select_fn, option=next[0]),
                 condition=partial((lambda o: self.current == o), o=option)
             )
+            self.elements.append(element)
             self.children.append(element)
+
+        for element in self.elements:
+            element.redraw()
 
     def set_option(self, option):
         self.current = option

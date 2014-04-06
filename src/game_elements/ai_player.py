@@ -9,6 +9,7 @@ from time import sleep
 from .player import Player, END
 import scenes
 
+PLAYER = None
 SOOO_EASY = 0
 EASY = 1
 MEDIUM = 2

@@ -24,3 +24,27 @@ class SquareElement(ChessElement):
         if square:
             draw.rect(screen, self.color,
                       self.position_rect(square, x=x, y=y))
+
+    def start_x(self):
+        square = self.square()
+        if square:
+            return self.position_rect(square)[0]
+        return 0
+
+    def start_y(self):
+        square = self.square()
+        if square:
+            return self.position_rect(square)[1]
+        return 0
+
+    def width(self):
+        square = self.square()
+        if square:
+            return max(self.square_size, super(SquareElement, self).width())
+        return 0
+
+    def height(self):
+        square = self.square()
+        if square:
+            return max(self.square_size, super(SquareElement, self).height())
+        return 0

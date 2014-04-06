@@ -2,12 +2,26 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
+from functools import partial
+from collections import OrderedDict
+
 import pygame
 
 from .base import Scene
 from .chess import Chess
 from .config_menu import ConfigMenu
 from .interfaces.main_menu_interface import MainMenuInterface
+from consts.i18n import (
+    PLAYER_LABEL,
+    SOOO_EASY_LABEL,
+    EASY_LABEL,
+)
+
+from game_elements.ai_player import (
+    PLAYER,
+    SOOO_EASY,
+    EASY,
+)
 
 
 class MainMenu(Scene, MainMenuInterface):
@@ -15,21 +29,24 @@ class MainMenu(Scene, MainMenuInterface):
     def __init__(self, *args, **kwargs):
         """MainMenu constructor. Creates texts and buttons"""
         super(MainMenu, self).__init__(*args, **kwargs)
+        self.players = OrderedDict([
+            (PLAYER, PLAYER_LABEL),
+            (SOOO_EASY, SOOO_EASY_LABEL),
+            (EASY, EASY_LABEL),
+        ])
+        self.white_player = None
+        self.black_player = None
+
         self.define_clicks()
         self.create_interface()
 
     def define_clicks(self):
-        def ai_vs_ai_click(it):
+        def play_click(it):
             self.game.scene = Chess(
-                game=self.game, level_white=1, level_black=1)
-
-        def one_player_click(it):
-            self.game.scene = Chess(
-                game=self.game, level_white=None, level_black=0)
-
-        def two_players_click(it):
-            self.game.scene = Chess(
-                game=self.game, level_white=None, level_black=None)
+                game=self.game,
+                level_white=self.select_white.current,
+                level_black=self.select_black.current
+            )
 
         def configurations_click(it):
             self.game.scene = ConfigMenu(self.game)
@@ -37,19 +54,19 @@ class MainMenu(Scene, MainMenuInterface):
         def quit_click(it):
             self.close()
 
-        def motion(it, collides):
+        def motion(it, collides, color):
             if collides:
                 it.color = self.button_hover
             else:
-                it.color = self.button_color
+                it.color = color()
             it.redraw()
 
-        self.ai_vs_ai_click = ai_vs_ai_click
-        self.one_player_click = one_player_click
-        self.two_players_click = two_players_click
+        self.play_click = play_click
         self.configurations_click = configurations_click
         self.quit_click = quit_click
-        self.motion = motion
+        self.motion = partial(motion, color=lambda: self.button_color)
+        self.white_motion = partial(motion, color=lambda: (255, 255, 255))
+        self.black_motion = partial(motion, color=lambda: (0, 0, 0))
 
     def draw(self, delta_time):
         """Draws MainMenu"""

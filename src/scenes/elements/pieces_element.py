@@ -28,3 +28,15 @@ class PiecesElement(ChessElement):
                                       (piece.color, piece.name())].get(),
                     self.position_rect(piece.position, x=x, y=y)
                 )
+
+    def start_x(self):
+        return min(0, super(PiecesElement, self).start_x())
+
+    def start_y(self):
+        return min(0, super(PiecesElement, self).start_y())
+
+    def width(self):
+        return max(self.square_size * 8, super(PiecesElement, self).width())
+
+    def height(self):
+        return max(self.square_size * 8, super(PiecesElement, self).height())

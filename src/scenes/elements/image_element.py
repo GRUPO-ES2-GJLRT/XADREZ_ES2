@@ -19,3 +19,17 @@ class ImageElement(GameDiv):
         if not self.image:
             return
         screen.blit(self.image.get(), (x, y))
+
+    def start_x(self):
+        return min(0, super(ImageElement, self).start_x())
+
+    def start_y(self):
+        return min(0, super(ImageElement, self).start_y())
+
+    def width(self):
+        return max(self.image.dimensions[0],
+                   super(ImageElement, self).width())
+
+    def height(self):
+        return max(self.image.dimensions[1],
+                   super(ImageElement, self).height())

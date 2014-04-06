@@ -9,12 +9,13 @@ from scenes.elements import (
     GameTextElement,
     ImageElement,
     ButtonGroup,
+    ListOptionElement
 )
 from consts.i18n import (
     TITLE,
-    AI_VS_AI,
-    ONE_PLAYER,
-    TWO_PLAYERS,
+    PLAY,
+    WHITE_LABEL,
+    BLACK_LABEL,
     CONFIG,
     QUIT,
 )
@@ -45,41 +46,47 @@ class MainMenuInterface(MenuInterface):
                 padding=10,
                 children=[
                     GameTextElement(
-                        name="ai_vs_ai",
+                        name="play",
                         font=self.menu_font,
-                        text=AI_VS_AI,
+                        text=PLAY,
                         antialias=True,
-                        color=self.button_color,
+                        color=self.value_color,
+                        top=True,
                         x=lambda: self.game.center_x(),
                         y=lambda: (self.game.relative_y(0.45) -
                                    self.menu_font.size // 2 -
                                    self.game.relative_x(0.04)),
-                        click=self.ai_vs_ai_click,
+                        click=self.play_click,
                         motion=self.motion,
                     ),
-                    GameTextElement(
-                        name="one_player",
+                    ListOptionElement(
+                        name='select_white',
                         font=self.menu_font,
-                        text=ONE_PLAYER,
+                        label=WHITE_LABEL,
                         antialias=True,
-                        color=self.button_color,
-                        x=lambda: self.game.center_x(),
-                        y=lambda: self.game.relative_y(0.45),
-                        click=self.one_player_click,
-                        motion=self.motion,
+                        label_color=(255, 255, 255),
+                        option_color=(255, 255, 255),
+                        current=self.white_player,
+                        x=lambda: (self.game.center_x() -
+                                   self.select_white.width() // 2),
+                        y=lambda: (self.game.relative_y(0.45)),
+                        options=self.players,
+                        motion=self.white_motion,
                     ),
-                    GameTextElement(
-                        name="two_players",
+                    ListOptionElement(
+                        name='select_black',
                         font=self.menu_font,
-                        text=TWO_PLAYERS,
+                        label=BLACK_LABEL,
                         antialias=True,
-                        color=self.button_color,
-                        x=lambda: self.game.center_x(),
+                        label_color=(0, 0, 0),
+                        option_color=(0, 0, 0),
+                        current=self.black_player,
+                        x=lambda: (self.game.center_x() -
+                                   self.select_black.width() // 2),
                         y=lambda: (self.game.relative_y(0.45) +
-                                   self.menu_font.size // 2 +
-                                   self.game.relative_x(0.04)),
-                        click=self.two_players_click,
-                        motion=self.motion,
+                                   self.menu_font.size),
+                        options=self.players,
+                        motion=self.black_motion,
                     ),
                 ]
             ),
