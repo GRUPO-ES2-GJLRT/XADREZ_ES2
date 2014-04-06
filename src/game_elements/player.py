@@ -47,3 +47,6 @@ class Player(object):
 
     def click(self, square):
         pass
+
+    def confirm_draw(self):
+        pass

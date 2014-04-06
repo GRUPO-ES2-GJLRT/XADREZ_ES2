@@ -13,6 +13,7 @@ from scenes.elements import (
     PiecesElement,
     RectElement,
     SquareElement,
+    ButtonGroup,
     Font,
     Image,
 )
@@ -20,7 +21,11 @@ from scenes.elements import (
 from consts.colors import BLACK, WHITE
 from consts.i18n import (
     CHECK_MESSAGE,
+    DENIED_MESSAGE,
+    DRAW_BUTTON,
+    RESIGN
 )
+
 
 MARGIN = 28
 BORDER = 2
@@ -45,6 +50,11 @@ class ChessInterface(Interface):
         _font = Font(size=lambda: int(0.03 * self.board_size))
         time_font = Font(size=lambda: int(0.06 * self.board_size))
         message_font = Font(size=lambda: int(0.2 * self.board_size))
+
+        button_background = (175, 125, 0, 0)
+        self.button_color = (128, 128, 128)
+        self.button_hover = (200, 200, 200)
+
         return GameDiv(name="main_div", children=[
             RectElement(
                 x=MARGIN,
@@ -118,6 +128,45 @@ class ChessInterface(Interface):
                            if self.horizontal
                            else self.board_size + B2 + MARGIN),
                 children=[
+                    GameDiv(
+                        name="buttons",
+                        x=lambda: (self.board_size // 2 + MARGIN + BORDER
+                                   if not self.horizontal
+                                   else (self.game.width -
+                                        (self.board_size + (B2 + MRM))) // 2),
+                        y=lambda: (self.board_size // 2 + BORDER
+                                   if self.horizontal
+                                   else self.square_size // 2),
+                        children=[
+                            ButtonGroup(
+                                color=button_background,
+                                padding=5,
+                                radius=0.1,
+                                children=[
+                                    GameTextElement(
+                                        font=time_font,
+                                        text=DRAW_BUTTON,
+                                        antialias=True,
+                                        color=self.button_color,
+                                        y=lambda: -int(0.03 * self.board_size),
+                                        click=self.draw_click,
+                                        motion=self.motion,
+                                    ),
+                                    GameTextElement(
+                                        font=time_font,
+                                        text=RESIGN,
+                                        antialias=True,
+                                        color=self.button_color,
+                                        y=lambda: int(0.03 * self.board_size),
+                                        click=self.resign_click,
+                                        motion=self.motion,
+                                    ),
+                                ],
+                                condition=(lambda: self.state is None)
+                            ),
+
+                        ]
+                    ),
                     GameDiv(
                         name="white_div",
                         x=lambda: (0
@@ -215,6 +264,15 @@ class ChessInterface(Interface):
                         style="outline",
                         other_color=(255, 255, 255),
                         condition=lambda: self.countdown
+                    ),
+                    GameTextElement(
+                        font=message_font,
+                        text=DENIED_MESSAGE,
+                        antialias=True,
+                        color=(255, 144, 30),
+                        style="outline",
+                        other_color=(255, 255, 255),
+                        condition=lambda: self.denied_countdown
                     ),
                 ]
             ),

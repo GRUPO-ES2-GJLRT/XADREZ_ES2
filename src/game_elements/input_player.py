@@ -17,3 +17,6 @@ class InputPlayer(Player):
                 self.select(square)
             elif self.state == PLAY:
                 self.play(square)
+
+    def confirm_draw(self):
+        self.chess.confirm_draw_dialog(self)

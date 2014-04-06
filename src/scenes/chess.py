@@ -5,13 +5,14 @@ from __future__ import (absolute_import, division,
 
 from pygame import (
     MOUSEBUTTONUP,
+    MOUSEMOTION,
     KEYDOWN,
     K_ESCAPE
 )
 
 import sys
 from .base import Scene
-from game_elements import Board, create_player
+from game_elements import Board, create_player, InputPlayer
 from game_elements.player import END
 from consts.colors import BLACK, WHITE, next
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
@@ -19,6 +20,8 @@ from consts.default import TIMER_CLASS
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 from .pause_menu import PauseMenu
 from .end_menu import EndMenu
+from .dialog import Dialog
+from consts.i18n import CONFIRM_DRAW
 
 CHECK_COUNTDOWN = 0.5
 
@@ -41,6 +44,7 @@ class Chess(Scene, ChessInterface):
         self.game = game
         self.white_minutes = lambda: "20:00"
         self.black_minutes = lambda: "20:00"
+        self.define_clicks()
         self.create_interface()
 
         self.level_white = level_white
@@ -56,6 +60,30 @@ class Chess(Scene, ChessInterface):
     def other_player(self):
         return self.players[next(self.board.current_color)]
 
+    @property
+    def human_player(self):
+        return isinstance(self.current_player, InputPlayer)
+
+    def define_clicks(self):
+        def draw_click(it):
+            if self.human_player:
+                self.other_player.confirm_draw()
+
+        def resign_click(it):
+            if self.human_player:
+                self.current_player.lose()
+
+        def motion(it, collides):
+            if not self.human_player or not collides:
+                it.color = self.button_color
+            else:
+                it.color = self.button_hover
+            it.redraw()
+
+        self.draw_click = draw_click
+        self.resign_click = resign_click
+        self.motion = motion
+
     def new_game(self):
         self.free_events()
         self.board = Board()
@@ -66,6 +94,7 @@ class Chess(Scene, ChessInterface):
 
         # Game states and countdown for check message
         self.countdown = 0
+        self.denied_countdown = 0
         self.state = None
 
         self.initialize_players()
@@ -88,6 +117,7 @@ class Chess(Scene, ChessInterface):
 
     def draw(self, delta_time):
         self.countdown = max(self.countdown - delta_time, 0)
+        self.denied_countdown = max(self.denied_countdown - delta_time, 0)
         self.game.screen.fill((238, 223, 204))
         self.main_div.draw(self.game.screen)
 
@@ -107,6 +137,9 @@ class Chess(Scene, ChessInterface):
                 return
             square = self.get_square(event.pos)
             self.current_player.click(square)
+            self.main_div.click(event.pos)
+        elif event.type == MOUSEMOTION:
+            self.main_div.motion(event.pos)
         elif event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 self.pause()
@@ -167,6 +200,26 @@ class Chess(Scene, ChessInterface):
         self.state = self.previous_state
         self.game.scene = self
         self.current_player.resume_turn()
+
+    def confirm_draw_dialog(self, player):
+        def yes_click(it):
+            self.end_game(GAME_DRAW)
+
+        def no_click(it):
+            self.deny_draw(player)
+            self.resume()
+
+        self.pause()
+        self.game.scene = Dialog(
+            game=self.game,
+            chess=self,
+            message=CONFIRM_DRAW,
+            yes_click=yes_click,
+            no_click=no_click
+        )
+
+    def deny_draw(self, player):
+        self.denied_countdown = CHECK_COUNTDOWN
 
     def __del__(self):
         self.free_events()

@@ -53,3 +53,6 @@ class EndMenu(Scene, EndMenuInterface):
     def resize(self):
         self.chess.resize()
         EndMenuInterface.resize(self)
+
+    def __del__(self):
+        self.chess.free_events()

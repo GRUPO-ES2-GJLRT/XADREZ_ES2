@@ -40,8 +40,8 @@ class Scene(object):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.game.running = False
-                for thread_event in self.thread_events:
-                    thread_event.set()
+                self.free_events()
+                self.__del__()
                 sys.exit()
             elif event.type == pygame.VIDEORESIZE:
                 self.game.resize(event.dict['size'])

@@ -84,3 +84,6 @@ class AIPlayer(Player):
 
         elif self.level == SUCH_HARD_MUCH_DIFFICULT:
             raise Exception
+
+    def confirm_draw(self):
+        self.chess.deny_draw(self)
