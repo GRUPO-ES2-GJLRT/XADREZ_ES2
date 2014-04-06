@@ -9,7 +9,7 @@ from scenes.elements import (
     ImageElement,
     GameTextElement,
     ButtonGroup,
-    Image,
+    ListOptionElement,
 )
 from consts.i18n import (
     CONFIG,
@@ -23,7 +23,13 @@ from consts.i18n import (
     MINUTES_PER_GAME,
     MOVES_PER_MINUTES,
     FISCHER_TIME,
+    TIMER_LABEL,
+    FIFTY_MOVE_LABEL,
+    FIFTY_MOVE_AUTO,
+    FIFTY_MOVE_BUTTON,
+    FIFTY_MOVE_DISABLE,
 )
+from consts.default import TIMER_OPTIONS, FIFTY_MOVE_OPTIONS
 
 
 class ConfigMenuInterface(MenuInterface):
@@ -89,12 +95,6 @@ class ConfigMenuInterface(MenuInterface):
                         motion=self.motion,
                     ),
                 ]
-            ),
-            ImageElement(
-                name="ok",
-                image=self.ok_image,
-                x=lambda: self.game.relative_x(0.04),
-                y=lambda: self.game.relative_y(0.26),
             ),
             GameDiv(
                 name="options",
@@ -234,44 +234,38 @@ class ConfigMenuInterface(MenuInterface):
                     ),
                 ]
             ),
-            GameDiv(
-                name="game_types",
-                x=lambda: self.game.relative_x(0.30),
-                children=[
-                    GameTextElement(
-                        name="minutes_per_game",
-                        font=self.menu_font,
-                        text=MINUTES_PER_GAME,
-                        antialias=True,
-                        color=self.button_color,
-                        y=lambda: self.game.relative_y(0.30),
-                        click=self.minutes_per_game_click,
-                        motion=self.motion,
-                    ),
-                    GameTextElement(
-                        name="moves_per_minutes",
-                        font=self.menu_font,
-                        text=MOVES_PER_MINUTES,
-                        antialias=True,
-                        color=self.button_color,
-                        y=lambda: self.game.relative_y(0.40),
-                        click=self.moves_per_minutes_click,
-                        motion=self.motion,
-                    ),
-                    GameTextElement(
-                        name="fischer_game",
-                        font=self.menu_font,
-                        text=FISCHER_TIME,
-                        antialias=True,
-                        color=self.button_color,
-                        y=lambda: self.game.relative_y(0.50),
-                        click=self.fischer_time_click,
-                        motion=self.motion,
-                    ),
-                ]
+            ListOptionElement(
+                font=self.label_font,
+                label=TIMER_LABEL,
+                antialias=True,
+                label_color=self.button_color,
+                option_color=self.value_color,
+                current=self.timer,
+                x=lambda: self.game.relative_x(0.12),
+                y=lambda: self.game.relative_y(0.28),
+                options={
+                    TIMER_OPTIONS["minutes_per_game"]: MINUTES_PER_GAME,
+                    TIMER_OPTIONS["moves_per_minutes"]: MOVES_PER_MINUTES,
+                    TIMER_OPTIONS["fischer_game"]: FISCHER_TIME,
+                },
+                motion=self.motion_options,
+                select=self.select_timer,
+            ),
+            ListOptionElement(
+                font=self.label_font,
+                label=FIFTY_MOVE_LABEL,
+                antialias=True,
+                label_color=self.button_color,
+                option_color=self.value_color,
+                current=self.fifty_move,
+                x=lambda: self.game.relative_x(0.12),
+                y=lambda: self.game.relative_y(0.38),
+                options={
+                    FIFTY_MOVE_OPTIONS["auto"]: FIFTY_MOVE_AUTO,
+                    FIFTY_MOVE_OPTIONS["button"]: FIFTY_MOVE_BUTTON,
+                    FIFTY_MOVE_OPTIONS["disable"]: FIFTY_MOVE_DISABLE,
+                },
+                motion=self.motion_options,
+                select=self.select_fiftymove,
             ),
         ])
-
-    def load_images(self):
-        self.ok_image = Image('ok.png', (50, 50))
-        MenuInterface.load_images(self)

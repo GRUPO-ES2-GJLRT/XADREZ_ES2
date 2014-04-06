@@ -7,7 +7,7 @@ import sys
 import os
 import json
 
-from consts.default import TIMER, MINUTES, MOVES, BONUS
+from consts.default import TIMER, MINUTES, MOVES, BONUS, FIFTY_MOVE
 
 
 class Scene(object):
@@ -52,10 +52,11 @@ class Scene(object):
 
     def load_stored_config(self):
         data = {
-            'option': TIMER,
+            'timer': TIMER,
             'minutes': MINUTES,
             'moves': MOVES,
             'bonus': BONUS,
+            'fifty_move': FIFTY_MOVE,
         }
 
         file_path = os.path.abspath(os.path.join(self.data_dir, 'config.json'))

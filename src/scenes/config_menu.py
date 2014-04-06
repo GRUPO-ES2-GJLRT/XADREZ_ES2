@@ -25,7 +25,10 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.data = self.load_stored_config()
 
         # Timer
-        self.option = self.data['option']
+        self.timer = self.data['timer']
+
+        # Fifty Move Rule
+        self.fifty_move = self.data['fifty_move']
 
         # State
         self.show_moves = False
@@ -55,15 +58,18 @@ class ConfigMenu(Scene, ConfigMenuInterface):
                 element.text = str(int(element.text) - 1)
                 element.redraw()
 
-        def set_option(it, option):
-            self.option = TIMER_OPTIONS[option]
+        def select_timer(it, option):
+            self.timer = option
             self.update_labels_and_fields()
 
-        def motion(it, collides):
+        def select_fiftymove(it, option):
+            self.fifty_move = option
+
+        def motion(it, collides, color):
             if collides:
                 it.color = self.button_hover
             else:
-                it.color = self.button_color
+                it.color = color()
             it.redraw()
 
         self.back_click = back_click
@@ -74,32 +80,26 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.minutes_minus_click = partial(minus, element=lambda: self.minutes)
         self.moves_minus_click = partial(minus, element=lambda: self.moves)
         self.bonus_minus_click = partial(minus, element=lambda: self.bonus)
-        self.minutes_per_game_click = partial(set_option,
-                                              option="minutes_per_game")
-        self.moves_per_minutes_click = partial(set_option,
-                                               option="moves_per_minutes")
-        self.fischer_time_click = partial(set_option,
-                                          option="fischer_game")
-        self.motion = motion
+        self.select_timer = select_timer
+        self.select_fiftymove = select_fiftymove
+        self.motion = partial(motion, color=lambda: self.button_color)
+        self.motion_options = partial(motion, color=lambda: self.value_color)
 
     def update_labels_and_fields(self):
         self.show_bonus = False
         self.show_moves = False
-        if self.option == TIMER_OPTIONS["minutes_per_game"]:
-            self.ok.y = lambda: self.game.relative_y(0.26)
-        elif self.option == TIMER_OPTIONS["moves_per_minutes"]:
-            self.ok.y = lambda: self.game.relative_y(0.36)
+        if self.timer == TIMER_OPTIONS["moves_per_minutes"]:
             self.show_moves = True
-        else:
-            self.ok.y = lambda: self.game.relative_y(0.46)
+        elif self.timer == TIMER_OPTIONS["fischer_game"]:
             self.show_bonus = True
 
     def save(self):
         data = {
-            'option': self.option,
+            'timer': self.timer,
             'minutes': int(self.minutes.text),
             'moves': int(self.moves.text),
             'bonus': int(self.bonus.text),
+            'fifty_move': self.fifty_move,
         }
 
         try:

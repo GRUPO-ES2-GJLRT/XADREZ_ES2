@@ -38,9 +38,13 @@ class GameDiv(object):
     def click(self, pos, x=0, y=0):
         if not self.condition():
             return
-        self.click_element(pos, x=self.x + x, y=self.y + y)
+        clicked = self.click_element(pos, x=self.x + x, y=self.y + y)
+        if clicked:
+            return clicked
         for child in self.children:
-            child.click(pos, x=self.x + x, y=self.y + y)
+            clicked = child.click(pos, x=self.x + x, y=self.y + y)
+            if clicked:
+                return clicked
 
     def motion(self, pos, x=0, y=0):
         if not self.condition():

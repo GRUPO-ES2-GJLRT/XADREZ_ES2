@@ -10,4 +10,5 @@ from .pieces_element import PiecesElement
 from .rect_element import RectElement
 from .square_element import SquareElement
 from .button_group import ButtonGroup
+from .list_option_element import ListOptionElement
 from .others import Font, Image

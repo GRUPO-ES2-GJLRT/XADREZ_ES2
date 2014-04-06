@@ -14,7 +14,7 @@ class GameTextElement(GameDiv):
 
     def __init__(self, font, text="", color=(0, 0, 0), antialias=True,
                  style="normal", other_color=None, click=None, motion=None,
-                 redraw=False,
+                 redraw=False, topleft=False,
                  x=0, y=0, children=None, condition=None, name=""):
         super(GameTextElement, self).__init__(x, y, children, condition, name)
 
@@ -24,6 +24,7 @@ class GameTextElement(GameDiv):
         self.color = color
         self.surface = None
         self.style = style
+        self.topleft = topleft
         self.other_color = other_color if other_color else self.color
         self._redraw = redraw
 
@@ -31,6 +32,8 @@ class GameTextElement(GameDiv):
 
         rect = self.surface.get_rect()
         rect.center = (self.x, self.y)
+        if self.topleft:
+            rect.topleft = (self.x, self.y)
         self.rect = rect
 
         if not click:
@@ -78,20 +81,28 @@ class GameTextElement(GameDiv):
             self.redraw()
         rect = self.surface.get_rect()
         rect.center = (x, y)
+        if self.topleft:
+            rect.topleft = (x, y)
         screen.blit(self.surface, rect.topleft)
 
     def click_element(self, pos, x=0, y=0):
         rect = self.surface.get_rect()
         rect.center = (x, y)
+        if self.topleft:
+            rect.topleft = (x, y)
         if rect.collidepoint(pos):
-            self.click_fn(self)
+            return self.click_fn(self)
 
     def motion_element(self, pos, x=0, y=0):
         rect = self.surface.get_rect()
         rect.center = (x, y)
+        if self.topleft:
+            rect.topleft = (x, y)
         self.motion_fn(self, rect.collidepoint(pos))
 
     def calculate_rect(self, x=0, y=0):
         rect = self.surface.get_rect()
         rect.center = (self.x + x, self.y + y)
+        if self.topleft:
+            rect.topleft = (self.x + x, self.y + y)
         return rect

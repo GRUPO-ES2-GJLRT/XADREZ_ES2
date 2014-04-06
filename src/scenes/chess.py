@@ -16,7 +16,7 @@ from game_elements import Board, create_player, InputPlayer
 from game_elements.player import END
 from consts.colors import BLACK, WHITE, next
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
-from consts.default import TIMER_CLASS
+from consts.default import TIMER_CLASS, FIFTY_MOVE_OPTIONS
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 from .pause_menu import PauseMenu
 from .end_menu import EndMenu
@@ -86,6 +86,8 @@ class Chess(Scene, ChessInterface):
 
     def new_game(self):
         self.free_events()
+        self.config = self.load_stored_config()
+        self.fifty_move = self.config['fifty_move']
         self.board = Board()
         # Marked squares
         self.selected = None
@@ -101,9 +103,7 @@ class Chess(Scene, ChessInterface):
         self.game.scene = self
 
     def initialize_players(self):
-        config = self.load_stored_config()
-
-        new_timer = lambda: TIMER_CLASS[config['option']](config)
+        new_timer = lambda: TIMER_CLASS[self.config['timer']](self.config)
         white = create_player(WHITE, new_timer(), self, self.level_white)
         black = create_player(BLACK, new_timer(), self, self.level_black)
         self.players = {
@@ -172,8 +172,11 @@ class Chess(Scene, ChessInterface):
             self.countdown = CHECK_COUNTDOWN
         elif status == CHECKMATE:
             self.current_player.lose()
-        elif status in [STALEMATE, FIFTY_MOVE]:
+        elif status == STALEMATE:
             self.end_game(GAME_DRAW)
+        elif status == FIFTY_MOVE:
+            if self.fifty_move == FIFTY_MOVE_OPTIONS["auto"]:
+                self.end_game(GAME_DRAW)
 
     def win(self, color):
         self.end_game(WINS[color])
@@ -202,6 +205,11 @@ class Chess(Scene, ChessInterface):
         self.current_player.resume_turn()
 
     def confirm_draw_dialog(self, player):
+        if (self.fifty_move == FIFTY_MOVE_OPTIONS["button"] and
+                self.board.status() == FIFTY_MOVE):
+            self.end_game(GAME_DRAW)
+            return
+
         def yes_click(it):
             self.end_game(GAME_DRAW)
 

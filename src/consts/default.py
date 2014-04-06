@@ -8,10 +8,17 @@ TIMER_OPTIONS = {
     "fischer_game": 3,
 }
 
+FIFTY_MOVE_OPTIONS = {
+    "auto": 1,
+    "button": 2,
+    "disable": 3,
+}
+
 TIMER = TIMER_OPTIONS["minutes_per_game"]
 MINUTES = 10
 MOVES = 10
 BONUS = 10
+FIFTY_MOVE = FIFTY_MOVE_OPTIONS["auto"]
 
 from timers.minutes_per_game import MinutesPerGameTimer
 from timers.moves_per_minute import MovesPerMinuteTimer
