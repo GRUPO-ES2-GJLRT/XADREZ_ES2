@@ -10,6 +10,7 @@ from scenes.elements import (
     GameTextElement,
     ButtonGroup,
     ListOptionElement,
+    NumberOptionElement,
 )
 from consts.i18n import (
     CONFIG,
@@ -18,8 +19,6 @@ from consts.i18n import (
     MINUTES_LABEL,
     MOVES_LABEL,
     BONUS_LABEL,
-    PLUS,
-    MINUS,
     MINUTES_PER_GAME,
     MOVES_PER_MINUTES,
     FISCHER_TIME,
@@ -98,139 +97,42 @@ class ConfigMenuInterface(MenuInterface):
             ),
             GameDiv(
                 name="options",
-                x=lambda: self.game.relative_x(0.80),
+                x=lambda: self.game.relative_x(0.66),
                 children=[
-                    GameDiv(
-                        x=lambda: self.game.relative_x(0.05),
-                        children=[
-                            GameTextElement(
-                                name="minutes",
-                                font=self.menu_font,
-                                text=str(self.data['minutes']),
-                                antialias=True,
-                                color=self.value_color,
-                                y=lambda: self.game.relative_y(0.30),
-                            ),
-                            GameTextElement(
-                                name="moves",
-                                font=self.menu_font,
-                                text=str(self.data['moves']),
-                                antialias=True,
-                                color=self.value_color,
-                                y=lambda: self.game.relative_y(0.40),
-                                condition=lambda: self.show_moves
-                            ),
-                            GameTextElement(
-                                name="bonus",
-                                font=self.menu_font,
-                                text=str(self.data['bonus']),
-                                antialias=True,
-                                color=self.value_color,
-                                y=lambda: self.game.relative_y(0.40),
-                                condition=lambda: self.show_bonus
-                            ),
-                        ]
+                    NumberOptionElement(
+                        name="minutes",
+                        font=self.label_font,
+                        label=MINUTES_LABEL,
+                        antialias=True,
+                        label_color=self.button_color,
+                        option_color=self.value_color,
+                        y=lambda: self.game.relative_y(0.28),
+                        current=self.data['minutes'],
+                        motion=self.motion,
                     ),
-                    GameDiv(
-                        name="labels",
-                        children=[
-                            GameTextElement(
-                                font=self.label_font,
-                                text=MINUTES_LABEL,
-                                antialias=True,
-                                color=self.button_color,
-                                x=lambda: -self.game.relative_x(0.08),
-                                y=lambda: self.game.relative_y(0.302),
-                            ),
-                            GameTextElement(
-                                font=self.label_font,
-                                text=MOVES_LABEL,
-                                antialias=True,
-                                color=self.button_color,
-                                x=lambda: -self.game.relative_x(0.08),
-                                y=lambda: self.game.relative_y(0.402),
-                                condition=lambda: self.show_moves
-                            ),
-                            GameTextElement(
-                                font=self.label_font,
-                                text=BONUS_LABEL,
-                                antialias=True,
-                                color=self.button_color,
-                                x=lambda: -self.game.relative_x(0.08),
-                                y=lambda: self.game.relative_y(0.402),
-                                condition=lambda: self.show_bonus
-                            ),
-                        ]
+                    NumberOptionElement(
+                        name="moves",
+                        font=self.label_font,
+                        label=MOVES_LABEL,
+                        antialias=True,
+                        label_color=self.button_color,
+                        option_color=self.value_color,
+                        y=lambda: self.game.relative_y(0.38),
+                        current=self.data['moves'],
+                        motion=self.motion,
+                        condition=lambda: self.show_moves
                     ),
-                    GameDiv(
-                        name="plus",
-                        x=lambda: self.game.relative_x(0.1),
-                        children=[
-                            GameTextElement(
-                                font=self.label_font,
-                                text=PLUS,
-                                antialias=True,
-                                color=self.button_color,
-                                y=lambda: self.game.relative_y(0.30),
-                                motion=self.motion,
-                                click=self.minutes_plus_click,
-                            ),
-                            GameTextElement(
-                                font=self.label_font,
-                                text=PLUS,
-                                antialias=True,
-                                color=self.button_color,
-                                y=lambda: self.game.relative_y(0.40),
-                                motion=self.motion,
-                                click=self.moves_plus_click,
-                                condition=lambda: self.show_moves
-                            ),
-                            GameTextElement(
-                                font=self.label_font,
-                                text=PLUS,
-                                antialias=True,
-                                color=self.button_color,
-                                y=lambda: self.game.relative_y(0.40),
-                                motion=self.motion,
-                                click=self.bonus_plus_click,
-                                condition=lambda: self.show_bonus
-                            ),
-                        ]
-                    ),
-                    GameDiv(
-                        name="minus",
-                        x=lambda: self.game.relative_x(0),
-                        children=[
-                            GameTextElement(
-                                font=self.label_font,
-                                text=MINUS,
-                                antialias=True,
-                                color=self.button_color,
-                                y=lambda: self.game.relative_y(0.30),
-                                motion=self.motion,
-                                click=self.minutes_minus_click,
-                            ),
-                            GameTextElement(
-                                font=self.label_font,
-                                text=MINUS,
-                                antialias=True,
-                                color=self.button_color,
-                                y=lambda: self.game.relative_y(0.40),
-                                motion=self.motion,
-                                click=self.moves_minus_click,
-                                condition=lambda: self.show_moves
-                            ),
-                            GameTextElement(
-                                font=self.label_font,
-                                text=MINUS,
-                                antialias=True,
-                                color=self.button_color,
-                                y=lambda: self.game.relative_y(0.40),
-                                motion=self.motion,
-                                click=self.bonus_minus_click,
-                                condition=lambda: self.show_bonus
-                            ),
-                        ]
+                    NumberOptionElement(
+                        name="bonus",
+                        font=self.label_font,
+                        label=BONUS_LABEL,
+                        antialias=True,
+                        label_color=self.button_color,
+                        option_color=self.value_color,
+                        y=lambda: self.game.relative_y(0.38),
+                        current=self.data['bonus'],
+                        motion=self.motion,
+                        condition=lambda: self.show_bonus
                     ),
                 ]
             ),

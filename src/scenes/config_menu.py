@@ -96,9 +96,9 @@ class ConfigMenu(Scene, ConfigMenuInterface):
     def save(self):
         data = {
             'timer': self.timer,
-            'minutes': int(self.minutes.text),
-            'moves': int(self.moves.text),
-            'bonus': int(self.bonus.text),
+            'minutes': int(self.minutes.value),
+            'moves': int(self.moves.value),
+            'bonus': int(self.bonus.value),
             'fifty_move': self.fifty_move,
         }
 

@@ -14,7 +14,7 @@ class GameTextElement(GameDiv):
 
     def __init__(self, font, text="", color=(0, 0, 0), antialias=True,
                  style="normal", other_color=None, click=None, motion=None,
-                 redraw=False, topleft=False,
+                 redraw=False, topleft=False, top=False,
                  x=0, y=0, children=None, condition=None, name=""):
         super(GameTextElement, self).__init__(x, y, children, condition, name)
 
@@ -25,15 +25,14 @@ class GameTextElement(GameDiv):
         self.surface = None
         self.style = style
         self.topleft = topleft
+        self.top = top
         self.other_color = other_color if other_color else self.color
         self._redraw = redraw
 
         self.redraw()
 
         rect = self.surface.get_rect()
-        rect.center = (self.x, self.y)
-        if self.topleft:
-            rect.topleft = (self.x, self.y)
+        self.set_rect_position(rect, self.x, self.y)
         self.rect = rect
 
         if not click:
@@ -75,34 +74,35 @@ class GameTextElement(GameDiv):
         else:
             self.surface = self.font.render(self.text,
                                             self.antialias, self.color)
+        self.rect = self.surface.get_rect()
+        self.set_rect_position(self.rect, self.x, self.y)
+
+    def set_rect_position(self, rect, x=0, y=0):
+        rect.center = (x, y)
+        if self.topleft:
+            rect.topleft = (x, y)
+        if self.top:
+            rect.top = y
 
     def draw_element(self, screen, x=0, y=0):
         if self._redraw:
             self.redraw()
         rect = self.surface.get_rect()
-        rect.center = (x, y)
-        if self.topleft:
-            rect.topleft = (x, y)
+        self.set_rect_position(rect, x, y)
         screen.blit(self.surface, rect.topleft)
 
     def click_element(self, pos, x=0, y=0):
         rect = self.surface.get_rect()
-        rect.center = (x, y)
-        if self.topleft:
-            rect.topleft = (x, y)
+        self.set_rect_position(rect, x, y)
         if rect.collidepoint(pos):
             return self.click_fn(self)
 
     def motion_element(self, pos, x=0, y=0):
         rect = self.surface.get_rect()
-        rect.center = (x, y)
-        if self.topleft:
-            rect.topleft = (x, y)
+        self.set_rect_position(rect, x, y)
         self.motion_fn(self, rect.collidepoint(pos))
 
     def calculate_rect(self, x=0, y=0):
         rect = self.surface.get_rect()
-        rect.center = (self.x + x, self.y + y)
-        if self.topleft:
-            rect.topleft = (self.x + x, self.y + y)
+        self.set_rect_position(rect, self.x + x, self.y + y)
         return rect
