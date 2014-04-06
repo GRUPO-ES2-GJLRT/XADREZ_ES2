@@ -41,7 +41,7 @@ class ConfigMenu(Scene, ConfigMenuInterface):
             self.game.scene = scenes.main_menu.MainMenu(self.game)
 
         def quit_click(it):
-            self.game.running = False
+            self.close()
 
         def plus(it, element):
             element = element()

@@ -10,7 +10,8 @@ from scenes.elements import (
     ButtonGroup,
 )
 from consts.i18n import (
-    YES, NO
+    YES,
+    NO,
 )
 
 

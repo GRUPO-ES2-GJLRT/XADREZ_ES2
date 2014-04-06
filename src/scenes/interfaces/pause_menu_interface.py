@@ -15,6 +15,7 @@ from consts.i18n import (
     RESUME,
     RESTART,
     EXIT,
+    QUIT,
 )
 
 
@@ -77,6 +78,24 @@ class PauseMenuInterface(MenuInterface):
                                    self.menu_font.size // 2 +
                                    self.game.relative_x(0.04)),
                         click=self.exit_click,
+                        motion=self.motion,
+                    ),
+                ]
+            ),
+            ButtonGroup(
+                color=self.button_background,
+                padding=5,
+                radius=0.3,
+                children=[
+                    GameTextElement(
+                        name="quit",
+                        font=self.menu_font,
+                        text=QUIT,
+                        antialias=True,
+                        color=self.button_color,
+                        x=lambda: self.game.relative_x(0.91),
+                        y=lambda: self.game.relative_y(0.92),
+                        click=self.quit_click,
                         motion=self.motion,
                     ),
                 ]

@@ -33,6 +33,7 @@ class Game(object):
             last_frame_time = current_time
 
             self.scene.loop(delta_time)
+        self.scene.close()
 
     def resize(self, size):
         self.width = size[0]

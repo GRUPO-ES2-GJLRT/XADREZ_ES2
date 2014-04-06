@@ -35,7 +35,7 @@ class MainMenu(Scene, MainMenuInterface):
             self.game.scene = ConfigMenu(self.game)
 
         def quit_click(it):
-            self.game.running = False
+            self.close()
 
         def motion(it, collides):
             if collides:

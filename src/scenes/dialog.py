@@ -46,5 +46,6 @@ class Dialog(Scene, DialogInterface):
         self.chess.resize()
         DialogInterface.resize(self)
 
-    def __del__(self):
+    def close(self):
         self.chess.free_events()
+        super(Dialog, self).close()

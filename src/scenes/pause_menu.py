@@ -28,6 +28,9 @@ class PauseMenu(Scene, PauseMenuInterface):
             self.chess.free_events()
             self.game.scene = scenes.main_menu.MainMenu(self.game)
 
+        def quit_click(it):
+            self.close()
+
         def motion(it, collides):
             if collides:
                 it.color = self.button_hover
@@ -38,6 +41,7 @@ class PauseMenu(Scene, PauseMenuInterface):
         self.resume_click = resume_click
         self.restart_click = restart_click
         self.exit_click = exit_click
+        self.quit_click = quit_click
         self.motion = motion
 
     def draw(self, delta_time):
@@ -57,5 +61,6 @@ class PauseMenu(Scene, PauseMenuInterface):
     def resize(self):
         PauseMenuInterface.resize(self)
 
-    def __del__(self):
+    def close(self):
         self.chess.free_events()
+        super(PauseMenu, self).close()

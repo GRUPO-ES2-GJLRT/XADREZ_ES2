@@ -26,6 +26,9 @@ class EndMenu(Scene, EndMenuInterface):
             self.chess.free_events()
             self.game.scene = scenes.main_menu.MainMenu(self.game)
 
+        def quit_click(it):
+            self.close()
+
         def motion(it, collides):
             if collides:
                 it.color = self.button_hover
@@ -35,6 +38,7 @@ class EndMenu(Scene, EndMenuInterface):
 
         self.restart_click = restart_click
         self.exit_click = exit_click
+        self.quit_click = quit_click
         self.motion = motion
 
     def draw(self, delta_time):
@@ -54,5 +58,6 @@ class EndMenu(Scene, EndMenuInterface):
         self.chess.resize()
         EndMenuInterface.resize(self)
 
-    def __del__(self):
+    def close(self):
         self.chess.free_events()
+        super(EndMenu, self).close()

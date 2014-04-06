@@ -220,6 +220,3 @@ class Chess(Scene, ChessInterface):
 
     def deny_draw(self, player):
         self.denied_countdown = CHECK_COUNTDOWN
-
-    def __del__(self):
-        self.free_events()
