@@ -7,7 +7,7 @@ import sys
 import threading
 from time import sleep
 from .player import Player, END
-import scenes.chess
+import scenes
 
 SOOO_EASY = 0
 EASY = 1
