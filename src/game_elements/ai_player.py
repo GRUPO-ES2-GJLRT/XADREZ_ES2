@@ -23,31 +23,31 @@ class AIPlayer(Player):
         super(AIPlayer, self).__init__(color, timer, chess, *args, **kwargs)
         self.level = level
         self.board = chess.board
-        self.playing = False
+        self.chosen_move = None
 
     def start_turn(self):
         if not self.chess.game.running:
             sys.exit()
         super(AIPlayer, self).start_turn()
-        self.playing = False
+        self.chosen_move = None
         threading.Thread(target=self.ai_move).start()
-
-    def resume_turn(self):
-        super(AIPlayer, self).resume_turn()
-        if not self.playing:
-            threading.Thread(target=self.ai_move).start()
 
     def select(self, square):
         super(AIPlayer, self).select(square)
         sleep(0.1)
 
+    def do_move(self, chosen_move):
+        chess = self.chess
+        while chess.state == scenes.chess.PAUSE and chess.game.running:
+            pass
+        self.select(chosen_move[0])
+        self.play(chosen_move[1])
+
     def ai_move(self):
-        if not self.chess.state is None and not self.state == END:
+        if (not (self.chess.state is None or
+                 self.chess.state == scenes.chess.PAUSE)
+                and not self.state == END):
             return
-        self.playing = False
-        if self.chess.state == scenes.chess.PAUSE:
-            return
-        self.playing = True
 
         if self.level == SOOO_EASY:
             moves = list(self.chess.board.possible_moves(self.color))
@@ -55,9 +55,7 @@ class AIPlayer(Player):
             while not moves:
                 moves = list(self.chess.board.possible_moves(self.color))
 
-            move = random.choice(moves)
-            self.select(move[0])
-            self.play(move[1])
+            self.do_move(random.choice(moves))
 
         elif self.level == EASY:
             moves = list(
@@ -71,11 +69,7 @@ class AIPlayer(Player):
                     self.chess.board.possible_moves(self.color)
                 )
 
-            move = random.choice(moves)
-            if self.chess.state == scenes.chess.PAUSE:
-                return
-            self.select(move[0])
-            self.play(move[1])
+            self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
             raise Exception

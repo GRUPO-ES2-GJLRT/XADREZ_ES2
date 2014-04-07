@@ -119,5 +119,6 @@ class Scene(object):
             threaded_event.set()
 
     def close(self):
+        self.game.running = False
         self.free_events()
         sys.exit()
