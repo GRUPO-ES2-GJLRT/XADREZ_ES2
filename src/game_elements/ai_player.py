@@ -38,21 +38,26 @@ class AIPlayer(Player):
 
     def do_move(self, chosen_move):
         chess = self.chess
-        while chess.state == scenes.chess.PAUSE and chess.game.running:
+        while chess.state == scenes.chess.PAUSE:
+            self.try_to_exit_thread_loop()
             pass
         self.select(chosen_move[0])
         self.play(chosen_move[1])
 
+    def try_to_exit_thread_loop(self):
+        if (self.state == END or self.chess.state in scenes.chess.END_GAME
+                or not self.chess.game.running):
+            sys.exit(0)
+
     def ai_move(self):
-        if (not (self.chess.state is None or
-                 self.chess.state == scenes.chess.PAUSE)
-                and not self.state == END):
+        if (self.state == END or self.chess.state in scenes.chess.END_GAME):
             return
 
         if self.level == SOOO_EASY:
             moves = list(self.chess.board.possible_moves(self.color))
 
             while not moves:
+                self.try_to_exit_thread_loop()
                 moves = list(self.chess.board.possible_moves(self.color))
 
             self.do_move(random.choice(moves))
@@ -64,6 +69,7 @@ class AIPlayer(Player):
             )
 
             while not moves:
+                self.try_to_exit_thread_loop()
                 moves = list(
                     self.chess.board.possible_killing_moves(self.color) or
                     self.chess.board.possible_moves(self.color)
