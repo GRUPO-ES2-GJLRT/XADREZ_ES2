@@ -88,3 +88,25 @@ class AIPlayer(Player):
 
     def confirm_draw(self):
         self.chess.deny_draw(self)
+
+    def minmax_alpha_beta_pruning(self, node, depth, a, b, maximizing_player):
+        if depth == 0 or node.is_terminal():
+            return self.evaluate_state(node)
+
+        if maximizing_player:
+            for child in node.childs():
+                a = max(a, self.minmax_alpha_beta_prunning(child, depth - 1, a, b, False))
+                if b <= a:
+                    break
+            return a
+        else:
+            for child in node.childs():
+                b = min(b, self.minmax_alpha_beta_prunning(child, depth - 1, a, b, True))
+                if b <= a:
+                    break
+            return a
+
+    @staticmethod
+    def evaluate_state(node):
+        return node
+
