@@ -2,6 +2,9 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
+from threading import Thread
+from Queue import Queue
+
 from consts.colors import WHITE, BLACK, next
 from consts.moves import (
     LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL,
@@ -118,6 +121,40 @@ class Board(object):
         for piece in self.pieces[color]:
             result = result.union(piece.possible_moves(hindered=False))
         return result
+
+    def optimized_possible_moves(self, color):
+        moves = []
+        threads = []
+        queue = Queue()
+
+        #Starts a thread for each piece, to get this piece's killing moves
+        for piece in self.pieces[color]:
+            threads.append(
+                Thread(
+                    target=piece.possible_moves, args=(True, queue)
+                )
+            )
+            threads[-1].start()
+
+        #Starts a thread for each piece, to get this piece's non-killing moves
+        for piece in self.pieces[color]:
+            threads.append(
+                Thread(
+                    target=piece.possible_moves, args=(True, queue)
+                )
+            )
+            threads[-1].start()
+
+        #Waits until each one of the threads finishes its execution
+        for thread in threads:
+            thread.join()
+
+        #Get all the results stored in the queue and put the on the moves list
+        for _ in threads:
+            moves.extend(queue.get())
+
+        return moves
+
 
     def possible_moves(self, color):
         """ Returns the possible moves positions by a color """
