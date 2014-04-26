@@ -5,7 +5,12 @@ from __future__ import (absolute_import, division,
 import random
 import sys
 import threading
+from collections import Counter
 from time import sleep
+from consts.moves import (
+    CHECKMATE, STALEMATE
+)
+from consts.colors import WHITE, BLACK
 from .player import Player, END
 import scenes
 
@@ -78,7 +83,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            raise Exception
+            self.do_move(self.minmax_move(4))
 
         elif self.level == HARD:
             raise Exception
@@ -89,24 +94,75 @@ class AIPlayer(Player):
     def confirm_draw(self):
         self.chess.deny_draw(self)
 
-    def minmax_alpha_beta_pruning(self, node, depth, a, b, maximizing_player):
+    def minmax_move(self, depth):
+        a = float('-inf')
+        b = float('inf')
+        node = Node(self.board)
+        max_move = None
+        for child in node.children():
+            value = self.minmax_alpha_beta_prunning(
+                child, depth - 1, a, b, False)
+            print(value)
+            if a < value:
+                a = value
+                max_move = child.move
+        return max_move
+
+    def minmax_alpha_beta_prunning(self, node, depth, a, b, maximizing_player):
         if depth == 0 or node.is_terminal():
             return self.evaluate_state(node)
 
         if maximizing_player:
-            for child in node.childs():
-                a = max(a, self.minmax_alpha_beta_prunning(child, depth - 1, a, b, False))
+            for child in node.children():
+                a = max(a, self.minmax_alpha_beta_prunning(
+                    child, depth - 1, a, b, False))
                 if b <= a:
                     break
             return a
         else:
-            for child in node.childs():
-                b = min(b, self.minmax_alpha_beta_prunning(child, depth - 1, a, b, True))
+            for child in node.children():
+                b = min(b, self.minmax_alpha_beta_prunning(
+                    child, depth - 1, a, b, True))
                 if b <= a:
                     break
-            return a
+            return b
 
     @staticmethod
     def evaluate_state(node):
-        return node
+        consts = {
+            'king': 200.0,
+            'queen': 9.0,
+            'rook': 5.0,
+            'bishop': 3.0,
+            'knight': 3.0,
+            'pawn': 1.0,
+        }
+        white = Counter()
+        black = Counter()
+        for white_piece in node.board.pieces[WHITE]:
+            white[white_piece.name()] += 1
+        for black_piece in node.board.pieces[BLACK]:
+            black[black_piece.name()] += 1
+        minus = {
+            key: (white[key] - black[key]) * multiplier
+            for key, multiplier in consts.items()
+        }
+        print(minus)
+        if node.board.current_color == WHITE:
+            return sum(minus.values())
+        return -sum(minus.values())
 
+
+class Node(object):
+
+    def __init__(self, board, move=None):
+        self.board = board
+        self.move = move
+        self.moves = self.board.possible_moves(board.current_color)
+
+    def is_terminal(self):
+        return ((not self.moves) or
+                self.board.status(self.moves) in [CHECKMATE, STALEMATE])
+
+    def children(self):
+        return (Node(board, move=move) for move, board in self.moves.items())

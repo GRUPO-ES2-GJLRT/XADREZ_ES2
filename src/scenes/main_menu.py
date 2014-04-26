@@ -21,6 +21,7 @@ from game_elements.ai_player import (
     PLAYER,
     SOOO_EASY,
     EASY,
+    MEDIUM,
 )
 
 
@@ -33,9 +34,10 @@ class MainMenu(Scene, MainMenuInterface):
             (PLAYER, PLAYER_LABEL),
             (SOOO_EASY, SOOO_EASY_LABEL),
             (EASY, EASY_LABEL),
+            (MEDIUM, "Medium"),
         ])
         self.white_player = None
-        self.black_player = None
+        self.black_player = MEDIUM
 
         self.define_clicks()
         self.create_interface()

@@ -226,12 +226,13 @@ class Board(object):
         return (not self.in_check(hindered=hindered) and
                 len(possible_moves) == 0)
 
-    def status(self):
+    def status(self, possible_moves=None):
         king = self.current_king()
         king.ignored = True
         hindered = self.hindered(next(self.current_color))
         king.ignored = False
-        possible_moves = self.possible_moves(self.current_color)
+        if not possible_moves:
+            possible_moves = self.possible_moves(self.current_color)
         if self.in_checkmate(hindered=hindered, possible_moves=possible_moves):
             return CHECKMATE
         if self.in_check(hindered=hindered):
