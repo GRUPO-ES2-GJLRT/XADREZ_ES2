@@ -149,12 +149,11 @@ class Board(object):
         for thread in threads:
             thread.join()
 
-        #Get all the results stored in the queue and put the on the moves list
+        #Get all the results stored in the queue and put them on the moves list
         for _ in threads:
             moves.extend(queue.get())
 
         return moves
-
 
     def possible_moves(self, color):
         """ Returns the possible moves positions by a color """
