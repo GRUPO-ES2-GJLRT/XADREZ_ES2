@@ -7,8 +7,9 @@ from .linear_exploration_piece import LinearExplorationPiece
 
 class Bishop(LinearExplorationPiece):
 
+    @property
     def name(self):
-        return "bishop"
+        return 'bishop'
 
     def possible_moves(self, hindered=True, hindered_positions=None):
         result = {}

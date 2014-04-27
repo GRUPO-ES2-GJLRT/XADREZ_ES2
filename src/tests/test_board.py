@@ -128,7 +128,7 @@ class TestBoardRemove(unittest.TestCase):
 
     def test_remove_black_piece_at_0_6(self):
         board = Board(new_game=True)
-        self.assertEqual(board[(0, 6)].name(), "pawn")
+        self.assertEqual(board[(0, 6)].name, "pawn")
         self.assertEqual(len(board.pieces[WHITE]), 16)
         self.assertEqual(len(board.pieces[BLACK]), 16)
         board.remove((0, 6))

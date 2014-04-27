@@ -7,8 +7,9 @@ from .linear_exploration_piece import LinearExplorationPiece
 
 class Rook(LinearExplorationPiece):
 
+    @property
     def name(self):
-        return "rook"
+        return 'rook'
 
     def possible_moves(self, hindered=True, hindered_positions=None):
         result = {}

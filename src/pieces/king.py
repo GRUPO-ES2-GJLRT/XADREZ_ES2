@@ -9,8 +9,9 @@ from consts.moves import KINGSIDE_CASTLING, QUEENSIDE_CASTLING, NORMAL
 
 class King(Piece):
 
+    @property
     def name(self):
-        return "king"
+        return 'king'
 
     def possible_moves(self, hindered=True, hindered_positions=None):
         moves = [
@@ -34,7 +35,7 @@ class King(Piece):
             # King's new position shouldn't be hindered
             # Position between initial and final position shouldn't be hindered
             # and shouldn't have any pieces
-            if (kingside and kingside.name() == "rook" and
+            if (kingside and kingside.name == 'rook' and
                     not kingside.has_moved and
                     not self.is_hindered(position=(self.x + 1, self.y),
                                          hindered=hindered_positions) and
@@ -46,7 +47,7 @@ class King(Piece):
             # King's new position shouldn't be hindered
             # Position between initial and final position shouldn't be hindered
             # and shouldn't have any pieces between the king and the rook
-            if (queenside and queenside.name() == "rook" and
+            if (queenside and queenside.name == 'rook' and
                     not queenside.has_moved and
                     not self.is_hindered(position=(self.x - 1, self.y),
                                          hindered=hindered_positions) and

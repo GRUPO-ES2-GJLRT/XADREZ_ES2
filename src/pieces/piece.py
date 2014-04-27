@@ -16,6 +16,7 @@ class Piece(object):
         self.ignored = False
         board.add(self)
 
+    @property
     def name(self):
         """ Return the piece name used by the image """
         pass

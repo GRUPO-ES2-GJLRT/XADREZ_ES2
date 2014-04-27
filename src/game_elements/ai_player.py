@@ -144,9 +144,9 @@ class AIPlayer(Player):
         white = Counter()
         black = Counter()
         for white_piece in node.board.pieces[WHITE]:
-            white[white_piece.name()] += 1
+            white[white_piece.name] += 1
         for black_piece in node.board.pieces[BLACK]:
-            black[black_piece.name()] += 1
+            black[black_piece.name] += 1
         minus = {
             key: (white[key] - black[key]) * multiplier
             for key, multiplier in consts.items()

@@ -12,8 +12,9 @@ from .piece import Piece
 
 class Pawn(Piece):
 
+    @property
     def name(self):
-        return "pawn"
+        return 'pawn'
 
     def possible_moves(self, hindered=True, hindered_positions=None):
         """ If hindered == False, it will return the attack moves """
@@ -41,7 +42,7 @@ class Pawn(Piece):
             piece = self.board[self.board.last_move[2]]
             distance = abs(self.board.last_move[1][1] -
                            self.board.last_move[2][1])
-            if piece and piece.name() == "pawn" and distance == 2:
+            if piece and piece.name == 'pawn' and distance == 2:
                 if self.color == WHITE:
                     if piece.x == self.x - 1:
                         walk_moves.append(

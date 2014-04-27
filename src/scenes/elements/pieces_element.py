@@ -25,7 +25,7 @@ class PiecesElement(ChessElement):
             for piece in pieces:
                 screen.blit(
                     self.piece_images['%s_%s' %
-                                      (piece.color, piece.name())].get(),
+                                      (piece.color, piece.name)].get(),
                     self.position_rect(piece.position, x=x, y=y)
                 )
 

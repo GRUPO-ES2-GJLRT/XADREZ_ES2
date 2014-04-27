@@ -8,8 +8,9 @@ from .rook import Rook
 
 class Queen(Bishop, Rook):
 
+    @property
     def name(self):
-        return "queen"
+        return 'queen'
 
     def possible_moves(self, hindered=True, hindered_positions=None):
         return dict(Bishop.possible_moves(self), **Rook.possible_moves(self))

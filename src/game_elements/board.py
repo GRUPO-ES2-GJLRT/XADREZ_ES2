@@ -119,13 +119,9 @@ class Board(object):
         return result
 
     def optimized_possible_moves(self, color, move_type=ALL):
-        queue = Queue()
-        threads = []
-        moves = []
-        attack_moves = []
-        no_attack_moves = []
-
         #Starts a thread for each piece, to get this piece's possible moves
+        threads = []
+        queue = Queue()
         for piece in self.pieces[color]:
             threads.append(
                 Thread(
@@ -136,19 +132,24 @@ class Board(object):
 
         #Waits until each one of the threads finishes its execution
         #Then gets the return from the thread and puts it in the moves list
+        moves = []
         for thread in threads:
             thread.join()
             moves.extend(queue.get())
 
-        #Separates attack moves from no attack moves and then merges them
-        #Attack moves come first on the list
-        for move in moves:
-            if self.is_enemy_position(move[1], color):
-                attack_moves.append(move)
-            elif self.is_empty_position(move[1]):
-                no_attack_moves.append(move)
+        # #Separates attack moves from no attack moves and then merges them
+        # #Attack moves come first on the list
+        # attack_moves = []
+        # no_attack_moves = []
+        # for move in moves:
+        #     if self.is_enemy_position(move[1], color):
+        #         attack_moves.append(move)
+        #     elif self.is_empty_position(move[1]):
+        #         no_attack_moves.append(move)
+        #
+        # return attack_moves + no_attack_moves
 
-        return attack_moves + no_attack_moves
+        return moves
 
     def possible_moves(self, color):
         """ Returns the possible moves positions by a color """
