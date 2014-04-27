@@ -316,3 +316,122 @@ class Board(object):
             not self.is_empty_position(position) and
             not self[position].color == color
         )
+
+    def hindered_position(self, position, color):
+        """ Checks if color is hindering the position.
+        If it is, returns all the positions that could block the hinder """
+        positions = Allowed()
+        if position == (-1, -1):
+            return False, positions
+
+        def explore_position(position, lane):
+            if not self.is_valid_position(position):
+                return 0, None
+
+            piece = self[position]
+            if piece and not piece.ignored:
+                if piece.color == color:
+                    lane.add(position)
+                    return 1, piece
+                return 0, piece
+            lane.add(position)
+            return 2, None
+
+        def iterate_lane(rang, cls, dx, dy):
+            lane = set()
+            for i in rang:
+                explore, piece = explore_position(
+                    (position[0] + i * dx, position[1] + i * dy),
+                    lane
+                )
+                if explore == 1 and isinstance(piece, cls):
+                    positions.union(lane)
+                if explore < 2:
+                    break
+
+        def iterate_positions(possible_possitions, cls):
+            lane = set()
+            for pos in possible_possitions:
+                if not self.is_valid_position(pos):
+                    continue
+
+                piece = self[pos]
+                if piece and not piece.ignored:
+                    if piece.color == color and isinstance(piece, cls):
+                        lane.add(pos)
+            if lane:
+                positions.union(lane)
+
+        # Bishop / Queen
+        # Top Left
+        iterate_lane(
+            xrange(1, min(position[0], position[1]) + 1), Bishop, -1, -1)
+
+        # Top Right
+        iterate_lane(
+            xrange(1, min(8 - position[0], position[1]) + 1), Bishop, 1, -1)
+
+        # Bottom Left
+        iterate_lane(
+            xrange(1, min(position[0], 8 - position[1]) + 1), Bishop, -1, 1)
+
+        # Bottom Right
+        iterate_lane(
+            xrange(1, min(8 - position[0], 8 - position[1]) + 1), Bishop, 1, 1)
+
+        # Rook / Queen
+        # Bottom
+        iterate_lane(xrange(1, 8 - position[1]), Rook, 0, 1)
+
+        # Top
+        iterate_lane(xrange(1, position[1] + 1), Rook, 0, -1)
+
+        # Left
+        iterate_lane(xrange(1, position[0] + 1), Rook, -1, 0)
+
+        # Right
+        iterate_lane(xrange(1, 8 - position[0]), Rook, 1, 0)
+
+        # Knight
+        pos = position
+        iterate_positions([
+            (pos[0] - 2, pos[1] - 1), (pos[0] - 2, pos[1] + 1),
+            (pos[0] - 1, pos[1] - 2), (pos[0] - 1, pos[1] + 2),
+            (pos[0] + 2, pos[1] - 1), (pos[0] + 2, pos[1] + 1),
+            (pos[0] + 1, pos[1] - 2), (pos[0] + 1, pos[1] + 2),
+        ], Knight)
+
+        # Pawn
+        if color == BLACK:
+            pawn_positions = [
+                (pos[0] - 1, pos[1] + 1), (pos[0] + 1, pos[1] + 1)
+            ]
+        else:
+            pawn_positions = [
+                (pos[0] - 1, pos[1] - 1), (pos[0] + 1, pos[1] - 1)
+            ]
+        iterate_positions(pawn_positions, Pawn)
+
+        if positions.count:
+            positions.all = False
+            if positions.count > 1:
+                positions.allowed = set()
+            return True, positions
+        return False, positions
+
+
+class Allowed():
+
+    def __init__(self):
+        self.all = True
+        self.allowed = set()
+        self.count = 0
+
+    def __contains__(self, key):
+        if self.all:
+            return True
+        return key in self.allowed
+
+    def union(self, other):
+        self.allowed = self.allowed.union(other)
+        self.count += 1

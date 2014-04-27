@@ -66,3 +66,13 @@ class Piece(object):
         if hindered is None:
             hindered = self.board.hindered(next(self.color))
         return position in hindered
+
+    def get_allowed(self):
+        self.ignored = True
+        if self.board.kings[self.color]:
+            position = self.board.kings[self.color].position
+        else:
+            position = (-1, -1)
+        _, allowed = self.board.hindered_position(position, next(self.color))
+        self.ignored = False
+        return _, allowed

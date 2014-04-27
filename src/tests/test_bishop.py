@@ -1,5 +1,6 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import unittest
 
@@ -7,9 +8,13 @@ from consts.colors import WHITE, BLACK
 from consts.moves import to_move_dict
 from game_elements.board import Board
 from pieces.bishop import Bishop
+from pieces.king import King
+from pieces.queen import Queen
+from pieces.knight import Knight
+from pieces.pawn import Pawn
 
 
-class TestBishop(unittest.TestCase):
+class TestBishopMoves(unittest.TestCase):
 
     def test_bishop_at_0_0_and_no_other_pieces_at_board_can_move_in_diagonal_1_1_to_7_7(self):
         board = Board(new_game=False)
@@ -100,3 +105,67 @@ class TestBishop(unittest.TestCase):
         attack = to_move_dict([(4, 4)])
 
         self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+
+class TestBishopProtectsKing(unittest.TestCase):
+
+    def test_bishop_can_move_if_it_doesnt_protect_the_king(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 5, 1)
+        bishop = Bishop(board, WHITE, 4, 4)
+        possible_moves = to_move_dict([
+            (0, 0), (1, 1), (2, 2), (3, 3), (5, 5), (6, 6), (7, 7),
+            (1, 7), (2, 6), (3, 5), (5, 3), (6, 2), (7, 1),
+        ])
+        attack = {}
+
+        self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+    def test_bishop_can_move_to_protect_the_king(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 3, 1)
+        Queen(board, BLACK, 1, 3)
+        bishop = Bishop(board, WHITE, 3, 3)
+        possible_moves = to_move_dict([(2, 2)])
+        attack = {}
+        self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+    def test_bishop_can_move_to_protect_the_king2(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 3, 1)
+        Queen(board, BLACK, 1, 1)
+        bishop = Bishop(board, WHITE, 3, 3)
+        possible_moves = {}
+        attack = to_move_dict([(1, 1)])
+        self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+    def test_bishop_can_move_to_protect_the_king3(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 3, 1)
+        Knight(board, BLACK, 1, 2)
+        bishop = Bishop(board, WHITE, 3, 4)
+        possible_moves = {}
+        attack = to_move_dict([(1, 2)])
+        self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+    def test_bishop_can_move_to_protect_the_king4(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 3, 1)
+        Pawn(board, BLACK, 2, 2)
+        bishop = Bishop(board, WHITE, 3, 3)
+        possible_moves = {}
+        attack = to_move_dict([(2, 2)])
+        self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+    def test_bishop_cannot_move_if_it_is_protecting_the_king(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 3, 1)
+        Queen(board, BLACK, 3, 3)
+        bishop = Bishop(board, WHITE, 3, 2)
+        possible_moves = {}
+        attack = {}
+        self.assertEqual(bishop.possible_moves(), (possible_moves, attack))
+
+
+class TestBishop(TestBishopMoves, TestBishopProtectsKing):
+    pass

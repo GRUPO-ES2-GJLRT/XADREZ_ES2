@@ -8,9 +8,12 @@ from consts.moves import NORMAL
 
 class LinearExplorationPiece(Piece):
 
-    def explore_position(self, position, move, enemy, ally):
+    def explore_position(self, position, move, enemy, ally, allowed):
         if not self.board.is_valid_position(position):
             return False
+
+        if not position in allowed:
+            move, enemy, ally = {}, {}, {}
 
         piece = self.board[position]
         if piece and not piece.ignored:

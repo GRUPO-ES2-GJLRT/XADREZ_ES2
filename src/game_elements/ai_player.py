@@ -198,5 +198,5 @@ class Node(object):
     def children(self):
         for move, board in self.moves.items():
             new_node = Node(board, move=move)
-            self.childs.append(new_node)
+            #self.childs.append(new_node)
             yield new_node
