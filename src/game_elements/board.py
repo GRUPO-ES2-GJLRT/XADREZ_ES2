@@ -118,38 +118,37 @@ class Board(object):
             result = result.union(piece.possible_moves(hindered=False))
         return result
 
-    def optimized_possible_moves(self, color):
-        moves = []
-        threads = []
+    def optimized_possible_moves(self, color, move_type=ALL):
         queue = Queue()
+        threads = []
+        moves = []
+        attack_moves = []
+        no_attack_moves = []
 
-        #Starts a thread for each piece, to get this piece's killing moves
+        #Starts a thread for each piece, to get this piece's possible moves
         for piece in self.pieces[color]:
             threads.append(
                 Thread(
-                    target=piece.optimized_possible_moves, args=(ATTACK, queue)
-                )
-            )
-            threads[-1].start()
-
-        #Starts a thread for each piece, to get this piece's non-killing moves
-        for piece in self.pieces[color]:
-            threads.append(
-                Thread(
-                    target=piece.optimized_possible_moves, args=(NO_ATTACK, queue)
+                    target=piece.optimized_possible_moves, args=(move_type, queue)
                 )
             )
             threads[-1].start()
 
         #Waits until each one of the threads finishes its execution
+        #Then gets the return from the thread and puts it in the moves list
         for thread in threads:
             thread.join()
-
-        #Get all the results stored in the queue and put them on the moves list
-        for _ in threads:
             moves.extend(queue.get())
 
-        return moves
+        #Separates attack moves from no attack moves and then merges them
+        #Attack moves come first on the list
+        for move in moves:
+            if self.is_enemy_position(move[1], color):
+                attack_moves.append(move)
+            elif self.is_empty_position(move[1]):
+                no_attack_moves.append(move)
+
+        return attack_moves + no_attack_moves
 
     def possible_moves(self, color):
         """ Returns the possible moves positions by a color """
@@ -294,21 +293,16 @@ class Board(object):
         return 0 <= position[0] < 8 and 0 <= position[1] < 8
 
     def is_empty_position(self, position):
-        return (
-            self.is_valid_position(position) and
-            self[position] is None
-        )
+        return self[position] is None
 
     def is_friendly_position(self, position, color):
         return (
-            self.is_valid_position(position) and
-            not self[position] is None and
+            not self.is_empty_position(position) and
             self[position].color == color
         )
 
     def is_enemy_position(self, position, color):
         return (
-            self.is_valid_position(position) and
-            not self[position] is None and
+            not self.is_empty_position(position) and
             not self[position].color == color
         )

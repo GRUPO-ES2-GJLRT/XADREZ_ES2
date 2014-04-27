@@ -8,7 +8,7 @@ import threading
 from collections import Counter
 from time import sleep
 from consts.moves import (
-    CHECKMATE, STALEMATE
+    CHECKMATE, STALEMATE, ALL
 )
 from consts.colors import WHITE, BLACK
 from .player import Player, END
@@ -83,7 +83,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(4))
+            self.do_move(self.minmax_move(1))
 
         elif self.level == HARD:
             raise Exception
@@ -114,15 +114,19 @@ class AIPlayer(Player):
 
         if maximizing_player:
             for child in node.children():
-                a = max(a, self.minmax_alpha_beta_prunning(
-                    child, depth - 1, a, b, False))
+                a = max(
+                    a,
+                    self.minmax_alpha_beta_prunning(child, depth-1, a, b, False)
+                )
                 if b <= a:
                     break
             return a
         else:
             for child in node.children():
-                b = min(b, self.minmax_alpha_beta_prunning(
-                    child, depth - 1, a, b, True))
+                b = min(
+                    b,
+                    self.minmax_alpha_beta_prunning(child, depth-1, a, b, True)
+                )
                 if b <= a:
                     break
             return b
@@ -130,11 +134,11 @@ class AIPlayer(Player):
     @staticmethod
     def evaluate_state(node):
         consts = {
-            'king': 200.0,
-            'queen': 9.0,
+            'king': 320.0,
+            'queen': 9.75,
             'rook': 5.0,
-            'bishop': 3.0,
-            'knight': 3.0,
+            'bishop': 3.25,
+            'knight': 3.20,
             'pawn': 1.0,
         }
         white = Counter()

@@ -37,7 +37,7 @@ class Piece(object):
         """
         pass
 
-    def optimized_possible_moves(self, move_type, queue=None):
+    def optimized_possible_moves(self, move_type, queue):
         """ Return the possible moves for the piece
         type: 0 = Non-Attacking moves | 1 = Attacking Moves | 2 = All moves
         queue: None = function will just normally return |
