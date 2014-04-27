@@ -85,7 +85,7 @@ class Pawn(Piece):
         """ Checks if a position is not occupied by a piece
         and is inside the board
         """
-        if not self.board.valid(position):
+        if not self.board.is_valid_position(position):
             return False
         piece = self.board[position]
         if piece:
@@ -98,7 +98,7 @@ class Pawn(Piece):
         """
         if not hindered:
             return self.valid_move(position)
-        if not self.board.valid(position):
+        if not self.board.is_valid_position(position):
             return False
         piece = self.board[position]
         if piece and piece.color != self.color:

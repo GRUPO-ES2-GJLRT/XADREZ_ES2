@@ -12,7 +12,7 @@ class LinearExplorationPiece(Piece):
             result[position] = NORMAL
 
         # stop if invalid position
-        if not self.board.valid(position):
+        if not self.board.is_valid_position(position):
             return False
 
         # continue if there is no piece

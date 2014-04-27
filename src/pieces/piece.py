@@ -37,11 +37,19 @@ class Piece(object):
         """
         pass
 
+    def optimized_possible_moves(self, move_type, queue=None):
+        """ Return the possible moves for the piece
+        type: 0 = Non-Attacking moves | 1 = Attacking Moves | 2 = All moves
+        queue: None = function will just normally return |
+            Queue() = function will store the return value queue, then return
+        """
+        pass
+
     def valid_move(self, position):
         """ Checks if a position is not occupied by an ally
         and is inside the board
         """
-        if not self.board.valid(position):
+        if not self.board.is_valid_position(position):
             return False
         piece = self.board[position]
         if piece and not piece.ignored and piece.color == self.color:

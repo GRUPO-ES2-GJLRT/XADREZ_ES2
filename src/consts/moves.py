@@ -20,3 +20,6 @@ CHECK = "check"
 CHECKMATE = "checkmate"
 STALEMATE = "stalemate"
 FIFTY_MOVE = "fifty move"
+NO_ATTACK = 0
+ATTACK = 1
+ALL = 2

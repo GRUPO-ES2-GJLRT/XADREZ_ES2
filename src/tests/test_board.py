@@ -18,23 +18,23 @@ class TestBoardValid(unittest.TestCase):
 
     def test_valid_4_4_should_be_true(self):
         board = Board(new_game=False)
-        self.assertTrue(board.valid((4, 4)))
+        self.assertTrue(board.is_valid_position((4, 4)))
 
     def test_valid_negative1_4_should_be_false(self):
         board = Board(new_game=False)
-        self.assertFalse(board.valid((-1, 4)))
+        self.assertFalse(board.is_valid_position((-1, 4)))
 
     def test_valid_4_negative1_should_be_false(self):
         board = Board(new_game=False)
-        self.assertFalse(board.valid((4, -1)))
+        self.assertFalse(board.is_valid_position((4, -1)))
 
     def test_valid_8_4_should_be_false(self):
         board = Board(new_game=False)
-        self.assertFalse(board.valid((8, 4)))
+        self.assertFalse(board.is_valid_position((8, 4)))
 
     def test_valid_4_8_should_be_false(self):
         board = Board(new_game=False)
-        self.assertFalse(board.valid((4, 8)))
+        self.assertFalse(board.is_valid_position((4, 8)))
 
 
 class TestBoardGetItem(unittest.TestCase):

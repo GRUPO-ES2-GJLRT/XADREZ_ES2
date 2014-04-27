@@ -9,7 +9,7 @@ from consts.colors import WHITE, BLACK, next
 from consts.moves import (
     LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL,
     QUEENSIDE_CASTLING, KINGSIDE_CASTLING,
-    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE,
+    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE, ATTACK, NO_ATTACK, ALL
 )
 
 from pieces import (
@@ -48,7 +48,7 @@ class Board(object):
         """ Access the board position
         Usage: board[(x, y)]
         """
-        if not self.valid(position):
+        if not self.is_valid_position(position):
             return None
         return self.board_data[position[0]][position[1]]
 
@@ -111,10 +111,6 @@ class Board(object):
             piece.__class__(new_board, piece.color, piece.x, piece.y)
         return new_board
 
-    def valid(self, position):
-        """ Checks if position tuple is inside the board """
-        return 0 <= position[0] < 8 and 0 <= position[1] < 8
-
     def hindered(self, color):
         """ Returns the hindered position by a color """
         result = set()
@@ -131,7 +127,7 @@ class Board(object):
         for piece in self.pieces[color]:
             threads.append(
                 Thread(
-                    target=piece.possible_moves, args=(True, queue)
+                    target=piece.optimized_possible_moves, args=(ATTACK, queue)
                 )
             )
             threads[-1].start()
@@ -140,7 +136,7 @@ class Board(object):
         for piece in self.pieces[color]:
             threads.append(
                 Thread(
-                    target=piece.possible_moves, args=(True, queue)
+                    target=piece.optimized_possible_moves, args=(NO_ATTACK, queue)
                 )
             )
             threads[-1].start()
@@ -187,8 +183,8 @@ class Board(object):
         Returns CHECK, if it is check
         Returns CHECKMATE, if it is checkmate
         """
-        if (not self.valid(original_position) or
-                not self.valid(new_position) or
+        if (not self.is_valid_position(original_position) or
+                not self.is_valid_position(new_position) or
                 original_position == new_position):
             return False
         piece = self[original_position]
@@ -292,3 +288,27 @@ class Board(object):
                 killing_moves[move] = None
 
         return killing_moves
+
+    @staticmethod
+    def is_valid_position(position):
+        return 0 <= position[0] < 8 and 0 <= position[1] < 8
+
+    def is_empty_position(self, position):
+        return (
+            self.is_valid_position(position) and
+            self[position] is None
+        )
+
+    def is_friendly_position(self, position, color):
+        return (
+            self.is_valid_position(position) and
+            not self[position] is None and
+            self[position].color == color
+        )
+
+    def is_enemy_position(self, position, color):
+        return (
+            self.is_valid_position(position) and
+            not self[position] is None and
+            not self[position].color == color
+        )
