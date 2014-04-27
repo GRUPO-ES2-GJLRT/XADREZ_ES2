@@ -1,5 +1,6 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 from .piece import Piece
 from consts.moves import NORMAL
@@ -7,14 +8,17 @@ from consts.moves import NORMAL
 
 class LinearExplorationPiece(Piece):
 
-    def explore_position_and_continue(self, position, result):
-        if self.valid_move(position):
-            result[position] = NORMAL
-
-        # stop if invalid position
+    def explore_position(self, position, move, enemy, ally):
         if not self.board.is_valid_position(position):
             return False
 
-        # continue if there is no piece
         piece = self.board[position]
-        return not piece or (piece and piece.ignored)
+        if piece and not piece.ignored:
+            if piece.color == self.color:
+                ally[position] = NORMAL
+            else:
+                enemy[position] = NORMAL
+            return False
+
+        move[position] = NORMAL
+        return True

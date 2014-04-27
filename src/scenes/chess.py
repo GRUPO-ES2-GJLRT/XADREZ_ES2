@@ -7,7 +7,13 @@ from pygame import (
     MOUSEBUTTONUP,
     MOUSEMOTION,
     KEYDOWN,
-    K_ESCAPE
+    KEYUP,
+    K_ESCAPE,
+    K_t,
+    K_DOWN,
+    K_UP,
+    K_LEFT,
+    K_RIGHT,
 )
 
 import sys
@@ -37,6 +43,8 @@ WINS = {
     BLACK: BLACK_WINS,
 }
 
+SCROLL_SPEED = 50
+
 
 class Chess(Scene, ChessInterface):
 
@@ -51,6 +59,10 @@ class Chess(Scene, ChessInterface):
 
         self.level_white = level_white
         self.level_black = level_black
+
+        self.should_draw_tree = False
+        self.view = [0, 0]
+        self.scrolling = None
 
         self.new_game()
 
@@ -121,7 +133,19 @@ class Chess(Scene, ChessInterface):
         self.countdown = max(self.countdown - delta_time, 0)
         self.denied_countdown = max(self.denied_countdown - delta_time, 0)
         self.game.screen.fill((238, 223, 204))
-        self.main_div.draw(self.game.screen)
+        if not self.should_draw_tree:
+            self.main_div.draw(self.game.screen)
+        else:
+            if self.scrolling == K_DOWN:
+                self.view[1] += SCROLL_SPEED
+            if self.scrolling == K_UP:
+                self.view[1] -= SCROLL_SPEED
+            if self.scrolling == K_LEFT:
+                self.view[0] -= SCROLL_SPEED
+            if self.scrolling == K_RIGHT:
+                self.view[0] += SCROLL_SPEED
+            self.tree.draw(self.game.screen,
+                           x=-self.view[0], y=-self.view[1])
 
     def get_square(self, pos):
         x, y = pos[0] - (MARGIN + BORDER), pos[1] - BORDER
@@ -145,6 +169,12 @@ class Chess(Scene, ChessInterface):
         elif event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 self.pause()
+            if event.key == K_t:
+                self.should_draw_tree = not self.should_draw_tree
+            if event.key in [K_DOWN, K_UP, K_LEFT, K_RIGHT]:
+                self.scrolling = event.key
+        if event.type == KEYUP:
+            self.scrolling = None
 
     def select(self, square):
         self.selected = square

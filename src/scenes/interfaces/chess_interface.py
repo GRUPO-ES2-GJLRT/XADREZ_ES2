@@ -14,6 +14,8 @@ from scenes.elements import (
     RectElement,
     SquareElement,
     ButtonGroup,
+    TreeElement,
+    SnapElement,
     Font,
     Image,
 )
@@ -55,70 +57,75 @@ class ChessInterface(Interface):
         self.button_color = (128, 128, 128)
         self.button_hover = (200, 200, 200)
 
+        self.tree = TreeElement(x=10, y=10)
+
         return GameDiv(name="main_div", children=[
-            RectElement(
-                x=MARGIN,
-                color=(0, 0, 0),
-                size_x=lambda: self.board_size + B2,
-                size_y=lambda: self.board_size + B2,
-                children=[
-                    GameDiv(
-                        x=BORDER,
-                        y=BORDER,
-                        children=[
-                            ImageElement(
-                                image=self.board_image
-                            ),
-                            SquareElement(
-                                color=(0, 223, 0),
-                                square_size=lambda: self.square_size,
-                                square=lambda: self.selected
-                            ),
-                            SquareElement(
-                                color=(255, 150, 150),
-                                square_size=lambda: self.square_size,
-                                square=lambda: self.fail
-                            ),
-                            SquareElement(
-                                color=(204, 153, 255),
-                                square_size=lambda: self.square_size,
-                                square=lambda: self.check
-                            ),
-                            PiecesElement(
-                                board=lambda: self.board,
-                                square_size=lambda: self.square_size,
-                                piece_images=lambda: self.piece_images,
-                            ),
-                        ]
-                    ),
-                ],
-            ),
-            GameDiv(
-                x=13,
-                y=lambda: BORDER + self.square_size // 2,
-                children=[
-                    GameTextElement(
-                        y=partial((lambda x: (7 - x) * self.square_size), x=i),
-                        font=_font,
-                        text=str(label_text),
-                        antialias=True,
-                        color=(128, 128, 128),
-                    ) for i, label_text in enumerate(range(1, 9))
-                ]
-            ),
-            GameDiv(
-                x=lambda: MARGIN + BORDER + self.square_size // 2,
-                y=lambda: 17 + self.board_size + BORDER,
-                children=[
-                    GameTextElement(
-                        x=partial((lambda x: x * self.square_size), x=i),
-                        font=_font,
-                        text=str(label_text),
-                        antialias=True,
-                        color=(128, 128, 128),
-                    ) for i, label_text in enumerate(char_range('A', 'H'))
-                ]
-            ),
+            SnapElement(name="snap_board", children=[
+                RectElement(
+                    x=MARGIN,
+                    color=(0, 0, 0),
+                    size_x=lambda: self.board_size + B2,
+                    size_y=lambda: self.board_size + B2,
+                    children=[
+                        GameDiv(
+                            x=BORDER,
+                            y=BORDER,
+                            children=[
+                                ImageElement(
+                                    image=self.board_image
+                                ),
+                                SquareElement(
+                                    color=(0, 223, 0),
+                                    square_size=lambda: self.square_size,
+                                    square=lambda: self.selected
+                                ),
+                                SquareElement(
+                                    color=(255, 150, 150),
+                                    square_size=lambda: self.square_size,
+                                    square=lambda: self.fail
+                                ),
+                                SquareElement(
+                                    color=(204, 153, 255),
+                                    square_size=lambda: self.square_size,
+                                    square=lambda: self.check
+                                ),
+                                PiecesElement(
+                                    board=lambda: self.board,
+                                    square_size=lambda: self.square_size,
+                                    piece_images=lambda: self.piece_images,
+                                ),
+                            ]
+                        ),
+                    ],
+                ),
+                GameDiv(
+                    x=13,
+                    y=lambda: BORDER + self.square_size // 2,
+                    children=[
+                        GameTextElement(
+                            y=partial((lambda x: (7 - x) * self.square_size),
+                                      x=i),
+                            font=_font,
+                            text=str(label_text),
+                            antialias=True,
+                            color=(128, 128, 128),
+                        ) for i, label_text in enumerate(range(1, 9))
+                    ]
+                ),
+                GameDiv(
+                    x=lambda: MARGIN + BORDER + self.square_size // 2,
+                    y=lambda: 17 + self.board_size + BORDER,
+                    children=[
+                        GameTextElement(
+                            x=partial((lambda x: x * self.square_size), x=i),
+                            font=_font,
+                            text=str(label_text),
+                            antialias=True,
+                            color=(128, 128, 128),
+                        ) for i, label_text in enumerate(char_range('A', 'H'))
+                    ]
+                ),
+            ]),
             GameDiv(
                 name="info_div",
                 x=lambda: (self.board_size + (B2 + MRM)

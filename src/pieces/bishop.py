@@ -11,26 +11,28 @@ class Bishop(LinearExplorationPiece):
         return "bishop"
 
     def possible_moves(self, hindered=True, hindered_positions=None):
-        result = {}
+        move = {}
+        enemy = {}
+        ally = {}
         # Top Left
         for i in xrange(1, min(self.x, self.y) + 1):
             position = (self.x - i, self.y - i)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
         # Top Right
         for i in xrange(1, min(8 - self.x, self.y) + 1):
             position = (self.x + i, self.y - i)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
         # Bottom Left
         for i in xrange(1, min(self.x, 8 - self.y) + 1):
             position = (self.x - i, self.y + i)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
         # Bottom Right
         for i in xrange(1, min(8 - self.x, 8 - self.y) + 1):
             position = (self.x + i, self.y + i)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
 
-        return result
+        return move, enemy

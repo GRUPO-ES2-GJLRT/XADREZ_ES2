@@ -19,6 +19,7 @@ class Pawn(Piece):
         """ If hindered == False, it will return the attack moves """
         walk_moves = []
         attack_moves = []
+        passant = None
 
         if self.color == WHITE:
             front = (self.x, self.y + 1)
@@ -44,34 +45,30 @@ class Pawn(Piece):
             if piece and piece.name() == "pawn" and distance == 2:
                 if self.color == WHITE:
                     if piece.x == self.x - 1:
-                        walk_moves.append(
-                            (self.x - 1, self.y + 1, LEFT_EN_PASSANT))
+                        passant = (self.x - 1, self.y + 1, LEFT_EN_PASSANT)
                     if piece.x == self.x + 1:
-                        walk_moves.append(
-                            (self.x + 1, self.y + 1, RIGHT_EN_PASSANT))
+                        passant = (self.x + 1, self.y + 1, RIGHT_EN_PASSANT)
                 else:
                     if piece.x == self.x - 1:
-                        walk_moves.append(
-                            (self.x - 1, self.y - 1, LEFT_EN_PASSANT))
+                        passant = (self.x - 1, self.y - 1, LEFT_EN_PASSANT)
                     if piece.x == self.x + 1:
-                        walk_moves.append(
-                            (self.x + 1, self.y - 1, RIGHT_EN_PASSANT))
+                        passant = (self.x + 1, self.y - 1, RIGHT_EN_PASSANT)
 
-        result = {
+        enemy = {
             (position[0], position[1]): self.modifier(position)
             for position in attack_moves
             if self.valid_attack_move(position, hindered)
         }
-        if hindered:
-            result = dict(
-                result,
-                **({
-                    (position[0], position[1]): self.modifier(position)
-                    for position in walk_moves
-                    if self.valid_walk_move(position)
-                })
-            )
-        return result
+        if passant and hindered:
+            enemy[(passant[0], passant[1])] = self.modifier(passant)
+
+        moves = {
+            (position[0], position[1]): self.modifier(position)
+            for position in walk_moves
+            if self.valid_walk_move(position)
+        }
+
+        return moves, enemy
 
     def modifier(self, position):
         if ((self.color == WHITE and position[1] == 7) or

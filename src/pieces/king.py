@@ -55,13 +55,25 @@ class King(Piece):
                     not self.board[(self.x - 3, self.y)]):
                 moves.append((self.x - 2, self.y, QUEENSIDE_CASTLING))
 
-        return {
-            (position[0], position[1]): (position[2]
-                                         if len(position) == 3 else NORMAL)
-            for position in moves if self.valid_move(position) and
-            not self.is_hindered(position=position,
-                                 hindered=hindered_positions)
-        }
+        move = {}
+        enemy = {}
+        for position in moves:
+            if not self.board.is_valid_position(position):
+                continue
+            if self.is_hindered(position=position,
+                                hindered=hindered_positions):
+                continue
+            piece = self.board[position]
+            temp = move
+            if piece and not piece.ignored:
+                if piece.color == self.color:
+                    continue
+                else:
+                    temp = enemy
+
+            temp[(position[0], position[1])] = (
+                position[2] if len(position) == 3 else NORMAL)
+        return move, enemy
 
     def starting_position(self):
         """ True if king hasn't moved and is in the starting position """

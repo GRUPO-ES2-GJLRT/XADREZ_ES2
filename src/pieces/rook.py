@@ -11,26 +11,28 @@ class Rook(LinearExplorationPiece):
         return "rook"
 
     def possible_moves(self, hindered=True, hindered_positions=None):
-        result = {}
+        move = {}
+        enemy = {}
+        ally = {}
         # Bottom
         for y in xrange(self.y + 1, 8):
             position = (self.x, y)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
         # Top
         for y in xrange(self.y - 1, -1, -1):
             position = (self.x, y)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
         # Left
         for x in xrange(self.x + 1, 8):
             position = (x, self.y)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
         # Right
         for x in xrange(self.x - 1, -1, -1):
             position = (x, self.y)
-            if not self.explore_position_and_continue(position, result):
+            if not self.explore_position(position, move, enemy, ally):
                 break
 
-        return result
+        return move, enemy

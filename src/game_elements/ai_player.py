@@ -8,7 +8,7 @@ import threading
 from collections import Counter
 from time import sleep
 from consts.moves import (
-    CHECKMATE, STALEMATE, ALL
+    CHECKMATE, STALEMATE
 )
 from consts.colors import WHITE, BLACK
 from .player import Player, END
@@ -83,7 +83,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(1))
+            self.do_move(self.minmax_move(3))
 
         elif self.level == HARD:
             raise Exception
@@ -97,38 +97,48 @@ class AIPlayer(Player):
     def minmax_move(self, depth):
         a = float('-inf')
         b = float('inf')
+
+        self.chess.snap_board.snap()
         node = Node(self.board)
+        node._value = self.evaluate_state(node)
+        #self.chess.tree.node = node
         max_move = None
         for child in node.children():
             value = self.minmax_alpha_beta_prunning(
                 child, depth - 1, a, b, False)
-            print(value)
             if a < value:
                 a = value
                 max_move = child.move
+        node._value = a
+        self.chess.snap_board.dynamic()
         return max_move
 
     def minmax_alpha_beta_prunning(self, node, depth, a, b, maximizing_player):
         if depth == 0 or node.is_terminal():
-            return self.evaluate_state(node)
+            node.value = self.evaluate_state(node)
+            return node.value
 
         if maximizing_player:
             for child in node.children():
                 a = max(
                     a,
-                    self.minmax_alpha_beta_prunning(child, depth-1, a, b, False)
+                    self.minmax_alpha_beta_prunning(child,
+                                                    depth - 1, a, b, False)
                 )
                 if b <= a:
                     break
+            node.value = a
             return a
         else:
             for child in node.children():
                 b = min(
                     b,
-                    self.minmax_alpha_beta_prunning(child, depth-1, a, b, True)
+                    self.minmax_alpha_beta_prunning(child,
+                                                    depth - 1, a, b, True)
                 )
                 if b <= a:
                     break
+            node.value = b
             return b
 
     @staticmethod
@@ -163,10 +173,30 @@ class Node(object):
         self.board = board
         self.move = move
         self.moves = self.board.possible_moves(board.current_color)
+        self._value = 0.0
+        self.color = self.board.current_color
+        self.childs = []
+        self.done = False
+
+    @property
+    def value(self):
+        """ Return the piece position x, y """
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        """ sets x, y """
+        self._value = value
+        self.done = True
+        del self.moves
+        del self.board
 
     def is_terminal(self):
         return ((not self.moves) or
                 self.board.status(self.moves) in [CHECKMATE, STALEMATE])
 
     def children(self):
-        return (Node(board, move=move) for move, board in self.moves.items())
+        for move, board in self.moves.items():
+            new_node = Node(board, move=move)
+            self.childs.append(new_node)
+            yield new_node

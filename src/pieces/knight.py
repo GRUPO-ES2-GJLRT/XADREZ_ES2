@@ -41,11 +41,20 @@ class Knight(Piece):
         ]
 
     def possible_moves(self, hindered=True, hindered_positions=None):
-        return {
-            position: NORMAL
-            for position in self.get_positions()
-            if self.valid_move(position)
-        }
+        move = {}
+        enemy = {}
+        for position in self.get_positions():
+            if not self.board.is_valid_position(position):
+                continue
+            temp = move
+            piece = self.board[position]
+            if piece and not piece.ignored:
+                if piece.color == self.color:
+                    continue
+                else:
+                    temp = enemy
+            temp[position] = NORMAL
+        return move, enemy
 
     def optimized_possible_moves(self, move_type, queue):
         if move_type == ALL:

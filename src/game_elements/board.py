@@ -4,6 +4,7 @@ from __future__ import (absolute_import, division,
 
 from threading import Thread
 from Queue import Queue
+from collections import deque, OrderedDict
 
 from consts.colors import WHITE, BLACK, next
 from consts.moves import (
@@ -115,7 +116,10 @@ class Board(object):
         """ Returns the hindered position by a color """
         result = set()
         for piece in self.pieces[color]:
-            result = result.union(piece.possible_moves(hindered=False))
+            moves = piece.possible_moves(hindered=False)
+            result = result.union(moves[1])
+            if piece.name() != "pawn":
+                result = result.union(moves[0])
         return result
 
     def optimized_possible_moves(self, color, move_type=ALL):
@@ -152,9 +156,14 @@ class Board(object):
 
     def possible_moves(self, color):
         """ Returns the possible moves positions by a color """
-        result = {}
+        result = OrderedDict()
+        deq = deque()
         for piece in self.pieces[color]:
-            moves = piece.possible_moves()
+            moves, attacks = piece.possible_moves()
+            deq.appendleft((piece, attacks))
+            deq.append((piece, moves))
+        while deq:
+            piece, moves = deq.popleft()
             for move in moves:
                 nboard = self.clone()
                 nboard.current_color = color
@@ -189,7 +198,8 @@ class Board(object):
         piece = self[original_position]
         if not piece or piece.color != self.current_color:
             return False
-        possible_moves = piece.possible_moves()
+        possible_moves, pattacks = piece.possible_moves()
+        possible_moves.update(pattacks)
         if not new_position in possible_moves:
             return False
 
