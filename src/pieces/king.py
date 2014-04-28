@@ -69,6 +69,9 @@ class King(Piece):
             if piece and not piece.ignored:
                 if piece.color == self.color:
                     continue
+                elif self.board.hindered_position(
+                        (position[0], position[1]), piece.color)[0]:
+                    continue
                 else:
                     temp = enemy
 

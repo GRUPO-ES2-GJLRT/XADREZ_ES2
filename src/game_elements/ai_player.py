@@ -29,6 +29,7 @@ class AIPlayer(Player):
         self.level = level
         self.board = chess.board
         self.chosen_move = None
+        self.skip_validation = True
 
     def start_turn(self):
         if not self.chess.game.running:
@@ -200,7 +201,7 @@ class Node(object):
         for move in self.moves:
             nboard = self.board.clone()
             nboard.current_color = self.board.current_color
-            if nboard.move(*move):
+            if nboard.move(*move, skip_validation=True):
                 new_node = Node(nboard, move=move)
                 #self.childs.append(new_node)
                 yield new_node

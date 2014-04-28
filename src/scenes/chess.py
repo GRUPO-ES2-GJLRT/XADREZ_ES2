@@ -179,11 +179,11 @@ class Chess(Scene, ChessInterface):
     def select(self, square):
         self.selected = square
 
-    def play(self, square):
+    def play(self, square, skip_validation=False):
         self.fail = None
         self.check = None
 
-        movement = self.board.move(self.selected, square)
+        movement = self.board.move(self.selected, square, skip_validation)
         if movement:
             self.change_turn()
             self.verify_status(self.board.status())

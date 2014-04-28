@@ -182,12 +182,10 @@ class Board(object):
     def current_king(self):
         return self.kings[self.current_color]
 
-    def move(self, original_position, new_position):
+    def move(self, original_position, new_position, skip_validation=False):
         """ Move a piece from original_position to new_position
         Returns False if the movement ins't valid
         Returns True, if it is valid
-        Returns CHECK, if it is check
-        Returns CHECKMATE, if it is checkmate
         """
         if (not self.is_valid_position(original_position) or
                 not self.is_valid_position(new_position) or
@@ -206,12 +204,13 @@ class Board(object):
         move_type = possible_moves[new_position]
 
         if move_type not in [QUEENSIDE_CASTLING, KINGSIDE_CASTLING]:
-            invalid_check = self.in_check()
-            if invalid_check:
-                self.physically_move(piece, original_position)
-                self.add(old_piece)
-                piece.has_moved = False
-                return False
+            if not skip_validation:
+                invalid_check = self.in_check()
+                if invalid_check:
+                    self.physically_move(piece, original_position)
+                    self.add(old_piece)
+                    piece.has_moved = False
+                    return False
 
         if move_type == QUEENSIDE_CASTLING:
             rook = self[(0, original_position[1])]
