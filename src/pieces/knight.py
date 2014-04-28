@@ -40,7 +40,7 @@ class Knight(Piece):
             if self.board.is_valid_position(position) and not self.board.is_friendly_position(position, self.color)
         ]
 
-    def possible_moves(self, hindered=True, hindered_positions=None):
+    def possible_moves(self):
         move = {}
         enemy = {}
         _, allowed = self.get_allowed()

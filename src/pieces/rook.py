@@ -10,7 +10,7 @@ class Rook(LinearExplorationPiece):
     def name(self):
         return "rook"
 
-    def possible_moves(self, hindered=True, hindered_positions=None):
+    def possible_moves(self):
         move = {}
         enemy = {}
         ally = {}

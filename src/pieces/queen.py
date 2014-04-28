@@ -11,7 +11,7 @@ class Queen(Bishop, Rook):
     def name(self):
         return "queen"
 
-    def possible_moves(self, hindered=True, hindered_positions=None):
+    def possible_moves(self):
         bishop = Bishop.possible_moves(self)
         bishop = bishop[0].copy(), bishop[1].copy()
         rook = Rook.possible_moves(self)

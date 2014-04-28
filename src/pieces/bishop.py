@@ -10,7 +10,7 @@ class Bishop(LinearExplorationPiece):
     def name(self):
         return "bishop"
 
-    def possible_moves(self, hindered=True, hindered_positions=None):
+    def possible_moves(self):
         move = {}
         enemy = {}
         ally = {}

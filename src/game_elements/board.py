@@ -116,10 +116,7 @@ class Board(object):
         """ Returns the hindered position by a color """
         result = set()
         for piece in self.pieces[color]:
-            moves = piece.possible_moves(hindered=False)
-            result = result.union(moves[1])
-            if piece.name() != "pawn":
-                result = result.union(moves[0])
+            result = result.union(piece.attack_moves())
         return result
 
     def optimized_possible_moves(self, color, move_type=ALL):
@@ -244,7 +241,7 @@ class Board(object):
 
         return True
 
-    def in_check(self, hindered=None, color=None):
+    def in_check(self, color=None):
         if not color:
             color = self.current_color
         king = self.kings[color]
@@ -253,28 +250,24 @@ class Board(object):
             return in_check
         return False
 
-    def in_checkmate(self, hindered=None, possible_moves=None):
+    def in_checkmate(self, possible_moves=None):
         if possible_moves is None:
             possible_moves = self.possible_moves(self.current_color)
         return self.in_check() and not possible_moves
 
-    def stalemate(self, hindered=None, possible_moves=None):
+    def stalemate(self, possible_moves=None):
         if possible_moves is None:
             possible_moves = self.possible_moves(self.current_color)
         return not self.in_check() and not possible_moves
 
     def status(self, possible_moves=None):
-        king = self.current_king()
-        king.ignored = True
-        hindered = self.hindered(next(self.current_color))
-        king.ignored = False
         if not possible_moves:
             possible_moves = self.possible_moves(self.current_color)
-        if self.in_checkmate(hindered=hindered, possible_moves=possible_moves):
+        if self.in_checkmate(possible_moves=possible_moves):
             return CHECKMATE
-        if self.in_check(hindered=hindered):
+        if self.in_check():
             return CHECK
-        if self.stalemate(hindered=hindered, possible_moves=possible_moves):
+        if self.stalemate(possible_moves=possible_moves):
             return STALEMATE
         if self.moves[WHITE] >= 50 or self.moves[BLACK] >= 50:
             return FIFTY_MOVE

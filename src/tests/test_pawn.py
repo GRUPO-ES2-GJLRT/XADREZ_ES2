@@ -165,25 +165,23 @@ class TestPawnEnPassant(unittest.TestCase):
         self.assertEqual(pawn.possible_moves(), (possible_moves, attack))
 
 
-class TestPawnHinderedFalse(unittest.TestCase):
+class TestPawnAttackMoves(unittest.TestCase):
 
     def test_black_pawn_at_4_3_if_hindered_false_shows_attack_position_even_if_there_is_no_enemy(self):
         board = Board(new_game=False)
         pawn = Pawn(board, BLACK, 4, 3)
-        possible_moves = to_move_dict([(4, 2)])
         attack = to_move_dict([(3, 2), (5, 2)])
 
-        self.assertEqual(pawn.possible_moves(hindered=False), (possible_moves, attack))
+        self.assertEqual(pawn.attack_moves(), attack)
 
     def test_black_pawn_at_4_3_ignores_en_passant_if_hindered_false_with_enemy_at_5_3(self):
         board = Board(new_game=False)
         pawn = Pawn(board, BLACK, 4, 3)
         Pawn(board, WHITE, 5, 3)
         board.last_move = (WHITE, (5, 1), (5, 3))
-        possible_moves = to_move_dict([(4, 2)])
         attack = to_move_dict([(3, 2), (5, 2)])
 
-        self.assertEqual(pawn.possible_moves(hindered=False), (possible_moves, attack))
+        self.assertEqual(pawn.attack_moves(), attack)
 
 
 class TestPawnPromotion(unittest.TestCase):
@@ -254,6 +252,6 @@ class TestPawnProtectsKing(unittest.TestCase):
         self.assertEqual(pawn.possible_moves(), (possible_moves, attack))
 
 
-class TestPawn(TestPawnMove, TestPawnEnPassant, TestPawnHinderedFalse,
+class TestPawn(TestPawnMove, TestPawnEnPassant, TestPawnAttackMoves,
                TestPawnPromotion, TestPawnProtectsKing):
     pass
