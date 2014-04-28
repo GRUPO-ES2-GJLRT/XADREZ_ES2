@@ -20,7 +20,7 @@ class Pawn(Piece):
         walk_moves = []
         attack_moves = []
         passant = None
-
+        _, allowed = self.get_allowed()
         if self.color == WHITE:
             front = (self.x, self.y + 1)
             walk_moves.append(front)
@@ -57,7 +57,8 @@ class Pawn(Piece):
         enemy = {
             (position[0], position[1]): self.modifier(position)
             for position in attack_moves
-            if self.valid_attack_move(position, hindered)
+            if (self.valid_attack_move(position, hindered) and
+                (position[0], position[1]) in allowed)
         }
         if passant and hindered:
             enemy[(passant[0], passant[1])] = self.modifier(passant)
@@ -65,7 +66,8 @@ class Pawn(Piece):
         moves = {
             (position[0], position[1]): self.modifier(position)
             for position in walk_moves
-            if self.valid_walk_move(position)
+            if (self.valid_walk_move(position) and
+                (position[0], position[1]) in allowed)
         }
 
         return moves, enemy

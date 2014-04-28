@@ -196,7 +196,10 @@ class Node(object):
                 self.board.status(self.moves) in [CHECKMATE, STALEMATE])
 
     def children(self):
-        for move, board in self.moves.items():
-            new_node = Node(board, move=move)
-            #self.childs.append(new_node)
-            yield new_node
+        for move in self.moves:
+            nboard = self.board.clone()
+            nboard.current_color = self.board.current_color
+            if nboard.move(*move):
+                new_node = Node(nboard, move=move)
+                #self.childs.append(new_node)
+                yield new_node

@@ -43,8 +43,11 @@ class Knight(Piece):
     def possible_moves(self, hindered=True, hindered_positions=None):
         move = {}
         enemy = {}
+        _, allowed = self.get_allowed()
         for position in self.get_positions():
             if not self.board.is_valid_position(position):
+                continue
+            if not position in allowed:
                 continue
             temp = move
             piece = self.board[position]

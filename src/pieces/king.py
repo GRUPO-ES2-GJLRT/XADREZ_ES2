@@ -20,24 +20,21 @@ class King(Piece):
             (self.x - 1, self.y), (self.x + 1, self.y),
         ]
 
-        if not hindered_positions:
-            hindered_positions = (self.board.hindered(next(self.color))
-                                  if hindered else set())
+        in_check, allowed = self.get_allowed()
 
         # Castling
         # Just valid for hindered = True
         # Neither King nor Rook hasn't moved
         # King's position shouldn't be hindered
-        if (hindered and self.starting_position() and not
-                self.is_hindered(hindered=hindered_positions)):
+        if (hindered and self.starting_position() and not in_check):
             kingside = self.board[(self.x + 3, self.y)]
             # King's new position shouldn't be hindered
             # Position between initial and final position shouldn't be hindered
             # and shouldn't have any pieces
             if (kingside and kingside.name() == "rook" and
                     not kingside.has_moved and
-                    not self.is_hindered(position=(self.x + 1, self.y),
-                                         hindered=hindered_positions) and
+                    not self.board.hindered_position((self.x + 1, self.y),
+                                                     next(self.color))[0] and
                     not self.board[(self.x + 1, self.y)] and
                     not self.board[(self.x + 2, self.y)]):
                 moves.append((self.x + 2, self.y, KINGSIDE_CASTLING))
@@ -48,8 +45,8 @@ class King(Piece):
             # and shouldn't have any pieces between the king and the rook
             if (queenside and queenside.name() == "rook" and
                     not queenside.has_moved and
-                    not self.is_hindered(position=(self.x - 1, self.y),
-                                         hindered=hindered_positions) and
+                    not self.board.hindered_position((self.x - 1, self.y),
+                                                     next(self.color))[0] and
                     not self.board[(self.x - 1, self.y)] and
                     not self.board[(self.x - 2, self.y)] and
                     not self.board[(self.x - 3, self.y)]):
@@ -57,11 +54,11 @@ class King(Piece):
 
         move = {}
         enemy = {}
+        self.ignored = True
         for position in moves:
             if not self.board.is_valid_position(position):
                 continue
-            if self.is_hindered(position=position,
-                                hindered=hindered_positions):
+            if self.board.hindered_position(position, next(self.color))[0]:
                 continue
             piece = self.board[position]
             temp = move
@@ -73,6 +70,7 @@ class King(Piece):
 
             temp[(position[0], position[1])] = (
                 position[2] if len(position) == 3 else NORMAL)
+        self.ignored = False
         return move, enemy
 
     def starting_position(self):

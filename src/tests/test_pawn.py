@@ -11,6 +11,8 @@ from consts.moves import (
 )
 from game_elements.board import Board
 from pieces.pawn import Pawn
+from pieces.queen import Queen
+from pieces.king import King
 
 
 class TestPawnMove(unittest.TestCase):
@@ -221,6 +223,37 @@ class TestPawnPromotion(unittest.TestCase):
         self.assertEqual(pawn.possible_moves(), (possible_moves, attack))
 
 
+class TestPawnProtectsKing(unittest.TestCase):
+
+    def test_pawn_can_move_if_it_doesnt_protect_the_king(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 3, 1)
+        pawn = Pawn(board, WHITE, 4, 4)
+        possible_moves = to_move_dict([(4, 5)])
+        attack = {}
+
+        self.assertEqual(pawn.possible_moves(), (possible_moves, attack))
+
+    def test_pawn_can_move_to_protect_the_king(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 4, 2)
+        pawn = Pawn(board, WHITE, 3, 1)
+        Queen(board, BLACK, 2, 2)
+        possible_moves = to_move_dict([(3, 2)])
+        attack = to_move_dict([(2, 2)])
+
+        self.assertEqual(pawn.possible_moves(), (possible_moves, attack))
+
+    def test_pawn_cannot_move_if_it_is_protecting_the_king(self):
+        board = Board(new_game=False)
+        King(board, WHITE, 4, 1)
+        Queen(board, BLACK, 0, 1)
+        pawn = Pawn(board, WHITE, 3, 1)
+        possible_moves = {}
+        attack = {}
+        self.assertEqual(pawn.possible_moves(), (possible_moves, attack))
+
+
 class TestPawn(TestPawnMove, TestPawnEnPassant, TestPawnHinderedFalse,
-               TestPawnPromotion):
+               TestPawnPromotion, TestPawnProtectsKing):
     pass

@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division,
 
 from threading import Thread
 from Queue import Queue
-from collections import deque, OrderedDict
+from collections import deque
 
 from consts.colors import WHITE, BLACK, next
 from consts.moves import (
@@ -156,7 +156,7 @@ class Board(object):
 
     def possible_moves(self, color):
         """ Returns the possible moves positions by a color """
-        result = OrderedDict()
+        result = []
         deq = deque()
         for piece in self.pieces[color]:
             moves, attacks = piece.possible_moves()
@@ -165,10 +165,11 @@ class Board(object):
         while deq:
             piece, moves = deq.popleft()
             for move in moves:
-                nboard = self.clone()
-                nboard.current_color = color
-                if nboard.move(piece.position, move):
-                    result[(piece.position, move)] = nboard
+                #nboard = self.clone()
+                #nboard.current_color = color
+                #if nboard.move(piece.position, move):
+                #    result[(piece.position, move)] = nboard
+                result.append((piece.position, move))
         return result
 
     def physically_move(self, piece, new_position):
@@ -248,24 +249,19 @@ class Board(object):
             color = self.current_color
         king = self.kings[color]
         if king:
-            return king.is_hindered(hindered=hindered)
+            in_check, _ = king.get_allowed()
+            return in_check
         return False
 
     def in_checkmate(self, hindered=None, possible_moves=None):
         if possible_moves is None:
             possible_moves = self.possible_moves(self.current_color)
-        if self.in_check(hindered=hindered):
-            for move, board in possible_moves.items():
-                if not board.in_check(color=self.current_color):
-                    return False
-            return True
-        return False
+        return self.in_check() and not possible_moves
 
     def stalemate(self, hindered=None, possible_moves=None):
         if possible_moves is None:
             possible_moves = self.possible_moves(self.current_color)
-        return (not self.in_check(hindered=hindered) and
-                len(possible_moves) == 0)
+        return not self.in_check() and not possible_moves
 
     def status(self, possible_moves=None):
         king = self.current_king()
@@ -411,6 +407,14 @@ class Board(object):
                 (pos[0] - 1, pos[1] - 1), (pos[0] + 1, pos[1] - 1)
             ]
         iterate_positions(pawn_positions, Pawn)
+
+        # King
+        iterate_positions([
+            (pos[0] - 1, pos[1] - 1), (pos[0] - 1, pos[1] + 1),
+            (pos[0] + 1, pos[1] - 1), (pos[0] + 1, pos[1] + 1),
+            (pos[0], pos[1] - 1), (pos[0], pos[1] + 1),
+            (pos[0] - 1, pos[1]), (pos[0] + 1, pos[1]),
+        ], King)
 
         if positions.count:
             positions.all = False

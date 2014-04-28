@@ -66,6 +66,19 @@ class TestKingMove(unittest.TestCase):
 
         self.assertEqual(king.possible_moves(), (possible_moves, attack))
 
+    def test_knight_at_0_1_and_enemy_rook_at_0_7_cannot_move_to_0_0(self):
+        board = Board(new_game=False)
+        king = King(board, WHITE, 0, 1)
+        Rook(board, BLACK, 0, 7)
+        possible_moves = to_move_dict([
+            (1, 2),
+            (1, 1),
+            (1, 0),
+        ])
+        attack = {}
+
+        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+
 
 class TestKingCastling(unittest.TestCase):
     def test_kingside_white_castling(self):
