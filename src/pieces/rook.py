@@ -7,6 +7,7 @@ from .linear_exploration_piece import LinearExplorationPiece
 
 class Rook(LinearExplorationPiece):
 
+    @property
     def name(self):
         return "rook"
 

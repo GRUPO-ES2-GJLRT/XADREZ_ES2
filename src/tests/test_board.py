@@ -1,17 +1,21 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
+
 
 import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import CHECK, CHECKMATE, STALEMATE, NORMAL, FIFTY_MOVE
 from game_elements import Board
-from pieces.knight import Knight
-from pieces.king import King
-from pieces.bishop import Bishop
-from pieces.queen import Queen
-from pieces.rook import Rook
-from pieces.pawn import Pawn
+
+
+BP, WP = "black pawn", "white pawn"
+BR, WR = "black rook", "white rook"
+BN, WN = "black knight", "white knight"
+BB, WB = "black bishop", "white bishop"
+BQ, WQ = "black queen", "white queen"
+BK, WK = "black king", "white king"
 
 
 class TestBoardValid(unittest.TestCase):
@@ -37,20 +41,20 @@ class TestBoardValid(unittest.TestCase):
         self.assertFalse(board.is_valid_position((4, 8)))
 
 
-class TestBoardGetItem(unittest.TestCase):
+class TestBoardAt(unittest.TestCase):
 
     def test_get_from_valid_position_without_piece_returns_none(self):
         board = Board(new_game=False)
-        self.assertEqual(board[(4, 4)], None)
+        self.assertEqual(board.at((4, 4)), None)
 
     def test_get_from_valid_position_with_piece_returns_piece(self):
         board = Board(new_game=False)
-        knight = Knight(board, WHITE, 4, 4)
-        self.assertEqual(board[(4, 4)], knight)
+        board.load_fen("8/8/8/4N3/8/8/8/8 w kQkq - 0 1")
+        self.assertEqual(board.at((4, 4)), WN)
 
     def test_get_from_invalid_position_returns_none(self):
         board = Board(new_game=False)
-        self.assertEqual(board[(-4, 4)], None)
+        self.assertEqual(board.at((-4, 4)), None)
 
 
 class TestBoardNewGame(unittest.TestCase):
@@ -59,89 +63,47 @@ class TestBoardNewGame(unittest.TestCase):
         board = Board(new_game=False)
         for x in xrange(8):
             for y in xrange(8):
-                self.assertEqual(board[(x, y)], None)
-
+                self.assertEqual(board.at((x, y)), None)
 
     def test_create_board_new_game_true(self):
         board = Board(new_game=True)
         # Pawn
         for x in xrange(8):
-            black_pawn = board[(x, 6)]
-            white_pawn = board[(x, 1)]
-            self.assertEqual(black_pawn.color, BLACK)
-            self.assertEqual(white_pawn.color, WHITE)
-            self.assertEqual(black_pawn.__class__, Pawn)
-            self.assertEqual(white_pawn.__class__, Pawn)
+            self.assertEqual(board.at((x, 6)), BP)
+            self.assertEqual(board.at((x, 1)), WP)
+
         # Rook
-        white_rooks = [board[(0, 0)], board[(7, 0)]]
-        for rook in white_rooks:
-            self.assertEqual(rook.color, WHITE)
-            self.assertEqual(rook.__class__, Rook)
-        black_rooks = [board[(0, 7)], board[(7, 7)]]
-        for rook in black_rooks:
-            self.assertEqual(rook.color, BLACK)
-            self.assertEqual(rook.__class__, Rook)
+        self.assertEqual(board.at((0, 0)), WR)
+        self.assertEqual(board.at((7, 0)), WR)
+        self.assertEqual(board.at((0, 7)), BR)
+        self.assertEqual(board.at((7, 7)), BR)
+
         # Knight
-        white_knights = [board[(1, 0)], board[(6, 0)]]
-        for knight in white_knights:
-            self.assertEqual(knight.color, WHITE)
-            self.assertEqual(knight.__class__, Knight)
-        black_knights = [board[(1, 7)], board[(6, 7)]]
-        for knight in black_knights:
-            self.assertEqual(knight.color, BLACK)
-            self.assertEqual(knight.__class__, Knight)
+        self.assertEqual(board.at((1, 0)), WN)
+        self.assertEqual(board.at((6, 0)), WN)
+        self.assertEqual(board.at((1, 7)), BN)
+        self.assertEqual(board.at((6, 7)), BN)
+
         # Bishop
-        white_bishops = [board[(2, 0)], board[(5, 0)]]
-        for bishop in white_bishops:
-            self.assertEqual(bishop.color, WHITE)
-            self.assertEqual(bishop.__class__, Bishop)
-        black_bishops = [board[(2, 7)], board[(5, 7)]]
-        for bishop in black_bishops:
-            self.assertEqual(bishop.color, BLACK)
-            self.assertEqual(bishop.__class__, Bishop)
+        self.assertEqual(board.at((2, 0)), WB)
+        self.assertEqual(board.at((5, 0)), WB)
+        self.assertEqual(board.at((2, 7)), BB)
+        self.assertEqual(board.at((5, 7)), BB)
+
         # Queen
-        white_queen = board[(3, 0)]
-        self.assertEqual(white_queen.color, WHITE)
-        self.assertEqual(white_queen.__class__, Queen)
-        black_queen = board[(3, 7)]
-        self.assertEqual(black_queen.color, BLACK)
-        self.assertEqual(black_queen.__class__, Queen)
+        self.assertEqual(board.at((3, 0)), WQ)
+        self.assertEqual(board.at((3, 7)), BQ)
+
         # King
-        white_king = board[(4, 0)]
-        self.assertEqual(white_king.color, WHITE)
-        self.assertEqual(white_king.__class__, King)
-        black_king = board[(4, 7)]
-        self.assertEqual(black_king.color, BLACK)
-        self.assertEqual(black_king.__class__, King)
-
-
-class TestBoardRemove(unittest.TestCase):
-
-    def test_remove_white_piece_at_4_4(self):
-        board = Board(new_game=False)
-        knight = Knight(board, WHITE, 4, 4)
-        self.assertEqual(board[(4, 4)], knight)
-        self.assertEqual(board.pieces[WHITE], [knight])
-        board.remove((4, 4))
-        self.assertEqual(board[(4, 4)], None)
-        self.assertEqual(board.pieces[WHITE], [])
-
-    def test_remove_black_piece_at_0_6(self):
-        board = Board(new_game=True)
-        self.assertEqual(board[(0, 6)].name(), "pawn")
-        self.assertEqual(len(board.pieces[WHITE]), 16)
-        self.assertEqual(len(board.pieces[BLACK]), 16)
-        board.remove((0, 6))
-        self.assertEqual(board[(0, 6)], None)
-        self.assertEqual(len(board.pieces[WHITE]), 16)
-        self.assertEqual(len(board.pieces[BLACK]), 15)
+        self.assertEqual(board.at((4, 0)), WK)
+        self.assertEqual(board.at((4, 7)), BK)
 
 
 class TestBoardHindered(unittest.TestCase):
 
     def test_hindered_in_a_board_with_just_a_knight(self):
         board = Board(new_game=False)
-        Knight(board, WHITE, 4, 4)
+        board.load_fen("8/8/8/4N3/8/8/8/8 w kQkq - 0 1")
         expected_hindered_white = set([
             (3, 2), (5, 2), (6, 3), (6, 5), (5, 6), (3, 6), (2, 5), (2, 3)
         ])
@@ -165,7 +127,7 @@ class TestBoardMoves(unittest.TestCase):
 
     def test_moves_in_a_board_with_just_a_knight(self):
         board = Board(new_game=False)
-        Knight(board, WHITE, 4, 4)
+        board.load_fen("8/8/8/4N3/8/8/8/8 w kQkq - 0 1")
         expected_moves_white = set([
             ((4, 4), (3, 2)),
             ((4, 4), (5, 2)),
@@ -177,8 +139,10 @@ class TestBoardMoves(unittest.TestCase):
             ((4, 4), (2, 3)),
         ])
         expected_moves_black = set()
-        self.assertEqual(set(board.possible_moves(WHITE)), expected_moves_white)
-        self.assertEqual(set(board.possible_moves(BLACK)), expected_moves_black)
+        self.assertEqual(set(board.possible_moves(WHITE)),
+                         expected_moves_white)
+        self.assertEqual(set(board.possible_moves(BLACK)),
+                         expected_moves_black)
 
     def test_moves_in_a_new_game(self):
         board = Board(new_game=True)
@@ -206,14 +170,14 @@ class TestBoardMoves(unittest.TestCase):
             ((1, 7), (0, 5)), ((1, 7), (2, 5)),
             ((6, 7), (5, 5)), ((6, 7), (7, 5)),
         ])
-        self.assertEqual(set(board.possible_moves(WHITE)), expected_moves_white)
-        self.assertEqual(set(board.possible_moves(BLACK)), expected_moves_black)
+        self.assertEqual(set(board.possible_moves(WHITE)),
+                         expected_moves_white)
+        self.assertEqual(set(board.possible_moves(BLACK)),
+                         expected_moves_black)
 
     def test_moves_that_allows_check_are_not_allowed(self):
         board = Board(new_game=False)
-        King(board, WHITE, 4, 0)
-        Pawn(board, WHITE, 5, 1)
-        Bishop(board, BLACK, 7, 3)
+        board.load_fen("8/8/8/8/7b/8/5P2/4K3 w kQkq - 0 1")
         expected_moves_white = set([
             ((4, 0), (3, 0)),
             ((4, 0), (3, 1)),
@@ -221,138 +185,45 @@ class TestBoardMoves(unittest.TestCase):
             ((4, 0), (4, 1)),
 
         ])
-        self.assertEqual(set(board.possible_moves(WHITE)), expected_moves_white)
+        self.assertEqual(set(board.possible_moves(WHITE)),
+                         expected_moves_white)
 
     def test_moves_that_keeps_check_are_not_allowed(self):
         board = Board(new_game=False)
-        King(board, WHITE, 4, 0)
-        Pawn(board, WHITE, 4, 1)
-        Rook(board, BLACK, 0, 0)
+        board.load_fen("8/8/8/8/8/8/4P3/r3K3 w kQkq - 0 1")
         expected_moves_white = set([
             ((4, 0), (3, 1)),
             ((4, 0), (5, 1)),
         ])
-        self.assertEqual(set(board.possible_moves(WHITE)), expected_moves_white)
-
-
-class TestBoardInCheck(unittest.TestCase):
-
-    def test_king_is_in_check_if_it_is_hindered(self):
-        board = Board(new_game=False)
-        Rook(board, WHITE, 4, 4)
-        King(board, BLACK, 4, 7)
-        board.current_color = BLACK
-        self.assertEqual(board.in_check(), True)
-
-    def test_king_is_not_in_check_if_it_is_not_hindered(self):
-        board = Board(new_game=False)
-        Rook(board, WHITE, 5, 4)
-        King(board, BLACK, 4, 7)
-        board.current_color = BLACK
-        self.assertEqual(board.in_check(), False)
-
-
-class TestBoardInCheckmate(unittest.TestCase):
-
-    def test_king_is_in_checkmate(self):
-        board = Board(new_game=False)
-        Rook(board, WHITE, 4, 4)
-        Rook(board, WHITE, 3, 4)
-        Rook(board, WHITE, 5, 4)
-        king = King(board, BLACK, 4, 7)
-        king.ignored = True
-        board.current_color = BLACK
-        self.assertEqual(board.in_checkmate(), True)
-
-    def test_king_is_in_checkmate2(self):
-        board = Board(new_game=False)
-        Rook(board, WHITE, 4, 4)
-        Rook(board, WHITE, 3, 4)
-        Rook(board, WHITE, 5, 4)
-        king = King(board, BLACK, 4, 6)
-        king.ignored = True
-        board.current_color = BLACK
-        self.assertEqual(board.in_checkmate(), True)
-
-    def test_king_is_not_in_checkmate(self):
-        board = Board(new_game=False)
-        Rook(board, WHITE, 4, 6)
-        Rook(board, WHITE, 0, 7)
-        king = King(board, BLACK, 4, 7)
-        king.ignored = True
-        board.current_color = BLACK
-        self.assertEqual(board.in_checkmate(), False)
-
-    def test_king_is_not_in_checkmate2(self):
-        board = Board(new_game=False)
-        Rook(board, WHITE, 4, 0)
-        king = King(board, BLACK, 4, 7)
-        Bishop(board, BLACK, 3, 7)
-        Bishop(board, BLACK, 5, 7)
-        Pawn(board, BLACK, 3, 6)
-        Pawn(board, BLACK, 5, 6)
-        king.ignored = True
-        board.current_color = BLACK
-        self.assertEqual(board.in_checkmate(), False)
-
-
-class TestBoardStalemate(unittest.TestCase):
-
-    def test_stalemate(self):
-        board = Board(new_game=False)
-        King(board, WHITE, 5, 6)
-        Queen(board, WHITE, 6, 5)
-        king = King(board, BLACK, 7, 7)
-        king.ignored = True
-        board.current_color = BLACK
-        self.assertEqual(board.stalemate(), True)
-
-    def test_stalemate_false(self):
-        board = Board(new_game=False)
-        King(board, WHITE, 5, 6)
-        king = King(board, BLACK, 7, 7)
-        king.ignored = True
-        board.current_color = BLACK
-        self.assertEqual(board.stalemate(), False)
+        self.assertEqual(set(board.possible_moves(WHITE)),
+                         expected_moves_white)
 
 
 class TestBoardStatus(unittest.TestCase):
 
     def test_check_status(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 4, 4)
-        king = King(board, BLACK, 4, 7)
-        board.current_color = BLACK
+        board.load_fen("4k3/8/8/4R3/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(board.status(), CHECK)
 
     def test_checkmate_status(self):
         board = Board(new_game=False)
-        Rook(board, WHITE, 4, 4)
-        Rook(board, WHITE, 3, 4)
-        Rook(board, WHITE, 5, 4)
-        king = King(board, BLACK, 4, 6)
-        board.current_color = BLACK
+        board.load_fen("8/4k3/8/3RRR2/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(board.status(), CHECKMATE)
 
     def test_stalemate_status(self):
         board = Board(new_game=False)
-        King(board, WHITE, 5, 6)
-        Queen(board, WHITE, 6, 5)
-        King(board, BLACK, 7, 7)
-        board.current_color = BLACK
+        board.load_fen("7k/5K2/6Q1/8/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(board.status(), STALEMATE)
 
     def test_fifty_move_status(self):
         board = Board(new_game=False)
-        King(board, BLACK, 7, 7)
-        board.moves[BLACK] = 50
-        board.current_color = BLACK
+        board.load_fen("7k/8/8/8/8/8/8/8 b kQkq - 50 50")
         self.assertEqual(board.status(), FIFTY_MOVE)
 
     def test_normal_status(self):
         board = Board(new_game=False)
-        King(board, BLACK, 7, 7)
-        board.current_color = BLACK
+        board.load_fen("7k/8/8/8/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(board.status(), NORMAL)
 
 
@@ -364,7 +235,7 @@ class TestBoardMove(unittest.TestCase):
 
     def test_invalid_new_position(self):
         board = Board(new_game=False)
-        King(board, WHITE, 0, 0)
+        board.load_fen("8/8/8/8/8/8/8/K7 w kQkq - 0 1")
         self.assertEqual(False, board.move((0, 0), (-1, 0)))
 
     def test_no_piece_on_original_position(self):
@@ -373,211 +244,112 @@ class TestBoardMove(unittest.TestCase):
 
     def test_invalid_equal_position(self):
         board = Board(new_game=False)
-        King(board, WHITE, 0, 0)
+        board.load_fen("8/8/8/8/8/8/8/K7 w kQkq - 0 1")
         self.assertEqual(False, board.move((0, 0), (0, 0)))
 
     def test_invalid_move(self):
         board = Board(new_game=False)
-        King(board, WHITE, 0, 0)
+        board.load_fen("8/8/8/8/8/8/8/K7 w kQkq - 0 1")
         self.assertEqual(False, board.move((0, 0), (0, 2)))
 
     def test_invalid_color(self):
         board = Board(new_game=False)
-        board.current_color = BLACK
-        King(board, WHITE, 0, 0)
+        board.load_fen("8/8/8/8/8/8/8/K7 b kQkq - 0 1")
         self.assertEqual(False, board.move((0, 0), (0, 1)))
 
     def test_normal_move(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        self.assertEqual(board[(4, 0)], king)
-        self.assertEqual(king.y, 0)
+        board.load_fen("8/8/8/8/8/8/8/4K3 w kQkq - 0 1")
+        self.assertEqual(board.at((4, 0)), WK)
         self.assertEqual(True, board.move((4, 0), (4, 1)))
-        self.assertEqual(True, king.has_moved)
-        self.assertEqual(board[(4, 0)], None)
-        self.assertEqual(board[(4, 1)], king)
-        self.assertEqual(king.y, 1)
+        self.assertEqual(board.at((4, 0)), None)
+        self.assertEqual(board.at((4, 1)), WK)
 
     def test_normal_attack_move(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        pawn = Pawn(board, BLACK, 4, 1)
-        self.assertEqual(board[(4, 0)], king)
-        self.assertEqual(board[(4, 1)], pawn)
-        self.assertEqual(board.pieces[WHITE], [king])
-        self.assertEqual(board.pieces[BLACK], [pawn])
-        self.assertEqual(king.y, 0)
-
+        board.load_fen("8/8/8/8/8/8/4p3/4K3 w kQkq - 0 1")
+        self.assertEqual(board.at((4, 0)), WK)
+        self.assertEqual(board.at((4, 1)), BP)
         self.assertEqual(True, board.move((4, 0), (4, 1)))
-        self.assertEqual(True, king.has_moved)
-
-        self.assertEqual(board[(4, 0)], None)
-        self.assertEqual(board[(4, 1)], king)
-        self.assertEqual(king.y, 1)
-        self.assertEqual(board.pieces[WHITE], [king])
-        self.assertEqual(board.pieces[BLACK], [])
+        self.assertEqual(board.at((4, 0)), None)
+        self.assertEqual(board.at((4, 1)), WK)
 
     def test_queenside_castling_move(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        rook = Rook(board, WHITE, 0, 0)
-        self.assertEqual(board[(4, 0)], king)
-        self.assertEqual(board[(0, 0)], rook)
-        self.assertEqual(board.pieces[WHITE], [king, rook])
-        self.assertEqual(king.x, 4)
-        self.assertEqual(rook.x, 0)
-
+        board.load_fen("8/8/8/8/8/8/8/R3K3 w kQkq - 0 1")
+        self.assertEqual(board.at((4, 0)), WK)
+        self.assertEqual(board.at((0, 0)), WR)
         self.assertEqual(True, board.move((4, 0), (2, 0)))
-        self.assertEqual(True, king.has_moved)
-        self.assertEqual(True, rook.has_moved)
-
-        self.assertEqual(board[(4, 0)], None)
-        self.assertEqual(board[(0, 0)], None)
-        self.assertEqual(board[(2, 0)], king)
-        self.assertEqual(board[(3, 0)], rook)
-
-        self.assertEqual(board.pieces[WHITE], [king, rook])
-        self.assertEqual(king.x, 2)
-        self.assertEqual(rook.x, 3)
+        self.assertEqual(board.at((4, 0)), None)
+        self.assertEqual(board.at((0, 0)), None)
+        self.assertEqual(board.at((2, 0)), WK)
+        self.assertEqual(board.at((3, 0)), WR)
 
     def test_kingside_castling_move(self):
         board = Board(new_game=False)
-        board.current_color = BLACK
-        king = King(board, BLACK, 4, 7)
-        rook = Rook(board, BLACK, 7, 7)
-        self.assertEqual(board[(4, 7)], king)
-        self.assertEqual(board[(7, 7)], rook)
-        self.assertEqual(board.pieces[BLACK], [king, rook])
-        self.assertEqual(king.x, 4)
-        self.assertEqual(rook.x, 7)
-
+        board.load_fen("4k2r/8/8/8/8/8/8/8 b kQkq - 0 1")
+        self.assertEqual(board.at((4, 7)), BK)
+        self.assertEqual(board.at((7, 7)), BR)
         self.assertEqual(True, board.move((4, 7), (6, 7)))
-        self.assertEqual(True, king.has_moved)
-        self.assertEqual(True, rook.has_moved)
-
-        self.assertEqual(board[(4, 7)], None)
-        self.assertEqual(board[(7, 7)], None)
-        self.assertEqual(board[(6, 7)], king)
-        self.assertEqual(board[(5, 7)], rook)
-
-        self.assertEqual(board.pieces[BLACK], [king, rook])
-        self.assertEqual(king.x, 6)
-        self.assertEqual(rook.x, 5)
+        self.assertEqual(board.at((4, 7)), None)
+        self.assertEqual(board.at((7, 7)), None)
+        self.assertEqual(board.at((6, 7)), BK)
+        self.assertEqual(board.at((5, 7)), BR)
 
     def test_right_en_passant_move(self):
         board = Board(new_game=False)
-        pawn = Pawn(board, WHITE, 4, 4)
-        enemy = Pawn(board, BLACK, 5, 6)
-        board.current_color = BLACK
+        board.load_fen("8/5p2/8/4P3/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(True, board.move((5, 6), (5, 4)))
-
-        self.assertEqual(board[(4, 4)], pawn)
-        self.assertEqual(board[(5, 4)], enemy)
-        self.assertEqual(board.pieces[WHITE], [pawn])
-        self.assertEqual(board.pieces[BLACK], [enemy])
-        self.assertEqual(pawn.position, (4, 4))
-
+        self.assertEqual(board.at((4, 4)), WP)
+        self.assertEqual(board.at((5, 4)), BP)
         self.assertEqual(True, board.move((4, 4), (5, 5)))
-        self.assertEqual(True, pawn.has_moved)
-
-        self.assertEqual(board[(4, 4)], None)
-        self.assertEqual(board[(5, 5)], pawn)
-        self.assertEqual(board[(5, 4)], None)
-
-        self.assertEqual(board.pieces[WHITE], [pawn])
-        self.assertEqual(board.pieces[BLACK], [])
-        self.assertEqual(pawn.position, (5, 5))
+        self.assertEqual(board.at((4, 4)), None)
+        self.assertEqual(board.at((5, 5)), WP)
+        self.assertEqual(board.at((5, 4)), None)
 
     def test_left_en_passant_move(self):
         board = Board(new_game=False)
-        pawn = Pawn(board, WHITE, 4, 4)
-        enemy = Pawn(board, BLACK, 3, 6)
-        board.current_color = BLACK
+        board.load_fen("8/3p4/8/4P3/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(True, board.move((3, 6), (3, 4)))
-
-        self.assertEqual(board[(4, 4)], pawn)
-        self.assertEqual(board[(3, 4)], enemy)
-        self.assertEqual(board.pieces[WHITE], [pawn])
-        self.assertEqual(board.pieces[BLACK], [enemy])
-        self.assertEqual(pawn.position, (4, 4))
-
+        self.assertEqual(board.at((4, 4)), WP)
+        self.assertEqual(board.at((3, 4)), BP)
         self.assertEqual(True, board.move((4, 4), (3, 5)))
-        self.assertEqual(True, pawn.has_moved)
-
-        self.assertEqual(board[(4, 4)], None)
-        self.assertEqual(board[(3, 5)], pawn)
-        self.assertEqual(board[(3, 4)], None)
-
-        self.assertEqual(board.pieces[WHITE], [pawn])
-        self.assertEqual(board.pieces[BLACK], [])
-        self.assertEqual(pawn.position, (3, 5))
+        self.assertEqual(board.at((4, 4)), None)
+        self.assertEqual(board.at((3, 5)), WP)
+        self.assertEqual(board.at((3, 4)), None)
 
     def test_promotion_move(self):
         board = Board(new_game=False)
-        pawn = Pawn(board, WHITE, 4, 6)
-
-        self.assertEqual(board[(4, 6)], pawn)
-        self.assertEqual(board.pieces[WHITE], [pawn])
-        self.assertEqual(pawn.position, (4, 6))
-
+        board.load_fen("8/4P3/8/8/8/8/8/8 w kQkq - 0 1")
+        self.assertEqual(board.at((4, 6)), WP)
         self.assertEqual(True, board.move((4, 6), (4, 7)))
-
         # ToDo: verificar. Vai ser sempre rainha?
-        self.assertEqual(board[(4, 7)].__class__, Queen)
-        self.assertEqual(board[(4, 6)], None)
-        self.assertEqual(True, board[(4, 7)].has_moved)
-
-        self.assertEqual(board.pieces[WHITE], [board[(4, 7)]])
+        self.assertEqual(board.at((4, 7)), WQ)
+        self.assertEqual(board.at((4, 6)), None)
 
     def test_invalid_keep_check(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Pawn(board, WHITE, 4, 1)
-        Rook(board, BLACK, 0, 0)
-        Rook(board, BLACK, 5, 0)
-        board.current_color = WHITE
-        self.assertEqual(False, king.has_moved)
+        board.load_fen("8/4P3/8/8/8/8/4P3/r3Kr2 w kQkq - 0 1")
         self.assertEqual(False, board.move((4, 0), (5, 0)))
-
-        self.assertEqual(False, king.has_moved)
-
-        self.assertEqual(board[(4, 0)], king)
-        self.assertEqual(board[(5, 0)].__class__, Rook)
-        self.assertEqual(king.position, (4, 0))
+        self.assertEqual(board.at((4, 0)), WK)
+        self.assertEqual(board.at((5, 0)), BR)
 
     def test_check(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 5, 4)
-        king = King(board, BLACK, 4, 7)
-        board.current_color = WHITE
-
-        self.assertEqual(False, rook.has_moved)
+        board.load_fen("4k3/8/8/5R2/8/8/8/8 w kQkq - 0 1")
         self.assertEqual(True, board.move((5, 4), (4, 4)))
-        self.assertEqual(True, rook.has_moved)
-
-        self.assertEqual(board[(5, 4)], None)
-        self.assertEqual(board[(4, 4)], rook)
-        self.assertEqual(rook.position, (4, 4))
+        self.assertEqual(board.at((5, 4)), None)
+        self.assertEqual(board.at((4, 4)), WR)
 
     def test_checkmate(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 5, 4)
-        Rook(board, WHITE, 5, 0)
-        Rook(board, WHITE, 3, 0)
-
-        king = King(board, BLACK, 4, 7)
-        board.current_color = WHITE
-
-        self.assertEqual(False, rook.has_moved)
+        board.load_fen("4k3/8/8/5R2/8/8/8/3R1R2 w kQkq - 0 1")
         self.assertEqual(True, board.move((5, 4), (4, 4)))
-        self.assertEqual(True, rook.has_moved)
-
-        self.assertEqual(board[(5, 4)], None)
-        self.assertEqual(board[(4, 4)], rook)
-        self.assertEqual(rook.position, (4, 4))
+        self.assertEqual(board.at((5, 4)), None)
+        self.assertEqual(board.at((4, 4)), WR)
 
 
-class TestBoard(TestBoardValid, TestBoardGetItem, TestBoardNewGame,
-    TestBoardRemove, TestBoardHindered, TestBoardMoves, TestBoardInCheck,
-    TestBoardInCheckmate, TestBoardStalemate, TestBoardStatus, TestBoardMove):
+class TestBoard(TestBoardValid, TestBoardAt, TestBoardNewGame,
+                TestBoardHindered, TestBoardMoves, TestBoardStatus,
+                TestBoardMove):
     pass

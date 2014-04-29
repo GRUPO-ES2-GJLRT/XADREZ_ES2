@@ -18,7 +18,8 @@ from pygame import (
 
 import sys
 from .base import Scene
-from game_elements import Board, create_player, InputPlayer
+from game_elements import Board
+from game_elements import create_player, InputPlayer
 from game_elements.player import END
 from consts.colors import BLACK, WHITE, next
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
@@ -200,7 +201,7 @@ class Chess(Scene, ChessInterface):
 
     def verify_status(self, status):
         if status == CHECK:
-            self.check = self.board.current_king().position
+            self.check = self.board.current_king_position()
             self.countdown = CHECK_COUNTDOWN
         elif status == CHECKMATE:
             self.current_player.lose()

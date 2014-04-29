@@ -8,6 +8,7 @@ from .rook import Rook
 
 class Queen(Bishop, Rook):
 
+    @property
     def name(self):
         return "queen"
 

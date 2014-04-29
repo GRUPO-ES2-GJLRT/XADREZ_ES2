@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from .player import Player, PLAY
+from consts.colors import WHITE, BLACK
 
 
 class InputPlayer(Player):
@@ -12,8 +13,8 @@ class InputPlayer(Player):
 
     def click(self, square):
         if square:
-            piece = self.chess.board[square]
-            if piece and piece.color == self.color:
+            piece = self.chess.board.at(square)
+            if piece and {'w': WHITE, 'b': BLACK}[piece[0]] == self.color:
                 self.select(square)
             elif self.state == PLAY:
                 self.play(square)

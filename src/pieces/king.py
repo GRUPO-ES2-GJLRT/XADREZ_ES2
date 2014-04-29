@@ -10,6 +10,7 @@ from consts.moves import KINGSIDE_CASTLING, QUEENSIDE_CASTLING, NORMAL
 
 class King(Piece):
 
+    @property
     def name(self):
         return "king"
 

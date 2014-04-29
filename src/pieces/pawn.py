@@ -12,6 +12,7 @@ from .piece import Piece
 
 class Pawn(Piece):
 
+    @property
     def name(self):
         return "pawn"
 

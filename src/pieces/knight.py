@@ -8,6 +8,7 @@ from consts.moves import NORMAL, NO_ATTACK, ATTACK, ALL
 
 class Knight(Piece):
 
+    @property
     def name(self):
         return 'knight'
 

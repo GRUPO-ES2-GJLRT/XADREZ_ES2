@@ -2,6 +2,7 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
+import re
 from threading import Thread
 from Queue import Queue
 from collections import deque
@@ -10,8 +11,10 @@ from consts.colors import WHITE, BLACK, next
 from consts.moves import (
     LEFT_EN_PASSANT, RIGHT_EN_PASSANT, PROMOTION, NORMAL,
     QUEENSIDE_CASTLING, KINGSIDE_CASTLING,
-    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE, ATTACK, NO_ATTACK, ALL
+    CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE, ALL
 )
+
+from .board_interface import BoardInterface
 
 from pieces import (
     Pawn,
@@ -23,8 +26,23 @@ from pieces import (
 )
 
 
-class Board(object):
+class Board(BoardInterface):
+
     def __init__(self, new_game=True):
+        super(Board, self).__init__(new_game)
+        self.clear()
+        if new_game:
+            self.create_pieces()
+
+    def __getitem__(self, position):
+        """ Access the board position
+        Usage: board[(x, y)]
+        """
+        if not self.is_valid_position(position):
+            return None
+        return self.board_data[position[0]][position[1]]
+
+    def clear(self):
         self.board_data = [
             [None for x in xrange(8)] for y in xrange(8)
         ]
@@ -40,18 +58,7 @@ class Board(object):
             WHITE: 0,
             BLACK: 0,
         }
-        if new_game:
-            self.create_pieces()
         self.last_move = None
-        self.current_color = WHITE
-
-    def __getitem__(self, position):
-        """ Access the board position
-        Usage: board[(x, y)]
-        """
-        if not self.is_valid_position(position):
-            return None
-        return self.board_data[position[0]][position[1]]
 
     def add(self, piece):
         """ Add piece to the board.
@@ -179,8 +186,8 @@ class Board(object):
         self.board_data[piece.x][piece.y] = piece
         return old_piece
 
-    def current_king(self):
-        return self.kings[self.current_color]
+    def current_king_position(self):
+        return self.kings[self.current_color].position
 
     def move(self, original_position, new_position, skip_validation=False):
         """ Move a piece from original_position to new_position
@@ -285,10 +292,6 @@ class Board(object):
                 killing_moves[move] = None
 
         return killing_moves
-
-    @staticmethod
-    def is_valid_position(position):
-        return 0 <= position[0] < 8 and 0 <= position[1] < 8
 
     def is_empty_position(self, position):
         return self[position] is None
@@ -414,6 +417,68 @@ class Board(object):
                 positions.allowed = set()
             return True, positions
         return False, positions
+
+    def at(self, position):
+        if not self.is_valid_position(position):
+            return None
+        piece = self[position]
+        if not piece:
+            return None
+        return "%s %s" % (
+            {WHITE: 'white', BLACK: 'black'}[piece.color], piece.name)
+
+    def load_fen(self, fen):
+        self.clear()
+        tokens = re.compile("\s+").split(fen)
+        position = tokens[0]
+        y = 7
+        x = 0
+        # rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
+        white_piece = 'PNBRQK'
+        piece_cls = {
+            'p': Pawn,
+            'n': Knight,
+            'b': Bishop,
+            'r': Rook,
+            'q': Queen,
+            'k': King,
+        }
+        'pnbrqk'
+        digits = '12345678'
+        for piece in position:
+            if piece == '/':
+                y -= 1
+                x = 0
+            elif piece in digits:
+                x += int(piece)
+            else:
+                color = WHITE if piece in white_piece else BLACK
+                piece_cls[piece.lower()](self, color, x, y)
+                x += 1
+
+        self.current_color = WHITE if tokens[1] == 'w' else BLACK
+
+        # token[2] castling
+
+        if tokens[3] != '-':
+            mid = self.chess_notation_to_position(tokens[3])
+            a, b = (mid[0], mid[1] - 1), (mid[0], mid[1] + 1)
+            if self.current_color == BLACK:
+                self.last_move = (a, b)
+            else:
+                self.last_move = (b, a)
+
+        self.moves = {
+            WHITE: int(tokens[4]),
+            BLACK: int(tokens[4]),
+        }
+
+        # token[5] total moves
+
+    def get_pieces(self):
+        for color, pieces in self.pieces.items():
+            for piece in pieces:
+                yield piece
 
 
 class Allowed():

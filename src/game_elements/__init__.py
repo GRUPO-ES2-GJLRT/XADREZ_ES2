@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from .board import Board
+from .board_interface import BoardInterface
 from .player import Player
 from .ai_player import AIPlayer
 from .input_player import InputPlayer
@@ -15,6 +16,7 @@ def create_player(color, timer, chess, level=None):
 
 __all__ = [
     b'Board',
+    b'BoardInterface',
     b'Player',
     b'AIPlayer',
     b'InputPlayer',

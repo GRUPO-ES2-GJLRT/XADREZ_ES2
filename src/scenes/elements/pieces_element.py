@@ -21,13 +21,12 @@ class PiecesElement(ChessElement):
         self.piece_images = piece_images
 
     def draw_element(self, screen, x=0, y=0):
-        for color, pieces in self.board.pieces.items():
-            for piece in pieces:
-                screen.blit(
-                    self.piece_images['%s_%s' %
-                                      (piece.color, piece.name())].get(),
-                    self.position_rect(piece.position, x=x, y=y)
-                )
+        for piece in self.board.get_pieces():
+            screen.blit(
+                self.piece_images['%s_%s' %
+                                  (piece.color, piece.name)].get(),
+                self.position_rect(piece.position, x=x, y=y)
+            )
 
     def start_x(self):
         return min(0, super(PiecesElement, self).start_x())
