@@ -84,7 +84,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(3))
+            self.do_move(self.minmax_move(5))
 
         elif self.level == HARD:
             raise Exception
@@ -153,18 +153,20 @@ class AIPlayer(Player):
             'knight': 3.20,
             'pawn': 1.0,
         }
-        white = Counter()
-        black = Counter()
-        for white_piece in node.board.pieces[WHITE]:
-            white[white_piece.name()] += 1
-        for black_piece in node.board.pieces[BLACK]:
-            black[black_piece.name()] += 1
+        counters = {
+            WHITE: Counter(),
+            BLACK: Counter()
+        }
+
+        for piece in node.board.get_pieces():
+            counters[piece.color][piece.name] += 1
+
         minus = {
-            key: (white[key] - black[key]) * multiplier
+            key: (counters[WHITE][key] - counters[BLACK][key]) * multiplier
             for key, multiplier in consts.items()
         }
         #print(minus)
-        if node.board.current_color == WHITE:
+        if node.board.color() == WHITE:
             return sum(minus.values())
         return -sum(minus.values())
 
@@ -174,9 +176,9 @@ class Node(object):
     def __init__(self, board, move=None):
         self.board = board
         self.move = move
-        self.moves = self.board.possible_moves(board.current_color)
+        self.moves = self.board.possible_moves(board.color())
         self._value = 0.0
-        self.color = self.board.current_color
+        self.color = self.board.color()
         self.childs = []
         self.done = False
 
@@ -200,8 +202,8 @@ class Node(object):
     def children(self):
         for move in self.moves:
             nboard = self.board.clone()
-            nboard.current_color = self.board.current_color
-            if nboard.move(*move, skip_validation=True):
+            #nboard.current_color = self.board.color()
+            if nboard.move(move[0], move[1]):
                 new_node = Node(nboard, move=move)
                 #self.childs.append(new_node)
                 yield new_node

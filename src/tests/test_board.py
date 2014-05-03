@@ -7,7 +7,8 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import CHECK, CHECKMATE, STALEMATE, NORMAL, FIFTY_MOVE
-from game_elements import Board
+from game_elements.chess0x88 import Board
+#from game_elements import Board
 
 
 BP, WP = "black pawn", "white pawn"
@@ -177,7 +178,7 @@ class TestBoardMoves(unittest.TestCase):
 
     def test_moves_that_allows_check_are_not_allowed(self):
         board = Board(new_game=False)
-        board.load_fen("8/8/8/8/7b/8/5P2/4K3 w kQkq - 0 1")
+        board.load_fen("8/8/8/8/7b/8/5P2/4K3 w - - 0 1")
         expected_moves_white = set([
             ((4, 0), (3, 0)),
             ((4, 0), (3, 1)),
@@ -349,7 +350,11 @@ class TestBoardMove(unittest.TestCase):
         self.assertEqual(board.at((4, 4)), WR)
 
 
-class TestBoard(TestBoardValid, TestBoardAt, TestBoardNewGame,
-                TestBoardHindered, TestBoardMoves, TestBoardStatus,
+class TestBoard(TestBoardValid,
+                TestBoardAt,
+                TestBoardNewGame,
+                TestBoardHindered,
+                TestBoardMoves,
+                TestBoardStatus,
                 TestBoardMove):
     pass

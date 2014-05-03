@@ -212,7 +212,7 @@ class ChessInterface(Interface):
                                            if self.horizontal
                                            else self.square_size // 4),
                                 condition=(
-                                    lambda: self.board.current_color == WHITE)
+                                    lambda: self.board.color() == WHITE)
                             ),
                         ]
                     ),
@@ -253,7 +253,7 @@ class ChessInterface(Interface):
                                            if self.horizontal
                                            else self.square_size // 4),
                                 condition=(
-                                    lambda: self.board.current_color == BLACK)
+                                    lambda: self.board.color() == BLACK)
                             ),
                         ]
                     ),
