@@ -178,6 +178,7 @@ def get_value_piece(piece):
             return get_value_queen(x, y) + consts['queen']
         return get_value_king(x, y) + consts['king']
 
+
 def get_value_pawn(x, y):
         table = [[0,  0,  0,  0,  0,  0,  0,  0],
                 [50, 50, 50, 50, 50, 50, 50, 50],
