@@ -1,3 +1,4 @@
+import cython
 import re
 
 from collections import namedtuple
@@ -38,76 +39,210 @@ cdef extern from 'constants.h':
     char **PRINT_ARRAY
     char **NAMES
 
-cdef inline int is_square(int x):
-    if (x & 0x88):
-        return 0
-    return 1
+    int is_square(int x)
+    int is_not_square(int x)
+    int rank(int x)
+    int col(int x)
+    int next_color(int color)
 
-cdef inline int is_not_square(int x):
-    return (x & 0x88)
 
-cdef inline int rank(int x):
-    return 8 - (x >> 4)
-
-cdef inline int col(int x):
-    return x & 7
-
-cdef inline chess_notation(int x):
+def n0x88_to_chess_notation(x):
     c = col(x)
-    r = rank(x) - 1
+    r = rank(x)
     return chr(c + 97) + str(r + 1)
 
-cdef inline int next_color(int color):
-    if color == WHITE:
-        return BLACK
-    return WHITE
 
-cdef class Move:
-    cdef public int color
-    cdef public int origin
-    cdef public int dest
-    cdef public int flags
-    cdef public int piece
-    cdef public int promotion
-    cdef public int captured
+@cython.cclass
+class Move(object):
+    cython.declare(
+        color=cython.int, _origin=cython.int, _destination=cython.int,
+        flags=cython.int, piece=cython.int, promotion=cython.int,
+        captured=cython.int, half_moves=cython.int,
+        previous_en_passant=cython.int,
+        white_castling=cython.int, black_castling=cython.int
+    )
 
-    # undo move
-    cdef public int half_moves
-    cdef public int previous_en_passant
-    cdef public int white_castling
-    cdef public int black_castling
-
-    cdef void create(Move self, Board board, int color, int origin, int dest, int flags, int promotion):
+    @cython.locals(
+        board=Board, color=cython.int, origin=cython.int, dest=cython.int,
+        flags=cython.int, rank_dest=cython.int, promotion=cython.int
+    )
+    def __init__(self, board, color, origin, dest, flags):
+        rank_dest = rank(dest)
+        promotion = 0
+        if board.pieces[origin] == PAWN and (rank_dest == 7 or rank_dest == 0):
+            promotion = QUEEN
         self.color = color
-        self.origin = origin
-        self.dest = dest
+        self._origin = origin
+        self._destination = dest
         self.flags = flags
         self.piece = board.pieces[origin]
-        self.captured = PIECE_EMPTY
-        self.promotion = PIECE_EMPTY
+        self.promotion = promotion
+
+        if promotion:
+            self.flags |= PROMOTION
+
+        if board.pieces[dest]:
+            self.captured = board.pieces[dest]
+        elif flags & EN_PASSANT:
+            self.captured = PAWN
+        else:
+            self.captured = PIECE_EMPTY
 
         self.half_moves = board.half_moves
         self.previous_en_passant = board.en_passant_square
         self.white_castling = board.castling[WHITE]
         self.black_castling = board.castling[BLACK]
 
-        if promotion:
-            self.flags = self.flags | PROMOTION
-            self.promotion = promotion
+    @cython.ccall
+    @cython.locals(
+        board=Board, current=cython.int, other=cython.int, piece=cython.int,
+        color=cython.int, other_piece=cython.int, origin=cython.int,
+        dest=cython.int, flags=cython.int,
+        castling_origin=cython.int, castling_dest=cython.int
+    )
+    def do(self, board):
+        current = self.color
+        other = next_color(current)
+        piece = board.pieces[self._origin]
+        color = board.colors[self._origin]
+        other_piece = board.pieces[self._destination]
+        origin = self._origin
+        dest = self._destination
+        flags = self.flags
+        board.remove(origin)
+        board.remove(dest)
+        board.add(piece, color, dest)
 
-        if board.pieces[dest]:
-            self.captured = board.pieces[dest]
-        elif flags & EN_PASSANT:
-            self.captured = PAWN
+        # En passant
+        if flags & EN_PASSANT:
+            board.remove(dest + (N if current == BLACK else S))
 
-cdef Move new_move(Board board, int color, int origin, int dest, int flags):
-    cdef Move move = Move()
-    cdef int rank_dest = rank(dest)
-    cdef int promotion = 0
-    if board.pieces[origin] == PAWN and (rank_dest == 8 or rank_dest == 1):
-        promotion = QUEEN
-    move.create(board, color, origin, dest, flags, promotion)
-    return move
+        # Promotion
+        if flags & PROMOTION:
+            board.remove(dest)
+            board.add(self.promotion, color, dest)
+
+        if piece == KING:
+            board.kings[current] = dest
+
+            # Castling
+            if flags & KINGSIDE:
+                castling_origin = dest + E
+                castling_dest = dest + W
+                piece = board.pieces[castling_origin]
+                board.remove(castling_origin)
+                board.add(piece, color, castling_dest)
+            elif flags & QUEENSIDE:
+                castling_origin = dest + W + W
+                castling_dest = dest + E
+                piece = board.pieces[castling_origin]
+                board.remove(castling_origin)
+                board.add(piece, color, castling_dest)
+
+            board.castling[current] = 0
+
+        # if move rook, disable castling:
+        if board.castling[current] and piece == ROOK:
+            if current == WHITE:
+                if board.castling[WHITE] & KINGSIDE and origin == H1:
+                    board.castling[WHITE] ^= KINGSIDE
+                elif board.castling[WHITE] & QUEENSIDE and origin == A1:
+                    board.castling[WHITE] ^= KINGSIDE
+            if current == BLACK:
+                if board.castling[BLACK] & KINGSIDE and origin == H7:
+                    board.castling[BLACK] ^= KINGSIDE
+                elif board.castling[BLACK] & QUEENSIDE and origin == A7:
+                    board.castling[BLACK] ^= KINGSIDE
+
+        # if capture rook, disable castling
+        if board.castling[other] and other_piece == ROOK:
+            if current == WHITE:
+                if board.castling[BLACK] & KINGSIDE and dest == H1:
+                    board.castling[BLACK] ^= KINGSIDE
+                elif board.castling[BLACK] & QUEENSIDE and dest == A1:
+                    board.castling[BLACK] ^= KINGSIDE
+            if current == BLACK:
+                if board.castling[WHITE] & KINGSIDE and dest == H7:
+                    board.castling[WHITE] ^= KINGSIDE
+                elif board.castling[WHITE] & QUEENSIDE and dest == A7:
+                    board.castling[WHITE] ^= KINGSIDE
+
+        # big pawn
+        if flags & BIG_PAWN:
+            board.en_passant_square = dest + (N if current == BLACK else S)
+        else:
+            board.en_passant_square = EMPTY
+
+        # Update half move counter
+        if piece == PAWN or (flags & (CAPTURE | EN_PASSANT)):
+            board.half_moves = 0
+        else:
+            board.half_moves += 1
+
+        if current == BLACK:
+            board.moves += 1
+
+        board.current_color = next_color(current)
+
+    @cython.ccall
+    @cython.locals(
+        board=Board, current=cython.int, other=cython.int, piece=cython.int,
+        captured=cython.int, rook_piece=cython.int, origin=cython.int,
+        dest=cython.int, flags=cython.int,
+        castling_origin=cython.int, castling_dest=cython.int
+    )
+    def undo(self, board):
+        current = self.color
+        dest = self._destination
+        origin = self._origin
+        piece = self.piece
+        flags = self.flags
+        captured = self.captured
+
+        board.current_color = current
+
+        other = next_color(current)
+        if current == BLACK:
+            board.moves -= 1
+
+        board.half_moves = self.half_moves
+        board.en_passant_square = self.previous_en_passant
+        board.castling[WHITE] = self.white_castling
+        board.castling[BLACK] = self.black_castling
+
+        if piece == KING:
+            board.kings[current] = origin
+            if flags & KINGSIDE:
+                castling_origin = dest + E
+                castling_dest = dest + W
+                rook_piece = board.pieces[castling_dest]
+                board.remove(castling_dest)
+                board.add(rook_piece, current, castling_origin)
+            elif flags & QUEENSIDE:
+                castling_origin = dest + W + W
+                castling_dest = dest + E
+                rook_piece = board.pieces[castling_dest]
+                board.remove(castling_dest)
+                board.add(rook_piece, current, castling_origin)
+
+        board.remove(dest)
+        board.add(piece, current, origin)
+        if captured:
+            if flags & EN_PASSANT:
+                board.add(PAWN, other, dest + (N if current == BLACK else S))
+            else:
+                board.add(captured, other, dest)
+
+    @cython.ccall
+    @cython.returns(cython.int)
+    def origin(self):
+        return self._origin
+
+    @cython.ccall
+    @cython.returns(cython.int)
+    def destination(self):
+        return self._destination
+
 
 cdef class Board:
     cdef int[128] pieces
@@ -176,7 +311,7 @@ cdef class Board:
         attack_moves = self.attack_moves(color=new_color)
         for move in attack_moves:
             result.add(
-                self.p0x88_to_tuple(move.dest)
+                self.p0x88_to_tuple(move.destination())
             )
         return result
 
@@ -186,8 +321,8 @@ cdef class Board:
         moves = self.genenate_moves(legal=1, square=-1, color=new_color)
         for move in moves:
             result.add((
-                self.p0x88_to_tuple(move.origin),
-                self.p0x88_to_tuple(move.dest)
+                self.p0x88_to_tuple(move.origin()),
+                self.p0x88_to_tuple(move.destination())
             ))
         return result
 
@@ -198,8 +333,8 @@ cdef class Board:
         for move in moves:
             if move.flags & (CAPTURE | EN_PASSANT):
                 result.add((
-                    self.p0x88_to_tuple(move.origin),
-                    self.p0x88_to_tuple(move.dest)
+                    self.p0x88_to_tuple(move.origin()),
+                    self.p0x88_to_tuple(move.destination())
                 ))
         return result
 
@@ -217,7 +352,7 @@ cdef class Board:
         )
 
         for move in moves:
-            if move.dest == dest:
+            if move.destination() == dest:
                 self.do_move(move)
                 return True
         return False
@@ -325,8 +460,7 @@ cdef class Board:
                     if is_not_square(square):
                         continue
                     if self.colors[square] != current:
-                        moves.append(
-                            new_move(self, current, i, square, CAPTURE))
+                        moves.append(Move(self, current, i, square, CAPTURE))
             else:
                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
                     offset = PIECE_OFFSET[piece][j]
@@ -336,13 +470,11 @@ cdef class Board:
                         if is_not_square(square):
                             break
                         if not self.pieces[square]:
-                            moves.append(
-                                new_move(self, current, i, square, NORMAL))
+                            moves.append(Move(self, current, i, square, NORMAL))
                         else:
                             if self.colors[square] == current:
                                 break
-                            moves.append(
-                                new_move(self, current, i, square, CAPTURE))
+                            moves.append(Move(self, current, i, square, CAPTURE))
                             break
                         # Stop after first move for king and knight
                         if (piece == KING or piece == KNIGHT):
@@ -383,20 +515,20 @@ cdef class Board:
                 # 1 step forward
                 square = i + PAWN_OFFSETS[current][0]
                 if not self.pieces[square]:
-                    moves.append(new_move(self, current, i, square, NORMAL))
+                    moves.append(Move(self, current, i, square, NORMAL))
                     # 2 steps forward
                     square = i + PAWN_OFFSETS[current][1]
                     if rank(i) == SECOND_RANK[current] and not self.pieces[square]:
-                        moves.append(new_move(self, current, i, square, BIG_PAWN))
+                        moves.append(Move(self, current, i, square, BIG_PAWN))
                 # Captures
                 for j in range(2, 4):
                     square = i + PAWN_OFFSETS[current][j]
                     if is_not_square(square):
                         continue
                     if self.pieces[square] and self.colors[square] == other:
-                        moves.append(new_move(self, current, i, square, CAPTURE))
+                        moves.append(Move(self, current, i, square, CAPTURE))
                     elif square == self.en_passant_square:
-                        moves.append(new_move(self, current, i, square, EN_PASSANT))
+                        moves.append(Move(self, current, i, square, EN_PASSANT))
             else:
                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
                     offset = PIECE_OFFSET[piece][j]
@@ -406,11 +538,11 @@ cdef class Board:
                         if is_not_square(square):
                             break
                         if not self.pieces[square]:
-                            moves.append(new_move(self, current, i, square, NORMAL))
+                            moves.append(Move(self, current, i, square, NORMAL))
                         else:
                             if self.colors[square] == current:
                                 break
-                            moves.append(new_move(self, current, i, square, CAPTURE))
+                            moves.append(Move(self, current, i, square, CAPTURE))
                             break
                         # Stop after first for king and knight
                         if (piece == KING or piece == KNIGHT):
@@ -427,8 +559,7 @@ cdef class Board:
                         not self.attacked(origin, other) and
                         not self.attacked(origin + E, other) and
                         not self.attacked(dest, other)):
-                    moves.append(
-                        new_move(self, current, origin, dest, KINGSIDE))
+                    moves.append(Move(self, current, origin, dest, KINGSIDE))
             if self.castling[current] & QUEENSIDE:
                 origin = self.kings[current]
                 dest = origin + W + W
@@ -439,8 +570,7 @@ cdef class Board:
                         not self.attacked(origin, other) and
                         not self.attacked(origin + W, other) and
                         not self.attacked(dest, other)):
-                    moves.append(
-                        new_move(self, current, origin, dest, QUEENSIDE))
+                    moves.append(Move(self, current, origin, dest, QUEENSIDE))
 
         if not legal:
             return moves
@@ -457,136 +587,10 @@ cdef class Board:
 
 
     cpdef do_move(self, Move move):
-        cdef int current = move.color
-        cdef int other = next_color(current)
-        cdef int piece = self.pieces[move.origin]
-        cdef int color = self.colors[move.origin]
-        cdef int other_piece = self.pieces[move.dest]
-        cdef int origin = move.origin
-        cdef int dest = move.dest
-        cdef int flags = move.flags
-        cdef int castling_origin
-        cdef int castling_dest
-        self.remove(origin)
-        self.remove(dest)
-        self.add(piece, color, dest)
-
-        # En passant
-        if flags & EN_PASSANT:
-            self.remove(dest + (N if current == BLACK else S))
-
-        # Promotion
-        if flags & PROMOTION:
-            self.remove(dest)
-            self.add(move.promotion, color, dest)
-
-        if piece == KING:
-            self.kings[current] = dest
-
-            # Castling
-            if flags & KINGSIDE:
-                castling_origin = dest + E
-                castling_dest = dest + W
-                piece = self.pieces[castling_origin]
-                self.remove(castling_origin)
-                self.add(piece, color, castling_dest)
-            elif flags & QUEENSIDE:
-                castling_origin = dest + W + W
-                castling_dest = dest + E
-                piece = self.pieces[castling_origin]
-                self.remove(castling_origin)
-                self.add(piece, color, castling_dest)
-
-            self.castling[current] = 0
-
-        # if move rook, disable castling:
-        if self.castling[current] and piece == ROOK:
-            if current == WHITE:
-                if self.castling[WHITE] & KINGSIDE and origin == H1:
-                    self.castling[WHITE] ^= KINGSIDE
-                elif self.castling[WHITE] & QUEENSIDE and origin == A1:
-                    self.castling[WHITE] ^= KINGSIDE
-            if current == BLACK:
-                if self.castling[BLACK] & KINGSIDE and origin == H7:
-                    self.castling[BLACK] ^= KINGSIDE
-                elif self.castling[BLACK] & QUEENSIDE and origin == A7:
-                    self.castling[BLACK] ^= KINGSIDE
-
-        # if capture rook, disable castling
-        if self.castling[other] and other_piece == ROOK:
-            if current == WHITE:
-                if self.castling[BLACK] & KINGSIDE and dest == H1:
-                    self.castling[BLACK] ^= KINGSIDE
-                elif self.castling[BLACK] & QUEENSIDE and dest == A1:
-                    self.castling[BLACK] ^= KINGSIDE
-            if current == BLACK:
-                if self.castling[WHITE] & KINGSIDE and dest == H7:
-                    self.castling[WHITE] ^= KINGSIDE
-                elif self.castling[WHITE] & QUEENSIDE and dest == A7:
-                    self.castling[WHITE] ^= KINGSIDE
-
-        # big pawn
-        if flags & BIG_PAWN:
-            self.en_passant_square = dest + (N if current == BLACK else S)
-        else:
-            self.en_passant_square = EMPTY
-
-        # Update half move counter
-        if piece == PAWN or (flags & (CAPTURE | EN_PASSANT)):
-            self.half_moves = 0
-        else:
-            self.half_moves += 1
-
-        if current == BLACK:
-            self.moves += 1
-
-        self.current_color = next_color(current)
+        move.do(self)
 
     cpdef undo_move(self, Move move):
-        cdef int current = move.color
-        cdef int other
-        cdef int castling_origin
-        cdef int castling_dest
-        cdef int dest = move.dest
-        cdef int origin = move.origin
-        cdef int piece = move.piece
-        cdef int rook_piece
-        cdef int flags = move.flags
-        cdef int captured = move.captured
-
-        self.current_color = current
-
-        other = next_color(current)
-        if current == BLACK:
-            self.moves -= 1
-
-        self.half_moves = move.half_moves
-        self.en_passant_square = move.previous_en_passant
-        self.castling[WHITE] = move.white_castling
-        self.castling[BLACK] = move.black_castling
-
-        if piece == KING:
-            self.kings[current] = origin
-            if flags & KINGSIDE:
-                castling_origin = dest + E
-                castling_dest = dest + W
-                rook_piece = self.pieces[castling_dest]
-                self.remove(castling_dest)
-                self.add(rook_piece, current, castling_origin)
-            elif flags & QUEENSIDE:
-                castling_origin = dest + W + W
-                castling_dest = dest + E
-                rook_piece = self.pieces[castling_dest]
-                self.remove(castling_dest)
-                self.add(rook_piece, current, castling_origin)
-
-        self.remove(dest)
-        self.add(piece, current, origin)
-        if captured:
-            if flags & EN_PASSANT:
-                self.add(PAWN, other, dest + (N if current == BLACK else S))
-            else:
-                self.add(captured, other, dest)
+        move.undo(self)
 
     cpdef int attacked(self, int square, int color):
         cdef int diff
@@ -681,7 +685,7 @@ cdef class Board:
             )
 
     def p0x88_to_tuple(self, position):
-        return (col(position), rank(position) - 1)
+        return (col(position), rank(position))
 
     def _current_color(self):
         return "white" if self.current_color == WHITE else "black"

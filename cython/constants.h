@@ -147,8 +147,8 @@ const int PIECE_OFFSET_SIZE[7] = {0, 4, 8, 4, 4, 8, 8};
 #define QUEENSIDE 64
 
 /* Second Rank */
-#define WHITE_SECOND_RANK 2
-#define BLACK_SECOND_RANK 7
+#define WHITE_SECOND_RANK 1
+#define BLACK_SECOND_RANK 6
 
 int SECOND_RANK[2] = {WHITE_SECOND_RANK, BLACK_SECOND_RANK};
 
@@ -212,6 +212,28 @@ int RAYS[240] = {
 
 int SHIFTS[7] = {0, 0, 1, 2, 3, 4, 5};
 
+/* Functions */
+inline int is_square(int x) {
+	if (x & 0x88)
+		return 0;
+	return 1;
+}
+
+inline int is_not_square(int x) {
+	return (x & 0x88);
+}
+
+inline int rank(int x) {
+	return 7 - (x >> 4);
+}
+
+inline int col(int x) {
+	return x & 7;
+}
+
+inline int next_color(int color) {
+	return (color == WHITE) ? BLACK : WHITE;
+}
 
 
 #endif
