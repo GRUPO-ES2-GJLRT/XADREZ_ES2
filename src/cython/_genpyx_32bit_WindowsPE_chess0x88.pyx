@@ -48,8 +48,6 @@ cdef extern from 'constants.h':
     int col(int x)
     int next_color(int color)
 
-cdef _set_arrays(Board board):
-    pass
 
 def n0x88_to_chess_notation(x):
     c = col(x)
@@ -258,8 +256,6 @@ class Board(object):
     )
 
     def __init__(self, new_game=True, clone=False):
-        if not cython.compiled:
-            _set_arrays(self)
         if clone:
             return
         if new_game:

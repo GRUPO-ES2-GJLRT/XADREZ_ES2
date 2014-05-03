@@ -9,7 +9,7 @@ Piece = namedtuple("Piece", "name position color")
 #<PyxReplace># chess0x88.pyr
 # if you edit this section, you may need to edit the chess0x88.pyr
 
-from fake_cython import cython
+from utils.fake_cython import cython
 Board = namedtuple("Board", "none")
 
 
@@ -56,13 +56,6 @@ from constants import (
     col,
     next_color
 )
-
-
-def _set_arrays(board):
-    board.pieces = [0] * 128
-    board.colors = [0] * 128
-    board.kings = [0] * 2
-    board.castling = [0] * 2
 
 #<EndReplace>#
 
@@ -274,8 +267,12 @@ class Board(object):
     )
 
     def __init__(self, new_game=True, clone=False):
-        if not cython.compiled:
-            _set_arrays(self)
+        #<PyxReplace>#
+        self.pieces = [0] * 128
+        self.colors = [0] * 128
+        self.kings = [0] * 2
+        self.castling = [0] * 2
+        #<EndReplace>#
         if clone:
             return
         if new_game:

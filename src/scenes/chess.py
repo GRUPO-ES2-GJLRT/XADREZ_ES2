@@ -19,7 +19,7 @@ from pygame import (
 import sys
 from .base import Scene
 #from game_elements import Board
-from game_elements.chess0x88 import Board
+from cython.board import Board
 from game_elements import create_player, InputPlayer
 from game_elements.player import END
 from consts.colors import BLACK, WHITE, next

@@ -2,7 +2,9 @@
 
 import sys
 import os
+import platform
 from distutils.extension import Extension
+from shutil import move
 
 
 def generate_pyx(name):
@@ -35,7 +37,10 @@ def pyx_extensions(files):
     for f in files:
         s = f.split('.')
         generate_pyx(f)
-        result.append(Extension(s[0], [f]))
+        new_name = '_genpyx_' + '_'.join(platform.architecture()) + '_' + s[0]
+        new_name_pyx = new_name + '.pyx'
+        move(f + 'x', new_name_pyx)
+        result.append(Extension(new_name, [new_name_pyx]))
     return result
 
 

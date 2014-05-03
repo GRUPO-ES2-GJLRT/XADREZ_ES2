@@ -39,6 +39,3 @@ cdef extern from 'constants.h':
     int rank(int x)
     int col(int x)
     int next_color(int color)
-
-cdef _set_arrays(Board board):
-    pass

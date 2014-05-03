@@ -2,7 +2,7 @@ import os
 import re
 import sys
 from distutils.core import setup
-from pyx_replace import pyx_extensions
+from utils.pyx_replace import pyx_extensions
 from Cython.Build import cythonize
 
 setup(
@@ -21,3 +21,9 @@ def purge(path, pattern):
 
 if sys.argv[1] == 'clean':
     purge('.', r".*\.c$")
+    purge('.', r".*\.pyd$")
+    purge('.', r".*\.pyc$")
+    purge('.', r".*\.so$")
+    purge('.', r".*_genpyx_\.pyx$")
+    purge('.', r".*\.html$")
+    purge('.', r"chess0x88.pyx$")

@@ -7,7 +7,7 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import CHECK, CHECKMATE, STALEMATE, NORMAL, FIFTY_MOVE
-from game_elements.chess0x88 import Board
+from cython.board import Board
 #from game_elements import Board
 
 
