@@ -29,7 +29,18 @@ class AIPlayer(Player):
         self.level = level
         self.board = chess.board
         self.chosen_move = None
+        self.openings = {}
         self.skip_validation = True
+        self.parse_openings()
+        from pprint import pprint
+        pprint(self.openings)
+
+    def parse_openings(self):
+        with open('openings.dat') as _file:
+            raw_openings = [opening.strip().split() for opening in _file]
+
+        for raw_opening in raw_openings:
+            parse_opening(raw_opening, self.openings)
 
     def start_turn(self):
         if not self.chess.game.running:
@@ -101,7 +112,7 @@ class AIPlayer(Player):
 
         self.chess.snap_board.snap()
         node = Node(self.board)
-        node._value = self.evaluate_state(node)
+        node._value = evaluate_state(node)
         #self.chess.tree.node = node
         max_move = None
         for child in node.children():
@@ -117,7 +128,7 @@ class AIPlayer(Player):
 
     def minmax_alpha_beta_prunning(self, node, depth, a, b, maximizing_player):
         if depth == 0 or node.is_terminal():
-            node.value = self.evaluate_state(node)
+            node.value = evaluate_state(node)
             return node.value
 
         if maximizing_player:
@@ -142,31 +153,6 @@ class AIPlayer(Player):
                     break
             node.value = b
             return b
-
-    @staticmethod
-    def evaluate_state(node):
-        consts = {
-            'king': 320.0,
-            'queen': 9.75,
-            'rook': 5.0,
-            'bishop': 3.25,
-            'knight': 3.20,
-            'pawn': 1.0,
-        }
-        white = Counter()
-        black = Counter()
-        for white_piece in node.board.pieces[WHITE]:
-            white[white_piece.name()] += 1
-        for black_piece in node.board.pieces[BLACK]:
-            black[black_piece.name()] += 1
-        minus = {
-            key: (white[key] - black[key]) * multiplier
-            for key, multiplier in consts.items()
-        }
-        #print(minus)
-        if node.board.current_color == WHITE:
-            return sum(minus.values())
-        return -sum(minus.values())
 
 
 class Node(object):
@@ -205,3 +191,38 @@ class Node(object):
                 new_node = Node(nboard, move=move)
                 #self.childs.append(new_node)
                 yield new_node
+
+
+def parse_opening(raw_opening, openings):
+    if not raw_opening:
+        return
+
+    if not raw_opening[0] in openings:
+        openings[raw_opening[0]] = {}
+
+    parse_opening(raw_opening[1:], openings[raw_opening[0]])
+
+
+def evaluate_state(node):
+    consts = {
+        'king': 320.0,
+        'queen': 9.75,
+        'rook': 5.0,
+        'bishop': 3.25,
+        'knight': 3.20,
+        'pawn': 1.0,
+    }
+    white = Counter()
+    black = Counter()
+    for white_piece in node.board.pieces[WHITE]:
+        white[white_piece.name()] += 1
+    for black_piece in node.board.pieces[BLACK]:
+        black[black_piece.name()] += 1
+    minus = {
+        key: (white[key] - black[key]) * multiplier
+        for key, multiplier in consts.items()
+    }
+    #print(minus)
+    if node.board.current_color == WHITE:
+        return sum(minus.values())
+    return -sum(minus.values())
