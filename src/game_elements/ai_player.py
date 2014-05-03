@@ -167,16 +167,16 @@ def get_value_piece(piece):
         x = piece.x if piece.color == "BLACK" else 7 - piece.x
         y = piece.y if piece.color == "BLACK" else 7 - piece.y
         if piece.name() == "pawn":
-            return get_value_pawn(x, y)
+            return get_value_pawn(x, y) + consts['pawn']
         elif piece.name() == "knight":
-            return get_value_knight(x, y)
+            return get_value_knight(x, y) + consts['knight']
         elif piece.name() == "rook":
-            return get_value_rooks(x, y)
+            return get_value_rooks(x, y) + consts['rook']
         elif piece.name() == "bishop":
-            return get_value_rooks(x, y)
+            return get_value_rooks(x, y) + consts['bishop']
         elif piece.name() == "queen":
-            return get_value_queen(x, y)
-        return get_value_king
+            return get_value_queen(x, y) + consts['queen']
+        return get_value_king(x, y) + consts['king']
 
 def get_value_pawn(x, y):
         table = [[0,  0,  0,  0,  0,  0,  0,  0],
