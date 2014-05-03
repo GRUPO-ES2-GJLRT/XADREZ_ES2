@@ -243,16 +243,13 @@ class Move(object):
     def destination(self):
         return self._destination
 
-
-cdef class Board:
-    cdef int[128] pieces
-    cdef int[128] colors
-    cdef int current_color
-    cdef int[2] kings
-    cdef int[2] castling
-    cdef int half_moves
-    cdef int moves
-    cdef int en_passant_square
+@cython.cclass
+class Board(object):
+    cython.declare(
+        pieces=cython.int[128], colors=cython.int[128],
+        current_color=cython.int, kings=cython.int[2], castling=cython.int[2],
+        half_moves=cython.int, moves=cython.int, en_passant_square=cython.int
+    )
 
     def __init__(self, new_game=True, clone=False):
         if clone:
@@ -262,7 +259,9 @@ cdef class Board:
         else:
             self.clear()
 
-    cpdef clear(self):
+    @cython.ccall
+    @cython.locals(i=cython.int)
+    def clear(self):
         for i in range(128):
             self.pieces[i] = PIECE_EMPTY
             self.colors[i] = COLOR_EMPTY
@@ -276,8 +275,11 @@ cdef class Board:
         self.half_moves = 0
         self.moves = 1
 
-    cpdef Board clone(self):
-        cdef Board result = Board(clone=True)
+    @cython.ccall
+    @cython.returns(Board)
+    @cython.locals(result=Board, i=cython.int)
+    def clone(self):
+        result = Board(clone=True)
         for i in range(128):
             result.pieces[i] = self.pieces[i]
             result.colors[i] = self.colors[i]
@@ -292,22 +294,30 @@ cdef class Board:
         result.moves = self.moves
         return result
 
-    cdef void add(self, int piece, int color, int square):
+    @cython.cfunc
+    @cython.returns(void)
+    @cython.locals(piece=cython.int, color=cython.int, square=cython.int)
+    def add(self, piece, color, square):
         self.pieces[square] = piece
         self.colors[square] = color
 
         if piece == KING:
             self.kings[color] = square
 
-    cdef void remove(self, int square):
+    @cython.cfunc
+    @cython.returns(void)
+    @cython.locals(square=cython.int)
+    def remove(self, int square):
         if self.pieces[square] == KING:
             self.kings[self.colors[square]] = PIECE_EMPTY
         self.pieces[square] = PIECE_EMPTY
         self.colors[square] = COLOR_EMPTY
 
+    @cython.ccall
+    @cython.locals(new_color=cython.int)
     def hindered(self, color):
         result = set()
-        cdef int new_color = WHITE if color == 'white' else BLACK
+        new_color = WHITE if color == 'white' else BLACK
         attack_moves = self.attack_moves(color=new_color)
         for move in attack_moves:
             result.add(
@@ -315,9 +325,11 @@ cdef class Board:
             )
         return result
 
+    @cython.ccall
+    @cython.locals(new_color=cython.int)
     def possible_moves(self, color):
         result = set()
-        cdef int new_color = WHITE if color == 'white' else BLACK
+        new_color = WHITE if color == 'white' else BLACK
         moves = self.genenate_moves(legal=1, square=-1, color=new_color)
         for move in moves:
             result.add((
@@ -326,9 +338,11 @@ cdef class Board:
             ))
         return result
 
+    @cython.ccall
+    @cython.locals(new_color=cython.int)
     def possible_killing_moves(self, color):
         result = set()
-        cdef int new_color = WHITE if color == 'white' else BLACK
+        new_color = WHITE if color == 'white' else BLACK
         moves = self.genenate_moves(legal=1, square=-1, color=new_color)
         for move in moves:
             if move.flags & (CAPTURE | EN_PASSANT):
@@ -344,8 +358,10 @@ cdef class Board:
     def current_king_position(self):
         return self.p0x88_to_tuple(self._current_king_position())
 
+    @cython.ccall
+    @cython.locals(dest=cython.int)
     def move(self, original_position, new_position, skip_validation=False):
-        cdef int dest = self.tuple_to_0x88(new_position)
+        dest = self.tuple_to_0x88(new_position)
         moves = self.genenate_moves(
             legal=1,
             square=self.tuple_to_0x88(original_position)
@@ -357,8 +373,10 @@ cdef class Board:
                 return True
         return False
 
+    @cython.ccall
+    @cython.locals(square=cython.int)
     def at(self, position):
-        cdef int square = self.tuple_to_0x88(position)
+        square = self.tuple_to_0x88(position)
         color, piece = self._at(square)
         if piece == PIECE_EMPTY:
             return None
@@ -366,15 +384,17 @@ cdef class Board:
         result += NAMES[piece]
         return result
 
-    cpdef load_fen(self, fen):
+    @cython.ccall
+    @cython.locals(
+        x=cython.int, y=cython.int, square=cython.int, color=cython.int
+    )
+    def load_fen(self, fen):
         self.clear()
         tokens = re.compile("\s+").split(fen)
         position = tokens[0]
-        cdef int y = 7
-        cdef int x = 0
-        cdef int square
-        cdef int color
         digits = '12345678'
+        y = 7
+        x = 0
         for piece in position:
             if piece == '/':
                 y -= 1
@@ -417,27 +437,39 @@ cdef class Board:
 
         self.moves = int(tokens[5])
 
-    cdef int chess_notation_to_0x88(self, cn):
+    @cython.ccall
+    @cython.returns(cython.int)
+    @cython.locals(
+        col=cython.int, row=cython.int
+    )
+    def chess_notation_to_0x88(self, cn):
         col = ord(cn[0]) - 97
         row = int(cn[1]) - 1
         return (7 - row) * 16 + col
 
-    cpdef int tuple_to_0x88(self, tuple position):
+    @cython.ccall
+    @cython.returns(cython.int)
+    @cython.locals(
+        position=tuple, col=cython.int, row=cython.int
+    )
+    def tuple_to_0x88(self, position):
         col = position[0]
         row = position[1]
         return (7 - row) * 16 + col
 
 
-    cpdef attack_moves(self, int square=-1, int color=-1):
+    @cython.ccall
+    @cython.locals(
+        square=cython.int, color=cython.int,
+        current=cython.int, other=cython.int, first=cython.int,
+        last=cython.int, piece=cython.int, offset=cython.int,
+        i=cython.int, j=cython.int
+    )
+    def attack_moves(self, square=-1, color=-1):
         moves = []
-        cdef int current = color
-        cdef int other
-        cdef int first = A8
-        cdef int last = H1
-        cdef int piece
-        cdef int offset
-        cdef int i
-        cdef int j
+        current = color
+        first = A8
+        last = H1
         if (current == -1):
             current = self.current_color
         other = next_color(current)
@@ -481,19 +513,20 @@ cdef class Board:
                             break
         return moves
 
-    cpdef genenate_moves(self, int legal=0, int square=-1, int color=-1):
+    @cython.ccall
+    @cython.locals(
+        legal=cython.int, square=cython.int, color=cython.int,
+        current=cython.int, other=cython.int, first=cython.int,
+        last=cython.int, single=cython.int, piece=cython.int,
+        offset=cython.int, i=cython.int, j=cython.int,
+        origin=cython.int, dest=cython.int
+    )
+    def genenate_moves(self, legal=0, square=-1, color=-1):
         moves = []
-        cdef int current = color
-        cdef int other
-        cdef int first = A8
-        cdef int last = H1
-        cdef int single = 0
-        cdef int piece
-        cdef int offset
-        cdef int i
-        cdef int j
-        cdef int origin
-        cdef int dest
+        current = color
+        first = A8
+        last = H1
+        single = 0
         if current == -1:
             current = self.current_color
         other = next_color(current)
@@ -585,20 +618,24 @@ cdef class Board:
             self.undo_move(move)
         return legal_moves
 
-
-    cpdef do_move(self, Move move):
+    @cython.ccall
+    @cython.locals(move=Move)
+    def do_move(self, move):
         move.do(self)
 
-    cpdef undo_move(self, Move move):
+    @cython.ccall
+    @cython.locals(move=Move)
+    def undo_move(self, move):
         move.undo(self)
 
-    cpdef int attacked(self, int square, int color):
-        cdef int diff
-        cdef int diff_0x88
-        cdef int offset
-        cdef int i
-        cdef int j
-        cdef int blocked
+    @cython.ccall
+    @cython.returns(cython.int)
+    @cython.locals(
+        square=cython.int, color=cython.int,
+        diff=cython.int, diff_0x88=cython.int, blocked=cython.int,
+        offset=cython.int, i=cython.int, j=cython.int,
+    )
+    def attacked(self, square, color):
         for i in range(A8, H1 + 1):
             if is_not_square(i):
                 i = i + 7
@@ -632,20 +669,30 @@ cdef class Board:
                     return True
         return False
 
-    cpdef int in_check(self, int color=-1):
+    @cython.ccall
+    @cython.returns(cython.int)
+    @cython.locals(color=cython.int)
+    def in_check(self, color=-1):
         if color == -1:
             color = self.current_color
         if self.kings[color] == EMPTY:
             return False
         return self.attacked(self.kings[color], next_color(color))
 
-    cpdef _current_king_position(self):
+    @cython.ccall
+    @cython.returns(cython.int)
+    def _current_king_position(self):
         return self.kings[self.current_color]
 
-    cpdef tuple _at(self, int square):
+    @cython.ccall
+    @cython.returns(tuple)
+    @cython.locals(square=cython.int)
+    def _at(self, square):
         return (self.colors[square], self.pieces[square])
 
-    cpdef display(self):
+    @cython.ccall
+    @cython.locals(row=cython.int, col=cython.int, sq=cython.int)
+    def display(self):
         print("  a b c d e f g h")
         for row in range(8):
             s = "%d" % (8 - row)
@@ -669,6 +716,7 @@ cdef class Board:
             return "fifty move"
         return 'normal'
 
+    @cython.locals(i=cython.int)
     def get_pieces(self):
         for i in range(A8, H1 + 1):
             if is_not_square(i):
@@ -703,17 +751,3 @@ cdef class Board:
             int(chess_notation[1]) - 1
         )
 
-
-
-def say_hello_to(name):
-    cdef Board board = Board()
-    board.load_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
-    cdef Board clone = board.clone()
-    import random
-    for i in range(20):
-        moves = board.genenate_moves(1, -1)
-        board.do_move(random.choice(moves))
-        board.display()
-    print(len(board.genenate_moves(0, -1)))
-    board.display()
-    clone.display()
