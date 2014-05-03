@@ -21,6 +21,13 @@ MEDIUM = 2
 HARD = 3
 SUCH_HARD_MUCH_DIFFICULT = 4
 
+consts = {'king': 20000.0,
+          'queen': 900.0,
+          'rook': 500.0,
+          'bishop': 330.0,
+          'knight': 320.0,
+          'pawn': 100}
+
 
 class AIPlayer(Player):
 
@@ -145,28 +152,109 @@ class AIPlayer(Player):
 
     @staticmethod
     def evaluate_state(node):
-        consts = {
-            'king': 320.0,
-            'queen': 9.75,
-            'rook': 5.0,
-            'bishop': 3.25,
-            'knight': 3.20,
-            'pawn': 1.0,
-        }
-        white = Counter()
-        black = Counter()
+
+        score_white = 0
+        score_black = 0
         for white_piece in node.board.pieces[WHITE]:
-            white[white_piece.name()] += 1
+            score_white += get_value_piece(white_piece)
         for black_piece in node.board.pieces[BLACK]:
-            black[black_piece.name()] += 1
-        minus = {
-            key: (white[key] - black[key]) * multiplier
-            for key, multiplier in consts.items()
-        }
-        #print(minus)
+            score_black += get_value_piece(black_piece)
         if node.board.current_color == WHITE:
-            return sum(minus.values())
-        return -sum(minus.values())
+            return (score_white - score_black)
+        return -(score_white - score_black)
+
+def get_value_piece(piece):
+        x = piece.x if piece.color == "BLACK" else 7 - piece.x
+        y = piece.y if piece.color == "BLACK" else 7 - piece.y
+        if piece.name() == "pawn":
+            return get_value_pawn(x, y)
+        elif piece.name() == "knight":
+            return get_value_knight(x, y)
+        elif piece.name() == "rook":
+            return get_value_rooks(x, y)
+        elif piece.name() == "bishop":
+            return get_value_rooks(x, y)
+        elif piece.name() == "queen":
+            return get_value_queen(x, y)
+        return get_value_king
+
+def get_value_pawn(x, y):
+        table = [[0,  0,  0,  0,  0,  0,  0,  0],
+                [50, 50, 50, 50, 50, 50, 50, 50],
+                [10, 10, 20, 30, 30, 20, 10, 10],
+                [5,  5, 10, 25, 25, 10,  5,  5],
+                [0,  0,  0, 20, 20,  0,  0,  0],
+                [5, -5, -10,  0,  0, -10, -5,  5],
+                [5, 10, 10, -20, -20, 10, 10,  5],
+                [0,  0,  0,  0,  0,  0,  0,  0]]
+        return table[y][x]
+
+
+def get_value_knight(x, y):
+        table = [[-50, -40, -30, -30, -30, -30, -40, -50],
+                [-40, -20,  0,  0,  0,  0, -20, -40],
+                [-30,  0, 10, 15, 15, 10,  0, -30],
+                [-30,  5, 15, 20, 20, 15,  5, -30],
+                [-30,  0, 15, 20, 20, 15,  0, -30],
+                [-30,  5, 10, 15, 15, 10,  5, -30],
+                [-40, - 20,  0,  5,  5,  0, -20, -40],
+                [-50, -40, -30, -30, -30, -30, -40, -50]]
+        return table[y][x]
+
+
+def get_value_bishop(x, y):
+    table = [[-20, -10, -10, -10, -10, -10, -10, -20],
+            [-10,  0,  0,  0,  0,  0,  0, -10],
+            [-10,  0,  5, 10, 10,  5,  0, -10],
+            [-10,  5,  5, 10, 10,  5,  5, -10],
+            [-10,  0, 10, 10, 10, 10,  0, -10],
+            [-10, 10, 10, 10, 10, 10, 10, -10],
+            [-10,  5,  0,  0,  0,  0,  5, -10],
+            [-20, -10, -10, -10, -10, -10, -10, -20]]
+    return table[y][x]
+
+
+def get_value_rooks(x, y):
+    table = [[0,  0,  0,  0,  0,  0,  0,  0],
+             [5, 10, 10, 10, 10, 10, 10,  5],
+             [-5,  0,  0,  0,  0,  0,  0, -5],
+             [-5,  0,  0,  0,  0,  0,  0, -5],
+             [-5,  0,  0,  0,  0,  0,  0, -5],
+             [-5,  0,  0,  0,  0,  0,  0, -5],
+             [-5,  0,  0,  0,  0,  0,  0, -5],
+             [0,  0,  0,  5,  5,  0,  0,  0]]
+    return table[y][x]
+
+
+def get_value_queen(x, y):
+    table = [[-20, -10, -10, -5, -5, -10, -10, -20],
+            [-10,  0,  0,  0,  0,  0,  0, -10],
+            [-10,  0,  5,  5,  5,  5,  0, -10],
+            [-5,  0,  5,  5,  5,  5,  0, -5],
+            [0,  0,  5,  5,  5,  5,  0, -5],
+            [-10,  5,  5,  5,  5,  5,  0, -10],
+            [-10,  0,  5,  0,  0,  0,  0, -10],
+            [-20, -10, -10, -5,  -5, -10, -10, -20]]
+    return table[y][x]
+
+def get_value_king(x, y):
+    table_middlegame = [[-30, -40, -40, -50, -50, -40, -40, -30],
+                        [-30, -40, -40, -50, -50, -40, -40, -30],
+                        [-30, -40, -40, -50, -50, -40, -40, -30],
+                        [-30, -40, -40, -50, -50, -40, -40, -30],
+                        [-20, -30, -30, -40, -40, -30, -30, -20],
+                        [-10, -20, -20, -20, -20, -20, -20, -10],
+                        [20, 20,  0,  0,  0,  0, 20, 20],
+                        [20, 30, 10,  0,  0, 10, 30, 20]]
+
+    table_endgame = [[-50, -40, -30, -20, -20, -30, -40, -50],
+                    [-30, -20, -10,  0,  0, -10, -20, -30],
+                    [-30, -10, 20, 30, 30, 20, -10, -30],
+                    [-30, -10, 30, 40, 40, 30, -10, -30],
+                    [-30, -10, 30, 40, 40, 30, -10, -30],
+                    [-30, -10, 20, 30, 30, 20, -10, -30],
+                    [-30, -30,  0,  0,  0,  0, -30, -30],
+                    [-50, -30, -30, -30, -30, -30, -30, -50]]
 
 
 class Node(object):
