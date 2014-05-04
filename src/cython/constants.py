@@ -1,4 +1,6 @@
 # if you edit this file, remember to edit the constants.h
+import uuid
+
 
 # Movement directions
 
@@ -130,3 +132,7 @@ def col(x):
 
 def next_color(color):
     return BLACK if color == WHITE else WHITE
+
+
+def rand64():
+    return uuid.uuid4().int & (1 << 64) - 1

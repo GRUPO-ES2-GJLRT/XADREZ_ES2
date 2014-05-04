@@ -39,3 +39,11 @@ cdef extern from 'constants.h':
     int rank(int x)
     int col(int x)
     int next_color(int color)
+    unsigned long long rand64()
+
+cdef:
+    unsigned long long zobrist_pieces[7][2][128]
+    unsigned long long zobrist_color
+    unsigned long long zobrist_castling[16]
+    unsigned long long zobrist_en_passant[128]
+

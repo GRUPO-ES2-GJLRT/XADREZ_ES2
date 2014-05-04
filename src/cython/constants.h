@@ -237,5 +237,13 @@ inline int next_color(int color) {
 	return (color == WHITE) ? BLACK : WHITE;
 }
 
+unsigned long long rand64() {
+ return rand() ^
+    ((unsigned long long) rand() << 15) ^
+    ((unsigned long long) rand() << 30) ^
+    ((unsigned long long) rand() << 45) ^
+    ((unsigned long long) rand() << 60);
+}
+
 
 #endif
