@@ -52,6 +52,7 @@ class AIPlayer(Player):
             pass
         self.select(chosen_move[0])
         self.play(chosen_move[1])
+        chess.do_jit_draw()
 
     def try_to_exit_thread_loop(self):
         if (self.state == END or self.chess.state in scenes.chess.END_GAME
@@ -102,7 +103,7 @@ class AIPlayer(Player):
         a = float('-inf')
         b = float('inf')
 
-        self.chess.snap_board.snap()
+        #self.chess.snap_board.snap()
         node = Node(self.temp_board)
         node._value = self.evaluate_state(node)
         #self.chess.tree.node = node
@@ -114,7 +115,7 @@ class AIPlayer(Player):
                 a = value
                 max_move = child.move
         node._value = a
-        self.chess.snap_board.dynamic()
+        #self.chess.snap_board.dynamic()
         print(max_move)
         return max_move
 

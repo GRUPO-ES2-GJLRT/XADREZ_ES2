@@ -44,7 +44,7 @@ class PauseMenu(Scene, PauseMenuInterface):
         self.quit_click = quit_click
         self.motion = motion
 
-    def draw(self, delta_time):
+    def draw(self):
         """Draws MainMenu"""
         self.main_div.draw(self.game.screen)
 

@@ -7,13 +7,7 @@ from pygame import (
     MOUSEBUTTONUP,
     MOUSEMOTION,
     KEYDOWN,
-    KEYUP,
     K_ESCAPE,
-    K_t,
-    K_DOWN,
-    K_UP,
-    K_LEFT,
-    K_RIGHT,
 )
 
 import sys
@@ -45,14 +39,12 @@ WINS = {
     BLACK: BLACK_WINS,
 }
 
-SCROLL_SPEED = 50
-
 
 class Chess(Scene, ChessInterface):
 
     def __init__(self, game, level_white, level_black, *args, **kwargs):
         super(Chess, self).__init__(game, *args, **kwargs)
-
+        self.jit_draw = True
         self.game = game
         self.white_minutes = lambda: "20:00"
         self.black_minutes = lambda: "20:00"
@@ -61,10 +53,6 @@ class Chess(Scene, ChessInterface):
 
         self.level_white = level_white
         self.level_black = level_black
-
-        self.should_draw_tree = False
-        self.view = [0, 0]
-        self.scrolling = None
 
         self.new_game()
 
@@ -94,11 +82,17 @@ class Chess(Scene, ChessInterface):
                 it.color = self.button_color
             else:
                 it.color = self.button_hover
+                self.do_jit_draw()
             it.redraw()
+
+        def motion_group(it, collides):
+            if collides:
+                self.do_jit_draw()
 
         self.draw_click = draw_click
         self.resign_click = resign_click
         self.motion = motion
+        self.motion_group = motion_group
 
     def new_game(self):
         self.free_events()
@@ -117,6 +111,7 @@ class Chess(Scene, ChessInterface):
 
         self.initialize_players()
         self.game.scene = self
+        self.do_jit_draw()
 
     def initialize_players(self):
         new_timer = lambda: TIMER_CLASS[self.config['timer']](self.config)
@@ -131,23 +126,19 @@ class Chess(Scene, ChessInterface):
         self.thread_events = [white.timer.event, black.timer.event]
         self.current_player.start_turn()
 
-    def draw(self, delta_time):
-        self.countdown = max(self.countdown - delta_time, 0)
-        self.denied_countdown = max(self.denied_countdown - delta_time, 0)
+    def draw(self):
         self.game.screen.fill((238, 223, 204))
-        if not self.should_draw_tree:
-            self.main_div.draw(self.game.screen)
+        self.main_div.draw(self.game.screen)
+
+    def logic(self, delta_time):
+        if (0 < self.countdown < delta_time or
+                0 < self.denied_countdown < delta_time):
+            self.countdown = max(self.countdown - delta_time, 0)
+            self.denied_countdown = max(self.denied_countdown - delta_time, 0)
+            self.do_jit_draw()
         else:
-            if self.scrolling == K_DOWN:
-                self.view[1] += SCROLL_SPEED
-            if self.scrolling == K_UP:
-                self.view[1] -= SCROLL_SPEED
-            if self.scrolling == K_LEFT:
-                self.view[0] -= SCROLL_SPEED
-            if self.scrolling == K_RIGHT:
-                self.view[0] += SCROLL_SPEED
-            self.tree.draw(self.game.screen,
-                           x=-self.view[0], y=-self.view[1])
+            self.countdown = max(self.countdown - delta_time, 0)
+            self.denied_countdown = max(self.denied_countdown - delta_time, 0)
 
     def get_square(self, pos):
         x, y = pos[0] - (MARGIN + BORDER), pos[1] - BORDER
@@ -166,20 +157,16 @@ class Chess(Scene, ChessInterface):
             square = self.get_square(event.pos)
             self.current_player.click(square)
             self.main_div.click(event.pos)
+            self.do_jit_draw()
         elif event.type == MOUSEMOTION:
             self.main_div.motion(event.pos)
         elif event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 self.pause()
-            if event.key == K_t:
-                self.should_draw_tree = not self.should_draw_tree
-            if event.key in [K_DOWN, K_UP, K_LEFT, K_RIGHT]:
-                self.scrolling = event.key
-        if event.type == KEYUP:
-            self.scrolling = None
 
     def select(self, square):
         self.selected = square
+        self.do_jit_draw()
 
     def play(self, square, skip_validation=False):
         self.fail = None
@@ -192,6 +179,7 @@ class Chess(Scene, ChessInterface):
             return True
 
         self.fail = square
+        self.do_jit_draw()
         return False
 
     def change_turn(self):
@@ -237,6 +225,7 @@ class Chess(Scene, ChessInterface):
         self.state = self.previous_state
         self.game.scene = self
         self.current_player.resume_turn()
+        self.do_jit_draw()
 
     def confirm_draw_dialog(self, player):
         if (self.fifty_move == FIFTY_MOVE_OPTIONS["button"] and

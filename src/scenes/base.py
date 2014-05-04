@@ -21,6 +21,7 @@ class Scene(object):
         self.data_dir = os.path.abspath(
             os.path.join(sys.argv[0], '..', '..', 'data'))
         self.game = game
+        self.jit_draw = False
         self.thread_events = []
 
     def loop(self, delta_time):
@@ -33,9 +34,10 @@ class Scene(object):
         It calls the method self.event for each event and calls the method
             self.draw once to draw the screen
         """
-        self.game.screen.fill((0, 0, 0))
-
-        self.draw(delta_time)
+        if not self.jit_draw:
+            self.game.screen.fill((0, 0, 0))
+            self.draw()
+        self.logic(delta_time)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -44,10 +46,16 @@ class Scene(object):
             elif event.type == pygame.VIDEORESIZE:
                 self.game.resize(event.dict['size'])
                 self.resize()
-                self.draw(0.0)
+                self.do_jit_draw()
             else:
                 self.event(delta_time, event)
 
+        if not self.jit_draw:
+            pygame.display.flip()
+
+    def do_jit_draw(self):
+        self.game.screen.fill((0, 0, 0))
+        self.draw()
         pygame.display.flip()
 
     def load_stored_config(self):
@@ -86,8 +94,18 @@ class Scene(object):
         )
         return rect
 
-    def draw(self, delta_time):
+    def draw(self):
         """This function should draw the scene.
+        Override it in a subclass!
+
+        Arguments:
+        delta_time is the time in seconds (float) passed since
+            the last game loop execution
+        """
+        pass
+
+    def logic(self, delta_time):
+        """This function should do the game logic
         Override it in a subclass!
 
         Arguments:
