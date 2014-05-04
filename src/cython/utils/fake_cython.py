@@ -37,6 +37,7 @@ class FakeCython(object):
     def __init__(self):
         self.declare = function
         self.int = FakeAttr()
+        self.ulonglong = FakeAttr()
         self.void = FakeAttr()
         self.locals = clocals
         self.cclass = _EmptyDecoratorAndManager()

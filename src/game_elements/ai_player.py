@@ -10,6 +10,7 @@ from time import sleep
 from consts.moves import (
     CHECKMATE, STALEMATE
 )
+from consts.pieces import PAWN, KING
 from consts.colors import WHITE, BLACK
 from .player import Player, END
 import scenes
@@ -28,6 +29,7 @@ class AIPlayer(Player):
         super(AIPlayer, self).__init__(color, timer, chess, *args, **kwargs)
         self.level = level
         self.board = chess.board
+        self.temp_board = self.board
         self.chosen_move = None
         self.skip_validation = True
 
@@ -35,6 +37,7 @@ class AIPlayer(Player):
         if not self.chess.game.running:
             sys.exit()
         super(AIPlayer, self).start_turn()
+        self.temp_board = self.board.clone()
         self.chosen_move = None
         threading.Thread(target=self.ai_move).start()
 
@@ -60,25 +63,25 @@ class AIPlayer(Player):
             return
 
         if self.level == SOOO_EASY:
-            moves = list(self.chess.board.possible_moves(self.color))
+            moves = list(self.temp_board.possible_moves(self.color))
 
             while not moves:
                 self.try_to_exit_thread_loop()
-                moves = list(self.chess.board.possible_moves(self.color))
+                moves = list(self.temp_board.possible_moves(self.color))
 
             self.do_move(random.choice(moves))
 
         elif self.level == EASY:
             moves = list(
-                self.chess.board.possible_killing_moves(self.color) or
-                self.chess.board.possible_moves(self.color)
+                self.temp_board.possible_killing_moves(self.color) or
+                self.temp_board.possible_moves(self.color)
             )
 
             while not moves:
                 self.try_to_exit_thread_loop()
                 moves = list(
-                    self.chess.board.possible_killing_moves(self.color) or
-                    self.chess.board.possible_moves(self.color)
+                    self.temp_board.possible_killing_moves(self.color) or
+                    self.temp_board.possible_moves(self.color)
                 )
 
             self.do_move(random.choice(moves))
@@ -100,7 +103,7 @@ class AIPlayer(Player):
         b = float('inf')
 
         self.chess.snap_board.snap()
-        node = Node(self.board)
+        node = Node(self.temp_board)
         node._value = self.evaluate_state(node)
         #self.chess.tree.node = node
         max_move = None
@@ -157,9 +160,9 @@ class AIPlayer(Player):
             WHITE: Counter(),
             BLACK: Counter()
         }
-
-        for piece in node.board.get_pieces():
-            counters[piece.color][piece.name] += 1
+        for piece in range(PAWN, KING + 1):
+            counters[WHITE][piece] = node.board.count(WHITE, piece)
+            counters[BLACK][piece] = node.board.count(BLACK, piece)
 
         minus = {
             key: (counters[WHITE][key] - counters[BLACK][key]) * multiplier
@@ -167,7 +170,7 @@ class AIPlayer(Player):
         }
         #print(minus)
         if node.board.color() == WHITE:
-            return sum(minus.values())
+            return -sum(minus.values())
         return -sum(minus.values())
 
 

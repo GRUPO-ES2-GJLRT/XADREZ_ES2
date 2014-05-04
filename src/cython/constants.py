@@ -24,11 +24,14 @@ EMPTY = -1
 
 # Pieces
 
-PIECE_EMPTY, PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING = 0, 1, 2, 3, 4, 5, 6
+PIECE_EMPTY = 0
+from consts.pieces import PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING
 
 # COLOR
 
-WHITE, BLACK, COLOR_EMPTY = 0, 1, 2
+from consts.colors import WHITE, BLACK
+
+COLOR_EMPTY = 2
 
 # Piece movements
 

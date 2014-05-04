@@ -198,7 +198,7 @@ class ChessInterface(Interface):
                                 color=(128, 128, 128),
                             ),
                             ImageElement(
-                                image=self.piece_images['%s_king' % WHITE]
+                                image=self.piece_images['white_king']
                             ),
                             ImageElement(
                                 name="white_arrow",
@@ -239,7 +239,7 @@ class ChessInterface(Interface):
                                 color=(128, 128, 128),
                             ),
                             ImageElement(
-                                image=self.piece_images['%s_king' % BLACK]
+                                image=self.piece_images['black_king']
                             ),
                             ImageElement(
                                 name="black_arrow",
@@ -312,7 +312,7 @@ class ChessInterface(Interface):
         )
 
         self.piece_images = {}
-        for color in [BLACK, WHITE]:
+        for color in ["black", "white"]:
             for piece in ['pawn', 'rook', 'knight', 'bishop', 'queen', 'king']:
                 img = Image(
                     "%s_%s.png" % (color, piece),
