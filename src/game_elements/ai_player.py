@@ -104,10 +104,8 @@ class AIPlayer(Player):
         a = float('-inf')
         b = float('inf')
 
-        #self.chess.snap_board.snap()
         node = Node(self.temp_board)
         node._value = self.evaluate_state(node)
-        #self.chess.tree.node = node
         max_move = None
         for child in node.children():
             value = self.minmax_alpha_beta_prunning(
@@ -116,8 +114,6 @@ class AIPlayer(Player):
                 a = value
                 max_move = child.move
         node._value = a
-        #self.chess.snap_board.dynamic()
-        print(max_move)
         return max_move
 
     def minmax_alpha_beta_prunning(self, node, depth, a, b, maximizing_player):
@@ -170,7 +166,6 @@ class AIPlayer(Player):
             key: (counters[WHITE][key] - counters[BLACK][key]) * multiplier
             for key, multiplier in consts.items()
         }
-        #print(minus)
         if node.board.color() == WHITE:
             return -sum(minus.values())
         return -sum(minus.values())

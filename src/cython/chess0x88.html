@@ -1360,7 +1360,7 @@ struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board {
   PyObject *(*load_fen)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
   int (*castle)(struct __pyx_obj_3src_6cython_9chess0x88_Board *);
   PyObject *(*attack_moves)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_attack_moves *__pyx_optional_args);
-  PyObject *(*genenate_moves)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_genenate_moves *__pyx_optional_args);
+  PyObject *(*generate_moves)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_generate_moves *__pyx_optional_args);
   int (*attacked)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, int, int);
   int (*in_check)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, int __pyx_skip_dispatch, struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_in_check *__pyx_optional_args);
   int (*_current_king_position)(struct __pyx_obj_3src_6cython_9chess0x88_Board *, int __pyx_skip_dispatch);
@@ -2092,13 +2092,13 @@ static PyObject *__pyx_pf_3src_6cython_9chess0x88_5Board_8possible_moves(struct 
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return __pyx_r;
 }
-</pre><pre class='line' style='background-color: #FFFFe7' onclick='toggleDiv("line407")'> 407:         return self.genenate_moves(legal=1, square=-1, color=color)</pre>
+</pre><pre class='line' style='background-color: #FFFFe7' onclick='toggleDiv("line407")'> 407:         return self.generate_moves(legal=1, square=-1, color=color)</pre>
 <pre id='line407' class='code' style='background-color: #FFFFe7'>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
   __pyx_t_4.__pyx_n = 3;
   __pyx_t_4.legal = 1;
   __pyx_t_4.square = -1;
   __pyx_t_4.color = __pyx_v_color;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;genenate_moves(__pyx_v_self, &amp;__pyx_t_4);<span class='error_goto'> if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;generate_moves(__pyx_v_self, &amp;__pyx_t_4);<span class='error_goto'> if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2210,12 +2210,12 @@ static PyObject *__pyx_pf_3src_6cython_9chess0x88_5Board_10possible_killing_move
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_v_result = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
-</pre><pre class='line' style='background-color: #FFFFff' onclick='toggleDiv("line413")'> 413:         moves = self.genenate_moves(legal=1, square=-1, color=color)</pre>
+</pre><pre class='line' style='background-color: #FFFFff' onclick='toggleDiv("line413")'> 413:         moves = self.generate_moves(legal=1, square=-1, color=color)</pre>
 <pre id='line413' class='code' style='background-color: #FFFFff'>  __pyx_t_4.__pyx_n = 3;
   __pyx_t_4.legal = 1;
   __pyx_t_4.square = -1;
   __pyx_t_4.color = __pyx_v_color;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;genenate_moves(__pyx_v_self, &amp;__pyx_t_4);<span class='error_goto'> if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;generate_moves(__pyx_v_self, &amp;__pyx_t_4);<span class='error_goto'> if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_v_moves = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2604,12 +2604,12 @@ struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_move {
 </pre><pre class='line' style='background-color: #FFFF7f' onclick='toggleDiv("line430")'> 430:         dest = tuple_to_0x88(new_position)</pre>
 <pre id='line430' class='code' style='background-color: #FFFF7f'>  if (!(likely(<span class='py_c_api'>PyTuple_CheckExact</span>(__pyx_v_new_position))||((__pyx_v_new_position) == Py_None)||(<span class='py_c_api'>PyErr_Format</span>(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_new_position)-&gt;tp_name), 0))) <span class='error_goto'>{__pyx_filename = __pyx_f[0]; __pyx_lineno = 430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
   __pyx_v_dest = __pyx_f_3src_6cython_9chess0x88_tuple_to_0x88(((PyObject*)__pyx_v_new_position));
-</pre><pre class='line' style='background-color: #FFFFd4' onclick='toggleDiv("line431")'> 431:         moves = self.genenate_moves(</pre>
+</pre><pre class='line' style='background-color: #FFFFd4' onclick='toggleDiv("line431")'> 431:         moves = self.generate_moves(</pre>
 <pre id='line431' class='code' style='background-color: #FFFFd4'>  __pyx_t_5.__pyx_n = 3;
   __pyx_t_5.legal = 1;
   __pyx_t_5.square = __pyx_t_4;
   __pyx_t_5.color = -1;
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;genenate_moves(__pyx_v_self, &amp;__pyx_t_5);<span class='error_goto'> if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;generate_moves(__pyx_v_self, &amp;__pyx_t_5);<span class='error_goto'> if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_1);
   __pyx_t_3 = __pyx_t_1;
   <span class='pyx_macro_api'>__Pyx_INCREF</span>(__pyx_t_3);
@@ -3597,8 +3597,8 @@ struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_attack_moves {
 <pre id='line599' class='code' style='background-color: #FFFFff'></pre><pre class='line' style='background-color: #FFFFff' onclick='toggleDiv("line600")'> 600:         offset=cython.int, i=cython.int, j=cython.int,</pre>
 <pre id='line600' class='code' style='background-color: #FFFFff'></pre><pre class='line' style='background-color: #FFFFff' onclick='toggleDiv("line601")'> 601:         origin=cython.int, dest=cython.int</pre>
 <pre id='line601' class='code' style='background-color: #FFFFff'></pre><pre class='line' style='background-color: #FFFFff' onclick='toggleDiv("line602")'> 602:     )</pre>
-<pre id='line602' class='code' style='background-color: #FFFFff'></pre><pre class='line' style='background-color: #FFFF7f' onclick='toggleDiv("line603")'> 603:     def genenate_moves(self, legal=0, square=-1, color=-1):</pre>
-<pre id='line603' class='code' style='background-color: #FFFF7f'>static PyObject *__pyx_f_3src_6cython_9chess0x88_5Board_genenate_moves(struct __pyx_obj_3src_6cython_9chess0x88_Board *__pyx_v_self, struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_genenate_moves *__pyx_optional_args) {
+<pre id='line602' class='code' style='background-color: #FFFFff'></pre><pre class='line' style='background-color: #FFFF7f' onclick='toggleDiv("line603")'> 603:     def generate_moves(self, legal=0, square=-1, color=-1):</pre>
+<pre id='line603' class='code' style='background-color: #FFFF7f'>static PyObject *__pyx_f_3src_6cython_9chess0x88_5Board_generate_moves(struct __pyx_obj_3src_6cython_9chess0x88_Board *__pyx_v_self, struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_generate_moves *__pyx_optional_args) {
   int __pyx_v_legal = ((int)0);
   int __pyx_v_square = ((int)-1);
   int __pyx_v_color = ((int)-1);
@@ -3618,7 +3618,7 @@ struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_attack_moves {
   PyObject *__pyx_v_move = NULL;
   PyObject *__pyx_r = NULL;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
-  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("genenate_moves", 0);
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("generate_moves", 0);
   if (__pyx_optional_args) {
     if (__pyx_optional_args-&gt;__pyx_n &gt; 0) {
       __pyx_v_legal = __pyx_optional_args-&gt;legal;
@@ -3638,7 +3638,7 @@ struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_attack_moves {
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_6);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_7);
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_t_8);
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("src.cython.chess0x88.Board.genenate_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("src.cython.chess0x88.Board.generate_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_v_moves);
@@ -3649,7 +3649,7 @@ struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_attack_moves {
   return __pyx_r;
 }
 /* … */
-struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_genenate_moves {
+struct __pyx_opt_args_3src_6cython_9chess0x88_5Board_generate_moves {
   int __pyx_n;
   int legal;
   int square;
@@ -4841,10 +4841,10 @@ static PyObject *__pyx_pf_3src_6cython_9chess0x88_5Board_28status(struct __pyx_o
 <pre id='line773' class='code' style='background-color: #FFFFff'>  __pyx_t_1 = (__pyx_v_possible_moves == Py_None);
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
-</pre><pre class='line' style='background-color: #FFFFe7' onclick='toggleDiv("line774")'> 774:             possible_moves = self.genenate_moves(legal=1)</pre>
+</pre><pre class='line' style='background-color: #FFFFe7' onclick='toggleDiv("line774")'> 774:             possible_moves = self.generate_moves(legal=1)</pre>
 <pre id='line774' class='code' style='background-color: #FFFFe7'>    __pyx_t_4.__pyx_n = 1;
     __pyx_t_4.legal = 1;
-    __pyx_t_3 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;genenate_moves(__pyx_v_self, &amp;__pyx_t_4);<span class='error_goto'> if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
+    __pyx_t_3 = ((struct __pyx_vtabstruct_3src_6cython_9chess0x88_Board *)__pyx_v_self-&gt;__pyx_vtab)-&gt;generate_moves(__pyx_v_self, &amp;__pyx_t_4);<span class='error_goto'> if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}</span>
     <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
     <span class='pyx_macro_api'>__Pyx_DECREF_SET</span>(__pyx_v_possible_moves, __pyx_t_3);
     __pyx_t_3 = 0;
