@@ -238,6 +238,7 @@ def get_value_queen(x, y):
             [-20, -10, -10, -5,  -5, -10, -10, -20]]
     return table[y][x]
 
+
 def get_value_king(x, y):
     if are_queens_alive():
         table = [[-30, -40, -40, -50, -50, -40, -40, -30],
@@ -258,6 +259,7 @@ def get_value_king(x, y):
                     [-30, -30,  0,  0,  0,  0, -30, -30],
                     [-50, -30, -30, -30, -30, -30, -30, -50]]
     return table[y][x]
+
 
 def are_queens_alive(self):
     for piece in self.board.pieces[WHITE]:
