@@ -91,7 +91,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(3))
+            self.do_move(self.minmax_move(2))
 
         elif self.level == HARD:
             raise Exception
@@ -150,20 +150,30 @@ class AIPlayer(Player):
             node.value = b
             return b
 
-    @staticmethod
-    def evaluate_state(node):
+    def evaluate_state(self, node):
 
         score_white = 0
         score_black = 0
         for white_piece in node.board.pieces[WHITE]:
-            score_white += get_value_piece(white_piece)
+            score_white += self.get_value_piece(white_piece)
         for black_piece in node.board.pieces[BLACK]:
-            score_black += get_value_piece(black_piece)
+            score_black += self.get_value_piece(black_piece)
         if node.board.current_color == WHITE:
             return (score_white - score_black)
         return -(score_white - score_black)
 
-def get_value_piece(piece):
+    def are_queens_alive(self):
+        white_queen = None
+        black_queen = None
+        for piece in self.board.pieces[WHITE]:
+            if piece.name() == 'queen':
+                white_queen = True
+        for piece in self.board.pieces[BLACK]:
+            if piece.name() == 'queen':
+                black_queen = True
+        return white_queen and black_queen
+
+    def get_value_piece(self, piece):
         x = piece.x if piece.color == "BLACK" else 7 - piece.x
         y = piece.y if piece.color == "BLACK" else 7 - piece.y
         if piece.name() == "pawn":
@@ -176,7 +186,29 @@ def get_value_piece(piece):
             return get_value_rooks(x, y) + consts['bishop']
         elif piece.name() == "queen":
             return get_value_queen(x, y) + consts['queen']
-        return get_value_king(x, y) + consts['king']
+        return self.get_value_king(x, y) + consts['king']
+
+    def get_value_king(self, x, y):
+        if self.are_queens_alive():
+            table = [[-30, -40, -40, -50, -50, -40, -40, -30],
+                            [-30, -40, -40, -50, -50, -40, -40, -30],
+                            [-30, -40, -40, -50, -50, -40, -40, -30],
+                            [-30, -40, -40, -50, -50, -40, -40, -30],
+                            [-20, -30, -30, -40, -40, -30, -30, -20],
+                            [-10, -20, -20, -20, -20, -20, -20, -10],
+                            [20, 20,  0,  0,  0,  0, 20, 20],
+                            [20, 30, 10,  0,  0, 10, 30, 20]]
+        else:
+            table = [[-50, -40, -30, -20, -20, -30, -40, -50],
+                        [-30, -20, -10,  0,  0, -10, -20, -30],
+                        [-30, -10, 20, 30, 30, 20, -10, -30],
+                        [-30, -10, 30, 40, 40, 30, -10, -30],
+                        [-30, -10, 30, 40, 40, 30, -10, -30],
+                        [-30, -10, 20, 30, 30, 20, -10, -30],
+                        [-30, -30,  0,  0,  0,  0, -30, -30],
+                        [-50, -30, -30, -30, -30, -30, -30, -50]]
+        return table[y][x]
+
 
 
 def get_value_pawn(x, y):
@@ -238,37 +270,6 @@ def get_value_queen(x, y):
             [-20, -10, -10, -5,  -5, -10, -10, -20]]
     return table[y][x]
 
-
-def get_value_king(x, y):
-    if are_queens_alive():
-        table = [[-30, -40, -40, -50, -50, -40, -40, -30],
-                        [-30, -40, -40, -50, -50, -40, -40, -30],
-                        [-30, -40, -40, -50, -50, -40, -40, -30],
-                        [-30, -40, -40, -50, -50, -40, -40, -30],
-                        [-20, -30, -30, -40, -40, -30, -30, -20],
-                        [-10, -20, -20, -20, -20, -20, -20, -10],
-                        [20, 20,  0,  0,  0,  0, 20, 20],
-                        [20, 30, 10,  0,  0, 10, 30, 20]]
-    else:
-        table = [[-50, -40, -30, -20, -20, -30, -40, -50],
-                    [-30, -20, -10,  0,  0, -10, -20, -30],
-                    [-30, -10, 20, 30, 30, 20, -10, -30],
-                    [-30, -10, 30, 40, 40, 30, -10, -30],
-                    [-30, -10, 30, 40, 40, 30, -10, -30],
-                    [-30, -10, 20, 30, 30, 20, -10, -30],
-                    [-30, -30,  0,  0,  0,  0, -30, -30],
-                    [-50, -30, -30, -30, -30, -30, -30, -50]]
-    return table[y][x]
-
-
-def are_queens_alive(self):
-    for piece in self.board.pieces[WHITE]:
-        if piece.name() == 'queen':
-            white_queen = True
-    for piece in self.board.pieces[BLACK]:
-        if piece.name() == 'queen':
-            black_queen = True
-    return white_queen and black_queen
 
 class Node(object):
 
