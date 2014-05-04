@@ -30,6 +30,9 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         # Fifty Move Rule
         self.fifty_move = self.data['fifty_move']
 
+        # Fifty Move Rule
+        self.current_jit_draw = self.data['jit_draw']
+
         # State
         self.show_moves = False
         self.show_bonus = False
@@ -65,6 +68,9 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         def select_fiftymove(it, option):
             self.fifty_move = option
 
+        def select_jit_draw(it, option):
+            self.current_jit_draw = option
+
         def motion(it, collides, color):
             if collides:
                 it.color = self.button_hover
@@ -82,6 +88,7 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.bonus_minus_click = partial(minus, element=lambda: self.bonus)
         self.select_timer = select_timer
         self.select_fiftymove = select_fiftymove
+        self.select_jit_draw = select_jit_draw
         self.motion = partial(motion, color=lambda: self.button_color)
         self.motion_options = partial(motion, color=lambda: self.value_color)
 
@@ -100,6 +107,7 @@ class ConfigMenu(Scene, ConfigMenuInterface):
             'moves': int(self.moves.value),
             'bonus': int(self.bonus.value),
             'fifty_move': self.fifty_move,
+            'jit_draw': self.current_jit_draw
         }
 
         try:
@@ -111,7 +119,7 @@ class ConfigMenu(Scene, ConfigMenuInterface):
                   'w') as f:
             json.dump(data, f)
 
-    def draw(self, delta_time):
+    def draw(self):
         """Draws ConfigMenu"""
         self.main_div.draw(self.game.screen)
 

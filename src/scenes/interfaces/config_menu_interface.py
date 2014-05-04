@@ -27,8 +27,11 @@ from consts.i18n import (
     FIFTY_MOVE_AUTO,
     FIFTY_MOVE_BUTTON,
     FIFTY_MOVE_DISABLE,
+    JIT_DRAW_LABEL,
+    JIT_DRAW_ENABLE,
+    JIT_DRAW_DISABLE
 )
-from consts.default import TIMER_OPTIONS, FIFTY_MOVE_OPTIONS
+from consts.default import TIMER_OPTIONS, FIFTY_MOVE_OPTIONS, JIT_DRAW_OPTIONS
 
 
 class ConfigMenuInterface(MenuInterface):
@@ -169,5 +172,21 @@ class ConfigMenuInterface(MenuInterface):
                 },
                 motion=self.motion_options,
                 select=self.select_fiftymove,
+            ),
+            ListOptionElement(
+                font=self.label_font,
+                label=JIT_DRAW_LABEL,
+                antialias=True,
+                label_color=self.button_color,
+                option_color=self.value_color,
+                current=self.current_jit_draw,
+                x=lambda: self.game.relative_x(0.12),
+                y=lambda: self.game.relative_y(0.48),
+                options={
+                    JIT_DRAW_OPTIONS["enable"]: JIT_DRAW_ENABLE,
+                    JIT_DRAW_OPTIONS["disable"]: JIT_DRAW_DISABLE,
+                },
+                motion=self.motion_options,
+                select=self.select_jit_draw,
             ),
         ])
