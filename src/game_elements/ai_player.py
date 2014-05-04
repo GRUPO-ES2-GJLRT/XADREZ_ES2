@@ -239,7 +239,8 @@ def get_value_queen(x, y):
     return table[y][x]
 
 def get_value_king(x, y):
-    table_middlegame = [[-30, -40, -40, -50, -50, -40, -40, -30],
+    if are_queens_alive():
+        table = [[-30, -40, -40, -50, -50, -40, -40, -30],
                         [-30, -40, -40, -50, -50, -40, -40, -30],
                         [-30, -40, -40, -50, -50, -40, -40, -30],
                         [-30, -40, -40, -50, -50, -40, -40, -30],
@@ -247,8 +248,8 @@ def get_value_king(x, y):
                         [-10, -20, -20, -20, -20, -20, -20, -10],
                         [20, 20,  0,  0,  0,  0, 20, 20],
                         [20, 30, 10,  0,  0, 10, 30, 20]]
-
-    table_endgame = [[-50, -40, -30, -20, -20, -30, -40, -50],
+    else:
+        table = [[-50, -40, -30, -20, -20, -30, -40, -50],
                     [-30, -20, -10,  0,  0, -10, -20, -30],
                     [-30, -10, 20, 30, 30, 20, -10, -30],
                     [-30, -10, 30, 40, 40, 30, -10, -30],
@@ -256,7 +257,16 @@ def get_value_king(x, y):
                     [-30, -10, 20, 30, 30, 20, -10, -30],
                     [-30, -30,  0,  0,  0,  0, -30, -30],
                     [-50, -30, -30, -30, -30, -30, -30, -50]]
+    return table[y][x]
 
+def are_queens_alive(self):
+    for piece in self.board.pieces[WHITE]:
+        if piece.name() == 'queen':
+            white_queen = True
+    for piece in self.board.pieces[BLACK]:
+        if piece.name() == 'queen':
+            black_queen = True
+    return white_queen and black_queen
 
 class Node(object):
 
