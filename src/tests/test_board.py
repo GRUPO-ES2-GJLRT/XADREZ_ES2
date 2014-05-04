@@ -10,6 +10,7 @@ from consts.moves import CHECK, CHECKMATE, STALEMATE, NORMAL, FIFTY_MOVE
 from cython.board import Board
 #from game_elements import Board
 
+tuples = lambda x: set(a.tuple() for a in x)
 
 BP, WP = "black pawn", "white pawn"
 BR, WR = "black rook", "white rook"
@@ -140,9 +141,9 @@ class TestBoardMoves(unittest.TestCase):
             ((4, 4), (2, 3)),
         ])
         expected_moves_black = set()
-        self.assertEqual(set(board.possible_moves(WHITE)),
+        self.assertEqual(tuples(board.possible_moves(WHITE)),
                          expected_moves_white)
-        self.assertEqual(set(board.possible_moves(BLACK)),
+        self.assertEqual(tuples(board.possible_moves(BLACK)),
                          expected_moves_black)
 
     def test_moves_in_a_new_game(self):
@@ -171,9 +172,9 @@ class TestBoardMoves(unittest.TestCase):
             ((1, 7), (0, 5)), ((1, 7), (2, 5)),
             ((6, 7), (5, 5)), ((6, 7), (7, 5)),
         ])
-        self.assertEqual(set(board.possible_moves(WHITE)),
+        self.assertEqual(tuples(board.possible_moves(WHITE)),
                          expected_moves_white)
-        self.assertEqual(set(board.possible_moves(BLACK)),
+        self.assertEqual(tuples(board.possible_moves(BLACK)),
                          expected_moves_black)
 
     def test_moves_that_allows_check_are_not_allowed(self):
@@ -186,7 +187,7 @@ class TestBoardMoves(unittest.TestCase):
             ((4, 0), (4, 1)),
 
         ])
-        self.assertEqual(set(board.possible_moves(WHITE)),
+        self.assertEqual(tuples(board.possible_moves(WHITE)),
                          expected_moves_white)
 
     def test_moves_that_keeps_check_are_not_allowed(self):
@@ -196,7 +197,7 @@ class TestBoardMoves(unittest.TestCase):
             ((4, 0), (3, 1)),
             ((4, 0), (5, 1)),
         ])
-        self.assertEqual(set(board.possible_moves(WHITE)),
+        self.assertEqual(tuples(board.possible_moves(WHITE)),
                          expected_moves_white)
 
 

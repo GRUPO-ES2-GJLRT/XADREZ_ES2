@@ -50,8 +50,9 @@ class AIPlayer(Player):
         while chess.state == scenes.chess.PAUSE:
             self.try_to_exit_thread_loop()
             pass
-        self.select(chosen_move[0])
-        self.play(chosen_move[1])
+        tup = chosen_move.tuple()
+        self.select(tup[0])
+        self.play(tup[1])
         chess.do_jit_draw()
 
     def try_to_exit_thread_loop(self):
@@ -206,8 +207,5 @@ class Node(object):
     def children(self):
         for move in self.moves:
             nboard = self.board.clone()
-            #nboard.current_color = self.board.color()
-            if nboard.move(move[0], move[1]):
-                new_node = Node(nboard, move=move)
-                #self.childs.append(new_node)
-                yield new_node
+            move.do(nboard)
+            yield Node(nboard, move=move)
