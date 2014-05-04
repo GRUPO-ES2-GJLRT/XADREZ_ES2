@@ -13,10 +13,10 @@ from .test_pawn import TestPawn
 
 __all__ = [
     b'TestBoard',
-   # b'TestRook',
-   #b'TestKnight',
-   #b'TestBishop',
-   #b'TestQueen',
-   #b'TestKing',
-   #b'TestPawn',
+    b'TestRook',
+    b'TestKnight',
+    b'TestBishop',
+    b'TestQueen',
+    b'TestKing',
+    b'TestPawn',
 ]

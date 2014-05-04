@@ -4,490 +4,375 @@ from __future__ import (absolute_import, division,
 
 import unittest
 
-from consts.colors import WHITE, BLACK
-from consts.moves import KINGSIDE_CASTLING, QUEENSIDE_CASTLING, to_move_dict
-from game_elements.board import Board
-from pieces.king import King
-from pieces.rook import Rook
+from cython.board import Board
+
+moves = lambda o, x: set((o, a) for a in x)
+tuples = lambda x: set(a.tuple() for a in x)
 
 
 class TestKingMove(unittest.TestCase):
 
-    def test_king_at_4_4_can_move_to_8_positions(self):
+    def test_king_at_e5_can_move_to_8_positions(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 4)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/4K3/8/8/8/8 w - - 0 1")
+        pos = (4, 4)
+        possible_moves = moves(pos, [
             (3, 3), (4, 3), (5, 3), (5, 4), (5, 5), (4, 5), (3, 5), (3, 4)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_king_at_0_0_can_move_to_3_positions(self):
+    def test_king_at_a1_can_move_to_3_positions(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 0, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/K7 w - - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (0, 1), (1, 0), (1, 1)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_knight_at_0_0_and_ally_at_1_1_can_move_to_2_positions(self):
+    def test_king_at_a1_and_ally_at_b2_can_move_to_2_positions(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 0, 0)
-        King(board, WHITE, 1, 1)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/1P6/K7 w - - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (0, 1), (1, 0),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_knight_at_0_0_and_allies_at_0_1_and_1_0_and_1_1_should_have_no_possible_moves(self):
+    def test_king_at_a1_and_allies_at_a2_and_b1_and_b2_no_moves(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 0, 0)
-        King(board, WHITE, 0, 1)
-        King(board, WHITE, 1, 0)
-        King(board, WHITE, 1, 1)
-        possible_moves = {}
-        attack = {}
+        board.load_fen("8/8/8/8/8/8/PP6/KP6 w - - 0 1")
+        pos = (0, 0)
+        possible_moves = set()
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_knight_at_0_0_and_enemy_at_2_0_can_move_to_0_1(self):
+    def test_king_at_a1_and_enemy_at_c1_can_move_to_a2(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 0, 0)
-        King(board, BLACK, 2, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/K1k5 w - - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (0, 1),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_knight_at_0_1_and_enemy_rook_at_0_7_cannot_move_to_0_0(self):
+    def test_king_at_a2_and_enemy_rook_at_a8_cannot_move_to_a1(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 0, 1)
-        Rook(board, BLACK, 0, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("r7/8/8/8/8/8/K8/8 w - - 0 1")
+        pos = (0, 1)
+        possible_moves = moves(pos, [
             (1, 2),
             (1, 1),
             (1, 0),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
 
 class TestKingCastling(unittest.TestCase):
     def test_kingside_white_castling(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 7, 0)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
-            (6, 0, KINGSIDE_CASTLING)
+        board.load_fen("8/8/8/8/8/8/8/4K2R w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0), (6, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_kingside_white_castling_is_not_possible_if_there_is_piece_in_between(self):
+    def test_kingside_white_castling_is_not_possible_if_there_is_piece(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 7, 0)
-        Rook(board, WHITE, 6, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/4K1RR w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_kingside_white_castling_is_not_possible_if_there_is_piece_in_between2(self):
+    def test_kingside_white_castling_is_not_possible_if_there_is_piece2(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 7, 0)
-        Rook(board, WHITE, 5, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/4KR1R w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
             (3, 0), (3, 1), (4, 1), (5, 1),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_white_castling_is_not_possible_if_king_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        king.has_moved = True
-        Rook(board, WHITE, 7, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/4K2R w - - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_white_castling_is_not_possible_if_rook_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        rook = Rook(board, WHITE, 7, 0)
-        rook.has_moved = True
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("8/8/8/8/8/8/8/R3K2R w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0), (2, 0),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_white_castling_is_not_possible_if_step_is_hindered(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 7, 0)
-        Rook(board, BLACK, 5, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("5r2/8/8/8/8/8/8/4K2R w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
             (3, 0), (3, 1), (4, 1),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_kingside_white_castling_is_not_possible_if_final_is_hindered(self):
+    def test_kingside_white_castling_is_not_possible_if_final_hindered(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 7, 0)
-        Rook(board, BLACK, 6, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("6r1/8/8/8/8/8/8/4K2R w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
             (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_white_castling_is_not_possible_if_king_is_hindered(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 7, 0)
-        Rook(board, BLACK, 4, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("4r3/8/8/8/8/8/8/4K2R w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
             (3, 0), (3, 1), (5, 1), (5, 0),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_queenside_white_castling(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
-            (2, 0, QUEENSIDE_CASTLING)
+        board.load_fen("8/8/8/8/8/8/8/R3K3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0), (2, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_white_castling_is_not_possible_if_there_is_piece_in_between(self):
+    def test_queenside_white_castling_is_not_possible_if_there_is_piece(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        Rook(board, WHITE, 1, 0)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("8/8/8/8/8/8/8/RP2K3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_white_castling_is_not_possible_if_there_is_piece_in_between2(self):
+    def test_queenside_white_castling_is_not_possible_if_there_is_piece2(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        Rook(board, WHITE, 2, 0)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("8/8/8/8/8/8/8/R1P1K3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_white_castling_is_not_possible_if_there_is_piece_in_between3(self):
+    def test_queenside_white_castling_is_not_possible_if_there_is_piece3(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        Rook(board, WHITE, 3, 0)
-        possible_moves = to_move_dict([
-            (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("8/8/8/8/8/8/8/R2PK3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 1), (4, 1), (5, 1), (5, 0)
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_queenside_white_castling_is_not_possible_if_king_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        king.has_moved = True
-        Rook(board, WHITE, 0, 0)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("8/8/8/8/8/8/8/R3K3 w - - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0)
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_queenside_white_castling_is_not_possible_if_rook_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        rook = Rook(board, WHITE, 0, 0)
-        rook.has_moved = True
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("8/8/8/8/8/8/8/R3K2R w K - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0), (6, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_white_castling_is_not_possible_if_step_is_hindered(self):
+    def test_queenside_white_castling_is_not_possible_if_step_hindered(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        Rook(board, BLACK, 3, 7)
-        possible_moves = to_move_dict([
-            (4, 1), (5, 1), (5, 0),
+        board.load_fen("3r5/8/8/8/8/8/8/R3K3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (4, 1), (5, 1), (5, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_white_castling_is_not_possible_if_final_is_hindered(self):
+    def test_queenside_white_castling_is_not_possible_if_final_hindered(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        Rook(board, BLACK, 2, 7)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0),
+        board.load_fen("2r5/8/8/8/8/8/8/R3K3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (4, 1), (5, 1), (5, 0)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_white_castling_is_not_possible_if_king_is_hindered(self):
+    def test_queenside_white_castling_is_not_possible_if_king_hindered(self):
         board = Board(new_game=False)
-        king = King(board, WHITE, 4, 0)
-        Rook(board, WHITE, 0, 0)
-        Rook(board, BLACK, 4, 7)
-        possible_moves = to_move_dict([
-            (3, 0), (3, 1), (5, 1), (5, 0),
+        board.load_fen("4r3/8/8/8/8/8/8/R3K3 w Q - 0 1")
+        pos = (4, 0)
+        possible_moves = moves(pos, [
+            (3, 0), (3, 1), (5, 1), (5, 0)
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_black_castling(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 7, 7)
-        possible_moves = to_move_dict([
-            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
-            (6, 7, KINGSIDE_CASTLING)
+        board.load_fen("4k2r/8/8/8/8/8/8/8 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
+            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7), (6, 7)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_kingside_black_castling_is_not_possible_if_there_is_piece_in_between(self):
+    def test_kingside_black_castling_is_not_possible_if_there_is_piece(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 7, 7)
-        Rook(board, BLACK, 6, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("4k1pr/8/8/8/8/8/8/8 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_kingside_black_castling_is_not_possible_if_there_is_piece_in_between2(self):
+    def test_kingside_black_castling_is_not_possible_if_there_is_piece2(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 7, 7)
-        Rook(board, BLACK, 5, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("4kp1r/8/8/8/8/8/8/8 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_black_castling_is_not_possible_if_king_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        king.has_moved = True
-        Rook(board, BLACK, 7, 7)
-        possible_moves = to_move_dict([
-            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
+        board.load_fen("4k2r/8/8/8/8/8/8/8 w - - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
+            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7)
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_black_castling_is_not_possible_if_rook_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        rook = Rook(board, BLACK, 7, 7)
-        rook.has_moved = True
-        possible_moves = to_move_dict([
-            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
+        board.load_fen("r3k2r/8/8/8/8/8/8/8 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
+            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7), (2, 7)
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_black_castling_is_not_possible_if_step_is_hindered(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 7, 7)
-        Rook(board, WHITE, 5, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k2r/8/8/8/8/8/8/5R2 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_kingside_black_castling_is_not_possible_if_final_is_hindered(self):
+    def test_kingside_black_castling_is_not_possible_if_final_hindered(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 7, 7)
-        Rook(board, WHITE, 6, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k2r/8/8/8/8/8/8/6R1 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_kingside_black_castling_is_not_possible_if_king_is_hindered(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 7, 7)
-        Rook(board, WHITE, 4, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k2r/8/8/8/8/8/8/4R1 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (5, 6), (5, 7),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_queenside_black_castling(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        possible_moves = to_move_dict([
-            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
-            (2, 7, QUEENSIDE_CASTLING)
+        board.load_fen("r3k3/8/8/8/8/8/8/8 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
+            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7), (2, 7)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_black_castling_is_not_possible_if_there_is_piece_in_between(self):
+    def test_queenside_black_castling_is_not_possible_if_there_is_piece(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        Rook(board, BLACK, 1, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("rp2k3/8/8/8/8/8/8/8 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_black_castling_is_not_possible_if_there_is_piece_in_between2(self):
+    def test_queenside_black_castling_is_not_possible_if_there_is_piece2(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        Rook(board, BLACK, 2, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("r1p1k3/8/8/8/8/8/8/8 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_black_castling_is_not_possible_if_there_is_piece_in_between3(self):
+    def test_queenside_black_castling_is_not_possible_if_there_is_piece3(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        Rook(board, BLACK, 3, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("r2pk3/8/8/8/8/8/8/8 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_queenside_black_castling_is_not_possible_if_king_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        king.has_moved = True
-        Rook(board, BLACK, 0, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k3/8/8/8/8/8/8/8 w - - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
     def test_queenside_black_castling_is_not_possible_if_rook_has_moved(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        rook = Rook(board, BLACK, 0, 7)
-        rook.has_moved = True
-        possible_moves = to_move_dict([
-            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
+        board.load_fen("r3k2r/8/8/8/8/8/8/8 w k - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
+            (3, 7), (3, 6), (4, 6), (5, 6), (5, 7), (6, 7)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_black_castling_is_not_possible_if_step_is_hindered(self):
+    def test_queenside_black_castling_is_not_possible_if_step_hindered(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        Rook(board, WHITE, 3, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k3/8/8/8/8/8/8/3R4 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_black_castling_is_not_possible_if_final_is_hindered(self):
+    def test_queenside_black_castling_is_not_possible_if_final_hindered(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        Rook(board, WHITE, 2, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k3/8/8/8/8/8/8/2R5 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (4, 6), (5, 6), (5, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
-
-    def test_queenside_black_castling_is_not_possible_if_king_is_hindered(self):
+    def test_queenside_black_castling_is_not_possible_if_king_hindered(self):
         board = Board(new_game=False)
-        king = King(board, BLACK, 4, 7)
-        Rook(board, BLACK, 0, 7)
-        Rook(board, WHITE, 4, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("r3k3/8/8/8/8/8/8/4R3 w q - 0 1")
+        pos = (4, 7)
+        possible_moves = moves(pos, [
             (3, 7), (3, 6), (5, 6), (5, 7),
         ])
-        attack = {}
-
-        self.assertEqual(king.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
 
 class TestKing(TestKingMove, TestKingCastling):

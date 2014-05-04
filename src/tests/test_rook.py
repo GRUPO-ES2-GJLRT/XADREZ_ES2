@@ -1,145 +1,108 @@
 # coding: UTF-8
-from __future__ import absolute_import, division, print_function, unicode_literals
+from __future__ import (absolute_import, division,
+                        print_function, unicode_literals)
 
 import unittest
 
-from consts.colors import WHITE, BLACK
-from consts.moves import to_move_dict
-from game_elements.board import Board
-from pieces.rook import Rook
+from cython.board import Board
+
+moves = lambda o, x: set((o, a) for a in x)
+tuples = lambda x: set(a.tuple() for a in x)
 
 
 class TestRook(unittest.TestCase):
 
-    def test_rook_at_0_0_and_no_other_pieces_at_board_can_move_to_all_line_0_and_column_0(self):
+    def test_R_at_a1_can_move_to_all_A_and_1(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 0, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/R7 w kQkq - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
             (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_7_7_and_no_other_pieces_at_board_can_move_to_all_line_7_and_column_7(self):
+    def test_R_at_H8_can_move_to_all_H_and_8(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 7, 7)
-        possible_moves = to_move_dict([
+        board.load_fen("7R/8/8/8/8/8/8/8 w kQkq - 0 1")
+        pos = (7, 7)
+        possible_moves = moves(pos, [
             (7, 0), (7, 1), (7, 2), (7, 3), (7, 4), (7, 5), (7, 6),
             (0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_4_4_and_no_other_pieces_at_board_can_move_to_all_line_4_and_column_4(self):
+    def test_R_at_e5_can_move_to_all_E_and_5(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 4, 4)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/4R3/8/8/8/8 w kQkq - 0 1")
+        pos = (4, 4)
+        possible_moves = moves(pos, [
             (4, 0), (4, 1), (4, 2), (4, 3), (4, 5), (4, 6), (4, 7),
             (0, 4), (1, 4), (2, 4), (3, 4), (5, 4), (6, 4), (7, 4),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_0_0_with_ally_in_0_1_can_move_to_all_line_0(self):
+    def test_rook_at_a1_with_ally_in_a2_can_move_to_all_1(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 0, 0)
-        Rook(board, WHITE, 0, 1)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/R7/R7 w kQkq - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_0_0_with_ignored_ally_in_0_1_can_move_to_all_line_0_and_column_0(self):
+    def test_rook_at_a1_with_ally_in_b1_can_move_to_all_A(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 0, 0)
-        ally = Rook(board, WHITE, 0, 1)
-        ally.ignored = True
-        possible_moves = to_move_dict([
-            (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
-            (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
-        ])
-        attack = {}
-
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_0_0_with_ally_in_1_0_can_move_to_all_column_0(self):
-        board = Board(new_game=False)
-        rook = Rook(board, WHITE, 0, 0)
-        Rook(board, WHITE, 1, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/RR6 w kQkq - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_0_0_with_ally_in_2_0_can_move_to_all_column_0_and_position_1_0(self):
+    def test_rook_at_a1_with_ally_in_c1_can_move_to_all_A_and_b1(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 0, 0)
-        Rook(board, WHITE, 2, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/8/8/8/R1R5 w kQkq - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (1, 0),
             (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (0, 7),
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_7_7_with_allies_in_5_7_and_7_5_can_move_to_6_7_and_7_6(self):
+    def test_rook_at_h8_with_allies_in_f8_and_h6_can_move_to_g8_and_h7(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 7, 7)
-        Rook(board, WHITE, 5, 7)
-        Rook(board, WHITE, 7, 5)
-        possible_moves = to_move_dict([
+        board.load_fen("5R1R/8/7R/8/8/8/8/8 w kQkq - 0 1")
+        pos = (7, 7)
+        possible_moves = moves(pos, [
             (6, 7), (7, 6)
         ])
-        attack = {}
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_4_4_surrounded_by_allies_should_have_no_moves(self):
+    def test_rook_at_e5_surrounded_by_allies_should_have_no_moves(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 4, 4)
-        Rook(board, WHITE, 5, 4)
-        Rook(board, WHITE, 4, 5)
-        Rook(board, WHITE, 3, 4)
-        Rook(board, WHITE, 4, 3)
-        possible_moves = {}
-        attack = {}
+        board.load_fen("8/8/4R3/3RRR2/4R3/8/8/8 w kQkq - 0 1")
+        pos = (7, 7)
+        possible_moves = set()
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_7_7_with_enemies_in_5_7_and_7_5_can_move_to_6_7_and_7_6_and_5_7_and_7_5(self):
+    def test_rook_at_h8_with_enemies_in_f8_h6_can_move_to_g8_h7_f8_h6(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 7, 7)
-        Rook(board, BLACK, 5, 7)
-        Rook(board, BLACK, 7, 5)
-        possible_moves = to_move_dict([
-            (6, 7), (7, 6),
-        ])
-        attack = to_move_dict([
+        board.load_fen("5r1R/8/7r/8/8/8/8/8 w kQkq - 0 1")
+        pos = (7, 7)
+        possible_moves = moves(pos, [
             (5, 7), (7, 5),
+            (6, 7), (7, 6)
         ])
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
 
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
-
-    def test_rook_at_0_0_with_enemies_in_0_3_and_3_0_can_move_in_line_0_and_column_0_up_to_enemy_position_including(self):
+    def test_R_at_a1_and_r_at_d1_and_a4_cmup_to_enemy_position_including(self):
         board = Board(new_game=False)
-        rook = Rook(board, WHITE, 0, 0)
-        Rook(board, BLACK, 0, 3)
-        Rook(board, BLACK, 3, 0)
-        possible_moves = to_move_dict([
+        board.load_fen("8/8/8/8/r7/8/8/R2r w kQkq - 0 1")
+        pos = (0, 0)
+        possible_moves = moves(pos, [
             (0, 1), (0, 2),
             (1, 0), (2, 0),
-        ])
-        attack = to_move_dict([
             (0, 3), (3, 0),
         ])
-
-        self.assertEqual(rook.possible_moves(), (possible_moves, attack))
+        self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)

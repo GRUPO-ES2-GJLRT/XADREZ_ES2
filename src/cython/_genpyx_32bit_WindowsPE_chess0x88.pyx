@@ -292,6 +292,11 @@ class Move(object):
             p0x88_to_tuple(self._destination)
         )
 
+    @cython.ccall
+    @cython.returns(cython.int)
+    def score(self):
+        return self.captured
+
 
 @cython.cclass
 class Board(object):
@@ -404,7 +409,9 @@ class Board(object):
     @cython.ccall
     @cython.locals(color=cython.int)
     def possible_moves(self, color):
-        return self.genenate_moves(legal=1, square=-1, color=color)
+        result = self.genenate_moves(legal=1, square=-1, color=color)
+        result.sort(reverse=True, key=move_key)
+        return result
 
     @cython.ccall
     @cython.locals(color=cython.int)
@@ -439,6 +446,18 @@ class Board(object):
                 move.do(self)
                 return True
         return False
+
+    @cython.ccall
+    @cython.locals(dest=cython.int, square=cython.int)
+    def piece_moves(self, position):
+        square = tuple_to_0x88(position)
+        color = self.colors[square]
+        moves = self.genenate_moves(
+            legal=1,
+            color=color,
+            square=square
+        )
+        return moves
 
     @cython.ccall
     @cython.locals(square=cython.int)
@@ -862,3 +881,8 @@ def p0x88_to_chess_notation(x):
     icol = col(x)
     irow = rank(x)
     return chr(icol + 97) + str(irow + 1)
+
+
+@cython.locals(move=Move)
+def move_key(move):
+    return move.score()
