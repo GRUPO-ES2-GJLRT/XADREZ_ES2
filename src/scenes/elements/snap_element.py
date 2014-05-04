@@ -20,7 +20,6 @@ class SnapElement(GameDiv):
             super(SnapElement, self).draw(screen, x, y)
             w, h = int(self.width()), int(self.height())
             rect = pygame.Rect(x, y, w, h)
-            print(w, h)
             self.image = pygame.Surface((w, h))
             self.image.blit(screen, area=rect, dest=(0, 0))
             self.show_snap = True

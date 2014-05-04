@@ -434,7 +434,7 @@ class Board(object):
     @cython.ccall
     @cython.locals(color=cython.int)
     def possible_moves(self, color):
-        result = self.genenate_moves(legal=1, square=-1, color=color)
+        result = self.generate_moves(legal=1, square=-1, color=color)
         result.sort(reverse=True, key=move_key)
         return result
 
@@ -442,7 +442,7 @@ class Board(object):
     @cython.locals(color=cython.int)
     def possible_killing_moves(self, color):
         result = set()
-        moves = self.genenate_moves(legal=1, square=-1, color=color)
+        moves = self.generate_moves(legal=1, square=-1, color=color)
         for move in moves:
             if move.flags & (CAPTURE | EN_PASSANT):
                 result.add(move)
@@ -460,7 +460,7 @@ class Board(object):
     @cython.locals(dest=cython.int)
     def move(self, original_position, new_position, skip_validation=False):
         dest = tuple_to_0x88(new_position)
-        moves = self.genenate_moves(
+        moves = self.generate_moves(
             legal=1,
             color=-1,
             square=tuple_to_0x88(original_position)
@@ -477,7 +477,7 @@ class Board(object):
     def piece_moves(self, position):
         square = tuple_to_0x88(position)
         color = self.colors[square]
-        moves = self.genenate_moves(
+        moves = self.generate_moves(
             legal=1,
             color=color,
             square=square
@@ -644,7 +644,7 @@ class Board(object):
         offset=cython.int, i=cython.int, j=cython.int,
         origin=cython.int, dest=cython.int
     )
-    def genenate_moves(self, legal=0, square=-1, color=-1):
+    def generate_moves(self, legal=0, square=-1, color=-1):
         moves = []
         current = color
         first = A8
@@ -815,7 +815,7 @@ class Board(object):
 
     def status(self, possible_moves=None):
         if possible_moves is None:
-            possible_moves = self.genenate_moves(legal=1)
+            possible_moves = self.generate_moves(legal=1)
         in_check = self.in_check()
         if in_check and not possible_moves:
             return "checkmate"
