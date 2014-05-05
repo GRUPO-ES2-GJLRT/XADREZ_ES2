@@ -31,7 +31,16 @@ class AIPlayer(Player):
         self.board = chess.board
         self.temp_board = self.board
         self.chosen_move = None
+        self.openings = {}
         self.skip_validation = True
+        self.parse_openings()
+
+    def parse_openings(self):
+        with open('../openings.dat') as _file:
+            raw_openings = [opening.strip().split() for opening in _file]
+
+        for raw_opening in raw_openings:
+            parse_opening(raw_opening, self.openings)
 
     def start_turn(self):
         if not self.chess.game.running:
@@ -146,29 +155,11 @@ class AIPlayer(Player):
 
     @staticmethod
     def evaluate_state(node):
-        consts = {
-            'king': 320.0,
-            'queen': 9.75,
-            'rook': 5.0,
-            'bishop': 3.25,
-            'knight': 3.20,
-            'pawn': 1.0,
-        }
-        counters = {
-            WHITE: Counter(),
-            BLACK: Counter()
-        }
-        for piece in range(PAWN, KING + 1):
-            counters[WHITE][piece] = node.board.count(WHITE, piece)
-            counters[BLACK][piece] = node.board.count(BLACK, piece)
+        value = node.board.get_value()
 
-        minus = {
-            key: (counters[WHITE][key] - counters[BLACK][key]) * multiplier
-            for key, multiplier in consts.items()
-        }
         if node.board.color() == WHITE:
-            return -sum(minus.values())
-        return -sum(minus.values())
+            return value
+        return value * -1
 
 
 class Node(object):
@@ -202,5 +193,16 @@ class Node(object):
     def children(self):
         for move in self.moves:
             nboard = self.board.clone()
-            move.do(nboard)
+            move.do(nboard, 1)
             yield Node(nboard, move=move)
+
+
+def parse_opening(raw_opening, openings):
+    if not raw_opening:
+        return
+
+    if not raw_opening[0] in openings:
+        openings[raw_opening[0]] = {}
+
+    parse_opening(raw_opening[1:], openings[raw_opening[0]])
+

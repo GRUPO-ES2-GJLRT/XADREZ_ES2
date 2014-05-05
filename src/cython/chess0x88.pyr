@@ -26,6 +26,14 @@ cdef extern from 'constants.h':
     enum: KINGSIDE, QUEENSIDE
     # Rank
     int *SECOND_RANK
+    # Value Tables
+    int *PAWN_TABLE,
+    int *KNIGHT_TABLE,
+    int *BISHOP_TABLE,
+    int *ROOK_TABLE,
+    int *QUEEN_TABLE,
+    int *KING_EARLYGAME_TABLE,
+    int *KING_ENDGAME_TABLE,
     # Attacked
     int *ATTACKS
     int *RAYS

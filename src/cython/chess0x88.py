@@ -42,6 +42,14 @@ from constants import (
     KINGSIDE, QUEENSIDE,
     # Rank
     SECOND_RANK,
+    # Value Tables
+    PAWN_TABLE,
+    KNIGHT_TABLE,
+    BISHOP_TABLE,
+    ROOK_TABLE,
+    QUEEN_TABLE,
+    KING_EARLYGAME_TABLE,
+    KING_ENDGAME_TABLE,
     # Attacked
     ATTACKS,
     RAYS,
@@ -138,12 +146,12 @@ class Move(object):
 
     @cython.ccall
     @cython.locals(
-        board=Board, current=cython.int, other=cython.int, piece=cython.int,
-        color=cython.int, other_piece=cython.int, origin=cython.int,
-        dest=cython.int, flags=cython.int,
+        board=Board,  edit_list=cython.int, current=cython.int, other=cython.int,
+        piece=cython.int, color=cython.int, other_piece=cython.int,
+        origin=cython.int, dest=cython.int, flags=cython.int,
         castling_origin=cython.int, castling_dest=cython.int
     )
-    def do(self, board):
+    def do(self, board, edit_list):
         current = self.color
         other = next_color(current)
         piece = board.pieces[self._origin]
@@ -231,6 +239,32 @@ class Move(object):
         if current == BLACK:
             board.moves += 1
 
+        if edit_list == 1:
+            for piece in board.pieces_objects:
+                if piece.square == self.destination:
+                    board.pieces_objects.remove(piece)
+
+            for piece in board.pieces_objects:
+                if piece.square == self.origin:
+                    piece.square = self.destination
+                    if piece.color == WHITE:
+                        mult = 1
+                    else:
+                        mult = -1
+
+                    if piece.piece == PAWN:
+                        piece.value = mult * (100 +PAWN_TABLE[piece.square])
+                    elif piece.piece == KNIGHT:
+                        piece.value = mult * (300 +KNIGHT_TABLE[piece.square])
+                    elif piece.piece == BISHOP:
+                        piece.value = mult * (301 +BISHOP_TABLE[piece.square])
+                    elif piece.piece == ROOK:
+                        piece.value = mult * (500 +ROOK_TABLE[piece.square])
+                    elif piece.piece == QUEEN:
+                        piece.value = mult * (900 +QUEEN_TABLE[piece.square])
+                    elif piece.piece == KING:
+                        piece.value = mult * (32767 +KING_EARLYGAME_TABLE[piece.square])
+
         board.current_color = next_color(current)
         board.hash ^= zobrist_color
 
@@ -317,6 +351,19 @@ class Move(object):
 
 
 @cython.cclass
+class PieceObject(object):
+    cython.declare(
+        piece=cython.int, square=cython.int, color=cython.int, value=cython.int
+    )
+
+    def __init__(self, piece, square, color, value):
+        self.piece = piece
+        self.square = square
+        self.color = color
+        self.value = value
+
+
+@cython.cclass
 class Board(object):
     cython.declare(
         pieces=cython.int[128], colors=cython.int[128],
@@ -324,7 +371,7 @@ class Board(object):
         half_moves=cython.int, moves=cython.int, en_passant_square=cython.int,
         hash=cython.ulonglong,
         pieces_list=list, last_hash=cython.ulonglong,
-        pieces_count=cython.int[14]
+        pieces_count=cython.int[14], pieces_objects=list
     )
 
     def __init__(self, new_game=True, clone=False):
@@ -363,6 +410,7 @@ class Board(object):
         self.moves = 1
         self.hash = 0
         self.pieces_list = []
+        self.pieces_objects = []
         self.last_hash = 0
 
     @cython.ccall
@@ -388,6 +436,7 @@ class Board(object):
         result.hash = self.hash
         result.last_hash = self.hash
         result.pieces_list = self.pieces_list
+        result.pieces_objects = self.pieces_objects
         return result
 
     @cython.cfunc
@@ -432,6 +481,16 @@ class Board(object):
         return result
 
     @cython.ccall
+    @cython.returns(cython.int)
+    @cython.locals(result=cython.int)
+    def get_value(self):
+        result = 0
+        for piece in self.pieces_objects:
+            result += piece.value
+
+        return result
+
+    @cython.ccall
     @cython.locals(color=cython.int)
     def possible_moves(self, color):
         result = self.generate_moves(legal=1, square=-1, color=color)
@@ -468,7 +527,7 @@ class Board(object):
 
         for move in moves:
             if move.destination() == dest:
-                move.do(self)
+                move.do(self, 1)
                 return True
         return False
 
@@ -506,6 +565,7 @@ class Board(object):
         position = tokens[0]
         y = 7
         x = 0
+        pieces_objects = []
         for piece in position:
             if piece == '/':
                 y -= 1
@@ -529,22 +589,31 @@ class Board(object):
             else:
                 square = (7 - y) * 16 + x
                 color = WHITE
+                mult = 1
                 lp = piece.lower()
                 if piece == lp:
                     color = BLACK
+                    mult = -1
                 if lp == 'p':
                     self.add(PAWN, color, square)
+                    pieces_objects.append(PieceObject(PAWN, color, square, (100 + PAWN_TABLE[square]) * mult))
                 elif lp == 'n':
                     self.add(KNIGHT, color, square)
+                    pieces_objects.append(PieceObject(KNIGHT, color, square, (300 + KNIGHT_TABLE[square]) * mult))
                 elif lp == 'b':
                     self.add(BISHOP, color, square)
+                    pieces_objects.append(PieceObject(BISHOP, color, square, (301 + BISHOP_TABLE[square]) * mult))
                 elif lp == 'r':
                     self.add(ROOK, color, square)
+                    pieces_objects.append(PieceObject(ROOK, color, square, (500 + ROOK_TABLE[square]) * mult))
                 elif lp == 'q':
                     self.add(QUEEN, color, square)
+                    pieces_objects.append(PieceObject(QUEEN, color, square, (900 + QUEEN_TABLE[square]) * mult))
                 elif lp == 'k':
                     self.add(KING, color, square)
+                    pieces_objects.append(PieceObject(KING, color, square, (32767 + PAWN_TABLE[square]) * mult))
                 x += 1
+        self.pieces_objects = pieces_objects
 
         if tokens[1] == 'w':
             self.current_color = WHITE
@@ -737,7 +806,7 @@ class Board(object):
 
         legal_moves = []
         for move in moves:
-            move.do(self)
+            move.do(self, 0)
             if not self.in_check(current):
                 legal_moves.append(move)
             #else:
@@ -833,6 +902,7 @@ class Board(object):
     def get_pieces(self):
         if self.hash != self.last_hash:
             pieces_list = []
+
             for i in range(A8, H1 + 1):
                 if is_not_square(i):
                     i = i + 7
@@ -845,7 +915,7 @@ class Board(object):
                 pieces_list.append(Piece(
                     name=NAMES[self.pieces[i]],
                     position=p0x88_to_tuple(i),
-                    color="white" if self.colors[i] == WHITE else "black"
+                    color="white" if self.colors[i] == WHITE else "black",
                 ))
             self.pieces_list = pieces_list
             self.last_hash = self.hash
