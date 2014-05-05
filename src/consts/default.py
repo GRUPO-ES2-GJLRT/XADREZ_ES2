@@ -14,11 +14,17 @@ FIFTY_MOVE_OPTIONS = {
     "disable": 3,
 }
 
+JIT_DRAW_OPTIONS = {
+    "disable": 0,
+    "enable": 1,
+}
+
 TIMER = TIMER_OPTIONS["minutes_per_game"]
 MINUTES = 10
 MOVES = 10
 BONUS = 10
 FIFTY_MOVE = FIFTY_MOVE_OPTIONS["auto"]
+JIT_DRAW = JIT_DRAW_OPTIONS["enable"]
 
 from timers.minutes_per_game import MinutesPerGameTimer
 from timers.moves_per_minute import MovesPerMinuteTimer

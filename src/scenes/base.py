@@ -7,7 +7,9 @@ import sys
 import os
 import json
 
-from consts.default import TIMER, MINUTES, MOVES, BONUS, FIFTY_MOVE
+from consts.default import (
+    TIMER, MINUTES, MOVES, BONUS, FIFTY_MOVE, JIT_DRAW
+)
 
 
 class Scene(object):
@@ -46,7 +48,9 @@ class Scene(object):
             elif event.type == pygame.VIDEORESIZE:
                 self.game.resize(event.dict['size'])
                 self.resize()
-                self.do_jit_draw()
+                self.game.screen.fill((0, 0, 0))
+                self.draw()
+                pygame.display.flip()
             else:
                 self.event(delta_time, event)
 
@@ -54,9 +58,10 @@ class Scene(object):
             pygame.display.flip()
 
     def do_jit_draw(self):
-        self.game.screen.fill((0, 0, 0))
-        self.draw()
-        pygame.display.flip()
+        if self.jit_draw:
+            self.game.screen.fill((0, 0, 0))
+            self.draw()
+            pygame.display.flip()
 
     def load_stored_config(self):
         data = {
@@ -65,6 +70,7 @@ class Scene(object):
             'moves': MOVES,
             'bonus': BONUS,
             'fifty_move': FIFTY_MOVE,
+            'jit_draw': JIT_DRAW
         }
 
         file_path = os.path.abspath(os.path.join(self.data_dir, 'config.json'))

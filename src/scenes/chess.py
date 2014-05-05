@@ -43,7 +43,6 @@ class Chess(Scene, ChessInterface):
 
     def __init__(self, game, level_white, level_black, *args, **kwargs):
         super(Chess, self).__init__(game, *args, **kwargs)
-        self.jit_draw = True
         self.game = game
         self.white_minutes = lambda: "20:00"
         self.black_minutes = lambda: "20:00"
@@ -97,6 +96,7 @@ class Chess(Scene, ChessInterface):
         self.free_events()
         self.config = self.load_stored_config()
         self.fifty_move = self.config['fifty_move']
+        self.jit_draw = self.config['jit_draw']
         self.board = Board()
         # Marked squares
         self.selected = None
