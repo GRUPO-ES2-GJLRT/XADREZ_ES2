@@ -316,7 +316,7 @@ inline int next_color(int color) {
 	return (color == WHITE) ? BLACK : WHITE;
 }
 
-unsigned long long rand64() {
+inline unsigned long long rand64(void) {
  return rand() ^
     ((unsigned long long) rand() << 15) ^
     ((unsigned long long) rand() << 30) ^
