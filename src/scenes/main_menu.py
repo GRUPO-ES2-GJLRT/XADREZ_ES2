@@ -70,7 +70,7 @@ class MainMenu(Scene, MainMenuInterface):
         self.white_motion = partial(motion, color=lambda: (255, 255, 255))
         self.black_motion = partial(motion, color=lambda: (0, 0, 0))
 
-    def draw(self):
+    def draw(self, delta_time):
         """Draws MainMenu"""
         self.main_div.draw(self.game.screen)
 

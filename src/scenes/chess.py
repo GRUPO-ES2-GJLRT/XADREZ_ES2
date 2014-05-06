@@ -30,6 +30,8 @@ GAME_DRAW = 0
 WHITE_WINS = 1
 BLACK_WINS = 2
 PAUSE = 3
+MAX_DRAW_DELTA = 0.5
+
 
 END_GAME = [GAME_DRAW, WHITE_WINS, BLACK_WINS]
 
@@ -106,6 +108,7 @@ class Chess(Scene, ChessInterface):
         # Game states and countdown for check message
         self.countdown = 0
         self.denied_countdown = 0
+        self.draw_delta = 0
         self.state = None
 
         self.initialize_players()
@@ -125,19 +128,22 @@ class Chess(Scene, ChessInterface):
         self.thread_events = [white.timer.event, black.timer.event]
         self.current_player.start_turn()
 
-    def draw(self):
-        self.game.screen.fill((238, 223, 204))
-        self.main_div.draw(self.game.screen)
-
-    def logic(self, delta_time):
+    def draw(self, delta_time):
+        self.draw_delta += delta_time
         if (0 < self.countdown < delta_time or
-                0 < self.denied_countdown < delta_time):
-            self.countdown = max(self.countdown - delta_time, 0)
-            self.denied_countdown = max(self.denied_countdown - delta_time, 0)
-            self.do_jit_draw()
-        else:
-            self.countdown = max(self.countdown - delta_time, 0)
-            self.denied_countdown = max(self.denied_countdown - delta_time, 0)
+                0 < self.denied_countdown < delta_time or
+                self.draw_delta >= MAX_DRAW_DELTA):
+            self.should_draw = True
+        self.draw_delta %= MAX_DRAW_DELTA
+
+        self.countdown = max(self.countdown - delta_time, 0)
+        self.denied_countdown = max(self.denied_countdown - delta_time, 0)
+        if self.should_draw:
+            print("jit", self.draw_delta)
+            self.game.screen.fill((238, 223, 204))
+            self.main_div.draw(self.game.screen)
+            if self.jit_draw:
+                self.should_draw = False
 
     def get_square(self, pos):
         x, y = pos[0] - (MARGIN + BORDER), pos[1] - BORDER
@@ -171,7 +177,8 @@ class Chess(Scene, ChessInterface):
         self.fail = None
         self.check = None
 
-        movement = self.board.move(self.selected, square, skip_validation)
+        movement = self.board.move(self.selected, square)
+        self.do_jit_draw()
         if movement:
             self.change_turn()
             self.verify_status(self.board.status())

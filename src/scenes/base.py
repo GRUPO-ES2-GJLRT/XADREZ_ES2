@@ -24,6 +24,7 @@ class Scene(object):
             os.path.join(sys.argv[0], '..', '..', 'data'))
         self.game = game
         self.jit_draw = False
+        self.should_draw = True
         self.thread_events = []
 
     def loop(self, delta_time):
@@ -36,10 +37,8 @@ class Scene(object):
         It calls the method self.event for each event and calls the method
             self.draw once to draw the screen
         """
-        if not self.jit_draw:
-            self.game.screen.fill((0, 0, 0))
-            self.draw()
-        self.logic(delta_time)
+
+        self.draw(delta_time)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -49,19 +48,15 @@ class Scene(object):
                 self.game.resize(event.dict['size'])
                 self.resize()
                 self.game.screen.fill((0, 0, 0))
-                self.draw()
+                self.draw(0)
                 pygame.display.flip()
             else:
                 self.event(delta_time, event)
 
-        if not self.jit_draw:
-            pygame.display.flip()
+        pygame.display.flip()
 
     def do_jit_draw(self):
-        if self.jit_draw:
-            self.game.screen.fill((0, 0, 0))
-            self.draw()
-            pygame.display.flip()
+        self.should_draw = True
 
     def load_stored_config(self):
         data = {
@@ -100,18 +95,8 @@ class Scene(object):
         )
         return rect
 
-    def draw(self):
+    def draw(self, delta_time):
         """This function should draw the scene.
-        Override it in a subclass!
-
-        Arguments:
-        delta_time is the time in seconds (float) passed since
-            the last game loop execution
-        """
-        pass
-
-    def logic(self, delta_time):
-        """This function should do the game logic
         Override it in a subclass!
 
         Arguments:

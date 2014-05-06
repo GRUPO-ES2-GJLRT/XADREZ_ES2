@@ -119,7 +119,7 @@ class ConfigMenu(Scene, ConfigMenuInterface):
                   'w') as f:
             json.dump(data, f)
 
-    def draw(self):
+    def draw(self, delta_time):
         """Draws ConfigMenu"""
         self.main_div.draw(self.game.screen)
 

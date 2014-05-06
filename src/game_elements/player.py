@@ -16,7 +16,6 @@ class Player(object):
         self.timer = timer
         self.chess = chess
         self.state = None
-        self.skip_validation = False
         self.timer.player = self
         self.timer.start()
 
@@ -42,7 +41,7 @@ class Player(object):
         self.state = PLAY
 
     def play(self, square):
-        moved = self.chess.play(square, self.skip_validation)
+        moved = self.chess.play(square)
         self.state = PLAY if not moved else self.state
         return moved
 
