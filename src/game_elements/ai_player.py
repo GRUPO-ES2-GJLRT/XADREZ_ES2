@@ -98,7 +98,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(5))
+            self.do_move(self.minmax_move(2))
 
         elif self.level == HARD:
             raise Exception

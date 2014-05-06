@@ -6,6 +6,7 @@ import pygame
 import sys
 import os
 import json
+import yappi
 
 from consts.default import (
     TIMER, MINUTES, MOVES, BONUS, FIFTY_MOVE, JIT_DRAW
@@ -129,5 +130,8 @@ class Scene(object):
 
     def close(self):
         self.game.running = False
+        yappi.get_func_stats().print_all()
+        yappi.get_thread_stats().print_all()
+
         self.free_events()
         sys.exit()

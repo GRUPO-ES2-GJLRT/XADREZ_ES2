@@ -26,13 +26,18 @@ class Game(object):
         from scenes.main_menu import MainMenu
         self.scene = MainMenu(self)
         last_frame_time = 0
-
+        import yappi
+    
+    
+        yappi.start()
         while self.running:
+    
             current_time = time.time()
             delta_time = current_time - last_frame_time
             last_frame_time = current_time
 
             self.scene.loop(delta_time)
+        
         self.scene.close()
 
     def resize(self, size):

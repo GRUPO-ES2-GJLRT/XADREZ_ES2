@@ -139,7 +139,7 @@ class Chess(Scene, ChessInterface):
         self.countdown = max(self.countdown - delta_time, 0)
         self.denied_countdown = max(self.denied_countdown - delta_time, 0)
         if self.should_draw:
-            print("jit", self.draw_delta)
+            #print("jit", self.draw_delta)
             self.game.screen.fill((238, 223, 204))
             self.main_div.draw(self.game.screen)
             if self.jit_draw:
