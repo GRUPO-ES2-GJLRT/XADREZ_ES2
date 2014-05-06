@@ -14,7 +14,6 @@ class MinutesPerGameTimer(PlayerTimer):
         super(MinutesPerGameTimer, self).__init__()
         self.time = timedelta(minutes=data["minutes"])
         self.zero = timedelta()
-        self.last_seconds = self.time.seconds
 
     def update_time(self, delta):
         self.time -= delta
@@ -22,9 +21,6 @@ class MinutesPerGameTimer(PlayerTimer):
             self.time = self.zero
             self.lose()
             self.event.set()
-        if self.last_seconds != self.time.seconds:
-            self.player.chess.do_jit_draw()
-            self.last_seconds = self.time.seconds
 
     def minutes_to_text(self):
         hours, remainder = divmod(self.time.seconds, 3600)
