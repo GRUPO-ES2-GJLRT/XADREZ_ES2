@@ -434,7 +434,7 @@ class Board(object):
 
     @cython.ccall
     @cython.returns(cython.int)
-    @cython.locals(result=cython.int)
+    @cython.locals(result=cython.int, i=cython.int)
     def get_value(self):
         result = 0
         for i in range(A8, H1 + 1):
@@ -878,7 +878,10 @@ class Board(object):
 
     @cython.cfunc
     @cython.returns(cython.int)
-    @cython.locals(piece=cython.int, color=cython.int, square=cython.int)
+    @cython.locals(
+        piece=cython.int, color=cython.int, square=cython.int,
+        mult=cython.int
+    )
     def piece_value(self, piece, color, square):
         if color == WHITE:
             mult = 1
