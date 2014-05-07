@@ -33,6 +33,10 @@ from consts.colors import WHITE, BLACK
 
 COLOR_EMPTY = 2
 
+# LEGAL Moves
+
+ILLEGAL, LEGAL = 0, 1
+
 # Piece movements
 
 PAWN_OFFSETS = [

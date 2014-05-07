@@ -18,6 +18,8 @@ cdef extern from 'constants.h':
     enum: PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING, PIECE_EMPTY
     # Colors
     enum: COLOR_EMPTY, WHITE, BLACK
+    # Legal
+    enum: ILLEGAL, LEGAL
     # Movements
     int **PAWN_OFFSETS
     int **PIECE_OFFSET

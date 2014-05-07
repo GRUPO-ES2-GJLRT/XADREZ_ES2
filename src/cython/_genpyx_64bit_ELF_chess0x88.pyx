@@ -26,6 +26,8 @@ cdef extern from 'constants.h':
     enum: PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING, PIECE_EMPTY
     # Colors
     enum: COLOR_EMPTY, WHITE, BLACK
+    # Legal
+    enum: ILLEGAL, LEGAL
     # Movements
     int **PAWN_OFFSETS
     int **PIECE_OFFSET
@@ -67,9 +69,11 @@ cdef:
 
 @cython.cfunc
 @cython.returns(cython.void)
-@cython.locals(piece=cython.int, color=cython.int, square=cython.int)
-def init_zobrist():
-    global zobrist_color
+@cython.locals(
+    piece=cython.int, color=cython.int, square=cython.int,
+    zobrist_color=cython.int
+)
+def init_zobrist(zobrist_color):
     for piece in range(7):
         for color in range(2):
             for square in range(128):
@@ -81,7 +85,7 @@ def init_zobrist():
         zobrist_en_passant[square] = rand64()
 
 
-init_zobrist()
+init_zobrist(zobrist_color)
 
 
 
@@ -136,7 +140,7 @@ class Move(object):
         castling_origin=cython.int, castling_dest=cython.int,
         square=cython.int, en_passant_square=cython.int
     )
-    def do(self, board, update_value=1):
+    def do(self, board):
         current = self.color
         other = next_color(current)
         piece = board.pieces[self._origin]
@@ -146,18 +150,18 @@ class Move(object):
         dest = self._destination
         flags = self.flags
         en_passant_square =  dest + (N if current == BLACK else S)
-        board.remove(origin, update_value)
-        board.remove(dest, update_value)
-        board.add(piece, color, dest, update_value)
+        board.remove(origin)
+        board.remove(dest)
+        board.add(piece, color, dest)
 
         # En passant
         if flags & EN_PASSANT:
-            board.remove(dest + (N if current == BLACK else S), update_value)
+            board.remove(dest + (N if current == BLACK else S))
 
         # Promotion
         if flags & PROMOTION:
-            board.remove(dest, update_value)
-            board.add(self.promotion, color, dest, update_value)
+            board.remove(dest)
+            board.add(self.promotion, color, dest)
 
         if piece == KING:
             board.kings[current] = dest
@@ -167,14 +171,14 @@ class Move(object):
                 castling_origin = dest + E
                 castling_dest = dest + W
                 piece = board.pieces[castling_origin]
-                board.remove(castling_origin, update_value)
-                board.add(piece, color, castling_dest, update_value)
+                board.remove(castling_origin)
+                board.add(piece, color, castling_dest)
             elif flags & QUEENSIDE:
                 castling_origin = dest + W + W
                 castling_dest = dest + E
                 piece = board.pieces[castling_origin]
-                board.remove(castling_origin, update_value)
-                board.add(piece, color, castling_dest, update_value)
+                board.remove(castling_origin)
+                board.add(piece, color, castling_dest)
 
             board.castling[current] = 0
 
@@ -230,19 +234,63 @@ class Move(object):
 
     @cython.ccall
     @cython.locals(
+        board=Board,
+        piece=cython.int, color=cython.int, 
+        origin=cython.int, dest=cython.int, flags=cython.int,
+        castling_origin=cython.int, castling_dest=cython.int,
+        en_passant_square=cython.int, promotion=cython.int
+    )
+    def do_update(self, board):
+        self.do(board)
+        piece = board.pieces[self._origin]
+        color = board.colors[self._origin]
+        origin = self._origin
+        dest = self._destination
+        flags = self.flags
+        promotion = self.promotion
+        en_passant_square =  dest + (N if color == BLACK else S)
+        board.values[origin] = 0
+        board.values[dest] = board.piece_value(piece, color, dest)
+
+        # En passant
+        if flags & EN_PASSANT:
+            board.values[en_passant_square] = 0
+    
+        # Promotion
+        if flags & PROMOTION:
+            board.values[dest] = board.piece_value(promotion, color, dest)
+
+        # Castling
+        if piece == KING:
+            if flags & KINGSIDE:
+                castling_origin = dest + E
+                castling_dest = dest + W
+                board.values[castling_origin] = 0
+                board.values[castling_dest] = board.piece_value(
+                    ROOK, color, castling_dest)
+            elif flags & QUEENSIDE:
+                castling_origin = dest + W + W
+                castling_dest = dest + E
+                board.values[castling_origin] = 0
+                board.values[castling_dest] = board.piece_value(
+                    ROOK, color, castling_dest)
+
+    @cython.ccall
+    @cython.locals(
         board=Board, current=cython.int, other=cython.int, piece=cython.int,
         captured=cython.int, rook_piece=cython.int, origin=cython.int,
         dest=cython.int, flags=cython.int,
         castling_origin=cython.int, castling_dest=cython.int,
-        update_value=cython.int
+        en_passant_square=cython.int
     )
-    def undo(self, board, update_value=1):
+    def undo(self, board):
         current = self.color
         dest = self._destination
         origin = self._origin
         piece = self.piece
         flags = self.flags
         captured = self.captured
+        en_passant_square =  dest + (N if current == BLACK else S)
 
         board.current_color = current
 
@@ -261,27 +309,69 @@ class Move(object):
                 castling_origin = dest + E
                 castling_dest = dest + W
                 rook_piece = board.pieces[castling_dest]
-                board.remove(castling_dest, update_value)
-                board.add(rook_piece, current, castling_origin, update_value)
+                board.remove(castling_dest)
+                board.add(rook_piece, current, castling_origin)
             elif flags & QUEENSIDE:
                 castling_origin = dest + W + W
                 castling_dest = dest + E
                 rook_piece = board.pieces[castling_dest]
-                board.remove(castling_dest, update_value)
-                board.add(rook_piece, current, castling_origin, update_value)
+                board.remove(castling_dest)
+                board.add(rook_piece, current, castling_origin)
 
-        board.remove(dest, update_value)
-        board.add(piece, current, origin, update_value)
+        board.remove(dest)
+        board.add(piece, current, origin)
         if captured:
             if flags & EN_PASSANT:
-                board.add(
-                    PAWN, other, 
-                    dest + (N if current == BLACK else S), 
-                    update_value)
+                board.add(PAWN, other, en_passant_square)
             else:
-                board.add(captured, other, dest, update_value)
+                board.add(captured, other, dest)
 
         board.hash = self.previous_hash
+
+    @cython.ccall
+    @cython.locals(
+        board=Board, color=cython.int, other=cython.int, piece=cython.int,
+        captured=cython.int, rook_piece=cython.int, origin=cython.int,
+        dest=cython.int, flags=cython.int,
+        castling_origin=cython.int, castling_dest=cython.int,
+        en_passant_square=cython.int
+    )
+    def undo_update(self, board):
+        self.undo(board)
+        color = self.color
+        other = next_color(color)
+        dest = self._destination
+        origin = self._origin
+        piece = self.piece
+        flags = self.flags
+        captured = self.captured
+        en_passant_square =  dest + (N if color == BLACK else S)
+
+        # castling
+        if piece == KING:
+            if flags & KINGSIDE:
+                castling_origin = dest + E
+                castling_dest = dest + W
+                board.values[castling_dest] = 0
+                board.values[castling_origin] = board.piece_value(
+                    ROOK, color, castling_origin)
+            elif flags & QUEENSIDE:
+                castling_origin = dest + W + W
+                castling_dest = dest + E
+                board.values[castling_dest] = 0
+                board.values[castling_origin] = board.piece_value(
+                    ROOK, color, castling_origin)
+
+        board.values[dest] = board.piece_value(piece, color, dest)
+        if captured:
+            if flags & EN_PASSANT:
+                board.values[en_passant_square] = board.piece_value(
+                    PAWN, other, en_passant_square)
+            else:
+                board.values[dest] = board.piece_value(captured, other, dest)
+        else:
+            board.values[dest] = 0
+
 
     @cython.ccall
     @cython.returns(cython.int)
@@ -325,9 +415,7 @@ class Board(object):
         pieces_count=cython.int[14], 
     )
 
-    def __init__(self, new_game=True, clone=False):
-        if clone:
-            return
+    def __init__(self, new_game):
         if new_game:
             self.load_fen(
                 "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -360,7 +448,7 @@ class Board(object):
     @cython.returns(Board)
     @cython.locals(result=Board, i=cython.int)
     def clone(self):
-        result = Board(clone=True)
+        result = Board(False)
         for i in range(128):
             result.pieces[i] = self.pieces[i]
             result.colors[i] = self.colors[i]
@@ -388,12 +476,10 @@ class Board(object):
         piece=cython.int, color=cython.int, square=cython.int,
         update_value=cython.int
     )
-    def add(self, piece, color, square, update_value):
+    def add(self, piece, color, square):
         self.pieces[square] = piece
         self.colors[square] = color
-        if update_value:
-            self.values[square] = self.piece_value(piece, color, square)
-
+        
         if piece == KING:
             self.kings[color] = square
 
@@ -407,7 +493,7 @@ class Board(object):
         square=cython.int, piece=cython.int, color=cython.int,
         update_value=cython.int
     )
-    def remove(self, square, update_value):
+    def remove(self, square):
         piece = self.pieces[square]
         color = self.colors[square]
         if piece:
@@ -417,15 +503,14 @@ class Board(object):
                 self.kings[color] = PIECE_EMPTY
             self.pieces[square] = PIECE_EMPTY
             self.colors[square] = COLOR_EMPTY
-            if update_value:
-                self.values[square] = 0
+            
             self.pieces_count[color * 7 + piece] -= 1
 
     @cython.ccall
     @cython.locals(color=cython.int)
     def hindered(self, color):
         result = set()
-        attack_moves = self.attack_moves(color=color, square=-1)
+        attack_moves = self.attack_moves(-1, color)
         for move in attack_moves:
             result.add(
                 p0x88_to_tuple(move.destination())
@@ -447,7 +532,7 @@ class Board(object):
     @cython.ccall
     @cython.locals(color=cython.int)
     def possible_moves(self, color):
-        result = self.generate_moves(legal=1, square=-1, color=color)
+        result = self.generate_moves(LEGAL, EMPTY, color)
         result.sort(reverse=True, key=move_key)
         return result
 
@@ -455,7 +540,7 @@ class Board(object):
     @cython.locals(color=cython.int)
     def possible_killing_moves(self, color):
         result = set()
-        moves = self.generate_moves(legal=1, square=-1, color=color)
+        moves = self.generate_moves(LEGAL, EMPTY, color)
         for move in moves:
             if move.flags & (CAPTURE | EN_PASSANT):
                 result.add(move)
@@ -471,17 +556,17 @@ class Board(object):
 
     @cython.ccall
     @cython.locals(dest=cython.int)
-    def move(self, original_position, new_position, skip_validation=False):
+    def move(self, original_position, new_position):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
-            legal=1,
-            color=-1,
-            square=tuple_to_0x88(original_position)
+            LEGAL,
+            tuple_to_0x88(original_position),
+            COLOR_EMPTY,
         )
 
         for move in moves:
             if move.destination() == dest:
-                move.do(self)
+                move.do_update(self)
                 return True
         return False
 
@@ -491,9 +576,9 @@ class Board(object):
         square = tuple_to_0x88(position)
         color = self.colors[square]
         moves = self.generate_moves(
-            legal=1,
-            color=color,
-            square=square
+            LEGAL,
+            square,
+            color,
         )
         return moves
 
@@ -546,17 +631,23 @@ class Board(object):
                 if piece == lp:
                     color = BLACK
                 if lp == 'p':
-                    self.add(PAWN, color, square, True)
+                    self.add(PAWN, color, square)
+                    self.values[square] = self.piece_value(PAWN, color, square)
                 elif lp == 'n':
-                    self.add(KNIGHT, color, square, True)
+                    self.add(KNIGHT, color, square)
+                    self.values[square] = self.piece_value(KNIGHT, color, square)
                 elif lp == 'b':
-                    self.add(BISHOP, color, square, True)
+                    self.add(BISHOP, color, square)
+                    self.values[square] = self.piece_value(BISHOP, color, square)
                 elif lp == 'r':
-                    self.add(ROOK, color, square, True)
+                    self.add(ROOK, color, square)
+                    self.values[square] = self.piece_value(ROOK, color, square)
                 elif lp == 'q':
-                    self.add(QUEEN, color, square, True)
+                    self.add(QUEEN, color, square)
+                    self.values[square] = self.piece_value(QUEEN, color, square)
                 elif lp == 'k':
-                    self.add(KING, color, square, True)
+                    self.add(KING, color, square)
+                    self.values[square] = self.piece_value(KING, color, square)
                 x += 1
         
         if tokens[1] == 'w':
@@ -600,7 +691,7 @@ class Board(object):
         last=cython.int, piece=cython.int, offset=cython.int,
         i=cython.int, j=cython.int
     )
-    def attack_moves(self, square=-1, color=-1):
+    def attack_moves(self, square, color):
         moves = []
         current = color
         first = A8
@@ -657,13 +748,13 @@ class Board(object):
         offset=cython.int, i=cython.int, j=cython.int,
         origin=cython.int, dest=cython.int
     )
-    def generate_moves(self, legal=0, square=-1, color=-1):
+    def generate_moves(self, legal, square, color):
         moves = []
         current = color
         first = A8
         last = H1
         single = 0
-        if current == -1:
+        if current == COLOR_EMPTY:
             current = self.current_color
         other = next_color(current)
 
@@ -750,12 +841,12 @@ class Board(object):
 
         legal_moves = []
         for move in moves:
-            move.do(self, False)
+            move.do(self)
             if not self.in_check(current):
                 legal_moves.append(move)
             #else:
             #    self.display()
-            move.undo(self, False)
+            move.undo(self)
         return legal_moves
 
     @cython.cfunc
@@ -802,8 +893,8 @@ class Board(object):
     @cython.ccall
     @cython.returns(cython.int)
     @cython.locals(color=cython.int)
-    def in_check(self, color=-1):
-        if color == -1:
+    def in_check(self, color):
+        if color == COLOR_EMPTY:
             color = self.current_color
         if self.kings[color] == EMPTY:
             return False
@@ -826,10 +917,10 @@ class Board(object):
             print(s)
         print("  a b c d e f g h\n")
 
-    def status(self, possible_moves=None):
-        if possible_moves is None:
-            possible_moves = self.generate_moves(legal=1)
-        in_check = self.in_check()
+    def status(self, possible_moves):
+        if not possible_moves:
+            possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)
+        in_check = self.in_check(COLOR_EMPTY)
         if in_check and not possible_moves:
             return "checkmate"
         if in_check:

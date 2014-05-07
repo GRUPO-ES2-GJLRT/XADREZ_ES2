@@ -98,7 +98,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(2))
+            self.do_move(self.minmax_move(6))
 
         elif self.level == HARD:
             raise Exception
@@ -193,7 +193,7 @@ class Node(object):
     def children(self):
         for move in self.moves:
             nboard = self.board.clone()
-            move.do(nboard)
+            move.do_update(nboard)
             yield Node(nboard, move=move)
 
 

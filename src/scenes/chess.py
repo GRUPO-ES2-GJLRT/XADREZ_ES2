@@ -99,7 +99,7 @@ class Chess(Scene, ChessInterface):
         self.config = self.load_stored_config()
         self.fifty_move = self.config['fifty_move']
         self.jit_draw = self.config['jit_draw']
-        self.board = Board()
+        self.board = Board(True)
         # Marked squares
         self.selected = None
         self.fail = None
@@ -181,7 +181,7 @@ class Chess(Scene, ChessInterface):
         self.do_jit_draw()
         if movement:
             self.change_turn()
-            self.verify_status(self.board.status())
+            self.verify_status(self.board.status(None))
             return True
 
         self.fail = square

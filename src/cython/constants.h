@@ -121,6 +121,11 @@
 #define WHITE 0
 #define BLACK 1
 
+/* Legal Moves */
+
+#define LEGAL 1
+#define ILLEGAL 0
+
 /* Piece movements */
 
 const int PAWN_OFFSETS[2][4] = {

@@ -26,10 +26,10 @@ class Game(object):
         from scenes.main_menu import MainMenu
         self.scene = MainMenu(self)
         last_frame_time = 0
-        import yappi
+        #import yappi
     
     
-        yappi.start()
+        #yappi.start()
         while self.running:
     
             current_time = time.time()
