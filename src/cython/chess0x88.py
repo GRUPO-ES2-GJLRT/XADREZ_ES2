@@ -422,6 +422,11 @@ class Move(object):
     def score(self):
         return self.captured
 
+    @cython.ccall
+    @cython.returns(cython.int)
+    def get_flags(self):
+        return self.flags
+
 @cython.cclass
 class Board(object):
     cython.declare(
@@ -569,7 +574,7 @@ class Board(object):
         result = set()
         moves = self.generate_moves(LEGAL, EMPTY, color)
         for move in moves:
-            if move.flags & (CAPTURE | EN_PASSANT):
+            if move.get_flags() & (CAPTURE | EN_PASSANT):
                 result.add(move)
         return result
 

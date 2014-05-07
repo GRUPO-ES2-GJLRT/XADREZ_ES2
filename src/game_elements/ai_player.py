@@ -59,6 +59,8 @@ class AIPlayer(Player):
         while chess.state == scenes.chess.PAUSE:
             self.try_to_exit_thread_loop()
             pass
+        if not chosen_move:
+            return
         tup = chosen_move.tuple()
         self.select(tup[0])
         self.play(tup[1])
@@ -98,7 +100,7 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(6))
+            self.do_move(self.minmax_move(4))
 
         elif self.level == HARD:
             raise Exception
