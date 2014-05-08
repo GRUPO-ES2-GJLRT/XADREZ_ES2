@@ -13,7 +13,8 @@ from .config_menu import ConfigMenu
 from .interfaces.main_menu_interface import MainMenuInterface
 from consts.i18n import (
     PLAYER_LABEL,
-    SOOO_EASY_LABEL,
+    RANDOM_LABEL,
+    SEMI_RANDOM_LABEL,
     EASY_LABEL,
     MEDIUM_LABEL,
     HARD_LABEL
@@ -21,7 +22,8 @@ from consts.i18n import (
 
 from game_elements.ai_player import (
     PLAYER,
-    SOOO_EASY,
+    RANDOM,
+    SEMI_RANDOM,
     EASY,
     MEDIUM,
     HARD
@@ -35,13 +37,14 @@ class MainMenu(Scene, MainMenuInterface):
         super(MainMenu, self).__init__(*args, **kwargs)
         self.players = OrderedDict([
             (PLAYER, PLAYER_LABEL),
-            (SOOO_EASY, SOOO_EASY_LABEL),
+            (RANDOM, RANDOM_LABEL),
+            (SEMI_RANDOM, SEMI_RANDOM_LABEL),
             (EASY, EASY_LABEL),
             (MEDIUM, MEDIUM_LABEL),
             (HARD, HARD_LABEL),
         ])
         self.white_player = None
-        self.black_player = MEDIUM
+        self.black_player = None
 
         self.define_clicks()
         self.create_interface()
