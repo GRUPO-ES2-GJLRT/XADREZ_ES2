@@ -14,6 +14,8 @@ from consts.pieces import PAWN, KING
 from consts.colors import WHITE, BLACK
 from .player import Player, END
 import scenes
+from cython.constants import ILLEGAL, LEGAL, EMPTY
+from cython.board import move_key
 
 PLAYER = None
 SOOO_EASY = 0
@@ -100,10 +102,10 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(4))
+            self.do_move(self.minmax_move(3))
 
         elif self.level == HARD:
-            raise Exception
+            self.do_move(self.minmax_move(5))
 
         elif self.level == SUCH_HARD_MUCH_DIFFICULT:
             raise Exception
@@ -114,89 +116,38 @@ class AIPlayer(Player):
     def minmax_move(self, depth):
         a = float('-inf')
         b = float('inf')
-
-        node = Node(self.temp_board)
-        node._value = self.evaluate_state(node)
+        board = self.temp_board
+        moves = board.possible_moves(board.color())
         max_move = None
-        for child in node.children():
-            value = self.minmax_alpha_beta_prunning(
-                child, depth - 1, a, b, False)
-            if a < value:
+        for move in moves:
+            move.do_update(board)
+            value = -self.negamax_alpha_beta(board, depth - 1, -b, -a, 1)
+            move.undo_update(board)
+            if value > a:
+                max_move = move
                 a = value
-                max_move = child.move
-        node._value = a
         return max_move
 
-    def minmax_alpha_beta_prunning(self, node, depth, a, b, maximizing_player):
-        if depth == 0 or node.is_terminal():
-            node.value = self.evaluate_state(node)
-            return node.value
+    def negamax_alpha_beta(self, board, depth, a, b, color):
+        moves = board.possible_moves(board.color())
+        if depth == 0:
+            return color * self.evaluate_state(board)
 
-        if maximizing_player:
-            for child in node.children():
-                a = max(
-                    a,
-                    self.minmax_alpha_beta_prunning(child,
-                                                    depth - 1, a, b, False)
-                )
-                if b <= a:
-                    break
-            node.value = a
-            return a
-        else:
-            for child in node.children():
-                b = min(
-                    b,
-                    self.minmax_alpha_beta_prunning(child,
-                                                    depth - 1, a, b, True)
-                )
-                if b <= a:
-                    break
-            node.value = b
-            return b
+        best_value = float('-inf')
+        for move in moves:
+            move.do_update(board)
+            value = -self.negamax_alpha_beta(board, depth - 1, -b, -a, -color)
+            best_value = max(best_value, value)
+            a = max(a, value)
+            move.undo_update(board)
+            if a > b:
+                break
+        return best_value
 
     @staticmethod
-    def evaluate_state(node):
-        value = node.board.get_value()
-
-        if node.board.color() == WHITE:
-            return value
-        return value * -1
-
-
-class Node(object):
-
-    def __init__(self, board, move=None):
-        self.board = board
-        self.move = move
-        self.moves = self.board.possible_moves(board.color())
-        self._value = 0.0
-        self.color = self.board.color()
-        self.childs = []
-        self.done = False
-
-    @property
-    def value(self):
-        """ Return the piece position x, y """
-        return self._value
-
-    @value.setter
-    def value(self, value):
-        """ sets x, y """
-        self._value = value
-        self.done = True
-        del self.moves
-        del self.board
-
-    def is_terminal(self):
-        return ((not self.moves) or
-                self.board.status(self.moves) in [CHECKMATE, STALEMATE])
-
-    def children(self):
-        for move in self.moves:
-            nboard = self.board.clone()
-            move.do_update(nboard)
-            yield Node(nboard, move=move)
+    def evaluate_state(board):
+        value = board.get_value()
+        return value
 
 
 def parse_opening(raw_opening, openings):

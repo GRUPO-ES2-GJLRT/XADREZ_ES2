@@ -166,7 +166,7 @@ int SECOND_RANK[2] = {WHITE_SECOND_RANK, BLACK_SECOND_RANK};
 char PRINT_ARRAY[3][8] = {
 	{0, 'P', 'N', 'B', 'R', 'Q', 'K'},
 	{0, 'p', 'n', 'b', 'r', 'q', 'k'},
-    { 0 , 0 , 0 , 0 , 0,  0, '.'}
+    { ' ' , ' ' , ' ' , ' ' , ' ',  ' ', '.'}
 };
 
 char NAMES[7][7] = {

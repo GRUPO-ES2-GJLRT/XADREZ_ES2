@@ -71,7 +71,7 @@ SECOND_RANK = [WHITE_SECOND_RANK, BLACK_SECOND_RANK]
 PRINT_ARRAY = [
     [0, 'P', 'N', 'B', 'R', 'Q', 'K'],
     [0, 'p', 'n', 'b', 'r', 'q', 'k'],
-    [0, 0, 0, 0, 0, 0, '.']
+    [' ', ' ', ' ', ' ', ' ', ' ', '.']
 ]
 
 NAMES = ["", "pawn", "knight", "bishop", "rook", "queen", "king"]

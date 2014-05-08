@@ -6,7 +6,8 @@ try:
     chess = importlib.import_module(name)
     Board = chess.Board
     Move = chess.Move
+    move_key = chess.move_key
 except:
     print("Python Fallback. You may want to run on cython folder:")
     print("python setup.py build_ext --inplace")
-    from chess0x88 import Board, Move
+    from chess0x88 import Board, Move, move_key

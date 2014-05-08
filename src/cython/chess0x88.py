@@ -261,8 +261,8 @@ class Move(object):
     )
     def do_update(self, board):
         self.do(board)
-        piece = board.pieces[self._origin]
-        color = board.colors[self._origin]
+        piece = self.piece
+        color = self.color
         origin = self._origin
         dest = self._destination
         flags = self.flags
@@ -381,7 +381,7 @@ class Move(object):
                 board.values[castling_origin] = board.piece_value(
                     ROOK, color, castling_origin)
 
-        board.values[dest] = board.piece_value(piece, color, dest)
+        board.values[origin] = board.piece_value(piece, color, dest)
         if captured:
             if flags & EN_PASSANT:
                 board.values[en_passant_square] = board.piece_value(
@@ -427,6 +427,14 @@ class Move(object):
     def get_flags(self):
         return self.flags
 
+    @cython.ccall
+    def readable(self):
+        return "%s%s %c" % (
+            p0x88_to_chess_notation(self._origin),
+            p0x88_to_chess_notation(self._destination),
+            PRINT_ARRAY[self.color][self.piece]
+        )
+
 @cython.cclass
 class Board(object):
     cython.declare(
@@ -460,6 +468,7 @@ class Board(object):
         for i in range(128):
             self.pieces[i] = PIECE_EMPTY
             self.colors[i] = COLOR_EMPTY
+            self.values[i] = 0
         for i in range(7):
             self.pieces_count[WHITE * 7 + i] = 0
             self.pieces_count[BLACK * 7 + i] = 0
@@ -498,7 +507,7 @@ class Board(object):
         result.half_moves = self.half_moves
         result.moves = self.moves
         result.hash = self.hash
-        result.last_hash = self.hash
+        result.last_hash = self.last_hash
         result.pieces_list = self.pieces_list
         return result
 
@@ -949,6 +958,19 @@ class Board(object):
             print(s)
         print("  a b c d e f g h\n")
 
+    @cython.ccall
+    @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+    def display_values(self):
+        print("  a      b      c      d      e      f      g      h      ")
+        for irow in range(8):
+            s = "%d " % (8 - irow)
+            for icol in range(8):
+                sq = irow * 16 + icol
+                num = str(self.values[sq])
+                s += "%s%s" % (num, " " * (7 - len(num)))
+            print(s)
+        print("  a      b      c      d      e      f      g      h      ")
+
     def status(self, possible_moves):
         if not possible_moves:
             possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)
@@ -1010,6 +1032,7 @@ class Board(object):
             mult = 1
         else:
             mult = -1
+            square = square ^ 0x77
         if piece == PIECE_EMPTY:
             return 0
         if piece == PAWN:

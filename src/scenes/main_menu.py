@@ -15,6 +15,8 @@ from consts.i18n import (
     PLAYER_LABEL,
     SOOO_EASY_LABEL,
     EASY_LABEL,
+    MEDIUM_LABEL,
+    HARD_LABEL
 )
 
 from game_elements.ai_player import (
@@ -22,6 +24,7 @@ from game_elements.ai_player import (
     SOOO_EASY,
     EASY,
     MEDIUM,
+    HARD
 )
 
 
@@ -34,7 +37,8 @@ class MainMenu(Scene, MainMenuInterface):
             (PLAYER, PLAYER_LABEL),
             (SOOO_EASY, SOOO_EASY_LABEL),
             (EASY, EASY_LABEL),
-            (MEDIUM, "Medium"),
+            (MEDIUM, MEDIUM_LABEL),
+            (HARD, HARD_LABEL),
         ])
         self.white_player = None
         self.black_player = MEDIUM
