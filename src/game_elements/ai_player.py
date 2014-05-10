@@ -119,9 +119,12 @@ class AIPlayer(Player):
         board = self.temp_board
         moves = board.possible_moves(board.color())
         max_move = None
+        if moves:
+            max_move = moves[0]
         for move in moves:
             move.do_update(board)
-            value = -self.negamax_alpha_beta(board, depth - 1, -b, -a, 1)
+            value = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
+                1 if board.color() == WHITE else -1)
             move.undo_update(board)
             if value > a:
                 max_move = move
