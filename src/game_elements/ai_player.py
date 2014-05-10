@@ -18,11 +18,11 @@ from cython.constants import ILLEGAL, LEGAL, EMPTY
 from cython.board import move_key
 
 PLAYER = None
-SOOO_EASY = 0
-EASY = 1
-MEDIUM = 2
-HARD = 3
-SUCH_HARD_MUCH_DIFFICULT = 4
+RANDOM = 0
+SEMI_RANDOM = 1
+EASY = 2
+MEDIUM = 3
+HARD = 4
 
 
 class AIPlayer(Player):
@@ -77,7 +77,7 @@ class AIPlayer(Player):
         if (self.state == END or self.chess.state in scenes.chess.END_GAME):
             return
 
-        if self.level == SOOO_EASY:
+        if self.level == RANDOM:
             moves = list(self.temp_board.possible_moves(self.color))
 
             while not moves:
@@ -86,7 +86,7 @@ class AIPlayer(Player):
 
             self.do_move(random.choice(moves))
 
-        elif self.level == EASY:
+        elif self.level == SEMI_RANDOM:
             moves = list(
                 self.temp_board.possible_killing_moves(self.color) or
                 self.temp_board.possible_moves(self.color)
@@ -101,14 +101,14 @@ class AIPlayer(Player):
 
             self.do_move(random.choice(moves))
 
+        elif self.level == EASY:
+            self.do_move(self.minmax_move(2))
+
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(3))
+            self.do_move(self.minmax_move(4))
 
         elif self.level == HARD:
             self.do_move(self.minmax_move(5))
-
-        elif self.level == SUCH_HARD_MUCH_DIFFICULT:
-            raise Exception
 
     def confirm_draw(self):
         self.chess.deny_draw(self)
