@@ -4,6 +4,7 @@ from __future__ import (absolute_import, division,
 
 import random
 import sys
+from os import path
 import threading
 from collections import Counter
 from time import sleep
@@ -38,7 +39,10 @@ class AIPlayer(Player):
         self.parse_openings()
 
     def parse_openings(self):
-        with open('../openings.dat') as _file:
+        openings_file = path.abspath(
+            path.join(sys.argv[0], '..', '..', 'src', 'openings.dat')
+        )
+        with open(openings_file) as _file:
             raw_openings = [opening.strip().split() for opening in _file]
 
         for raw_opening in raw_openings:
@@ -102,18 +106,18 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == EASY:
-            self.do_move(self.minmax_move(2))
+            self.do_move(self.negamax_move(2))
 
         elif self.level == MEDIUM:
-            self.do_move(self.minmax_move(4))
+            self.do_move(self.negamax_move(4))
 
         elif self.level == HARD:
-            self.do_move(self.minmax_move(5))
+            self.do_move(self.negamax_move(5))
 
     def confirm_draw(self):
         self.chess.deny_draw(self)
 
-    def minmax_move(self, depth):
+    def negamax_move(self, depth):
         a = float('-inf')
         b = float('inf')
         board = self.temp_board

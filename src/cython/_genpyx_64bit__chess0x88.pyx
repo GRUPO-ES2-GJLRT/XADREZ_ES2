@@ -1019,7 +1019,13 @@ class Board(object):
         elif piece == QUEEN:
             return mult * (900 + QUEEN_TABLE[square])
         elif piece == KING:
-            return mult * (32767 + KING_EARLYGAME_TABLE[square])
+            if self.is_endgame():
+                return mult * (20000 + KING_ENDGAME_TABLE[square])
+            else:
+                return mult * (20000 + KING_EARLYGAME_TABLE[square])
+
+    def is_endgame(self):
+        return False
 
     @staticmethod
     def is_valid_position(position):
