@@ -3,7 +3,7 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 import unittest
 
-from cython.board import Board
+from cython.importer import Board
 
 
 moves = lambda o, x: set((o, a) for a in x)

@@ -7,7 +7,7 @@ import unittest
 
 from consts.colors import WHITE, BLACK
 from consts.moves import CHECK, CHECKMATE, STALEMATE, NORMAL, FIFTY_MOVE
-from cython.board import Board
+from cython.importer import Board
 
 tuples = lambda x: set(a.tuple() for a in x)
 
