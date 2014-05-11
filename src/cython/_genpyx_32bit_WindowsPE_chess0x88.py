@@ -1,79 +1,32 @@
-
-import re
-
-from collections import namedtuple
-
-Piece = namedtuple("Piece", "name position color")
-
-
+CHECKSUM = 191097836114595606969951786274243230416547487474050761180956161815157982338132
 import cython
 
-cdef extern from 'constants.h':
-    # Directions
-    enum: N, S, E, W, NN, SS, NE, NW, SE, SW
-    enum: EEN, EES, WWN, WWS, NNE, NNW, SSE, SSW
-    enum: EMPTY
-    # Board
-    enum: A8, B8, C8, D8, E8, F8, G8, H8
-    enum: A7, B7, C7, D7, E7, F7, G7, H7
-    enum: A6, B6, C6, D6, E6, F6, G6, H6
-    enum: A5, B5, C5, D5, E5, F5, G5, H5
-    enum: A4, B4, C4, D4, E4, F4, G4, H4
-    enum: A3, B3, C3, D3, E3, F3, G3, H3
-    enum: A2, B2, C2, D2, E2, F2, G2, H2
-    enum: A1, B1, C1, D1, E1, F1, G1, H1
-    # Pieces
-    enum: PAWN, KNIGHT, BISHOP, ROOK, QUEEN, KING, PIECE_EMPTY
-    # Colors
-    enum: COLOR_EMPTY, WHITE, BLACK
-    # Legal
-    enum: ILLEGAL, LEGAL
-    # Movements
-    int **PAWN_OFFSETS
-    int **PIECE_OFFSET
-    int *PIECE_OFFSET_SIZE
-    enum: NORMAL, CAPTURE, BIG_PAWN, EN_PASSANT, PROMOTION
-    enum: KINGSIDE, QUEENSIDE
-    # Rank
-    int *SECOND_RANK
-    # Value Tables
-    int *PAWN_TABLE,
-    int *KNIGHT_TABLE,
-    int *BISHOP_TABLE,
-    int *ROOK_TABLE,
-    int *QUEEN_TABLE,
-    int *KING_EARLYGAME_TABLE,
-    int *KING_ENDGAME_TABLE,
-    # Attacked
-    int *ATTACKS
-    int *RAYS
-    int *SHIFTS
-    # Print
-    char **PRINT_ARRAY
-    char **NAMES
 
-    int is_square(int x)
-    int is_not_square(int x)
-    int rank(int x)
-    int col(int x)
-    int next_color(int color)
-    unsigned long long rand64()
 
-cdef:
-    unsigned long long zobrist_pieces[7][2][128]
-    unsigned long long zobrist_color
-    unsigned long long zobrist_castling[16]
-    unsigned long long zobrist_en_passant[128]
+def p0x88_to_tuple(position):
+    return (col(position), rank(position))
+
+
+def tuple_to_0x88(position):
+    icol = position[0]
+    irow = position[1]
+    return (7 - irow) * 16 + icol
+
+
+def chess_notation_to_0x88(cn):
+    icol = ord(cn[0]) - 97
+    irow = int(cn[1]) - 1
+    return (7 - irow) * 16 + icol
+
+
+def p0x88_to_chess_notation(x):
+    icol = col(x)
+    irow = rank(x)
+    return chr(icol + 97) + str(irow + 1)
 
 
 
-@cython.cfunc
-@cython.returns(cython.void)
-@cython.locals(
-    piece=cython.int, color=cython.int, square=cython.int,
-    zobrist_color=cython.int
-)
-def init_zobrist(zobrist_color):
+def init_zobrist():
     for piece in range(7):
         for color in range(2):
             for square in range(128):
@@ -83,22 +36,13 @@ def init_zobrist(zobrist_color):
         zobrist_castling[square] = rand64()
     for square in range(128):
         zobrist_en_passant[square] = rand64()
+    return zobrist_color
+
+zobrist_color = init_zobrist()
 
 
-init_zobrist(zobrist_color)
 
-
-
-
-@cython.cclass
 class Move(object):
-    cython.declare(
-        color=cython.int, _origin=cython.int, _destination=cython.int,
-        flags=cython.int, piece=cython.int, promotion=cython.int,
-        captured=cython.int, half_moves=cython.int,
-        previous_en_passant=cython.int, previous_hash=cython.ulonglong,
-        white_castling=cython.int, black_castling=cython.int
-    )
 
     @cython.locals(
         board=Board, color=cython.int, origin=cython.int, dest=cython.int,
@@ -132,14 +76,6 @@ class Move(object):
         self.white_castling = board.castling[WHITE]
         self.black_castling = board.castling[BLACK]
 
-    @cython.ccall
-    @cython.locals(
-        board=Board,  update_value=cython.int, current=cython.int, other=cython.int,
-        piece=cython.int, color=cython.int, other_piece=cython.int,
-        origin=cython.int, dest=cython.int, flags=cython.int,
-        castling_origin=cython.int, castling_dest=cython.int,
-        square=cython.int, en_passant_square=cython.int
-    )
     def do(self, board):
         current = self.color
         other = next_color(current)
@@ -149,7 +85,7 @@ class Move(object):
         origin = self._origin
         dest = self._destination
         flags = self.flags
-        en_passant_square =  dest + (N if current == BLACK else S)
+        en_passant_square = dest + (N if current == BLACK else S)
         board.remove(origin)
         board.remove(dest)
         board.add(piece, color, dest)
@@ -232,14 +168,6 @@ class Move(object):
         board.current_color = next_color(current)
         board.hash ^= zobrist_color
 
-    @cython.ccall
-    @cython.locals(
-        board=Board,
-        piece=cython.int, color=cython.int, 
-        origin=cython.int, dest=cython.int, flags=cython.int,
-        castling_origin=cython.int, castling_dest=cython.int,
-        en_passant_square=cython.int, promotion=cython.int
-    )
     def do_update(self, board):
         self.do(board)
         piece = self.piece
@@ -248,14 +176,14 @@ class Move(object):
         dest = self._destination
         flags = self.flags
         promotion = self.promotion
-        en_passant_square =  dest + (N if color == BLACK else S)
+        en_passant_square = dest + (N if color == BLACK else S)
         board.values[origin] = 0
         board.values[dest] = board.piece_value(piece, color, dest)
 
         # En passant
         if flags & EN_PASSANT:
             board.values[en_passant_square] = 0
-    
+
         # Promotion
         if flags & PROMOTION:
             board.values[dest] = board.piece_value(promotion, color, dest)
@@ -275,14 +203,6 @@ class Move(object):
                 board.values[castling_dest] = board.piece_value(
                     ROOK, color, castling_dest)
 
-    @cython.ccall
-    @cython.locals(
-        board=Board, current=cython.int, other=cython.int, piece=cython.int,
-        captured=cython.int, rook_piece=cython.int, origin=cython.int,
-        dest=cython.int, flags=cython.int,
-        castling_origin=cython.int, castling_dest=cython.int,
-        en_passant_square=cython.int
-    )
     def undo(self, board):
         current = self.color
         dest = self._destination
@@ -290,7 +210,7 @@ class Move(object):
         piece = self.piece
         flags = self.flags
         captured = self.captured
-        en_passant_square =  dest + (N if current == BLACK else S)
+        en_passant_square = dest + (N if current == BLACK else S)
 
         board.current_color = current
 
@@ -328,14 +248,6 @@ class Move(object):
 
         board.hash = self.previous_hash
 
-    @cython.ccall
-    @cython.locals(
-        board=Board, color=cython.int, other=cython.int, piece=cython.int,
-        captured=cython.int, rook_piece=cython.int, origin=cython.int,
-        dest=cython.int, flags=cython.int,
-        castling_origin=cython.int, castling_dest=cython.int,
-        en_passant_square=cython.int
-    )
     def undo_update(self, board):
         self.undo(board)
         color = self.color
@@ -345,7 +257,7 @@ class Move(object):
         piece = self.piece
         flags = self.flags
         captured = self.captured
-        en_passant_square =  dest + (N if color == BLACK else S)
+        en_passant_square = dest + (N if color == BLACK else S)
 
         # castling
         if piece == KING:
@@ -372,43 +284,29 @@ class Move(object):
         else:
             board.values[dest] = 0
 
-
-    @cython.ccall
-    @cython.returns(cython.int)
     def origin(self):
         return self._origin
 
-    @cython.ccall
-    @cython.returns(cython.int)
     def destination(self):
         return self._destination
 
-    @cython.cfunc
-    @cython.returns(cython.int)
     def castle(self):
         return (
             (self.white_castling >> 4 >> 1) | (self.black_castling >> 2 >> 1)
         )
 
-    @cython.ccall
-    @cython.returns(tuple)
     def tuple(self):
         return (
             p0x88_to_tuple(self._origin),
             p0x88_to_tuple(self._destination)
         )
 
-    @cython.ccall
-    @cython.returns(cython.int)
     def score(self):
         return self.captured
 
-    @cython.ccall
-    @cython.returns(cython.int)
     def get_flags(self):
         return self.flags
 
-    @cython.ccall
     def readable(self):
         return "%s%s %c" % (
             p0x88_to_chess_notation(self._origin),
@@ -416,17 +314,14 @@ class Move(object):
             PRINT_ARRAY[self.color][self.piece]
         )
 
-@cython.cclass
+import re
+from collections import namedtuple
+
+Piece = namedtuple("Piece", "name position color")
+
+
+
 class Board(object):
-    cython.declare(
-        pieces=cython.int[128], colors=cython.int[128], 
-        values=cython.int[128],
-        current_color=cython.int, kings=cython.int[2], castling=cython.int[2],
-        half_moves=cython.int, moves=cython.int, en_passant_square=cython.int,
-        hash=cython.ulonglong,
-        pieces_list=list, last_hash=cython.ulonglong,
-        pieces_count=cython.int[14], 
-    )
 
     def __init__(self, new_game):
         if new_game:
@@ -435,8 +330,6 @@ class Board(object):
         else:
             self.clear()
 
-    @cython.ccall
-    @cython.locals(i=cython.int)
     def clear(self):
         for i in range(128):
             self.pieces[i] = PIECE_EMPTY
@@ -445,7 +338,7 @@ class Board(object):
         for i in range(7):
             self.pieces_count[WHITE * 7 + i] = 0
             self.pieces_count[BLACK * 7 + i] = 0
-        
+
         self.kings[WHITE] = EMPTY
         self.kings[BLACK] = EMPTY
         self.current_color = WHITE
@@ -458,9 +351,6 @@ class Board(object):
         self.pieces_list = []
         self.last_hash = 0
 
-    @cython.ccall
-    @cython.returns(Board)
-    @cython.locals(result=Board, i=cython.int)
     def clone(self):
         result = Board(False)
         for i in range(128):
@@ -470,7 +360,7 @@ class Board(object):
         for i in range(7):
             result.pieces_count[i] = self.pieces_count[i]
             result.pieces_count[7 + i] = self.pieces_count[7 + i]
-        
+
         result.kings[WHITE] = self.kings[WHITE]
         result.kings[BLACK] = self.kings[BLACK]
         result.current_color = self.current_color
@@ -484,16 +374,10 @@ class Board(object):
         result.pieces_list = self.pieces_list
         return result
 
-    @cython.cfunc
-    @cython.returns(cython.void)
-    @cython.locals(
-        piece=cython.int, color=cython.int, square=cython.int,
-        update_value=cython.int
-    )
     def add(self, piece, color, square):
         self.pieces[square] = piece
         self.colors[square] = color
-        
+
         if piece == KING:
             self.kings[color] = square
 
@@ -501,12 +385,6 @@ class Board(object):
 
         self.hash ^= zobrist_pieces[piece][color][square]
 
-    @cython.cfunc
-    @cython.returns(cython.void)
-    @cython.locals(
-        square=cython.int, piece=cython.int, color=cython.int,
-        update_value=cython.int
-    )
     def remove(self, square):
         piece = self.pieces[square]
         color = self.colors[square]
@@ -517,11 +395,8 @@ class Board(object):
                 self.kings[color] = PIECE_EMPTY
             self.pieces[square] = PIECE_EMPTY
             self.colors[square] = COLOR_EMPTY
-            
             self.pieces_count[color * 7 + piece] -= 1
 
-    @cython.ccall
-    @cython.locals(color=cython.int)
     def hindered(self, color):
         result = set()
         attack_moves = self.attack_moves(-1, color)
@@ -531,9 +406,6 @@ class Board(object):
             )
         return result
 
-    @cython.ccall
-    @cython.returns(cython.int)
-    @cython.locals(result=cython.int, i=cython.int)
     def get_value(self):
         result = 0
         for i in range(A8, H1 + 1):
@@ -543,15 +415,11 @@ class Board(object):
             result += self.values[i]
         return result
 
-    @cython.ccall
-    @cython.locals(color=cython.int)
     def possible_moves(self, color):
         result = self.generate_moves(LEGAL, EMPTY, color)
         result.sort(reverse=True, key=move_key)
         return result
 
-    @cython.ccall
-    @cython.locals(color=cython.int)
     def possible_killing_moves(self, color):
         result = set()
         moves = self.generate_moves(LEGAL, EMPTY, color)
@@ -560,16 +428,12 @@ class Board(object):
                 result.add(move)
         return result
 
-    @cython.ccall
     def color(self):
         return self.current_color
 
-    @cython.ccall
     def current_king_position(self):
         return p0x88_to_tuple(self._current_king_position())
 
-    @cython.ccall
-    @cython.locals(dest=cython.int)
     def move(self, original_position, new_position):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
@@ -584,8 +448,6 @@ class Board(object):
                 return True
         return False
 
-    @cython.ccall
-    @cython.locals(dest=cython.int, square=cython.int)
     def piece_moves(self, position):
         square = tuple_to_0x88(position)
         color = self.colors[square]
@@ -596,8 +458,6 @@ class Board(object):
         )
         return moves
 
-    @cython.ccall
-    @cython.locals(square=cython.int)
     def at(self, position):
         square = tuple_to_0x88(position)
         color = self.colors[square]
@@ -608,10 +468,6 @@ class Board(object):
         result += NAMES[piece]
         return result
 
-    @cython.ccall
-    @cython.locals(
-        x=cython.int, y=cython.int, square=cython.int, color=cython.int,
-    )
     def load_fen(self, fen):
         self.clear()
         tokens = re.compile("\s+").split(fen)
@@ -649,21 +505,26 @@ class Board(object):
                     self.values[square] = self.piece_value(PAWN, color, square)
                 elif lp == 'n':
                     self.add(KNIGHT, color, square)
-                    self.values[square] = self.piece_value(KNIGHT, color, square)
+                    self.values[square] = self.piece_value(KNIGHT,
+                                                           color, square)
                 elif lp == 'b':
                     self.add(BISHOP, color, square)
-                    self.values[square] = self.piece_value(BISHOP, color, square)
+                    self.values[square] = self.piece_value(BISHOP,
+                                                           color, square)
                 elif lp == 'r':
                     self.add(ROOK, color, square)
-                    self.values[square] = self.piece_value(ROOK, color, square)
+                    self.values[square] = self.piece_value(ROOK,
+                                                           color, square)
                 elif lp == 'q':
                     self.add(QUEEN, color, square)
-                    self.values[square] = self.piece_value(QUEEN, color, square)
+                    self.values[square] = self.piece_value(QUEEN,
+                                                           color, square)
                 elif lp == 'k':
                     self.add(KING, color, square)
-                    self.values[square] = self.piece_value(KING, color, square)
+                    self.values[square] = self.piece_value(KING,
+                                                           color, square)
                 x += 1
-        
+
         if tokens[1] == 'w':
             self.current_color = WHITE
         else:
@@ -691,20 +552,11 @@ class Board(object):
 
         self.moves = int(tokens[5])
 
-    @cython.cfunc
-    @cython.returns(cython.int)
     def castle(self):
         return (
             (self.castling[WHITE] >> 4 >> 1) | (self.castling[BLACK] >> 2 >> 1)
         )
 
-    @cython.cfunc
-    @cython.locals(
-        square=cython.int, color=cython.int,
-        current=cython.int, other=cython.int, first=cython.int,
-        last=cython.int, piece=cython.int, offset=cython.int,
-        i=cython.int, j=cython.int
-    )
     def attack_moves(self, square, color):
         moves = []
         current = color
@@ -754,14 +606,6 @@ class Board(object):
                             break
         return moves
 
-    @cython.cfunc
-    @cython.locals(
-        legal=cython.int, square=cython.int, color=cython.int,
-        current=cython.int, other=cython.int, first=cython.int,
-        last=cython.int, single=cython.int, piece=cython.int,
-        offset=cython.int, i=cython.int, j=cython.int,
-        origin=cython.int, dest=cython.int
-    )
     def generate_moves(self, legal, square, color):
         moves = []
         current = color
@@ -863,13 +707,6 @@ class Board(object):
             move.undo(self)
         return legal_moves
 
-    @cython.cfunc
-    @cython.returns(cython.int)
-    @cython.locals(
-        square=cython.int, color=cython.int,
-        diff=cython.int, diff_0x88=cython.int, blocked=cython.int,
-        offset=cython.int, i=cython.int, j=cython.int,
-    )
     def attacked(self, square, color):
         for i in range(A8, H1 + 1):
             if is_not_square(i):
@@ -904,9 +741,6 @@ class Board(object):
                     return True
         return False
 
-    @cython.ccall
-    @cython.returns(cython.int)
-    @cython.locals(color=cython.int)
     def in_check(self, color):
         if color == COLOR_EMPTY:
             color = self.current_color
@@ -914,13 +748,9 @@ class Board(object):
             return False
         return self.attacked(self.kings[color], next_color(color))
 
-    @cython.ccall
-    @cython.returns(cython.int)
     def _current_king_position(self):
         return self.kings[self.current_color]
 
-    @cython.ccall
-    @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
     def display(self):
         print("  a b c d e f g h")
         for irow in range(8):
@@ -931,8 +761,6 @@ class Board(object):
             print(s)
         print("  a b c d e f g h\n")
 
-    @cython.ccall
-    @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
     def display_values(self):
         print("  a      b      c      d      e      f      g      h      ")
         for irow in range(8):
@@ -958,9 +786,6 @@ class Board(object):
             return "fifty move"
         return 'normal'
 
-    @cython.ccall
-    @cython.returns(list)
-    @cython.locals(i=cython.int)
     def get_pieces(self):
         if self.hash != self.last_hash:
             pieces_list = []
@@ -983,23 +808,12 @@ class Board(object):
             self.last_hash = self.hash
         return self.pieces_list
 
-    @cython.ccall
-    @cython.returns(cython.ulonglong)
     def get_hash(self):
         return self.hash
 
-    @cython.ccall
-    @cython.returns(cython.int)
-    @cython.locals(color=cython.int, piece=cython.int)
     def count(self, color, piece):
         return self.pieces_count[color * 7 + piece]
 
-    @cython.cfunc
-    @cython.returns(cython.int)
-    @cython.locals(
-        piece=cython.int, color=cython.int, square=cython.int,
-        mult=cython.int
-    )
     def piece_value(self, piece, color, square):
         if color == WHITE:
             mult = 1
@@ -1019,7 +833,13 @@ class Board(object):
         elif piece == QUEEN:
             return mult * (900 + QUEEN_TABLE[square])
         elif piece == KING:
-            return mult * (32767 + KING_EARLYGAME_TABLE[square])
+            if self.is_endgame():
+                return mult * (20000 + KING_ENDGAME_TABLE[square])
+            else:
+                return mult * (20000 + KING_EARLYGAME_TABLE[square])
+
+    def is_endgame(self):
+        return False
 
     @staticmethod
     def is_valid_position(position):
@@ -1035,38 +855,5 @@ class Board(object):
         )
 
 
-@cython.cfunc
-@cython.returns(tuple)
-@cython.locals(position=cython.int)
-def p0x88_to_tuple(position):
-    return (col(position), rank(position))
-
-
-@cython.cfunc
-@cython.returns(cython.int)
-@cython.locals(position=tuple, icol=cython.int, irow=cython.int)
-def tuple_to_0x88(position):
-    icol = position[0]
-    irow = position[1]
-    return (7 - irow) * 16 + icol
-
-
-@cython.cfunc
-@cython.returns(cython.int)
-@cython.locals(icol=cython.int, irow=cython.int)
-def chess_notation_to_0x88(cn):
-    icol = ord(cn[0]) - 97
-    irow = int(cn[1]) - 1
-    return (7 - irow) * 16 + icol
-
-
-@cython.locals(x=cython.int, icol=cython.int, irow=cython.int)
-def p0x88_to_chess_notation(x):
-    icol = col(x)
-    irow = rank(x)
-    return chr(icol + 97) + str(irow + 1)
-
-
-@cython.locals(move=Move)
 def move_key(move):
     return move.score()

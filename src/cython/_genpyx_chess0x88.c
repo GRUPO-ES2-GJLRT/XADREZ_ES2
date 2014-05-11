@@ -338,8 +338,8 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define _USE_MATH_DEFINES
 #endif
 #include <math.h>
-#define __PYX_HAVE__src__cython___genpyx_64bit__chess0x88
-#define __PYX_HAVE_API__src__cython___genpyx_64bit__chess0x88
+#define __PYX_HAVE__src__cython___genpyx_chess0x88
+#define __PYX_HAVE_API__src__cython___genpyx_chess0x88
 #include "constants.h"
 #ifdef _OPENMP
 #include <omp.h>
@@ -526,23 +526,23 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "_genpyx_64bit__chess0x88.pyx",
+  "_genpyx_chess0x88.py",
 };
 
 /*--- Type declarations ---*/
-struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move;
-struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board;
+struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move;
+struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board;
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":94
+/* "src\cython\_genpyx_chess0x88.pxd":64
+ * cdef unsigned long long init_zobrist()
  * 
- * @cython.cclass
- * class Move(object):             # <<<<<<<<<<<<<<
- *     cython.declare(
- *         color=cython.int, _origin=cython.int, _destination=cython.int,
+ * cdef class Move(object):             # <<<<<<<<<<<<<<
+ *     cdef int color
+ *     cdef int _origin
  */
-struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move {
+struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move {
   PyObject_HEAD
-  struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_vtab;
+  struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *__pyx_vtab;
   int color;
   int _origin;
   int _destination;
@@ -552,22 +552,22 @@ struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move {
   int captured;
   int half_moves;
   int previous_en_passant;
-  unsigned PY_LONG_LONG previous_hash;
+  int previous_hash;
   int white_castling;
   int black_castling;
 };
 
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":420
+/* "src\cython\_genpyx_chess0x88.pxd":128
  * 
- * @cython.cclass
- * class Board(object):             # <<<<<<<<<<<<<<
- *     cython.declare(
- *         pieces=cython.int[128], colors=cython.int[128],
+ * 
+ * cdef class Board:             # <<<<<<<<<<<<<<
+ *     cdef int pieces[128]
+ *     cdef int colors[128]
  */
-struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board {
+struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board {
   PyObject_HEAD
-  struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_vtab;
+  struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *__pyx_vtab;
   int pieces[128];
   int colors[128];
   int values[128];
@@ -585,67 +585,69 @@ struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board {
 
 
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":94
+/* "src\cython\_genpyx_chess0x88.py":47
  * 
- * @cython.cclass
+ * 
  * class Move(object):             # <<<<<<<<<<<<<<
- *     cython.declare(
- *         color=cython.int, _origin=cython.int, _destination=cython.int,
- */
-
-struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move {
-  PyObject *(*__pyx_do)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*do_update)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*undo)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*undo_update)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  int (*origin)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch);
-  int (*destination)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch);
-  int (*castle)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *);
-  PyObject *(*tuple)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch);
-  int (*score)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch);
-  int (*get_flags)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch);
-  PyObject *(*readable)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch);
-};
-static struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Move;
-
-
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":420
  * 
- * @cython.cclass
- * class Board(object):             # <<<<<<<<<<<<<<
- *     cython.declare(
- *         pieces=cython.int[128], colors=cython.int[128],
+ *     @cython.locals(
  */
 
-struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board {
-  PyObject *(*clear)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *(*clone)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  void (*add)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int);
-  void (*remove)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int);
-  PyObject *(*hindered)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch);
-  int (*get_value)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*possible_moves)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch);
-  PyObject *(*possible_killing_moves)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch);
-  PyObject *(*color)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*current_king_position)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*move)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, PyObject *, int __pyx_skip_dispatch);
-  PyObject *(*piece_moves)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
-  PyObject *(*at)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
-  PyObject *(*load_fen)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
-  int (*castle)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *);
-  PyObject *(*attack_moves)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int);
-  PyObject *(*generate_moves)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int);
-  int (*attacked)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int);
-  int (*in_check)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch);
-  int (*_current_king_position)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*display)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*display_values)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  PyObject *(*get_pieces)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  unsigned PY_LONG_LONG (*get_hash)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch);
-  int (*count)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int __pyx_skip_dispatch);
-  int (*piece_value)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int);
+struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move {
+  PyObject *(*__pyx_do)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*do_update)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*undo)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*undo_update)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  int (*origin)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch);
+  int (*destination)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch);
+  int (*castle)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *);
+  PyObject *(*tuple)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch);
+  int (*score)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch);
+  int (*get_flags)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch);
+  PyObject *(*readable)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch);
 };
-static struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Board;
+static struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *__pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Move;
+
+
+/* "src\cython\_genpyx_chess0x88.py":326
+ * 
+ * 
+ * class Board(object):             # <<<<<<<<<<<<<<
+ * 
+ *     def __init__(self, new_game):
+ */
+
+struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board {
+  PyObject *(*clear)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *(*clone)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  void (*add)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int);
+  void (*remove)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int);
+  PyObject *(*hindered)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch);
+  int (*get_value)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*possible_moves)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch);
+  PyObject *(*possible_killing_moves)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch);
+  int (*color)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*current_king_position)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*move)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, PyObject *, int __pyx_skip_dispatch);
+  PyObject *(*piece_moves)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
+  PyObject *(*at)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
+  PyObject *(*load_fen)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
+  int (*castle)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *);
+  PyObject *(*attack_moves)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int);
+  PyObject *(*generate_moves)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int);
+  int (*attacked)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int);
+  int (*in_check)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch);
+  int (*_current_king_position)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*display)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*display_values)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  PyObject *(*status)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch);
+  PyObject *(*get_pieces)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  unsigned PY_LONG_LONG (*get_hash)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch);
+  int (*count)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int __pyx_skip_dispatch);
+  int (*piece_value)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int);
+  int (*is_endgame)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *);
+};
+static struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *__pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Board;
 #ifndef CYTHON_REFNANNY
   #define CYTHON_REFNANNY 0
 #endif
@@ -725,6 +727,40 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 
 static PyObject *__Pyx_GetBuiltinName(PyObject *name); /*proto*/
 
+#define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
+    __Pyx_GetItemInt_Fast(o, (Py_ssize_t)i, is_list, wraparound, boundscheck) : \
+    (is_list ? (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL) : \
+               __Pyx_GetItemInt_Generic(o, to_py_func(i))))
+#define __Pyx_GetItemInt_List(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
+    __Pyx_GetItemInt_List_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) : \
+    (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL))
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck);
+#define __Pyx_GetItemInt_Tuple(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
+    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
+    __Pyx_GetItemInt_Tuple_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) : \
+    (PyErr_SetString(PyExc_IndexError, "tuple index out of range"), (PyObject*)NULL))
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck);
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
+                                                     int is_list, int wraparound, int boundscheck);
+
+static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb); /*proto*/
+static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb); /*proto*/
+
+static void __Pyx_WriteUnraisable(const char *name, int clineno,
+                                  int lineno, const char *filename,
+                                  int full_traceback); /*proto*/
+
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw); /*proto*/
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
+
 static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
     Py_ssize_t num_min, Py_ssize_t num_max, Py_ssize_t num_found); /*proto*/
 
@@ -736,21 +772,6 @@ static int __Pyx_ParseOptionalKeywords(PyObject *kwds, PyObject **argnames[], \
 
 static CYTHON_INLINE int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, int none_allowed,
     const char *name, int exact); /*proto*/
-
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw); /*proto*/
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
-
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb); /*proto*/
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb); /*proto*/
-
-static void __Pyx_WriteUnraisable(const char *name, int clineno,
-                                  int lineno, const char *filename,
-                                  int full_traceback); /*proto*/
-
-static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name); /*proto*/
 
 static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type); /*proto*/
 
@@ -787,26 +808,7 @@ static CYTHON_INLINE int PySet_Add(PyObject *set, PyObject *key) {
 #endif /* PyAnySet_CheckExact (<= Py2.4) */
 #endif /* < Py2.5  */
 
-#define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
-    __Pyx_GetItemInt_Fast(o, (Py_ssize_t)i, is_list, wraparound, boundscheck) : \
-    (is_list ? (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL) : \
-               __Pyx_GetItemInt_Generic(o, to_py_func(i))))
-#define __Pyx_GetItemInt_List(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
-    __Pyx_GetItemInt_List_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) : \
-    (PyErr_SetString(PyExc_IndexError, "list index out of range"), (PyObject*)NULL))
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck);
-#define __Pyx_GetItemInt_Tuple(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck) \
-    (__Pyx_fits_Py_ssize_t(i, type, is_signed) ? \
-    __Pyx_GetItemInt_Tuple_Fast(o, (Py_ssize_t)i, wraparound, boundscheck) : \
-    (PyErr_SetString(PyExc_IndexError, "tuple index out of range"), (PyObject*)NULL))
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck);
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
-                                                     int is_list, int wraparound, int boundscheck);
+static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name); /*proto*/
 
 #include <string.h>
 
@@ -840,17 +842,70 @@ static int __Pyx_SetVtable(PyObject *dict, void *vtable); /*proto*/
 
 static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name); /*proto*/
 
-static PyObject *__Pyx_GetNameInClass(PyObject *nmspace, PyObject *name); /*proto*/
+static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type);
 
-static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level); /*proto*/
+#define __Pyx_CyFunction_USED 1
+#include <structmember.h>
+#define __Pyx_CYFUNCTION_STATICMETHOD  0x01
+#define __Pyx_CYFUNCTION_CLASSMETHOD   0x02
+#define __Pyx_CYFUNCTION_CCLASS        0x04
+#define __Pyx_CyFunction_GetClosure(f) \
+    (((__pyx_CyFunctionObject *) (f))->func_closure)
+#define __Pyx_CyFunction_GetClassObj(f) \
+    (((__pyx_CyFunctionObject *) (f))->func_classobj)
+#define __Pyx_CyFunction_Defaults(type, f) \
+    ((type *)(((__pyx_CyFunctionObject *) (f))->defaults))
+#define __Pyx_CyFunction_SetDefaultsGetter(f, g) \
+    ((__pyx_CyFunctionObject *) (f))->defaults_getter = (g)
+typedef struct {
+    PyCFunctionObject func;
+    PyObject *func_dict;
+    PyObject *func_weakreflist;
+    PyObject *func_name;
+    PyObject *func_qualname;
+    PyObject *func_doc;
+    PyObject *func_globals;
+    PyObject *func_code;
+    PyObject *func_closure;
+    PyObject *func_classobj; /* No-args super() class cell */
+    void *defaults;
+    int defaults_pyobjects;
+    int flags;
+    PyObject *defaults_tuple;   /* Const defaults tuple */
+    PyObject *defaults_kwdict;  /* Const kwonly defaults dict */
+    PyObject *(*defaults_getter)(PyObject *);
+    PyObject *func_annotations; /* function annotations dict */
+} __pyx_CyFunctionObject;
+static PyTypeObject *__pyx_CyFunctionType = 0;
+#define __Pyx_CyFunction_NewEx(ml, flags, qualname, self, module, globals, code) \
+    __Pyx_CyFunction_New(__pyx_CyFunctionType, ml, flags, qualname, self, module, globals, code)
+static PyObject *__Pyx_CyFunction_New(PyTypeObject *, PyMethodDef *ml,
+                                      int flags, PyObject* qualname,
+                                      PyObject *self,
+                                      PyObject *module, PyObject *globals,
+                                      PyObject* code);
+static CYTHON_INLINE void *__Pyx_CyFunction_InitDefaults(PyObject *m,
+                                                         size_t size,
+                                                         int pyobjects);
+static CYTHON_INLINE void __Pyx_CyFunction_SetDefaultsTuple(PyObject *m,
+                                                            PyObject *tuple);
+static CYTHON_INLINE void __Pyx_CyFunction_SetDefaultsKwDict(PyObject *m,
+                                                             PyObject *dict);
+static CYTHON_INLINE void __Pyx_CyFunction_SetAnnotationsDict(PyObject *m,
+                                                              PyObject *dict);
+static int __Pyx_CyFunction_init(void);
+
+static PyObject *__Pyx_GetNameInClass(PyObject *nmspace, PyObject *name); /*proto*/
 
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
+static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level); /*proto*/
+
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_char(char value);
-
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_char(char value);
 
 static int __Pyx_Print(PyObject*, PyObject *, int); /*proto*/
 #if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
@@ -867,6 +922,27 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_PY_LONG_LONG(unsigned P
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
 
 static int __Pyx_check_binary_version(void);
+
+#if CYTHON_COMPILING_IN_CPYTHON
+#define __Pyx_PyObject_DelAttrStr(o,n) __Pyx_PyObject_SetAttrStr(o,n,NULL)
+static CYTHON_INLINE int __Pyx_PyObject_SetAttrStr(PyObject* obj, PyObject* attr_name, PyObject* value) {
+    PyTypeObject* tp = Py_TYPE(obj);
+    if (likely(tp->tp_setattro))
+        return tp->tp_setattro(obj, attr_name, value);
+#if PY_MAJOR_VERSION < 3
+    if (likely(tp->tp_setattr))
+        return tp->tp_setattr(obj, PyString_AS_STRING(attr_name), value);
+#endif
+    return PyObject_SetAttr(obj, attr_name, value);
+}
+#else
+#define __Pyx_PyObject_DelAttrStr(o,n)   PyObject_DelAttr(o,n)
+#define __Pyx_PyObject_SetAttrStr(o,n,v) PyObject_SetAttr(o,n,v)
+#endif
+
+static int __Pyx_ExportVoidPtr(PyObject *name, void *p, const char *sig); /*proto*/
+
+static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *sig); /*proto*/
 
 typedef struct {
     int code_line;
@@ -890,25 +966,27 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t); /*proto*/
 
 /* Module declarations from 'cython' */
 
-/* Module declarations from 'src.cython._genpyx_64bit__chess0x88' */
-static PyTypeObject *__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move = 0;
-static PyTypeObject *__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board = 0;
-static unsigned PY_LONG_LONG __pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_pieces[7][2][128];
-static unsigned PY_LONG_LONG __pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_color;
-static unsigned PY_LONG_LONG __pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_castling[16];
-static unsigned PY_LONG_LONG __pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_en_passant[128];
-static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(int); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(int); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(PyObject *); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_chess_notation_to_0x88(PyObject *); /*proto*/
-#define __Pyx_MODULE_NAME "src.cython._genpyx_64bit__chess0x88"
-int __pyx_module_is_main_src__cython___genpyx_64bit__chess0x88 = 0;
+/* Module declarations from 'src.cython._genpyx_chess0x88' */
+static PyTypeObject *__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move = 0;
+static PyTypeObject *__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board = 0;
+static unsigned PY_LONG_LONG __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_pieces[7][2][128];
+static unsigned PY_LONG_LONG __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_color;
+static unsigned PY_LONG_LONG __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_castling[16];
+static unsigned PY_LONG_LONG __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_en_passant[128];
+static unsigned PY_LONG_LONG __pyx_f_3src_6cython_17_genpyx_chess0x88_init_zobrist(void); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(int); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88(PyObject *); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_chess_notation_to_0x88(PyObject *); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_chess_notation(int); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_move_key(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch); /*proto*/
+#define __Pyx_MODULE_NAME "src.cython._genpyx_chess0x88"
+int __pyx_module_is_main_src__cython___genpyx_chess0x88 = 0;
 
-/* Implementation of 'src.cython._genpyx_64bit__chess0x88' */
+/* Implementation of 'src.cython._genpyx_chess0x88' */
 static PyObject *__pyx_builtin_staticmethod;
-static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ord;
 static PyObject *__pyx_builtin_chr;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board, int __pyx_v_color, int __pyx_v_origin, int __pyx_v_dest, int __pyx_v_flags); /* proto */
 static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_2do(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board); /* proto */
 static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_4do_update(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board); /* proto */
@@ -948,6 +1026,46 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
 static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_2move_key(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_move); /* proto */
 static PyObject *__pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Move(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+=======
+static PyObject *__pyx_builtin_range;
+static int __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move___init__(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board, int __pyx_v_color, int __pyx_v_origin, int __pyx_v_dest, int __pyx_v_flags); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_2do(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_4do_update(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_6undo(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_8undo_update(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_10origin(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_12destination(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_14tuple(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_16score(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_18get_flags(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_20readable(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self); /* proto */
+static int __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board___init__(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_new_game); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_2clear(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_4clone(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_6hindered(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_8get_value(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_10possible_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_12possible_killing_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_14color(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_16current_king_position(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_18move(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_original_position, PyObject *__pyx_v_new_position); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_20piece_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_22at(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_24load_fen(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_fen); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_26in_check(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_28_current_king_position(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_30display(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_32display_values(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_34status(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_possible_moves); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_36get_pieces(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_38get_hash(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_40count(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_v_piece); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_42is_valid_position(PyObject *__pyx_v_position); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_44chess_notation_to_position(PyObject *__pyx_v_chess_notation); /* proto */
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_move_key(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_move); /* proto */
+static PyObject *__pyx_tp_new_3src_6cython_17_genpyx_chess0x88_Move(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_3src_6cython_17_genpyx_chess0x88_Board(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
 static char __pyx_k_1[] = "1";
 static char __pyx_k_2[] = "2";
 static char __pyx_k_3[] = "3";
@@ -968,7 +1086,6 @@ static char __pyx_k_q[] = "q";
 static char __pyx_k_r[] = "r";
 static char __pyx_k_s[] = "\\s+";
 static char __pyx_k_w[] = "w";
-static char __pyx_k_x[] = "x";
 static char __pyx_k__3[] = "/";
 static char __pyx_k__4[] = "-";
 static char __pyx_k__5[] = " ";
@@ -983,8 +1100,6 @@ static char __pyx_k_ord[] = "ord";
 static char __pyx_k_s_s[] = "%s%s";
 static char __pyx_k_dest[] = "dest";
 static char __pyx_k_file[] = "file";
-static char __pyx_k_icol[] = "icol";
-static char __pyx_k_irow[] = "irow";
 static char __pyx_k_main[] = "__main__";
 static char __pyx_k_move[] = "move";
 static char __pyx_k_name[] = "name";
@@ -1012,11 +1127,13 @@ static char __pyx_k_white[] = "white ";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_normal[] = "normal";
 static char __pyx_k_origin[] = "origin";
+static char __pyx_k_status[] = "status";
 static char __pyx_k_black_2[] = "black";
 static char __pyx_k_compile[] = "compile";
 static char __pyx_k_display[] = "display";
 static char __pyx_k_reverse[] = "reverse";
 static char __pyx_k_white_2[] = "white";
+static char __pyx_k_CHECKSUM[] = "CHECKSUM";
 static char __pyx_k_get_hash[] = "get_hash";
 static char __pyx_k_hindered[] = "hindered";
 static char __pyx_k_in_check[] = "in_check";
@@ -1024,6 +1141,7 @@ static char __pyx_k_load_fen[] = "load_fen";
 static char __pyx_k_move_key[] = "move_key";
 static char __pyx_k_new_game[] = "new_game";
 static char __pyx_k_position[] = "position";
+static char __pyx_k_pyx_capi[] = "__pyx_capi__";
 static char __pyx_k_readable[] = "readable";
 static char __pyx_k_checkmate[] = "checkmate";
 static char __pyx_k_do_update[] = "do_update";
@@ -1041,23 +1159,28 @@ static char __pyx_k_piece_moves[] = "piece_moves";
 static char __pyx_k_undo_update[] = "undo_update";
 static char __pyx_k_new_position[] = "new_position";
 static char __pyx_k_staticmethod[] = "staticmethod";
+static char __pyx_k_zobrist_color[] = "zobrist_color";
 static char __pyx_k_chess_notation[] = "chess_notation";
 static char __pyx_k_display_values[] = "display_values";
 static char __pyx_k_possible_moves[] = "possible_moves";
+static char __pyx_k_zobrist_pieces[] = "zobrist_pieces";
 static char __pyx_k_a_b_c_d_e_f_g_h[] = "  a b c d e f g h";
+static char __pyx_k_zobrist_castling[] = "zobrist_castling";
 static char __pyx_k_a_b_c_d_e_f_g_h_2[] = "  a b c d e f g h\n";
 static char __pyx_k_a_b_c_d_e_f_g_h_3[] = "  a      b      c      d      e      f      g      h      ";
 static char __pyx_k_is_valid_position[] = "is_valid_position";
 static char __pyx_k_original_position[] = "original_position";
+static char __pyx_k_zobrist_en_passant[] = "zobrist_en_passant";
 static char __pyx_k_name_position_color[] = "name position color";
 static char __pyx_k_current_king_position[] = "current_king_position";
 static char __pyx_k_possible_killing_moves[] = "possible_killing_moves";
+static char __pyx_k_Board_is_valid_position[] = "Board.is_valid_position";
 static char __pyx_k_current_king_position_2[] = "_current_king_position";
-static char __pyx_k_p0x88_to_chess_notation[] = "p0x88_to_chess_notation";
 static char __pyx_k_chess_notation_to_position[] = "chess_notation_to_position";
-static char __pyx_k_Users_lvieira_virtualenvs_XADRE[] = "/Users/lvieira/virtualenvs/XADREZ_ES2/src/cython/_genpyx_64bit__chess0x88.pyx";
+static char __pyx_k_src_cython__genpyx_chess0x88[] = "src.cython._genpyx_chess0x88";
+static char __pyx_k_Board_chess_notation_to_position[] = "Board.chess_notation_to_position";
+static char __pyx_k_c_Users_Joao_XADREZ_ES2_src_cyth[] = "c:\\Users\\Joao\\XADREZ_ES2\\src\\cython\\_genpyx_chess0x88.py";
 static char __pyx_k_rnbqkbnr_pppppppp_8_8_8_8_PPPPPP[] = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-static char __pyx_k_src_cython__genpyx_64bit__chess0[] = "src.cython._genpyx_64bit__chess0x88";
 static PyObject *__pyx_kp_s_1;
 static PyObject *__pyx_kp_s_2;
 static PyObject *__pyx_kp_s_3;
@@ -1066,10 +1189,12 @@ static PyObject *__pyx_kp_s_5;
 static PyObject *__pyx_kp_s_6;
 static PyObject *__pyx_kp_s_7;
 static PyObject *__pyx_kp_s_8;
+static PyObject *__pyx_n_s_Board_chess_notation_to_position;
+static PyObject *__pyx_n_s_Board_is_valid_position;
+static PyObject *__pyx_n_s_CHECKSUM;
 static PyObject *__pyx_n_s_K;
 static PyObject *__pyx_n_s_Piece;
 static PyObject *__pyx_n_s_Q;
-static PyObject *__pyx_kp_s_Users_lvieira_virtualenvs_XADRE;
 static PyObject *__pyx_kp_s__3;
 static PyObject *__pyx_kp_s__4;
 static PyObject *__pyx_kp_s__5;
@@ -1082,6 +1207,7 @@ static PyObject *__pyx_kp_s_black;
 static PyObject *__pyx_n_s_black_2;
 static PyObject *__pyx_n_s_board;
 static PyObject *__pyx_kp_s_c;
+static PyObject *__pyx_kp_s_c_Users_Joao_XADREZ_ES2_src_cyth;
 static PyObject *__pyx_n_s_check;
 static PyObject *__pyx_n_s_checkmate;
 static PyObject *__pyx_n_s_chess_notation;
@@ -1112,11 +1238,13 @@ static PyObject *__pyx_n_s_get_hash;
 static PyObject *__pyx_n_s_get_pieces;
 static PyObject *__pyx_n_s_get_value;
 static PyObject *__pyx_n_s_hindered;
-static PyObject *__pyx_n_s_icol;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_in_check;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 static PyObject *__pyx_n_s_irow;
 static PyObject *__pyx_n_s_is_endgame;
+=======
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
 static PyObject *__pyx_n_s_is_valid_position;
 static PyObject *__pyx_n_s_k;
 static PyObject *__pyx_n_s_key;
@@ -1136,13 +1264,13 @@ static PyObject *__pyx_n_s_ord;
 static PyObject *__pyx_n_s_origin;
 static PyObject *__pyx_n_s_original_position;
 static PyObject *__pyx_n_s_p;
-static PyObject *__pyx_n_s_p0x88_to_chess_notation;
 static PyObject *__pyx_n_s_piece;
 static PyObject *__pyx_n_s_piece_moves;
 static PyObject *__pyx_n_s_position;
 static PyObject *__pyx_n_s_possible_killing_moves;
 static PyObject *__pyx_n_s_possible_moves;
 static PyObject *__pyx_n_s_print;
+static PyObject *__pyx_n_s_pyx_capi;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_q;
 static PyObject *__pyx_n_s_r;
@@ -1157,9 +1285,10 @@ static PyObject *__pyx_kp_s_s_s_c;
 static PyObject *__pyx_n_s_score;
 static PyObject *__pyx_n_s_sort;
 static PyObject *__pyx_n_s_split;
-static PyObject *__pyx_n_s_src_cython__genpyx_64bit__chess0;
+static PyObject *__pyx_n_s_src_cython__genpyx_chess0x88;
 static PyObject *__pyx_n_s_stalemate;
 static PyObject *__pyx_n_s_staticmethod;
+static PyObject *__pyx_n_s_status;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_tuple;
 static PyObject *__pyx_n_s_undo;
@@ -1167,44 +1296,395 @@ static PyObject *__pyx_n_s_undo_update;
 static PyObject *__pyx_n_s_w;
 static PyObject *__pyx_kp_s_white;
 static PyObject *__pyx_n_s_white_2;
-static PyObject *__pyx_n_s_x;
+static PyObject *__pyx_n_s_zobrist_castling;
+static PyObject *__pyx_n_s_zobrist_color;
+static PyObject *__pyx_n_s_zobrist_en_passant;
+static PyObject *__pyx_n_s_zobrist_pieces;
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
+static PyObject *__pyx_int_7;
 static PyObject *__pyx_int_8;
+static PyObject *__pyx_int_16;
 static PyObject *__pyx_int_97;
+static PyObject *__pyx_int_115717966303337494788217948518299776995248656663452023092065502891522956903447;
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_tuple__2;
 static PyObject *__pyx_tuple__6;
 static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__9;
-static PyObject *__pyx_tuple__11;
-static PyObject *__pyx_tuple__13;
 static PyObject *__pyx_codeobj__8;
 static PyObject *__pyx_codeobj__10;
-static PyObject *__pyx_codeobj__12;
-static PyObject *__pyx_codeobj__14;
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":76
- *     zobrist_color=cython.int
- * )
- * def init_zobrist(zobrist_color):             # <<<<<<<<<<<<<<
+/* "src\cython\_genpyx_chess0x88.py":6
+ * 
+ * 
+ * def p0x88_to_tuple(position):             # <<<<<<<<<<<<<<
+ *     return (col(position), rank(position))
+ * 
+ */
+
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(int __pyx_v_position) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("p0x88_to_tuple", 0);
+
+  /* "src\cython\_genpyx_chess0x88.py":7
+ * 
+ * def p0x88_to_tuple(position):
+ *     return (col(position), rank(position))             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(col(__pyx_v_position)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_From_int(rank(__pyx_v_position)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 7; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_r = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":6
+ * 
+ * 
+ * def p0x88_to_tuple(position):             # <<<<<<<<<<<<<<
+ *     return (col(position), rank(position))
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.p0x88_to_tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "src\cython\_genpyx_chess0x88.py":10
+ * 
+ * 
+ * def tuple_to_0x88(position):             # <<<<<<<<<<<<<<
+ *     icol = position[0]
+ *     irow = position[1]
+ */
+
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88(PyObject *__pyx_v_position) {
+  PyObject *__pyx_v_icol = NULL;
+  PyObject *__pyx_v_irow = NULL;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("tuple_to_0x88", 0);
+
+  /* "src\cython\_genpyx_chess0x88.py":11
+ * 
+ * def tuple_to_0x88(position):
+ *     icol = position[0]             # <<<<<<<<<<<<<<
+ *     irow = position[1]
+ *     return (7 - irow) * 16 + icol
+ */
+  if (unlikely(__pyx_v_position == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_position, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 11; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_icol = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "src\cython\_genpyx_chess0x88.py":12
+ * def tuple_to_0x88(position):
+ *     icol = position[0]
+ *     irow = position[1]             # <<<<<<<<<<<<<<
+ *     return (7 - irow) * 16 + icol
+ * 
+ */
+  if (unlikely(__pyx_v_position == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v_position, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 12; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_irow = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "src\cython\_genpyx_chess0x88.py":13
+ *     icol = position[0]
+ *     irow = position[1]
+ *     return (7 - irow) * 16 + icol             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_t_1 = PyNumber_Subtract(__pyx_int_7, __pyx_v_irow); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_int_16); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_Add(__pyx_t_2, __pyx_v_icol); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 13; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_3;
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":10
+ * 
+ * 
+ * def tuple_to_0x88(position):             # <<<<<<<<<<<<<<
+ *     icol = position[0]
+ *     irow = position[1]
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.tuple_to_0x88", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_icol);
+  __Pyx_XDECREF(__pyx_v_irow);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "src\cython\_genpyx_chess0x88.py":16
+ * 
+ * 
+ * def chess_notation_to_0x88(cn):             # <<<<<<<<<<<<<<
+ *     icol = ord(cn[0]) - 97
+ *     irow = int(cn[1]) - 1
+ */
+
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_chess_notation_to_0x88(PyObject *__pyx_v_cn) {
+  int __pyx_v_icol;
+  int __pyx_v_irow;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("chess_notation_to_0x88", 0);
+
+  /* "src\cython\_genpyx_chess0x88.py":17
+ * 
+ * def chess_notation_to_0x88(cn):
+ *     icol = ord(cn[0]) - 97             # <<<<<<<<<<<<<<
+ *     irow = int(cn[1]) - 1
+ *     return (7 - irow) * 16 + icol
+ */
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_cn, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ord, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, __pyx_int_97); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_icol = __pyx_t_3;
+
+  /* "src\cython\_genpyx_chess0x88.py":18
+ * def chess_notation_to_0x88(cn):
+ *     icol = ord(cn[0]) - 97
+ *     irow = int(cn[1]) - 1             # <<<<<<<<<<<<<<
+ *     return (7 - irow) * 16 + icol
+ * 
+ */
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_cn, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, __pyx_int_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 18; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_irow = __pyx_t_3;
+
+  /* "src\cython\_genpyx_chess0x88.py":19
+ *     icol = ord(cn[0]) - 97
+ *     irow = int(cn[1]) - 1
+ *     return (7 - irow) * 16 + icol             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_r = (((7 - __pyx_v_irow) * 16) + __pyx_v_icol);
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":16
+ * 
+ * 
+ * def chess_notation_to_0x88(cn):             # <<<<<<<<<<<<<<
+ *     icol = ord(cn[0]) - 97
+ *     irow = int(cn[1]) - 1
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.chess_notation_to_0x88", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "src\cython\_genpyx_chess0x88.py":22
+ * 
+ * 
+ * def p0x88_to_chess_notation(x):             # <<<<<<<<<<<<<<
+ *     icol = col(x)
+ *     irow = rank(x)
+ */
+
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_chess_notation(int __pyx_v_x) {
+  int __pyx_v_icol;
+  int __pyx_v_irow;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("p0x88_to_chess_notation", 0);
+
+  /* "src\cython\_genpyx_chess0x88.py":23
+ * 
+ * def p0x88_to_chess_notation(x):
+ *     icol = col(x)             # <<<<<<<<<<<<<<
+ *     irow = rank(x)
+ *     return chr(icol + 97) + str(irow + 1)
+ */
+  __pyx_v_icol = col(__pyx_v_x);
+
+  /* "src\cython\_genpyx_chess0x88.py":24
+ * def p0x88_to_chess_notation(x):
+ *     icol = col(x)
+ *     irow = rank(x)             # <<<<<<<<<<<<<<
+ *     return chr(icol + 97) + str(irow + 1)
+ * 
+ */
+  __pyx_v_irow = rank(__pyx_v_x);
+
+  /* "src\cython\_genpyx_chess0x88.py":25
+ *     icol = col(x)
+ *     irow = rank(x)
+ *     return chr(icol + 97) + str(irow + 1)             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_long((__pyx_v_icol + 97)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_chr, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyInt_From_long((__pyx_v_irow + 1)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Add(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":22
+ * 
+ * 
+ * def p0x88_to_chess_notation(x):             # <<<<<<<<<<<<<<
+ *     icol = col(x)
+ *     irow = rank(x)
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.p0x88_to_chess_notation", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "src\cython\_genpyx_chess0x88.py":31
+ * 
+ * 
+ * def init_zobrist():             # <<<<<<<<<<<<<<
  *     for piece in range(7):
  *         for color in range(2):
  */
 
-static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_UNUSED int __pyx_v_zobrist_color) {
+static unsigned PY_LONG_LONG __pyx_f_3src_6cython_17_genpyx_chess0x88_init_zobrist(void) {
   int __pyx_v_color;
   int __pyx_v_piece;
   int __pyx_v_square;
+  unsigned PY_LONG_LONG __pyx_v_zobrist_color;
+  unsigned PY_LONG_LONG __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   int __pyx_t_2;
   int __pyx_t_3;
   __Pyx_RefNannySetupContext("init_zobrist", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":77
- * )
- * def init_zobrist(zobrist_color):
+  /* "src\cython\_genpyx_chess0x88.py":32
+ * 
+ * def init_zobrist():
  *     for piece in range(7):             # <<<<<<<<<<<<<<
  *         for color in range(2):
  *             for square in range(128):
@@ -1212,8 +1692,8 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_
   for (__pyx_t_1 = 0; __pyx_t_1 < 7; __pyx_t_1+=1) {
     __pyx_v_piece = __pyx_t_1;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":78
- * def init_zobrist(zobrist_color):
+    /* "src\cython\_genpyx_chess0x88.py":33
+ * def init_zobrist():
  *     for piece in range(7):
  *         for color in range(2):             # <<<<<<<<<<<<<<
  *             for square in range(128):
@@ -1222,7 +1702,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_
     for (__pyx_t_2 = 0; __pyx_t_2 < 2; __pyx_t_2+=1) {
       __pyx_v_color = __pyx_t_2;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":79
+      /* "src\cython\_genpyx_chess0x88.py":34
  *     for piece in range(7):
  *         for color in range(2):
  *             for square in range(128):             # <<<<<<<<<<<<<<
@@ -1232,19 +1712,19 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_
       for (__pyx_t_3 = 0; __pyx_t_3 < 128; __pyx_t_3+=1) {
         __pyx_v_square = __pyx_t_3;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":80
+        /* "src\cython\_genpyx_chess0x88.py":35
  *         for color in range(2):
  *             for square in range(128):
  *                 zobrist_pieces[piece][color][square] = rand64()             # <<<<<<<<<<<<<<
  *     zobrist_color = rand64()
  *     for square in range(16):
  */
-        (((__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_pieces[__pyx_v_piece])[__pyx_v_color])[__pyx_v_square]) = rand64();
+        (((__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_pieces[__pyx_v_piece])[__pyx_v_color])[__pyx_v_square]) = rand64();
       }
     }
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":81
+  /* "src\cython\_genpyx_chess0x88.py":36
  *             for square in range(128):
  *                 zobrist_pieces[piece][color][square] = rand64()
  *     zobrist_color = rand64()             # <<<<<<<<<<<<<<
@@ -1253,7 +1733,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_
  */
   __pyx_v_zobrist_color = rand64();
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":82
+  /* "src\cython\_genpyx_chess0x88.py":37
  *                 zobrist_pieces[piece][color][square] = rand64()
  *     zobrist_color = rand64()
  *     for square in range(16):             # <<<<<<<<<<<<<<
@@ -1263,49 +1743,61 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_
   for (__pyx_t_1 = 0; __pyx_t_1 < 16; __pyx_t_1+=1) {
     __pyx_v_square = __pyx_t_1;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":83
+    /* "src\cython\_genpyx_chess0x88.py":38
  *     zobrist_color = rand64()
  *     for square in range(16):
  *         zobrist_castling[square] = rand64()             # <<<<<<<<<<<<<<
  *     for square in range(128):
  *         zobrist_en_passant[square] = rand64()
  */
-    (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_castling[__pyx_v_square]) = rand64();
+    (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_castling[__pyx_v_square]) = rand64();
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":84
+  /* "src\cython\_genpyx_chess0x88.py":39
  *     for square in range(16):
  *         zobrist_castling[square] = rand64()
  *     for square in range(128):             # <<<<<<<<<<<<<<
  *         zobrist_en_passant[square] = rand64()
- * 
+ *     return zobrist_color
  */
   for (__pyx_t_1 = 0; __pyx_t_1 < 128; __pyx_t_1+=1) {
     __pyx_v_square = __pyx_t_1;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":85
+    /* "src\cython\_genpyx_chess0x88.py":40
  *         zobrist_castling[square] = rand64()
  *     for square in range(128):
  *         zobrist_en_passant[square] = rand64()             # <<<<<<<<<<<<<<
- * 
+ *     return zobrist_color
  * 
  */
-    (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_en_passant[__pyx_v_square]) = rand64();
+    (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_en_passant[__pyx_v_square]) = rand64();
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":76
- *     zobrist_color=cython.int
- * )
- * def init_zobrist(zobrist_color):             # <<<<<<<<<<<<<<
+  /* "src\cython\_genpyx_chess0x88.py":41
+ *     for square in range(128):
+ *         zobrist_en_passant[square] = rand64()
+ *     return zobrist_color             # <<<<<<<<<<<<<<
+ * 
+ * zobrist_color = init_zobrist()
+ */
+  __pyx_r = __pyx_v_zobrist_color;
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":31
+ * 
+ * 
+ * def init_zobrist():             # <<<<<<<<<<<<<<
  *     for piece in range(7):
  *         for color in range(2):
  */
 
   /* function exit code */
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
+  return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":107
+/* "src\cython\_genpyx_chess0x88.py":53
  *         flags=cython.int, rank_dest=cython.int, promotion=cython.int
  *     )
  *     def __init__(self, board, color, origin, dest, flags):             # <<<<<<<<<<<<<<
@@ -1314,9 +1806,9 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(CYTHON_
  */
 
 /* Python wrapper */
-static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board = 0;
+static int __pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board = 0;
   int __pyx_v_color;
   int __pyx_v_origin;
   int __pyx_v_dest;
@@ -1350,26 +1842,26 @@ static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_1__init__(PyOb
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_color)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_origin)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 2); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_dest)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 3); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_flags)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, 4); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -1380,22 +1872,22 @@ static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_1__init__(PyOb
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_board = ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)values[0]);
-    __pyx_v_color = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_origin = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_origin == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_dest = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_dest == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_flags = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_flags == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_board = ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)values[0]);
+    __pyx_v_color = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_origin = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_origin == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_dest = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_dest == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_flags = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_flags == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 107; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self), __pyx_v_board, __pyx_v_color, __pyx_v_origin, __pyx_v_dest, __pyx_v_flags);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 53; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move___init__(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self), __pyx_v_board, __pyx_v_color, __pyx_v_origin, __pyx_v_dest, __pyx_v_flags);
 
   /* function exit code */
   goto __pyx_L0;
@@ -1406,7 +1898,7 @@ static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_1__init__(PyOb
   return __pyx_r;
 }
 
-static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board, int __pyx_v_color, int __pyx_v_origin, int __pyx_v_dest, int __pyx_v_flags) {
+static int __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move___init__(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board, int __pyx_v_color, int __pyx_v_origin, int __pyx_v_dest, int __pyx_v_flags) {
   int __pyx_v_rank_dest;
   int __pyx_v_promotion;
   int __pyx_r;
@@ -1418,7 +1910,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   unsigned PY_LONG_LONG __pyx_t_5;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":108
+  /* "src\cython\_genpyx_chess0x88.py":54
  *     )
  *     def __init__(self, board, color, origin, dest, flags):
  *         rank_dest = rank(dest)             # <<<<<<<<<<<<<<
@@ -1427,7 +1919,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_rank_dest = rank(__pyx_v_dest);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":109
+  /* "src\cython\_genpyx_chess0x88.py":55
  *     def __init__(self, board, color, origin, dest, flags):
  *         rank_dest = rank(dest)
  *         promotion = 0             # <<<<<<<<<<<<<<
@@ -1436,7 +1928,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_promotion = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":110
+  /* "src\cython\_genpyx_chess0x88.py":56
  *         rank_dest = rank(dest)
  *         promotion = 0
  *         if board.pieces[origin] == PAWN and (rank_dest == 7 or rank_dest == 0):             # <<<<<<<<<<<<<<
@@ -1460,7 +1952,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   }
   if (__pyx_t_3) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":111
+    /* "src\cython\_genpyx_chess0x88.py":57
  *         promotion = 0
  *         if board.pieces[origin] == PAWN and (rank_dest == 7 or rank_dest == 0):
  *             promotion = QUEEN             # <<<<<<<<<<<<<<
@@ -1472,7 +1964,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":112
+  /* "src\cython\_genpyx_chess0x88.py":58
  *         if board.pieces[origin] == PAWN and (rank_dest == 7 or rank_dest == 0):
  *             promotion = QUEEN
  *         self.color = color             # <<<<<<<<<<<<<<
@@ -1481,7 +1973,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->color = __pyx_v_color;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":113
+  /* "src\cython\_genpyx_chess0x88.py":59
  *             promotion = QUEEN
  *         self.color = color
  *         self._origin = origin             # <<<<<<<<<<<<<<
@@ -1490,7 +1982,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->_origin = __pyx_v_origin;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":114
+  /* "src\cython\_genpyx_chess0x88.py":60
  *         self.color = color
  *         self._origin = origin
  *         self._destination = dest             # <<<<<<<<<<<<<<
@@ -1499,7 +1991,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->_destination = __pyx_v_dest;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":115
+  /* "src\cython\_genpyx_chess0x88.py":61
  *         self._origin = origin
  *         self._destination = dest
  *         self.flags = flags             # <<<<<<<<<<<<<<
@@ -1508,7 +2000,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->flags = __pyx_v_flags;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":116
+  /* "src\cython\_genpyx_chess0x88.py":62
  *         self._destination = dest
  *         self.flags = flags
  *         self.piece = board.pieces[origin]             # <<<<<<<<<<<<<<
@@ -1517,7 +2009,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->piece = (__pyx_v_board->pieces[__pyx_v_origin]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":117
+  /* "src\cython\_genpyx_chess0x88.py":63
  *         self.flags = flags
  *         self.piece = board.pieces[origin]
  *         self.promotion = promotion             # <<<<<<<<<<<<<<
@@ -1526,7 +2018,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->promotion = __pyx_v_promotion;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":119
+  /* "src\cython\_genpyx_chess0x88.py":65
  *         self.promotion = promotion
  * 
  *         if promotion:             # <<<<<<<<<<<<<<
@@ -1536,7 +2028,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   __pyx_t_3 = (__pyx_v_promotion != 0);
   if (__pyx_t_3) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":120
+    /* "src\cython\_genpyx_chess0x88.py":66
  * 
  *         if promotion:
  *             self.flags |= PROMOTION             # <<<<<<<<<<<<<<
@@ -1548,7 +2040,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   }
   __pyx_L4:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":122
+  /* "src\cython\_genpyx_chess0x88.py":68
  *             self.flags |= PROMOTION
  * 
  *         if board.pieces[dest]:             # <<<<<<<<<<<<<<
@@ -1558,7 +2050,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   __pyx_t_3 = ((__pyx_v_board->pieces[__pyx_v_dest]) != 0);
   if (__pyx_t_3) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":123
+    /* "src\cython\_genpyx_chess0x88.py":69
  * 
  *         if board.pieces[dest]:
  *             self.captured = board.pieces[dest]             # <<<<<<<<<<<<<<
@@ -1569,7 +2061,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
     goto __pyx_L5;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":124
+  /* "src\cython\_genpyx_chess0x88.py":70
  *         if board.pieces[dest]:
  *             self.captured = board.pieces[dest]
  *         elif flags & EN_PASSANT:             # <<<<<<<<<<<<<<
@@ -1579,7 +2071,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   __pyx_t_3 = ((__pyx_v_flags & EN_PASSANT) != 0);
   if (__pyx_t_3) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":125
+    /* "src\cython\_genpyx_chess0x88.py":71
  *             self.captured = board.pieces[dest]
  *         elif flags & EN_PASSANT:
  *             self.captured = PAWN             # <<<<<<<<<<<<<<
@@ -1591,7 +2083,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":127
+    /* "src\cython\_genpyx_chess0x88.py":73
  *             self.captured = PAWN
  *         else:
  *             self.captured = PIECE_EMPTY             # <<<<<<<<<<<<<<
@@ -1602,7 +2094,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   }
   __pyx_L5:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":129
+  /* "src\cython\_genpyx_chess0x88.py":75
  *             self.captured = PIECE_EMPTY
  * 
  *         self.half_moves = board.half_moves             # <<<<<<<<<<<<<<
@@ -1612,7 +2104,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   __pyx_t_4 = __pyx_v_board->half_moves;
   __pyx_v_self->half_moves = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":130
+  /* "src\cython\_genpyx_chess0x88.py":76
  * 
  *         self.half_moves = board.half_moves
  *         self.previous_en_passant = board.en_passant_square             # <<<<<<<<<<<<<<
@@ -1622,7 +2114,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   __pyx_t_4 = __pyx_v_board->en_passant_square;
   __pyx_v_self->previous_en_passant = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":131
+  /* "src\cython\_genpyx_chess0x88.py":77
  *         self.half_moves = board.half_moves
  *         self.previous_en_passant = board.en_passant_square
  *         self.previous_hash = board.hash             # <<<<<<<<<<<<<<
@@ -1632,7 +2124,7 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   __pyx_t_5 = __pyx_v_board->hash;
   __pyx_v_self->previous_hash = __pyx_t_5;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":132
+  /* "src\cython\_genpyx_chess0x88.py":78
  *         self.previous_en_passant = board.en_passant_square
  *         self.previous_hash = board.hash
  *         self.white_castling = board.castling[WHITE]             # <<<<<<<<<<<<<<
@@ -1641,16 +2133,16 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
  */
   __pyx_v_self->white_castling = (__pyx_v_board->castling[WHITE]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":133
+  /* "src\cython\_genpyx_chess0x88.py":79
  *         self.previous_hash = board.hash
  *         self.white_castling = board.castling[WHITE]
  *         self.black_castling = board.castling[BLACK]             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def do(self, board):
  */
   __pyx_v_self->black_castling = (__pyx_v_board->castling[BLACK]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":107
+  /* "src\cython\_genpyx_chess0x88.py":53
  *         flags=cython.int, rank_dest=cython.int, promotion=cython.int
  *     )
  *     def __init__(self, board, color, origin, dest, flags):             # <<<<<<<<<<<<<<
@@ -1664,16 +2156,16 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move___init__(struc
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":143
- *         square=cython.int, en_passant_square=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":81
+ *         self.black_castling = board.castling[BLACK]
+ * 
  *     def do(self, board):             # <<<<<<<<<<<<<<
  *         current = self.color
  *         other = next_color(current)
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_3do(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_3do(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_do(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
   int __pyx_v_origin;
   int __pyx_v_castling_origin;
   int __pyx_v_en_passant_square;
@@ -1702,16 +2194,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_do); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_do); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_3do)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_3do)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(((PyObject *)__pyx_v_board));
       PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_board));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_board));
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -1722,8 +2214,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":144
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":82
+ * 
  *     def do(self, board):
  *         current = self.color             # <<<<<<<<<<<<<<
  *         other = next_color(current)
@@ -1732,7 +2224,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_4 = __pyx_v_self->color;
   __pyx_v_current = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":145
+  /* "src\cython\_genpyx_chess0x88.py":83
  *     def do(self, board):
  *         current = self.color
  *         other = next_color(current)             # <<<<<<<<<<<<<<
@@ -1741,7 +2233,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
   __pyx_v_other = next_color(__pyx_v_current);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":146
+  /* "src\cython\_genpyx_chess0x88.py":84
  *         current = self.color
  *         other = next_color(current)
  *         piece = board.pieces[self._origin]             # <<<<<<<<<<<<<<
@@ -1750,7 +2242,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
   __pyx_v_piece = (__pyx_v_board->pieces[__pyx_v_self->_origin]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":147
+  /* "src\cython\_genpyx_chess0x88.py":85
  *         other = next_color(current)
  *         piece = board.pieces[self._origin]
  *         color = board.colors[self._origin]             # <<<<<<<<<<<<<<
@@ -1759,7 +2251,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
   __pyx_v_color = (__pyx_v_board->colors[__pyx_v_self->_origin]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":148
+  /* "src\cython\_genpyx_chess0x88.py":86
  *         piece = board.pieces[self._origin]
  *         color = board.colors[self._origin]
  *         other_piece = board.pieces[self._destination]             # <<<<<<<<<<<<<<
@@ -1768,7 +2260,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
   __pyx_v_other_piece = (__pyx_v_board->pieces[__pyx_v_self->_destination]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":149
+  /* "src\cython\_genpyx_chess0x88.py":87
  *         color = board.colors[self._origin]
  *         other_piece = board.pieces[self._destination]
  *         origin = self._origin             # <<<<<<<<<<<<<<
@@ -1778,30 +2270,30 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_4 = __pyx_v_self->_origin;
   __pyx_v_origin = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":150
+  /* "src\cython\_genpyx_chess0x88.py":88
  *         other_piece = board.pieces[self._destination]
  *         origin = self._origin
  *         dest = self._destination             # <<<<<<<<<<<<<<
  *         flags = self.flags
- *         en_passant_square =  dest + (N if current == BLACK else S)
+ *         en_passant_square = dest + (N if current == BLACK else S)
  */
   __pyx_t_4 = __pyx_v_self->_destination;
   __pyx_v_dest = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":151
+  /* "src\cython\_genpyx_chess0x88.py":89
  *         origin = self._origin
  *         dest = self._destination
  *         flags = self.flags             # <<<<<<<<<<<<<<
- *         en_passant_square =  dest + (N if current == BLACK else S)
+ *         en_passant_square = dest + (N if current == BLACK else S)
  *         board.remove(origin)
  */
   __pyx_t_4 = __pyx_v_self->flags;
   __pyx_v_flags = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":152
+  /* "src\cython\_genpyx_chess0x88.py":90
  *         dest = self._destination
  *         flags = self.flags
- *         en_passant_square =  dest + (N if current == BLACK else S)             # <<<<<<<<<<<<<<
+ *         en_passant_square = dest + (N if current == BLACK else S)             # <<<<<<<<<<<<<<
  *         board.remove(origin)
  *         board.remove(dest)
  */
@@ -1812,34 +2304,34 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_v_en_passant_square = (__pyx_v_dest + __pyx_t_5);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":153
+  /* "src\cython\_genpyx_chess0x88.py":91
  *         flags = self.flags
- *         en_passant_square =  dest + (N if current == BLACK else S)
+ *         en_passant_square = dest + (N if current == BLACK else S)
  *         board.remove(origin)             # <<<<<<<<<<<<<<
  *         board.remove(dest)
  *         board.add(piece, color, dest)
  */
-  ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_origin);
+  ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_origin);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":154
- *         en_passant_square =  dest + (N if current == BLACK else S)
+  /* "src\cython\_genpyx_chess0x88.py":92
+ *         en_passant_square = dest + (N if current == BLACK else S)
  *         board.remove(origin)
  *         board.remove(dest)             # <<<<<<<<<<<<<<
  *         board.add(piece, color, dest)
  * 
  */
-  ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_dest);
+  ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_dest);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":155
+  /* "src\cython\_genpyx_chess0x88.py":93
  *         board.remove(origin)
  *         board.remove(dest)
  *         board.add(piece, color, dest)             # <<<<<<<<<<<<<<
  * 
  *         # En passant
  */
-  ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_dest);
+  ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_dest);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":158
+  /* "src\cython\_genpyx_chess0x88.py":96
  * 
  *         # En passant
  *         if flags & EN_PASSANT:             # <<<<<<<<<<<<<<
@@ -1849,7 +2341,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_6 = ((__pyx_v_flags & EN_PASSANT) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":159
+    /* "src\cython\_genpyx_chess0x88.py":97
  *         # En passant
  *         if flags & EN_PASSANT:
  *             board.remove(dest + (N if current == BLACK else S))             # <<<<<<<<<<<<<<
@@ -1861,12 +2353,12 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     } else {
       __pyx_t_5 = S;
     }
-    ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, (__pyx_v_dest + __pyx_t_5));
+    ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, (__pyx_v_dest + __pyx_t_5));
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":162
+  /* "src\cython\_genpyx_chess0x88.py":100
  * 
  *         # Promotion
  *         if flags & PROMOTION:             # <<<<<<<<<<<<<<
@@ -1876,28 +2368,28 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_6 = ((__pyx_v_flags & PROMOTION) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":163
+    /* "src\cython\_genpyx_chess0x88.py":101
  *         # Promotion
  *         if flags & PROMOTION:
  *             board.remove(dest)             # <<<<<<<<<<<<<<
  *             board.add(self.promotion, color, dest)
  * 
  */
-    ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_dest);
+    ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_dest);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":164
+    /* "src\cython\_genpyx_chess0x88.py":102
  *         if flags & PROMOTION:
  *             board.remove(dest)
  *             board.add(self.promotion, color, dest)             # <<<<<<<<<<<<<<
  * 
  *         if piece == KING:
  */
-    ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_self->promotion, __pyx_v_color, __pyx_v_dest);
+    ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_self->promotion, __pyx_v_color, __pyx_v_dest);
     goto __pyx_L4;
   }
   __pyx_L4:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":166
+  /* "src\cython\_genpyx_chess0x88.py":104
  *             board.add(self.promotion, color, dest)
  * 
  *         if piece == KING:             # <<<<<<<<<<<<<<
@@ -1907,7 +2399,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_6 = ((__pyx_v_piece == KING) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":167
+    /* "src\cython\_genpyx_chess0x88.py":105
  * 
  *         if piece == KING:
  *             board.kings[current] = dest             # <<<<<<<<<<<<<<
@@ -1916,7 +2408,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
     (__pyx_v_board->kings[__pyx_v_current]) = __pyx_v_dest;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":170
+    /* "src\cython\_genpyx_chess0x88.py":108
  * 
  *             # Castling
  *             if flags & KINGSIDE:             # <<<<<<<<<<<<<<
@@ -1926,7 +2418,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __pyx_t_6 = ((__pyx_v_flags & KINGSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":171
+      /* "src\cython\_genpyx_chess0x88.py":109
  *             # Castling
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E             # <<<<<<<<<<<<<<
@@ -1935,7 +2427,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
       __pyx_v_castling_origin = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":172
+      /* "src\cython\_genpyx_chess0x88.py":110
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W             # <<<<<<<<<<<<<<
@@ -1944,7 +2436,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
       __pyx_v_castling_dest = (__pyx_v_dest + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":173
+      /* "src\cython\_genpyx_chess0x88.py":111
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W
  *                 piece = board.pieces[castling_origin]             # <<<<<<<<<<<<<<
@@ -1953,27 +2445,27 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
       __pyx_v_piece = (__pyx_v_board->pieces[__pyx_v_castling_origin]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":174
+      /* "src\cython\_genpyx_chess0x88.py":112
  *                 castling_dest = dest + W
  *                 piece = board.pieces[castling_origin]
  *                 board.remove(castling_origin)             # <<<<<<<<<<<<<<
  *                 board.add(piece, color, castling_dest)
  *             elif flags & QUEENSIDE:
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_origin);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_origin);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":175
+      /* "src\cython\_genpyx_chess0x88.py":113
  *                 piece = board.pieces[castling_origin]
  *                 board.remove(castling_origin)
  *                 board.add(piece, color, castling_dest)             # <<<<<<<<<<<<<<
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_castling_dest);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_castling_dest);
       goto __pyx_L6;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":176
+    /* "src\cython\_genpyx_chess0x88.py":114
  *                 board.remove(castling_origin)
  *                 board.add(piece, color, castling_dest)
  *             elif flags & QUEENSIDE:             # <<<<<<<<<<<<<<
@@ -1983,7 +2475,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __pyx_t_6 = ((__pyx_v_flags & QUEENSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":177
+      /* "src\cython\_genpyx_chess0x88.py":115
  *                 board.add(piece, color, castling_dest)
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W             # <<<<<<<<<<<<<<
@@ -1992,7 +2484,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
       __pyx_v_castling_origin = ((__pyx_v_dest + W) + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":178
+      /* "src\cython\_genpyx_chess0x88.py":116
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E             # <<<<<<<<<<<<<<
@@ -2001,7 +2493,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
       __pyx_v_castling_dest = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":179
+      /* "src\cython\_genpyx_chess0x88.py":117
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E
  *                 piece = board.pieces[castling_origin]             # <<<<<<<<<<<<<<
@@ -2010,28 +2502,28 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
       __pyx_v_piece = (__pyx_v_board->pieces[__pyx_v_castling_origin]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":180
+      /* "src\cython\_genpyx_chess0x88.py":118
  *                 castling_dest = dest + E
  *                 piece = board.pieces[castling_origin]
  *                 board.remove(castling_origin)             # <<<<<<<<<<<<<<
  *                 board.add(piece, color, castling_dest)
  * 
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_origin);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_origin);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":181
+      /* "src\cython\_genpyx_chess0x88.py":119
  *                 piece = board.pieces[castling_origin]
  *                 board.remove(castling_origin)
  *                 board.add(piece, color, castling_dest)             # <<<<<<<<<<<<<<
  * 
  *             board.castling[current] = 0
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_castling_dest);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_castling_dest);
       goto __pyx_L6;
     }
     __pyx_L6:;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":183
+    /* "src\cython\_genpyx_chess0x88.py":121
  *                 board.add(piece, color, castling_dest)
  * 
  *             board.castling[current] = 0             # <<<<<<<<<<<<<<
@@ -2043,7 +2535,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_L5:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":186
+  /* "src\cython\_genpyx_chess0x88.py":124
  * 
  *         # if move rook, disable castling:
  *         if board.castling[current] and piece == ROOK:             # <<<<<<<<<<<<<<
@@ -2058,7 +2550,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   if (__pyx_t_7) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":187
+    /* "src\cython\_genpyx_chess0x88.py":125
  *         # if move rook, disable castling:
  *         if board.castling[current] and piece == ROOK:
  *             if current == WHITE:             # <<<<<<<<<<<<<<
@@ -2068,7 +2560,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __pyx_t_7 = ((__pyx_v_current == WHITE) != 0);
     if (__pyx_t_7) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":188
+      /* "src\cython\_genpyx_chess0x88.py":126
  *         if board.castling[current] and piece == ROOK:
  *             if current == WHITE:
  *                 if board.castling[WHITE] & KINGSIDE and origin == H1:             # <<<<<<<<<<<<<<
@@ -2083,7 +2575,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":189
+        /* "src\cython\_genpyx_chess0x88.py":127
  *             if current == WHITE:
  *                 if board.castling[WHITE] & KINGSIDE and origin == H1:
  *                     board.castling[WHITE] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2095,7 +2587,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
         goto __pyx_L9;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":190
+      /* "src\cython\_genpyx_chess0x88.py":128
  *                 if board.castling[WHITE] & KINGSIDE and origin == H1:
  *                     board.castling[WHITE] ^= KINGSIDE
  *                 elif board.castling[WHITE] & QUEENSIDE and origin == A1:             # <<<<<<<<<<<<<<
@@ -2110,7 +2602,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_7) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":191
+        /* "src\cython\_genpyx_chess0x88.py":129
  *                     board.castling[WHITE] ^= KINGSIDE
  *                 elif board.castling[WHITE] & QUEENSIDE and origin == A1:
  *                     board.castling[WHITE] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2126,7 +2618,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     }
     __pyx_L8:;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":192
+    /* "src\cython\_genpyx_chess0x88.py":130
  *                 elif board.castling[WHITE] & QUEENSIDE and origin == A1:
  *                     board.castling[WHITE] ^= KINGSIDE
  *             if current == BLACK:             # <<<<<<<<<<<<<<
@@ -2136,7 +2628,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __pyx_t_7 = ((__pyx_v_current == BLACK) != 0);
     if (__pyx_t_7) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":193
+      /* "src\cython\_genpyx_chess0x88.py":131
  *                     board.castling[WHITE] ^= KINGSIDE
  *             if current == BLACK:
  *                 if board.castling[BLACK] & KINGSIDE and origin == H7:             # <<<<<<<<<<<<<<
@@ -2151,7 +2643,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":194
+        /* "src\cython\_genpyx_chess0x88.py":132
  *             if current == BLACK:
  *                 if board.castling[BLACK] & KINGSIDE and origin == H7:
  *                     board.castling[BLACK] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2163,7 +2655,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
         goto __pyx_L11;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":195
+      /* "src\cython\_genpyx_chess0x88.py":133
  *                 if board.castling[BLACK] & KINGSIDE and origin == H7:
  *                     board.castling[BLACK] ^= KINGSIDE
  *                 elif board.castling[BLACK] & QUEENSIDE and origin == A7:             # <<<<<<<<<<<<<<
@@ -2178,7 +2670,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_7) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":196
+        /* "src\cython\_genpyx_chess0x88.py":134
  *                     board.castling[BLACK] ^= KINGSIDE
  *                 elif board.castling[BLACK] & QUEENSIDE and origin == A7:
  *                     board.castling[BLACK] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2197,7 +2689,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_L7:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":199
+  /* "src\cython\_genpyx_chess0x88.py":137
  * 
  *         # if capture rook, disable castling
  *         if board.castling[other] and other_piece == ROOK:             # <<<<<<<<<<<<<<
@@ -2212,7 +2704,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":200
+    /* "src\cython\_genpyx_chess0x88.py":138
  *         # if capture rook, disable castling
  *         if board.castling[other] and other_piece == ROOK:
  *             if current == WHITE:             # <<<<<<<<<<<<<<
@@ -2222,7 +2714,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __pyx_t_6 = ((__pyx_v_current == WHITE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":201
+      /* "src\cython\_genpyx_chess0x88.py":139
  *         if board.castling[other] and other_piece == ROOK:
  *             if current == WHITE:
  *                 if board.castling[BLACK] & KINGSIDE and dest == H1:             # <<<<<<<<<<<<<<
@@ -2237,7 +2729,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_7) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":202
+        /* "src\cython\_genpyx_chess0x88.py":140
  *             if current == WHITE:
  *                 if board.castling[BLACK] & KINGSIDE and dest == H1:
  *                     board.castling[BLACK] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2249,7 +2741,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
         goto __pyx_L14;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":203
+      /* "src\cython\_genpyx_chess0x88.py":141
  *                 if board.castling[BLACK] & KINGSIDE and dest == H1:
  *                     board.castling[BLACK] ^= KINGSIDE
  *                 elif board.castling[BLACK] & QUEENSIDE and dest == A1:             # <<<<<<<<<<<<<<
@@ -2264,7 +2756,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":204
+        /* "src\cython\_genpyx_chess0x88.py":142
  *                     board.castling[BLACK] ^= KINGSIDE
  *                 elif board.castling[BLACK] & QUEENSIDE and dest == A1:
  *                     board.castling[BLACK] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2280,7 +2772,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     }
     __pyx_L13:;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":205
+    /* "src\cython\_genpyx_chess0x88.py":143
  *                 elif board.castling[BLACK] & QUEENSIDE and dest == A1:
  *                     board.castling[BLACK] ^= KINGSIDE
  *             if current == BLACK:             # <<<<<<<<<<<<<<
@@ -2290,7 +2782,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
     __pyx_t_6 = ((__pyx_v_current == BLACK) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":206
+      /* "src\cython\_genpyx_chess0x88.py":144
  *                     board.castling[BLACK] ^= KINGSIDE
  *             if current == BLACK:
  *                 if board.castling[WHITE] & KINGSIDE and dest == H7:             # <<<<<<<<<<<<<<
@@ -2305,7 +2797,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_7) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":207
+        /* "src\cython\_genpyx_chess0x88.py":145
  *             if current == BLACK:
  *                 if board.castling[WHITE] & KINGSIDE and dest == H7:
  *                     board.castling[WHITE] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2317,7 +2809,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
         goto __pyx_L16;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":208
+      /* "src\cython\_genpyx_chess0x88.py":146
  *                 if board.castling[WHITE] & KINGSIDE and dest == H7:
  *                     board.castling[WHITE] ^= KINGSIDE
  *                 elif board.castling[WHITE] & QUEENSIDE and dest == A7:             # <<<<<<<<<<<<<<
@@ -2332,7 +2824,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
       }
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":209
+        /* "src\cython\_genpyx_chess0x88.py":147
  *                     board.castling[WHITE] ^= KINGSIDE
  *                 elif board.castling[WHITE] & QUEENSIDE and dest == A7:
  *                     board.castling[WHITE] ^= KINGSIDE             # <<<<<<<<<<<<<<
@@ -2351,25 +2843,25 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_L12:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":211
+  /* "src\cython\_genpyx_chess0x88.py":149
  *                     board.castling[WHITE] ^= KINGSIDE
  * 
  *         board.hash ^= zobrist_castling[self.castle()]             # <<<<<<<<<<<<<<
  *         board.hash ^= zobrist_castling[board.castle()]
  * 
  */
-  __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_castling[((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->castle(__pyx_v_self)]));
+  __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_castling[((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->castle(__pyx_v_self)]));
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":212
+  /* "src\cython\_genpyx_chess0x88.py":150
  * 
  *         board.hash ^= zobrist_castling[self.castle()]
  *         board.hash ^= zobrist_castling[board.castle()]             # <<<<<<<<<<<<<<
  * 
  *         # big pawn
  */
-  __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_castling[((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->castle(__pyx_v_board)]));
+  __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_castling[((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->castle(__pyx_v_board)]));
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":215
+  /* "src\cython\_genpyx_chess0x88.py":153
  * 
  *         # big pawn
  *         if board.en_passant_square != EMPTY:             # <<<<<<<<<<<<<<
@@ -2379,19 +2871,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_6 = ((__pyx_v_board->en_passant_square != EMPTY) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":216
+    /* "src\cython\_genpyx_chess0x88.py":154
  *         # big pawn
  *         if board.en_passant_square != EMPTY:
  *             board.hash ^= zobrist_en_passant[board.en_passant_square]             # <<<<<<<<<<<<<<
  *         if flags & BIG_PAWN:
  *             board.en_passant_square = en_passant_square
  */
-    __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_en_passant[__pyx_v_board->en_passant_square]));
+    __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_en_passant[__pyx_v_board->en_passant_square]));
     goto __pyx_L17;
   }
   __pyx_L17:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":217
+  /* "src\cython\_genpyx_chess0x88.py":155
  *         if board.en_passant_square != EMPTY:
  *             board.hash ^= zobrist_en_passant[board.en_passant_square]
  *         if flags & BIG_PAWN:             # <<<<<<<<<<<<<<
@@ -2401,7 +2893,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_6 = ((__pyx_v_flags & BIG_PAWN) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":218
+    /* "src\cython\_genpyx_chess0x88.py":156
  *             board.hash ^= zobrist_en_passant[board.en_passant_square]
  *         if flags & BIG_PAWN:
  *             board.en_passant_square = en_passant_square             # <<<<<<<<<<<<<<
@@ -2410,19 +2902,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
     __pyx_v_board->en_passant_square = __pyx_v_en_passant_square;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":219
+    /* "src\cython\_genpyx_chess0x88.py":157
  *         if flags & BIG_PAWN:
  *             board.en_passant_square = en_passant_square
  *             board.hash ^= zobrist_en_passant[board.en_passant_square]             # <<<<<<<<<<<<<<
  *         else:
  *             board.en_passant_square = EMPTY
  */
-    __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_en_passant[__pyx_v_board->en_passant_square]));
+    __pyx_v_board->hash = (__pyx_v_board->hash ^ (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_en_passant[__pyx_v_board->en_passant_square]));
     goto __pyx_L18;
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":221
+    /* "src\cython\_genpyx_chess0x88.py":159
  *             board.hash ^= zobrist_en_passant[board.en_passant_square]
  *         else:
  *             board.en_passant_square = EMPTY             # <<<<<<<<<<<<<<
@@ -2433,7 +2925,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_L18:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":224
+  /* "src\cython\_genpyx_chess0x88.py":162
  * 
  *         # Update half move counter
  *         if piece == PAWN or (flags & (CAPTURE | EN_PASSANT)):             # <<<<<<<<<<<<<<
@@ -2448,7 +2940,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   if (__pyx_t_7) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":225
+    /* "src\cython\_genpyx_chess0x88.py":163
  *         # Update half move counter
  *         if piece == PAWN or (flags & (CAPTURE | EN_PASSANT)):
  *             board.half_moves = 0             # <<<<<<<<<<<<<<
@@ -2460,7 +2952,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":227
+    /* "src\cython\_genpyx_chess0x88.py":165
  *             board.half_moves = 0
  *         else:
  *             board.half_moves += 1             # <<<<<<<<<<<<<<
@@ -2471,7 +2963,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_L19:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":229
+  /* "src\cython\_genpyx_chess0x88.py":167
  *             board.half_moves += 1
  * 
  *         if current == BLACK:             # <<<<<<<<<<<<<<
@@ -2481,7 +2973,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __pyx_t_7 = ((__pyx_v_current == BLACK) != 0);
   if (__pyx_t_7) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":230
+    /* "src\cython\_genpyx_chess0x88.py":168
  * 
  *         if current == BLACK:
  *             board.moves += 1             # <<<<<<<<<<<<<<
@@ -2493,7 +2985,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   }
   __pyx_L20:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":232
+  /* "src\cython\_genpyx_chess0x88.py":170
  *             board.moves += 1
  * 
  *         board.current_color = next_color(current)             # <<<<<<<<<<<<<<
@@ -2502,18 +2994,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
  */
   __pyx_v_board->current_color = next_color(__pyx_v_current);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":233
+  /* "src\cython\_genpyx_chess0x88.py":171
  * 
  *         board.current_color = next_color(current)
  *         board.hash ^= zobrist_color             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def do_update(self, board):
  */
-  __pyx_v_board->hash = (__pyx_v_board->hash ^ __pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_color);
+  __pyx_v_board->hash = (__pyx_v_board->hash ^ __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_color);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":143
- *         square=cython.int, en_passant_square=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":81
+ *         self.black_castling = board.castling[BLACK]
+ * 
  *     def do(self, board):             # <<<<<<<<<<<<<<
  *         current = self.color
  *         other = next_color(current)
@@ -2526,7 +3018,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.do", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.do", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2535,16 +3027,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do(struct
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_3do(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_3do(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_3do(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_3do(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
   CYTHON_UNUSED int __pyx_lineno = 0;
   CYTHON_UNUSED const char *__pyx_filename = NULL;
   CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("do (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_2do(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_2do(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board));
 
   /* function exit code */
   goto __pyx_L0;
@@ -2555,7 +3047,7 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_3do(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_2do(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_2do(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2564,7 +3056,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_2do(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("do", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->__pyx_do(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 143; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->__pyx_do(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 81; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2573,7 +3065,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_2do(stru
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.do", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.do", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2581,16 +3073,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_2do(stru
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":243
- *         en_passant_square=cython.int, promotion=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":173
+ *         board.hash ^= zobrist_color
+ * 
  *     def do_update(self, board):             # <<<<<<<<<<<<<<
  *         self.do(board)
  *         piece = self.piece
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_5do_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_5do_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_do_update(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
   int __pyx_v_origin;
   int __pyx_v_castling_origin;
   int __pyx_v_en_passant_square;
@@ -2616,16 +3108,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_do_update); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_do_update); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_5do_update)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_5do_update)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(((PyObject *)__pyx_v_board));
       PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_board));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_board));
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -2636,18 +3128,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":244
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":174
+ * 
  *     def do_update(self, board):
  *         self.do(board)             # <<<<<<<<<<<<<<
  *         piece = self.piece
  *         color = self.color
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->__pyx_do(__pyx_v_self, __pyx_v_board, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 244; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->__pyx_do(__pyx_v_self, __pyx_v_board, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 174; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":245
+  /* "src\cython\_genpyx_chess0x88.py":175
  *     def do_update(self, board):
  *         self.do(board)
  *         piece = self.piece             # <<<<<<<<<<<<<<
@@ -2657,7 +3149,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_4 = __pyx_v_self->piece;
   __pyx_v_piece = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":246
+  /* "src\cython\_genpyx_chess0x88.py":176
  *         self.do(board)
  *         piece = self.piece
  *         color = self.color             # <<<<<<<<<<<<<<
@@ -2667,7 +3159,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_4 = __pyx_v_self->color;
   __pyx_v_color = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":247
+  /* "src\cython\_genpyx_chess0x88.py":177
  *         piece = self.piece
  *         color = self.color
  *         origin = self._origin             # <<<<<<<<<<<<<<
@@ -2677,7 +3169,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_4 = __pyx_v_self->_origin;
   __pyx_v_origin = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":248
+  /* "src\cython\_genpyx_chess0x88.py":178
  *         color = self.color
  *         origin = self._origin
  *         dest = self._destination             # <<<<<<<<<<<<<<
@@ -2687,30 +3179,30 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_4 = __pyx_v_self->_destination;
   __pyx_v_dest = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":249
+  /* "src\cython\_genpyx_chess0x88.py":179
  *         origin = self._origin
  *         dest = self._destination
  *         flags = self.flags             # <<<<<<<<<<<<<<
  *         promotion = self.promotion
- *         en_passant_square =  dest + (N if color == BLACK else S)
+ *         en_passant_square = dest + (N if color == BLACK else S)
  */
   __pyx_t_4 = __pyx_v_self->flags;
   __pyx_v_flags = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":250
+  /* "src\cython\_genpyx_chess0x88.py":180
  *         dest = self._destination
  *         flags = self.flags
  *         promotion = self.promotion             # <<<<<<<<<<<<<<
- *         en_passant_square =  dest + (N if color == BLACK else S)
+ *         en_passant_square = dest + (N if color == BLACK else S)
  *         board.values[origin] = 0
  */
   __pyx_t_4 = __pyx_v_self->promotion;
   __pyx_v_promotion = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":251
+  /* "src\cython\_genpyx_chess0x88.py":181
  *         flags = self.flags
  *         promotion = self.promotion
- *         en_passant_square =  dest + (N if color == BLACK else S)             # <<<<<<<<<<<<<<
+ *         en_passant_square = dest + (N if color == BLACK else S)             # <<<<<<<<<<<<<<
  *         board.values[origin] = 0
  *         board.values[dest] = board.piece_value(piece, color, dest)
  */
@@ -2721,25 +3213,25 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   }
   __pyx_v_en_passant_square = (__pyx_v_dest + __pyx_t_5);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":252
+  /* "src\cython\_genpyx_chess0x88.py":182
  *         promotion = self.promotion
- *         en_passant_square =  dest + (N if color == BLACK else S)
+ *         en_passant_square = dest + (N if color == BLACK else S)
  *         board.values[origin] = 0             # <<<<<<<<<<<<<<
  *         board.values[dest] = board.piece_value(piece, color, dest)
  * 
  */
   (__pyx_v_board->values[__pyx_v_origin]) = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":253
- *         en_passant_square =  dest + (N if color == BLACK else S)
+  /* "src\cython\_genpyx_chess0x88.py":183
+ *         en_passant_square = dest + (N if color == BLACK else S)
  *         board.values[origin] = 0
  *         board.values[dest] = board.piece_value(piece, color, dest)             # <<<<<<<<<<<<<<
  * 
  *         # En passant
  */
-  (__pyx_v_board->values[__pyx_v_dest]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_dest);
+  (__pyx_v_board->values[__pyx_v_dest]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_dest);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":256
+  /* "src\cython\_genpyx_chess0x88.py":186
  * 
  *         # En passant
  *         if flags & EN_PASSANT:             # <<<<<<<<<<<<<<
@@ -2749,7 +3241,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_6 = ((__pyx_v_flags & EN_PASSANT) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":257
+    /* "src\cython\_genpyx_chess0x88.py":187
  *         # En passant
  *         if flags & EN_PASSANT:
  *             board.values[en_passant_square] = 0             # <<<<<<<<<<<<<<
@@ -2761,7 +3253,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":260
+  /* "src\cython\_genpyx_chess0x88.py":190
  * 
  *         # Promotion
  *         if flags & PROMOTION:             # <<<<<<<<<<<<<<
@@ -2771,19 +3263,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_6 = ((__pyx_v_flags & PROMOTION) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":261
+    /* "src\cython\_genpyx_chess0x88.py":191
  *         # Promotion
  *         if flags & PROMOTION:
  *             board.values[dest] = board.piece_value(promotion, color, dest)             # <<<<<<<<<<<<<<
  * 
  *         # Castling
  */
-    (__pyx_v_board->values[__pyx_v_dest]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_promotion, __pyx_v_color, __pyx_v_dest);
+    (__pyx_v_board->values[__pyx_v_dest]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_promotion, __pyx_v_color, __pyx_v_dest);
     goto __pyx_L4;
   }
   __pyx_L4:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":264
+  /* "src\cython\_genpyx_chess0x88.py":194
  * 
  *         # Castling
  *         if piece == KING:             # <<<<<<<<<<<<<<
@@ -2793,7 +3285,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __pyx_t_6 = ((__pyx_v_piece == KING) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":265
+    /* "src\cython\_genpyx_chess0x88.py":195
  *         # Castling
  *         if piece == KING:
  *             if flags & KINGSIDE:             # <<<<<<<<<<<<<<
@@ -2803,7 +3295,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
     __pyx_t_6 = ((__pyx_v_flags & KINGSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":266
+      /* "src\cython\_genpyx_chess0x88.py":196
  *         if piece == KING:
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E             # <<<<<<<<<<<<<<
@@ -2812,7 +3304,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
  */
       __pyx_v_castling_origin = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":267
+      /* "src\cython\_genpyx_chess0x88.py":197
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W             # <<<<<<<<<<<<<<
@@ -2821,7 +3313,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
  */
       __pyx_v_castling_dest = (__pyx_v_dest + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":268
+      /* "src\cython\_genpyx_chess0x88.py":198
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W
  *                 board.values[castling_origin] = 0             # <<<<<<<<<<<<<<
@@ -2830,18 +3322,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
  */
       (__pyx_v_board->values[__pyx_v_castling_origin]) = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":269
+      /* "src\cython\_genpyx_chess0x88.py":199
  *                 castling_dest = dest + W
  *                 board.values[castling_origin] = 0
  *                 board.values[castling_dest] = board.piece_value(             # <<<<<<<<<<<<<<
  *                     ROOK, color, castling_dest)
  *             elif flags & QUEENSIDE:
  */
-      (__pyx_v_board->values[__pyx_v_castling_dest]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_dest);
+      (__pyx_v_board->values[__pyx_v_castling_dest]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_dest);
       goto __pyx_L6;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":271
+    /* "src\cython\_genpyx_chess0x88.py":201
  *                 board.values[castling_dest] = board.piece_value(
  *                     ROOK, color, castling_dest)
  *             elif flags & QUEENSIDE:             # <<<<<<<<<<<<<<
@@ -2851,7 +3343,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
     __pyx_t_6 = ((__pyx_v_flags & QUEENSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":272
+      /* "src\cython\_genpyx_chess0x88.py":202
  *                     ROOK, color, castling_dest)
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W             # <<<<<<<<<<<<<<
@@ -2860,7 +3352,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
  */
       __pyx_v_castling_origin = ((__pyx_v_dest + W) + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":273
+      /* "src\cython\_genpyx_chess0x88.py":203
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E             # <<<<<<<<<<<<<<
@@ -2869,7 +3361,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
  */
       __pyx_v_castling_dest = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":274
+      /* "src\cython\_genpyx_chess0x88.py":204
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E
  *                 board.values[castling_origin] = 0             # <<<<<<<<<<<<<<
@@ -2878,14 +3370,14 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
  */
       (__pyx_v_board->values[__pyx_v_castling_origin]) = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":275
+      /* "src\cython\_genpyx_chess0x88.py":205
  *                 castling_dest = dest + E
  *                 board.values[castling_origin] = 0
  *                 board.values[castling_dest] = board.piece_value(             # <<<<<<<<<<<<<<
  *                     ROOK, color, castling_dest)
  * 
  */
-      (__pyx_v_board->values[__pyx_v_castling_dest]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_dest);
+      (__pyx_v_board->values[__pyx_v_castling_dest]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_dest);
       goto __pyx_L6;
     }
     __pyx_L6:;
@@ -2893,9 +3385,9 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   }
   __pyx_L5:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":243
- *         en_passant_square=cython.int, promotion=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":173
+ *         board.hash ^= zobrist_color
+ * 
  *     def do_update(self, board):             # <<<<<<<<<<<<<<
  *         self.do(board)
  *         piece = self.piece
@@ -2908,7 +3400,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.do_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.do_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2917,16 +3409,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_5do_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_5do_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_5do_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_5do_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
   CYTHON_UNUSED int __pyx_lineno = 0;
   CYTHON_UNUSED const char *__pyx_filename = NULL;
   CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("do_update (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_4do_update(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_4do_update(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board));
 
   /* function exit code */
   goto __pyx_L0;
@@ -2937,7 +3429,7 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_5do_upda
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_4do_update(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_4do_update(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2946,7 +3438,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_4do_upda
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("do_update", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->do_update(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 243; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->do_update(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 173; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -2955,7 +3447,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_4do_upda
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.do_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.do_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2963,16 +3455,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_4do_upda
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":286
- *         en_passant_square=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":208
+ *                     ROOK, color, castling_dest)
+ * 
  *     def undo(self, board):             # <<<<<<<<<<<<<<
  *         current = self.color
  *         dest = self._destination
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_7undo(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_7undo(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_undo(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
   int __pyx_v_origin;
   int __pyx_v_castling_origin;
   int __pyx_v_en_passant_square;
@@ -2992,7 +3484,6 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   int __pyx_t_4;
   int __pyx_t_5;
   int __pyx_t_6;
-  unsigned PY_LONG_LONG __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3001,16 +3492,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_undo); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_undo); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_7undo)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_7undo)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(((PyObject *)__pyx_v_board));
       PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_board));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_board));
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -3021,8 +3512,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":287
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":209
+ * 
  *     def undo(self, board):
  *         current = self.color             # <<<<<<<<<<<<<<
  *         dest = self._destination
@@ -3031,7 +3522,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->color;
   __pyx_v_current = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":288
+  /* "src\cython\_genpyx_chess0x88.py":210
  *     def undo(self, board):
  *         current = self.color
  *         dest = self._destination             # <<<<<<<<<<<<<<
@@ -3041,7 +3532,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->_destination;
   __pyx_v_dest = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":289
+  /* "src\cython\_genpyx_chess0x88.py":211
  *         current = self.color
  *         dest = self._destination
  *         origin = self._origin             # <<<<<<<<<<<<<<
@@ -3051,7 +3542,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->_origin;
   __pyx_v_origin = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":290
+  /* "src\cython\_genpyx_chess0x88.py":212
  *         dest = self._destination
  *         origin = self._origin
  *         piece = self.piece             # <<<<<<<<<<<<<<
@@ -3061,30 +3552,30 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->piece;
   __pyx_v_piece = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":291
+  /* "src\cython\_genpyx_chess0x88.py":213
  *         origin = self._origin
  *         piece = self.piece
  *         flags = self.flags             # <<<<<<<<<<<<<<
  *         captured = self.captured
- *         en_passant_square =  dest + (N if current == BLACK else S)
+ *         en_passant_square = dest + (N if current == BLACK else S)
  */
   __pyx_t_4 = __pyx_v_self->flags;
   __pyx_v_flags = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":292
+  /* "src\cython\_genpyx_chess0x88.py":214
  *         piece = self.piece
  *         flags = self.flags
  *         captured = self.captured             # <<<<<<<<<<<<<<
- *         en_passant_square =  dest + (N if current == BLACK else S)
+ *         en_passant_square = dest + (N if current == BLACK else S)
  * 
  */
   __pyx_t_4 = __pyx_v_self->captured;
   __pyx_v_captured = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":293
+  /* "src\cython\_genpyx_chess0x88.py":215
  *         flags = self.flags
  *         captured = self.captured
- *         en_passant_square =  dest + (N if current == BLACK else S)             # <<<<<<<<<<<<<<
+ *         en_passant_square = dest + (N if current == BLACK else S)             # <<<<<<<<<<<<<<
  * 
  *         board.current_color = current
  */
@@ -3095,8 +3586,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   }
   __pyx_v_en_passant_square = (__pyx_v_dest + __pyx_t_5);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":295
- *         en_passant_square =  dest + (N if current == BLACK else S)
+  /* "src\cython\_genpyx_chess0x88.py":217
+ *         en_passant_square = dest + (N if current == BLACK else S)
  * 
  *         board.current_color = current             # <<<<<<<<<<<<<<
  * 
@@ -3104,7 +3595,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
   __pyx_v_board->current_color = __pyx_v_current;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":297
+  /* "src\cython\_genpyx_chess0x88.py":219
  *         board.current_color = current
  * 
  *         other = next_color(current)             # <<<<<<<<<<<<<<
@@ -3113,7 +3604,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
   __pyx_v_other = next_color(__pyx_v_current);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":298
+  /* "src\cython\_genpyx_chess0x88.py":220
  * 
  *         other = next_color(current)
  *         if current == BLACK:             # <<<<<<<<<<<<<<
@@ -3123,7 +3614,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_6 = ((__pyx_v_current == BLACK) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":299
+    /* "src\cython\_genpyx_chess0x88.py":221
  *         other = next_color(current)
  *         if current == BLACK:
  *             board.moves -= 1             # <<<<<<<<<<<<<<
@@ -3135,7 +3626,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":301
+  /* "src\cython\_genpyx_chess0x88.py":223
  *             board.moves -= 1
  * 
  *         board.half_moves = self.half_moves             # <<<<<<<<<<<<<<
@@ -3145,7 +3636,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->half_moves;
   __pyx_v_board->half_moves = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":302
+  /* "src\cython\_genpyx_chess0x88.py":224
  * 
  *         board.half_moves = self.half_moves
  *         board.en_passant_square = self.previous_en_passant             # <<<<<<<<<<<<<<
@@ -3155,7 +3646,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->previous_en_passant;
   __pyx_v_board->en_passant_square = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":303
+  /* "src\cython\_genpyx_chess0x88.py":225
  *         board.half_moves = self.half_moves
  *         board.en_passant_square = self.previous_en_passant
  *         board.castling[WHITE] = self.white_castling             # <<<<<<<<<<<<<<
@@ -3165,7 +3656,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->white_castling;
   (__pyx_v_board->castling[WHITE]) = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":304
+  /* "src\cython\_genpyx_chess0x88.py":226
  *         board.en_passant_square = self.previous_en_passant
  *         board.castling[WHITE] = self.white_castling
  *         board.castling[BLACK] = self.black_castling             # <<<<<<<<<<<<<<
@@ -3175,7 +3666,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_4 = __pyx_v_self->black_castling;
   (__pyx_v_board->castling[BLACK]) = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":306
+  /* "src\cython\_genpyx_chess0x88.py":228
  *         board.castling[BLACK] = self.black_castling
  * 
  *         if piece == KING:             # <<<<<<<<<<<<<<
@@ -3185,7 +3676,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_6 = ((__pyx_v_piece == KING) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":307
+    /* "src\cython\_genpyx_chess0x88.py":229
  * 
  *         if piece == KING:
  *             board.kings[current] = origin             # <<<<<<<<<<<<<<
@@ -3194,7 +3685,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
     (__pyx_v_board->kings[__pyx_v_current]) = __pyx_v_origin;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":308
+    /* "src\cython\_genpyx_chess0x88.py":230
  *         if piece == KING:
  *             board.kings[current] = origin
  *             if flags & KINGSIDE:             # <<<<<<<<<<<<<<
@@ -3204,7 +3695,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
     __pyx_t_6 = ((__pyx_v_flags & KINGSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":309
+      /* "src\cython\_genpyx_chess0x88.py":231
  *             board.kings[current] = origin
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E             # <<<<<<<<<<<<<<
@@ -3213,7 +3704,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
       __pyx_v_castling_origin = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":310
+      /* "src\cython\_genpyx_chess0x88.py":232
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W             # <<<<<<<<<<<<<<
@@ -3222,7 +3713,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
       __pyx_v_castling_dest = (__pyx_v_dest + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":311
+      /* "src\cython\_genpyx_chess0x88.py":233
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W
  *                 rook_piece = board.pieces[castling_dest]             # <<<<<<<<<<<<<<
@@ -3231,27 +3722,27 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
       __pyx_v_rook_piece = (__pyx_v_board->pieces[__pyx_v_castling_dest]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":312
+      /* "src\cython\_genpyx_chess0x88.py":234
  *                 castling_dest = dest + W
  *                 rook_piece = board.pieces[castling_dest]
  *                 board.remove(castling_dest)             # <<<<<<<<<<<<<<
  *                 board.add(rook_piece, current, castling_origin)
  *             elif flags & QUEENSIDE:
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_dest);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_dest);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":313
+      /* "src\cython\_genpyx_chess0x88.py":235
  *                 rook_piece = board.pieces[castling_dest]
  *                 board.remove(castling_dest)
  *                 board.add(rook_piece, current, castling_origin)             # <<<<<<<<<<<<<<
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_rook_piece, __pyx_v_current, __pyx_v_castling_origin);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_rook_piece, __pyx_v_current, __pyx_v_castling_origin);
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":314
+    /* "src\cython\_genpyx_chess0x88.py":236
  *                 board.remove(castling_dest)
  *                 board.add(rook_piece, current, castling_origin)
  *             elif flags & QUEENSIDE:             # <<<<<<<<<<<<<<
@@ -3261,7 +3752,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
     __pyx_t_6 = ((__pyx_v_flags & QUEENSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":315
+      /* "src\cython\_genpyx_chess0x88.py":237
  *                 board.add(rook_piece, current, castling_origin)
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W             # <<<<<<<<<<<<<<
@@ -3270,7 +3761,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
       __pyx_v_castling_origin = ((__pyx_v_dest + W) + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":316
+      /* "src\cython\_genpyx_chess0x88.py":238
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E             # <<<<<<<<<<<<<<
@@ -3279,7 +3770,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
       __pyx_v_castling_dest = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":317
+      /* "src\cython\_genpyx_chess0x88.py":239
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E
  *                 rook_piece = board.pieces[castling_dest]             # <<<<<<<<<<<<<<
@@ -3288,23 +3779,23 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
  */
       __pyx_v_rook_piece = (__pyx_v_board->pieces[__pyx_v_castling_dest]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":318
+      /* "src\cython\_genpyx_chess0x88.py":240
  *                 castling_dest = dest + E
  *                 rook_piece = board.pieces[castling_dest]
  *                 board.remove(castling_dest)             # <<<<<<<<<<<<<<
  *                 board.add(rook_piece, current, castling_origin)
  * 
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_dest);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_castling_dest);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":319
+      /* "src\cython\_genpyx_chess0x88.py":241
  *                 rook_piece = board.pieces[castling_dest]
  *                 board.remove(castling_dest)
  *                 board.add(rook_piece, current, castling_origin)             # <<<<<<<<<<<<<<
  * 
  *         board.remove(dest)
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_rook_piece, __pyx_v_current, __pyx_v_castling_origin);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_rook_piece, __pyx_v_current, __pyx_v_castling_origin);
       goto __pyx_L5;
     }
     __pyx_L5:;
@@ -3312,25 +3803,25 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   }
   __pyx_L4:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":321
+  /* "src\cython\_genpyx_chess0x88.py":243
  *                 board.add(rook_piece, current, castling_origin)
  * 
  *         board.remove(dest)             # <<<<<<<<<<<<<<
  *         board.add(piece, current, origin)
  *         if captured:
  */
-  ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_dest);
+  ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->remove(__pyx_v_board, __pyx_v_dest);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":322
+  /* "src\cython\_genpyx_chess0x88.py":244
  * 
  *         board.remove(dest)
  *         board.add(piece, current, origin)             # <<<<<<<<<<<<<<
  *         if captured:
  *             if flags & EN_PASSANT:
  */
-  ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_current, __pyx_v_origin);
+  ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_piece, __pyx_v_current, __pyx_v_origin);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":323
+  /* "src\cython\_genpyx_chess0x88.py":245
  *         board.remove(dest)
  *         board.add(piece, current, origin)
  *         if captured:             # <<<<<<<<<<<<<<
@@ -3340,7 +3831,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __pyx_t_6 = (__pyx_v_captured != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":324
+    /* "src\cython\_genpyx_chess0x88.py":246
  *         board.add(piece, current, origin)
  *         if captured:
  *             if flags & EN_PASSANT:             # <<<<<<<<<<<<<<
@@ -3350,45 +3841,45 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
     __pyx_t_6 = ((__pyx_v_flags & EN_PASSANT) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":325
+      /* "src\cython\_genpyx_chess0x88.py":247
  *         if captured:
  *             if flags & EN_PASSANT:
  *                 board.add(PAWN, other, en_passant_square)             # <<<<<<<<<<<<<<
  *             else:
  *                 board.add(captured, other, dest)
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, PAWN, __pyx_v_other, __pyx_v_en_passant_square);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, PAWN, __pyx_v_other, __pyx_v_en_passant_square);
       goto __pyx_L7;
     }
     /*else*/ {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":327
+      /* "src\cython\_genpyx_chess0x88.py":249
  *                 board.add(PAWN, other, en_passant_square)
  *             else:
  *                 board.add(captured, other, dest)             # <<<<<<<<<<<<<<
  * 
  *         board.hash = self.previous_hash
  */
-      ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_captured, __pyx_v_other, __pyx_v_dest);
+      ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->add(__pyx_v_board, __pyx_v_captured, __pyx_v_other, __pyx_v_dest);
     }
     __pyx_L7:;
     goto __pyx_L6;
   }
   __pyx_L6:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":329
+  /* "src\cython\_genpyx_chess0x88.py":251
  *                 board.add(captured, other, dest)
  * 
  *         board.hash = self.previous_hash             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def undo_update(self, board):
  */
-  __pyx_t_7 = __pyx_v_self->previous_hash;
-  __pyx_v_board->hash = __pyx_t_7;
+  __pyx_t_4 = __pyx_v_self->previous_hash;
+  __pyx_v_board->hash = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":286
- *         en_passant_square=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":208
+ *                     ROOK, color, castling_dest)
+ * 
  *     def undo(self, board):             # <<<<<<<<<<<<<<
  *         current = self.color
  *         dest = self._destination
@@ -3401,7 +3892,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.undo", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.undo", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3410,16 +3901,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo(stru
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_7undo(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_7undo(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_7undo(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_7undo(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
   CYTHON_UNUSED int __pyx_lineno = 0;
   CYTHON_UNUSED const char *__pyx_filename = NULL;
   CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("undo (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_6undo(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_6undo(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board));
 
   /* function exit code */
   goto __pyx_L0;
@@ -3430,7 +3921,7 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_7undo(Py
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_6undo(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_6undo(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3439,7 +3930,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_6undo(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("undo", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->undo(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 286; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->undo(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 208; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3448,7 +3939,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_6undo(st
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.undo", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.undo", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3456,16 +3947,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_6undo(st
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":339
- *         en_passant_square=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":253
+ *         board.hash = self.previous_hash
+ * 
  *     def undo_update(self, board):             # <<<<<<<<<<<<<<
  *         self.undo(board)
  *         color = self.color
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_9undo_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_update(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_9undo_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_undo_update(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board, int __pyx_skip_dispatch) {
   int __pyx_v_origin;
   int __pyx_v_castling_origin;
   int __pyx_v_en_passant_square;
@@ -3492,16 +3983,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_undo_update); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_undo_update); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_9undo_update)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_9undo_update)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(((PyObject *)__pyx_v_board));
       PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_board));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_board));
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -3512,18 +4003,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":340
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":254
+ * 
  *     def undo_update(self, board):
  *         self.undo(board)             # <<<<<<<<<<<<<<
  *         color = self.color
  *         other = next_color(color)
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->undo(__pyx_v_self, __pyx_v_board, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 340; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->undo(__pyx_v_self, __pyx_v_board, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 254; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":341
+  /* "src\cython\_genpyx_chess0x88.py":255
  *     def undo_update(self, board):
  *         self.undo(board)
  *         color = self.color             # <<<<<<<<<<<<<<
@@ -3533,7 +4024,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __pyx_t_4 = __pyx_v_self->color;
   __pyx_v_color = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":342
+  /* "src\cython\_genpyx_chess0x88.py":256
  *         self.undo(board)
  *         color = self.color
  *         other = next_color(color)             # <<<<<<<<<<<<<<
@@ -3542,7 +4033,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
   __pyx_v_other = next_color(__pyx_v_color);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":343
+  /* "src\cython\_genpyx_chess0x88.py":257
  *         color = self.color
  *         other = next_color(color)
  *         dest = self._destination             # <<<<<<<<<<<<<<
@@ -3552,7 +4043,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __pyx_t_4 = __pyx_v_self->_destination;
   __pyx_v_dest = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":344
+  /* "src\cython\_genpyx_chess0x88.py":258
  *         other = next_color(color)
  *         dest = self._destination
  *         origin = self._origin             # <<<<<<<<<<<<<<
@@ -3562,7 +4053,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __pyx_t_4 = __pyx_v_self->_origin;
   __pyx_v_origin = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":345
+  /* "src\cython\_genpyx_chess0x88.py":259
  *         dest = self._destination
  *         origin = self._origin
  *         piece = self.piece             # <<<<<<<<<<<<<<
@@ -3572,30 +4063,30 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __pyx_t_4 = __pyx_v_self->piece;
   __pyx_v_piece = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":346
+  /* "src\cython\_genpyx_chess0x88.py":260
  *         origin = self._origin
  *         piece = self.piece
  *         flags = self.flags             # <<<<<<<<<<<<<<
  *         captured = self.captured
- *         en_passant_square =  dest + (N if color == BLACK else S)
+ *         en_passant_square = dest + (N if color == BLACK else S)
  */
   __pyx_t_4 = __pyx_v_self->flags;
   __pyx_v_flags = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":347
+  /* "src\cython\_genpyx_chess0x88.py":261
  *         piece = self.piece
  *         flags = self.flags
  *         captured = self.captured             # <<<<<<<<<<<<<<
- *         en_passant_square =  dest + (N if color == BLACK else S)
+ *         en_passant_square = dest + (N if color == BLACK else S)
  * 
  */
   __pyx_t_4 = __pyx_v_self->captured;
   __pyx_v_captured = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":348
+  /* "src\cython\_genpyx_chess0x88.py":262
  *         flags = self.flags
  *         captured = self.captured
- *         en_passant_square =  dest + (N if color == BLACK else S)             # <<<<<<<<<<<<<<
+ *         en_passant_square = dest + (N if color == BLACK else S)             # <<<<<<<<<<<<<<
  * 
  *         # castling
  */
@@ -3606,7 +4097,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   }
   __pyx_v_en_passant_square = (__pyx_v_dest + __pyx_t_5);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":351
+  /* "src\cython\_genpyx_chess0x88.py":265
  * 
  *         # castling
  *         if piece == KING:             # <<<<<<<<<<<<<<
@@ -3616,7 +4107,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __pyx_t_6 = ((__pyx_v_piece == KING) != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":352
+    /* "src\cython\_genpyx_chess0x88.py":266
  *         # castling
  *         if piece == KING:
  *             if flags & KINGSIDE:             # <<<<<<<<<<<<<<
@@ -3626,7 +4117,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
     __pyx_t_6 = ((__pyx_v_flags & KINGSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":353
+      /* "src\cython\_genpyx_chess0x88.py":267
  *         if piece == KING:
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E             # <<<<<<<<<<<<<<
@@ -3635,7 +4126,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
       __pyx_v_castling_origin = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":354
+      /* "src\cython\_genpyx_chess0x88.py":268
  *             if flags & KINGSIDE:
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W             # <<<<<<<<<<<<<<
@@ -3644,7 +4135,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
       __pyx_v_castling_dest = (__pyx_v_dest + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":355
+      /* "src\cython\_genpyx_chess0x88.py":269
  *                 castling_origin = dest + E
  *                 castling_dest = dest + W
  *                 board.values[castling_dest] = 0             # <<<<<<<<<<<<<<
@@ -3653,18 +4144,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
       (__pyx_v_board->values[__pyx_v_castling_dest]) = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":356
+      /* "src\cython\_genpyx_chess0x88.py":270
  *                 castling_dest = dest + W
  *                 board.values[castling_dest] = 0
  *                 board.values[castling_origin] = board.piece_value(             # <<<<<<<<<<<<<<
  *                     ROOK, color, castling_origin)
  *             elif flags & QUEENSIDE:
  */
-      (__pyx_v_board->values[__pyx_v_castling_origin]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_origin);
+      (__pyx_v_board->values[__pyx_v_castling_origin]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_origin);
       goto __pyx_L4;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":358
+    /* "src\cython\_genpyx_chess0x88.py":272
  *                 board.values[castling_origin] = board.piece_value(
  *                     ROOK, color, castling_origin)
  *             elif flags & QUEENSIDE:             # <<<<<<<<<<<<<<
@@ -3674,7 +4165,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
     __pyx_t_6 = ((__pyx_v_flags & QUEENSIDE) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":359
+      /* "src\cython\_genpyx_chess0x88.py":273
  *                     ROOK, color, castling_origin)
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W             # <<<<<<<<<<<<<<
@@ -3683,7 +4174,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
       __pyx_v_castling_origin = ((__pyx_v_dest + W) + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":360
+      /* "src\cython\_genpyx_chess0x88.py":274
  *             elif flags & QUEENSIDE:
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E             # <<<<<<<<<<<<<<
@@ -3692,7 +4183,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
       __pyx_v_castling_dest = (__pyx_v_dest + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":361
+      /* "src\cython\_genpyx_chess0x88.py":275
  *                 castling_origin = dest + W + W
  *                 castling_dest = dest + E
  *                 board.values[castling_dest] = 0             # <<<<<<<<<<<<<<
@@ -3701,14 +4192,14 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
  */
       (__pyx_v_board->values[__pyx_v_castling_dest]) = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":362
+      /* "src\cython\_genpyx_chess0x88.py":276
  *                 castling_dest = dest + E
  *                 board.values[castling_dest] = 0
  *                 board.values[castling_origin] = board.piece_value(             # <<<<<<<<<<<<<<
  *                     ROOK, color, castling_origin)
  * 
  */
-      (__pyx_v_board->values[__pyx_v_castling_origin]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_origin);
+      (__pyx_v_board->values[__pyx_v_castling_origin]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, ROOK, __pyx_v_color, __pyx_v_castling_origin);
       goto __pyx_L4;
     }
     __pyx_L4:;
@@ -3716,16 +4207,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":365
+  /* "src\cython\_genpyx_chess0x88.py":279
  *                     ROOK, color, castling_origin)
  * 
  *         board.values[origin] = board.piece_value(piece, color, dest)             # <<<<<<<<<<<<<<
  *         if captured:
  *             if flags & EN_PASSANT:
  */
-  (__pyx_v_board->values[__pyx_v_origin]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_dest);
+  (__pyx_v_board->values[__pyx_v_origin]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_piece, __pyx_v_color, __pyx_v_dest);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":366
+  /* "src\cython\_genpyx_chess0x88.py":280
  * 
  *         board.values[origin] = board.piece_value(piece, color, dest)
  *         if captured:             # <<<<<<<<<<<<<<
@@ -3735,7 +4226,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __pyx_t_6 = (__pyx_v_captured != 0);
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":367
+    /* "src\cython\_genpyx_chess0x88.py":281
  *         board.values[origin] = board.piece_value(piece, color, dest)
  *         if captured:
  *             if flags & EN_PASSANT:             # <<<<<<<<<<<<<<
@@ -3745,46 +4236,46 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
     __pyx_t_6 = ((__pyx_v_flags & EN_PASSANT) != 0);
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":368
+      /* "src\cython\_genpyx_chess0x88.py":282
  *         if captured:
  *             if flags & EN_PASSANT:
  *                 board.values[en_passant_square] = board.piece_value(             # <<<<<<<<<<<<<<
  *                     PAWN, other, en_passant_square)
  *             else:
  */
-      (__pyx_v_board->values[__pyx_v_en_passant_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, PAWN, __pyx_v_other, __pyx_v_en_passant_square);
+      (__pyx_v_board->values[__pyx_v_en_passant_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, PAWN, __pyx_v_other, __pyx_v_en_passant_square);
       goto __pyx_L6;
     }
     /*else*/ {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":371
+      /* "src\cython\_genpyx_chess0x88.py":285
  *                     PAWN, other, en_passant_square)
  *             else:
  *                 board.values[dest] = board.piece_value(captured, other, dest)             # <<<<<<<<<<<<<<
  *         else:
  *             board.values[dest] = 0
  */
-      (__pyx_v_board->values[__pyx_v_dest]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_captured, __pyx_v_other, __pyx_v_dest);
+      (__pyx_v_board->values[__pyx_v_dest]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board->__pyx_vtab)->piece_value(__pyx_v_board, __pyx_v_captured, __pyx_v_other, __pyx_v_dest);
     }
     __pyx_L6:;
     goto __pyx_L5;
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":373
+    /* "src\cython\_genpyx_chess0x88.py":287
  *                 board.values[dest] = board.piece_value(captured, other, dest)
  *         else:
  *             board.values[dest] = 0             # <<<<<<<<<<<<<<
  * 
- * 
+ *     def origin(self):
  */
     (__pyx_v_board->values[__pyx_v_dest]) = 0;
   }
   __pyx_L5:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":339
- *         en_passant_square=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":253
+ *         board.hash = self.previous_hash
+ * 
  *     def undo_update(self, board):             # <<<<<<<<<<<<<<
  *         self.undo(board)
  *         color = self.color
@@ -3797,7 +4288,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.undo_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.undo_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3806,16 +4297,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_upda
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_9undo_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_9undo_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_9undo_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_9undo_update(PyObject *__pyx_v_self, PyObject *__pyx_v_board) {
   CYTHON_UNUSED int __pyx_lineno = 0;
   CYTHON_UNUSED const char *__pyx_filename = NULL;
   CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("undo_update (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_8undo_update(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_board));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_board), __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, 1, "board", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_8undo_update(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self), ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_board));
 
   /* function exit code */
   goto __pyx_L0;
@@ -3826,7 +4317,7 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_9undo_up
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_8undo_update(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_board) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_8undo_update(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_board) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3835,7 +4326,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_8undo_up
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("undo_update", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->undo_update(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 339; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->undo_update(__pyx_v_self, __pyx_v_board, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 253; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3844,7 +4335,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_8undo_up
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.undo_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.undo_update", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3852,16 +4343,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_8undo_up
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":378
- *     @cython.ccall
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":289
+ *             board.values[dest] = 0
+ * 
  *     def origin(self):             # <<<<<<<<<<<<<<
  *         return self._origin
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_11origin(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_origin(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_11origin(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_origin(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3875,12 +4366,12 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_origin(struct _
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_11origin)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_11origin)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3889,19 +4380,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_origin(struct _
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":379
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":290
+ * 
  *     def origin(self):
  *         return self._origin             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def destination(self):
  */
   __pyx_r = __pyx_v_self->_origin;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":378
- *     @cython.ccall
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":289
+ *             board.values[dest] = 0
+ * 
  *     def origin(self):             # <<<<<<<<<<<<<<
  *         return self._origin
  * 
@@ -3911,7 +4402,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_origin(struct _
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Move.origin", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Move.origin", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -3919,19 +4410,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_origin(struct _
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_11origin(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_11origin(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_11origin(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_11origin(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("origin (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_10origin(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_10origin(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_10origin(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_10origin(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3940,7 +4431,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_10origin
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("origin", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->origin(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 378; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->origin(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 289; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3949,7 +4440,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_10origin
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.origin", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.origin", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3957,16 +4448,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_10origin
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":383
- *     @cython.ccall
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":292
+ *         return self._origin
+ * 
  *     def destination(self):             # <<<<<<<<<<<<<<
  *         return self._destination
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_13destination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_destination(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_13destination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_destination(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3980,12 +4471,12 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_destination(str
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_destination); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_destination); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_13destination)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_13destination)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3994,19 +4485,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_destination(str
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":384
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":293
+ * 
  *     def destination(self):
  *         return self._destination             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def castle(self):
  */
   __pyx_r = __pyx_v_self->_destination;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":383
- *     @cython.ccall
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":292
+ *         return self._origin
+ * 
  *     def destination(self):             # <<<<<<<<<<<<<<
  *         return self._destination
  * 
@@ -4016,7 +4507,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_destination(str
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Move.destination", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Move.destination", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -4024,19 +4515,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_destination(str
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_13destination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_13destination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_13destination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_13destination(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("destination (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_12destination(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_12destination(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_12destination(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_12destination(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4045,7 +4536,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_12destin
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("destination", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->destination(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 383; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->destination(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 292; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4054,7 +4545,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_12destin
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.destination", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.destination", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4062,20 +4553,20 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_12destin
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":388
- *     @cython.cfunc
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":295
+ *         return self._destination
+ * 
  *     def castle(self):             # <<<<<<<<<<<<<<
  *         return (
  *             (self.white_castling >> 4 >> 1) | (self.black_castling >> 2 >> 1)
  */
 
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_castle(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_castle(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("castle", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":390
+  /* "src\cython\_genpyx_chess0x88.py":297
  *     def castle(self):
  *         return (
  *             (self.white_castling >> 4 >> 1) | (self.black_castling >> 2 >> 1)             # <<<<<<<<<<<<<<
@@ -4085,9 +4576,9 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_castle(struct _
   __pyx_r = (((__pyx_v_self->white_castling >> 4) >> 1) | ((__pyx_v_self->black_castling >> 2) >> 1));
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":388
- *     @cython.cfunc
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":295
+ *         return self._destination
+ * 
  *     def castle(self):             # <<<<<<<<<<<<<<
  *         return (
  *             (self.white_castling >> 4 >> 1) | (self.black_castling >> 2 >> 1)
@@ -4099,16 +4590,16 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_castle(struct _
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":395
- *     @cython.ccall
- *     @cython.returns(tuple)
+/* "src\cython\_genpyx_chess0x88.py":300
+ *         )
+ * 
  *     def tuple(self):             # <<<<<<<<<<<<<<
  *         return (
  *             p0x88_to_tuple(self._origin),
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_15tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_15tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_tuple(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4122,13 +4613,13 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(str
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_tuple); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_tuple); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_15tuple)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_15tuple)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4137,8 +4628,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(str
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":396
- *     @cython.returns(tuple)
+  /* "src\cython\_genpyx_chess0x88.py":301
+ * 
  *     def tuple(self):
  *         return (             # <<<<<<<<<<<<<<
  *             p0x88_to_tuple(self._origin),
@@ -4146,34 +4637,34 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(str
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":397
+  /* "src\cython\_genpyx_chess0x88.py":302
  *     def tuple(self):
  *         return (
  *             p0x88_to_tuple(self._origin),             # <<<<<<<<<<<<<<
  *             p0x88_to_tuple(self._destination)
  *         )
  */
-  __pyx_t_1 = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(__pyx_v_self->_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(__pyx_v_self->_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":398
+  /* "src\cython\_genpyx_chess0x88.py":303
  *         return (
  *             p0x88_to_tuple(self._origin),
  *             p0x88_to_tuple(self._destination)             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_2 = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(__pyx_v_self->_destination); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 398; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(__pyx_v_self->_destination); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 303; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":397
+  /* "src\cython\_genpyx_chess0x88.py":302
  *     def tuple(self):
  *         return (
  *             p0x88_to_tuple(self._origin),             # <<<<<<<<<<<<<<
  *             p0x88_to_tuple(self._destination)
  *         )
  */
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 397; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 302; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -4185,9 +4676,9 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(str
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":395
- *     @cython.ccall
- *     @cython.returns(tuple)
+  /* "src\cython\_genpyx_chess0x88.py":300
+ *         )
+ * 
  *     def tuple(self):             # <<<<<<<<<<<<<<
  *         return (
  *             p0x88_to_tuple(self._origin),
@@ -4198,7 +4689,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(str
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4207,19 +4698,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple(str
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_15tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_15tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_15tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_15tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("tuple (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_14tuple(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_14tuple(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_14tuple(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_14tuple(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4228,7 +4719,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_14tuple(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("tuple", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->tuple(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 395; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->tuple(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 300; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4237,7 +4728,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_14tuple(
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4245,16 +4736,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_14tuple(
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":403
- *     @cython.ccall
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":306
+ *         )
+ * 
  *     def score(self):             # <<<<<<<<<<<<<<
  *         return self.captured
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_17score(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_score(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_17score(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_score(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4268,12 +4759,12 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_score(struct __
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_score); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_score); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_17score)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_17score)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4282,19 +4773,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_score(struct __
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":404
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":307
+ * 
  *     def score(self):
  *         return self.captured             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def get_flags(self):
  */
   __pyx_r = __pyx_v_self->captured;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":403
- *     @cython.ccall
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":306
+ *         )
+ * 
  *     def score(self):             # <<<<<<<<<<<<<<
  *         return self.captured
  * 
@@ -4304,7 +4795,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_score(struct __
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Move.score", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Move.score", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -4312,19 +4803,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_score(struct __
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_17score(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_17score(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_17score(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_17score(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("score (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_16score(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_16score(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_16score(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_16score(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4333,7 +4824,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_16score(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("score", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->score(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->score(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 306; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4342,7 +4833,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_16score(
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.score", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.score", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4350,16 +4841,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_16score(
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":408
- *     @cython.ccall
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":309
+ *         return self.captured
+ * 
  *     def get_flags(self):             # <<<<<<<<<<<<<<
  *         return self.flags
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_19get_flags(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_get_flags(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_19get_flags(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_get_flags(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4373,12 +4864,12 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_get_flags(struc
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_flags); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_flags); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_19get_flags)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_19get_flags)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4387,19 +4878,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_get_flags(struc
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":409
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":310
+ * 
  *     def get_flags(self):
  *         return self.flags             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def readable(self):
  */
   __pyx_r = __pyx_v_self->flags;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":408
- *     @cython.ccall
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":309
+ *         return self.captured
+ * 
  *     def get_flags(self):             # <<<<<<<<<<<<<<
  *         return self.flags
  * 
@@ -4409,7 +4900,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_get_flags(struc
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Move.get_flags", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Move.get_flags", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -4417,19 +4908,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_get_flags(struc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_19get_flags(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_19get_flags(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_19get_flags(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_19get_flags(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_flags (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_18get_flags(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_18get_flags(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_18get_flags(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_18get_flags(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4438,7 +4929,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_18get_fl
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_flags", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->get_flags(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 408; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->get_flags(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 309; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4447,7 +4938,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_18get_fl
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.get_flags", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.get_flags", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4455,16 +4946,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_18get_fl
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":412
+/* "src\cython\_genpyx_chess0x88.py":312
+ *         return self.flags
  * 
- *     @cython.ccall
  *     def readable(self):             # <<<<<<<<<<<<<<
  *         return "%s%s %c" % (
  *             p0x88_to_chess_notation(self._origin),
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_21readable(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_21readable(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_readable(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4479,11 +4970,11 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable(
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_readable); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_readable); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_21readable)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_21readable)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -4493,8 +4984,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable(
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":413
- *     @cython.ccall
+  /* "src\cython\_genpyx_chess0x88.py":313
+ * 
  *     def readable(self):
  *         return "%s%s %c" % (             # <<<<<<<<<<<<<<
  *             p0x88_to_chess_notation(self._origin),
@@ -4502,94 +4993,72 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable(
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":414
+  /* "src\cython\_genpyx_chess0x88.py":314
  *     def readable(self):
  *         return "%s%s %c" % (
  *             p0x88_to_chess_notation(self._origin),             # <<<<<<<<<<<<<<
  *             p0x88_to_chess_notation(self._destination),
  *             PRINT_ARRAY[self.color][self.piece]
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_p0x88_to_chess_notation); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_chess_notation(__pyx_v_self->_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_self->_origin); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":415
+  /* "src\cython\_genpyx_chess0x88.py":315
  *         return "%s%s %c" % (
  *             p0x88_to_chess_notation(self._origin),
  *             p0x88_to_chess_notation(self._destination),             # <<<<<<<<<<<<<<
  *             PRINT_ARRAY[self.color][self.piece]
  *         )
  */
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_p0x88_to_chess_notation); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 415; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->_destination); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 415; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 415; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 415; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_2 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_chess_notation(__pyx_v_self->_destination); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 315; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":416
+  /* "src\cython\_genpyx_chess0x88.py":316
  *             p0x88_to_chess_notation(self._origin),
  *             p0x88_to_chess_notation(self._destination),
  *             PRINT_ARRAY[self.color][self.piece]             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_From_char(((PRINT_ARRAY[__pyx_v_self->color])[__pyx_v_self->piece])); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 416; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyInt_From_char(((PRINT_ARRAY[__pyx_v_self->color])[__pyx_v_self->piece])); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 316; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":414
+  /* "src\cython\_genpyx_chess0x88.py":314
  *     def readable(self):
  *         return "%s%s %c" % (
  *             p0x88_to_chess_notation(self._origin),             # <<<<<<<<<<<<<<
  *             p0x88_to_chess_notation(self._destination),
  *             PRINT_ARRAY[self.color][self.piece]
  */
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 414; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_3);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 314; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_t_2 = 0;
+  PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3);
+  __Pyx_GIVEREF(__pyx_t_3);
   __pyx_t_1 = 0;
-  __pyx_t_4 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_3 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":413
- *     @cython.ccall
+  /* "src\cython\_genpyx_chess0x88.py":313
+ * 
  *     def readable(self):
  *         return "%s%s %c" % (             # <<<<<<<<<<<<<<
  *             p0x88_to_chess_notation(self._origin),
  *             p0x88_to_chess_notation(self._destination),
  */
-  __pyx_t_4 = __Pyx_PyString_Format(__pyx_kp_s_s_s_c, __pyx_t_3); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 413; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_r = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_s_s_c, __pyx_t_4); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 313; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":412
+  /* "src\cython\_genpyx_chess0x88.py":312
+ *         return self.flags
  * 
- *     @cython.ccall
  *     def readable(self):             # <<<<<<<<<<<<<<
  *         return "%s%s %c" % (
  *             p0x88_to_chess_notation(self._origin),
@@ -4601,7 +5070,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable(
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.readable", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.readable", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4610,19 +5079,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable(
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_21readable(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_21readable(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_21readable(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_21readable(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("readable (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_20readable(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_20readable(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_20readable(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_4Move_20readable(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4631,7 +5100,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_20readab
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("readable", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_self->__pyx_vtab)->readable(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 412; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_self->__pyx_vtab)->readable(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 312; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4640,7 +5109,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_20readab
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Move.readable", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Move.readable", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -4648,8 +5117,8 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_20readab
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":431
- *     )
+/* "src\cython\_genpyx_chess0x88.py":328
+ * class Board(object):
  * 
  *     def __init__(self, new_game):             # <<<<<<<<<<<<<<
  *         if new_game:
@@ -4657,8 +5126,8 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_4Move_20readab
  */
 
 /* Python wrapper */
-static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static int __pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_new_game = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -4684,7 +5153,7 @@ static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_1__init__(PyO
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__init__") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -4695,20 +5164,20 @@ static int __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_1__init__(PyO
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 328; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return -1;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board___init__(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), __pyx_v_new_game);
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board___init__(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), __pyx_v_new_game);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board___init__(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_new_game) {
+static int __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board___init__(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_new_game) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -4718,45 +5187,45 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board___init__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":432
+  /* "src\cython\_genpyx_chess0x88.py":329
  * 
  *     def __init__(self, new_game):
  *         if new_game:             # <<<<<<<<<<<<<<
  *             self.load_fen(
  *                 "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_new_game); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 432; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_new_game); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 329; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   if (__pyx_t_1) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":433
+    /* "src\cython\_genpyx_chess0x88.py":330
  *     def __init__(self, new_game):
  *         if new_game:
  *             self.load_fen(             # <<<<<<<<<<<<<<
  *                 "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
  *         else:
  */
-    __pyx_t_2 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->load_fen(__pyx_v_self, __pyx_kp_s_rnbqkbnr_pppppppp_8_8_8_8_PPPPPP, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->load_fen(__pyx_v_self, __pyx_kp_s_rnbqkbnr_pppppppp_8_8_8_8_PPPPPP, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 330; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     goto __pyx_L3;
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":436
+    /* "src\cython\_genpyx_chess0x88.py":333
  *                 "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
  *         else:
  *             self.clear()             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def clear(self):
  */
-    __pyx_t_2 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self, 0); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 333; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":431
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":328
+ * class Board(object):
  * 
  *     def __init__(self, new_game):             # <<<<<<<<<<<<<<
  *         if new_game:
@@ -4768,23 +5237,23 @@ static int __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board___init__(stru
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":440
- *     @cython.ccall
- *     @cython.locals(i=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":335
+ *             self.clear()
+ * 
  *     def clear(self):             # <<<<<<<<<<<<<<
  *         for i in range(128):
  *             self.pieces[i] = PIECE_EMPTY
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_3clear(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_3clear(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_clear(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_v_i;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4799,11 +5268,11 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_clear); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 440; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_clear); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_3clear)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_3clear)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 440; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -4813,8 +5282,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":441
- *     @cython.locals(i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":336
+ * 
  *     def clear(self):
  *         for i in range(128):             # <<<<<<<<<<<<<<
  *             self.pieces[i] = PIECE_EMPTY
@@ -4823,7 +5292,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
   for (__pyx_t_3 = 0; __pyx_t_3 < 128; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":442
+    /* "src\cython\_genpyx_chess0x88.py":337
  *     def clear(self):
  *         for i in range(128):
  *             self.pieces[i] = PIECE_EMPTY             # <<<<<<<<<<<<<<
@@ -4832,7 +5301,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
     (__pyx_v_self->pieces[__pyx_v_i]) = PIECE_EMPTY;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":443
+    /* "src\cython\_genpyx_chess0x88.py":338
  *         for i in range(128):
  *             self.pieces[i] = PIECE_EMPTY
  *             self.colors[i] = COLOR_EMPTY             # <<<<<<<<<<<<<<
@@ -4841,7 +5310,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
     (__pyx_v_self->colors[__pyx_v_i]) = COLOR_EMPTY;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":444
+    /* "src\cython\_genpyx_chess0x88.py":339
  *             self.pieces[i] = PIECE_EMPTY
  *             self.colors[i] = COLOR_EMPTY
  *             self.values[i] = 0             # <<<<<<<<<<<<<<
@@ -4851,7 +5320,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
     (__pyx_v_self->values[__pyx_v_i]) = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":445
+  /* "src\cython\_genpyx_chess0x88.py":340
  *             self.colors[i] = COLOR_EMPTY
  *             self.values[i] = 0
  *         for i in range(7):             # <<<<<<<<<<<<<<
@@ -4861,7 +5330,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
   for (__pyx_t_3 = 0; __pyx_t_3 < 7; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":446
+    /* "src\cython\_genpyx_chess0x88.py":341
  *             self.values[i] = 0
  *         for i in range(7):
  *             self.pieces_count[WHITE * 7 + i] = 0             # <<<<<<<<<<<<<<
@@ -4870,7 +5339,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
     (__pyx_v_self->pieces_count[((WHITE * 7) + __pyx_v_i)]) = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":447
+    /* "src\cython\_genpyx_chess0x88.py":342
  *         for i in range(7):
  *             self.pieces_count[WHITE * 7 + i] = 0
  *             self.pieces_count[BLACK * 7 + i] = 0             # <<<<<<<<<<<<<<
@@ -4880,7 +5349,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
     (__pyx_v_self->pieces_count[((BLACK * 7) + __pyx_v_i)]) = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":449
+  /* "src\cython\_genpyx_chess0x88.py":344
  *             self.pieces_count[BLACK * 7 + i] = 0
  * 
  *         self.kings[WHITE] = EMPTY             # <<<<<<<<<<<<<<
@@ -4889,7 +5358,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   (__pyx_v_self->kings[WHITE]) = EMPTY;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":450
+  /* "src\cython\_genpyx_chess0x88.py":345
  * 
  *         self.kings[WHITE] = EMPTY
  *         self.kings[BLACK] = EMPTY             # <<<<<<<<<<<<<<
@@ -4898,7 +5367,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   (__pyx_v_self->kings[BLACK]) = EMPTY;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":451
+  /* "src\cython\_genpyx_chess0x88.py":346
  *         self.kings[WHITE] = EMPTY
  *         self.kings[BLACK] = EMPTY
  *         self.current_color = WHITE             # <<<<<<<<<<<<<<
@@ -4907,7 +5376,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   __pyx_v_self->current_color = WHITE;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":452
+  /* "src\cython\_genpyx_chess0x88.py":347
  *         self.kings[BLACK] = EMPTY
  *         self.current_color = WHITE
  *         self.castling[0] = 0             # <<<<<<<<<<<<<<
@@ -4916,7 +5385,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   (__pyx_v_self->castling[0]) = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":453
+  /* "src\cython\_genpyx_chess0x88.py":348
  *         self.current_color = WHITE
  *         self.castling[0] = 0
  *         self.castling[1] = 0             # <<<<<<<<<<<<<<
@@ -4925,7 +5394,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   (__pyx_v_self->castling[1]) = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":454
+  /* "src\cython\_genpyx_chess0x88.py":349
  *         self.castling[0] = 0
  *         self.castling[1] = 0
  *         self.en_passant_square = EMPTY             # <<<<<<<<<<<<<<
@@ -4934,7 +5403,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   __pyx_v_self->en_passant_square = EMPTY;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":455
+  /* "src\cython\_genpyx_chess0x88.py":350
  *         self.castling[1] = 0
  *         self.en_passant_square = EMPTY
  *         self.half_moves = 0             # <<<<<<<<<<<<<<
@@ -4943,7 +5412,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   __pyx_v_self->half_moves = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":456
+  /* "src\cython\_genpyx_chess0x88.py":351
  *         self.en_passant_square = EMPTY
  *         self.half_moves = 0
  *         self.moves = 1             # <<<<<<<<<<<<<<
@@ -4952,7 +5421,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   __pyx_v_self->moves = 1;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":457
+  /* "src\cython\_genpyx_chess0x88.py":352
  *         self.half_moves = 0
  *         self.moves = 1
  *         self.hash = 0             # <<<<<<<<<<<<<<
@@ -4961,14 +5430,14 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
  */
   __pyx_v_self->hash = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":458
+  /* "src\cython\_genpyx_chess0x88.py":353
  *         self.moves = 1
  *         self.hash = 0
  *         self.pieces_list = []             # <<<<<<<<<<<<<<
  *         self.last_hash = 0
  * 
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 458; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 353; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v_self->pieces_list);
@@ -4976,18 +5445,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
   __pyx_v_self->pieces_list = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":459
+  /* "src\cython\_genpyx_chess0x88.py":354
  *         self.hash = 0
  *         self.pieces_list = []
  *         self.last_hash = 0             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def clone(self):
  */
   __pyx_v_self->last_hash = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":440
- *     @cython.ccall
- *     @cython.locals(i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":335
+ *             self.clear()
+ * 
  *     def clear(self):             # <<<<<<<<<<<<<<
  *         for i in range(128):
  *             self.pieces[i] = PIECE_EMPTY
@@ -4999,7 +5468,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.clear", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.clear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5008,19 +5477,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear(st
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_3clear(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_3clear(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_3clear(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_3clear(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("clear (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_2clear(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_2clear(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_2clear(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_2clear(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5029,7 +5498,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_2clear(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("clear", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 440; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 335; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5038,7 +5507,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_2clear(
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.clear", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.clear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5046,19 +5515,19 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_2clear(
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":464
- *     @cython.returns(Board)
- *     @cython.locals(result=Board, i=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":356
+ *         self.last_hash = 0
+ * 
  *     def clone(self):             # <<<<<<<<<<<<<<
  *         result = Board(False)
  *         for i in range(128):
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_5clone(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clone(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_5clone(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_clone(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_v_i;
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_result = 0;
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_r = NULL;
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_result = 0;
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
@@ -5072,14 +5541,14 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_clone); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 464; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_clone); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_5clone)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_5clone)) {
       __Pyx_XDECREF(((PyObject *)__pyx_r));
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 464; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 464; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_r = ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_t_2);
+      if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board))))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_r = ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -5087,19 +5556,19 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":465
- *     @cython.locals(result=Board, i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":357
+ * 
  *     def clone(self):
  *         result = Board(False)             # <<<<<<<<<<<<<<
  *         for i in range(128):
  *             result.pieces[i] = self.pieces[i]
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board)), __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board)), __pyx_tuple_, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_result = ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_t_1);
+  __pyx_v_result = ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":466
+  /* "src\cython\_genpyx_chess0x88.py":358
  *     def clone(self):
  *         result = Board(False)
  *         for i in range(128):             # <<<<<<<<<<<<<<
@@ -5109,7 +5578,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   for (__pyx_t_3 = 0; __pyx_t_3 < 128; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":467
+    /* "src\cython\_genpyx_chess0x88.py":359
  *         result = Board(False)
  *         for i in range(128):
  *             result.pieces[i] = self.pieces[i]             # <<<<<<<<<<<<<<
@@ -5118,7 +5587,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
     (__pyx_v_result->pieces[__pyx_v_i]) = (__pyx_v_self->pieces[__pyx_v_i]);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":468
+    /* "src\cython\_genpyx_chess0x88.py":360
  *         for i in range(128):
  *             result.pieces[i] = self.pieces[i]
  *             result.colors[i] = self.colors[i]             # <<<<<<<<<<<<<<
@@ -5127,7 +5596,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
     (__pyx_v_result->colors[__pyx_v_i]) = (__pyx_v_self->colors[__pyx_v_i]);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":469
+    /* "src\cython\_genpyx_chess0x88.py":361
  *             result.pieces[i] = self.pieces[i]
  *             result.colors[i] = self.colors[i]
  *             result.values[i] = self.values[i]             # <<<<<<<<<<<<<<
@@ -5137,7 +5606,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
     (__pyx_v_result->values[__pyx_v_i]) = (__pyx_v_self->values[__pyx_v_i]);
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":470
+  /* "src\cython\_genpyx_chess0x88.py":362
  *             result.colors[i] = self.colors[i]
  *             result.values[i] = self.values[i]
  *         for i in range(7):             # <<<<<<<<<<<<<<
@@ -5147,7 +5616,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   for (__pyx_t_3 = 0; __pyx_t_3 < 7; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":471
+    /* "src\cython\_genpyx_chess0x88.py":363
  *             result.values[i] = self.values[i]
  *         for i in range(7):
  *             result.pieces_count[i] = self.pieces_count[i]             # <<<<<<<<<<<<<<
@@ -5156,7 +5625,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
     (__pyx_v_result->pieces_count[__pyx_v_i]) = (__pyx_v_self->pieces_count[__pyx_v_i]);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":472
+    /* "src\cython\_genpyx_chess0x88.py":364
  *         for i in range(7):
  *             result.pieces_count[i] = self.pieces_count[i]
  *             result.pieces_count[7 + i] = self.pieces_count[7 + i]             # <<<<<<<<<<<<<<
@@ -5166,7 +5635,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
     (__pyx_v_result->pieces_count[(7 + __pyx_v_i)]) = (__pyx_v_self->pieces_count[(7 + __pyx_v_i)]);
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":474
+  /* "src\cython\_genpyx_chess0x88.py":366
  *             result.pieces_count[7 + i] = self.pieces_count[7 + i]
  * 
  *         result.kings[WHITE] = self.kings[WHITE]             # <<<<<<<<<<<<<<
@@ -5175,7 +5644,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
   (__pyx_v_result->kings[WHITE]) = (__pyx_v_self->kings[WHITE]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":475
+  /* "src\cython\_genpyx_chess0x88.py":367
  * 
  *         result.kings[WHITE] = self.kings[WHITE]
  *         result.kings[BLACK] = self.kings[BLACK]             # <<<<<<<<<<<<<<
@@ -5184,7 +5653,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
   (__pyx_v_result->kings[BLACK]) = (__pyx_v_self->kings[BLACK]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":476
+  /* "src\cython\_genpyx_chess0x88.py":368
  *         result.kings[WHITE] = self.kings[WHITE]
  *         result.kings[BLACK] = self.kings[BLACK]
  *         result.current_color = self.current_color             # <<<<<<<<<<<<<<
@@ -5194,7 +5663,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_t_3 = __pyx_v_self->current_color;
   __pyx_v_result->current_color = __pyx_t_3;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":477
+  /* "src\cython\_genpyx_chess0x88.py":369
  *         result.kings[BLACK] = self.kings[BLACK]
  *         result.current_color = self.current_color
  *         result.castling[WHITE] = self.castling[WHITE]             # <<<<<<<<<<<<<<
@@ -5203,7 +5672,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
   (__pyx_v_result->castling[WHITE]) = (__pyx_v_self->castling[WHITE]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":478
+  /* "src\cython\_genpyx_chess0x88.py":370
  *         result.current_color = self.current_color
  *         result.castling[WHITE] = self.castling[WHITE]
  *         result.castling[BLACK] = self.castling[BLACK]             # <<<<<<<<<<<<<<
@@ -5212,7 +5681,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
  */
   (__pyx_v_result->castling[BLACK]) = (__pyx_v_self->castling[BLACK]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":479
+  /* "src\cython\_genpyx_chess0x88.py":371
  *         result.castling[WHITE] = self.castling[WHITE]
  *         result.castling[BLACK] = self.castling[BLACK]
  *         result.en_passant_square = self.en_passant_square             # <<<<<<<<<<<<<<
@@ -5222,7 +5691,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_t_3 = __pyx_v_self->en_passant_square;
   __pyx_v_result->en_passant_square = __pyx_t_3;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":480
+  /* "src\cython\_genpyx_chess0x88.py":372
  *         result.castling[BLACK] = self.castling[BLACK]
  *         result.en_passant_square = self.en_passant_square
  *         result.half_moves = self.half_moves             # <<<<<<<<<<<<<<
@@ -5232,7 +5701,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_t_3 = __pyx_v_self->half_moves;
   __pyx_v_result->half_moves = __pyx_t_3;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":481
+  /* "src\cython\_genpyx_chess0x88.py":373
  *         result.en_passant_square = self.en_passant_square
  *         result.half_moves = self.half_moves
  *         result.moves = self.moves             # <<<<<<<<<<<<<<
@@ -5242,7 +5711,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_t_3 = __pyx_v_self->moves;
   __pyx_v_result->moves = __pyx_t_3;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":482
+  /* "src\cython\_genpyx_chess0x88.py":374
  *         result.half_moves = self.half_moves
  *         result.moves = self.moves
  *         result.hash = self.hash             # <<<<<<<<<<<<<<
@@ -5252,7 +5721,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_t_4 = __pyx_v_self->hash;
   __pyx_v_result->hash = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":483
+  /* "src\cython\_genpyx_chess0x88.py":375
  *         result.moves = self.moves
  *         result.hash = self.hash
  *         result.last_hash = self.last_hash             # <<<<<<<<<<<<<<
@@ -5262,7 +5731,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_t_4 = __pyx_v_self->last_hash;
   __pyx_v_result->last_hash = __pyx_t_4;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":484
+  /* "src\cython\_genpyx_chess0x88.py":376
  *         result.hash = self.hash
  *         result.last_hash = self.last_hash
  *         result.pieces_list = self.pieces_list             # <<<<<<<<<<<<<<
@@ -5277,21 +5746,21 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_v_result->pieces_list = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":485
+  /* "src\cython\_genpyx_chess0x88.py":377
  *         result.last_hash = self.last_hash
  *         result.pieces_list = self.pieces_list
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def add(self, piece, color, square):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __Pyx_INCREF(((PyObject *)__pyx_v_result));
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":464
- *     @cython.returns(Board)
- *     @cython.locals(result=Board, i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":356
+ *         self.last_hash = 0
+ * 
  *     def clone(self):             # <<<<<<<<<<<<<<
  *         result = Board(False)
  *         for i in range(128):
@@ -5301,7 +5770,7 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.clone", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.clone", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF((PyObject *)__pyx_v_result);
@@ -5311,19 +5780,19 @@ static struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_f_3
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_5clone(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_5clone(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_5clone(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_5clone(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("clone (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_4clone(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_4clone(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_4clone(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_4clone(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5332,7 +5801,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_4clone(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("clone", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clone(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 464; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clone(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 356; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5341,7 +5810,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_4clone(
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.clone", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.clone", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5349,22 +5818,22 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_4clone(
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":493
- *         update_value=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":379
+ *         return result
+ * 
  *     def add(self, piece, color, square):             # <<<<<<<<<<<<<<
  *         self.pieces[square] = piece
  *         self.colors[square] = color
  */
 
-static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_piece, int __pyx_v_color, int __pyx_v_square) {
+static void __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_add(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_piece, int __pyx_v_color, int __pyx_v_square) {
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   long __pyx_t_2;
   __Pyx_RefNannySetupContext("add", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":494
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":380
+ * 
  *     def add(self, piece, color, square):
  *         self.pieces[square] = piece             # <<<<<<<<<<<<<<
  *         self.colors[square] = color
@@ -5372,7 +5841,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __
  */
   (__pyx_v_self->pieces[__pyx_v_square]) = __pyx_v_piece;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":495
+  /* "src\cython\_genpyx_chess0x88.py":381
  *     def add(self, piece, color, square):
  *         self.pieces[square] = piece
  *         self.colors[square] = color             # <<<<<<<<<<<<<<
@@ -5381,7 +5850,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __
  */
   (__pyx_v_self->colors[__pyx_v_square]) = __pyx_v_color;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":497
+  /* "src\cython\_genpyx_chess0x88.py":383
  *         self.colors[square] = color
  * 
  *         if piece == KING:             # <<<<<<<<<<<<<<
@@ -5391,7 +5860,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __
   __pyx_t_1 = ((__pyx_v_piece == KING) != 0);
   if (__pyx_t_1) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":498
+    /* "src\cython\_genpyx_chess0x88.py":384
  * 
  *         if piece == KING:
  *             self.kings[color] = square             # <<<<<<<<<<<<<<
@@ -5403,7 +5872,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":500
+  /* "src\cython\_genpyx_chess0x88.py":386
  *             self.kings[color] = square
  * 
  *         self.pieces_count[color * 7 + piece] += 1             # <<<<<<<<<<<<<<
@@ -5413,18 +5882,18 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __
   __pyx_t_2 = ((__pyx_v_color * 7) + __pyx_v_piece);
   (__pyx_v_self->pieces_count[__pyx_t_2]) = ((__pyx_v_self->pieces_count[__pyx_t_2]) + 1);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":502
+  /* "src\cython\_genpyx_chess0x88.py":388
  *         self.pieces_count[color * 7 + piece] += 1
  * 
  *         self.hash ^= zobrist_pieces[piece][color][square]             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def remove(self, square):
  */
-  __pyx_v_self->hash = (__pyx_v_self->hash ^ (((__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_pieces[__pyx_v_piece])[__pyx_v_color])[__pyx_v_square]));
+  __pyx_v_self->hash = (__pyx_v_self->hash ^ (((__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_pieces[__pyx_v_piece])[__pyx_v_color])[__pyx_v_square]));
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":493
- *         update_value=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":379
+ *         return result
+ * 
  *     def add(self, piece, color, square):             # <<<<<<<<<<<<<<
  *         self.pieces[square] = piece
  *         self.colors[square] = color
@@ -5434,15 +5903,15 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add(struct __
   __Pyx_RefNannyFinishContext();
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":510
- *         update_value=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":390
+ *         self.hash ^= zobrist_pieces[piece][color][square]
+ * 
  *     def remove(self, square):             # <<<<<<<<<<<<<<
  *         piece = self.pieces[square]
  *         color = self.colors[square]
  */
 
-static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_square) {
+static void __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_remove(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_square) {
   int __pyx_v_color;
   int __pyx_v_piece;
   __Pyx_RefNannyDeclarations
@@ -5450,8 +5919,8 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
   long __pyx_t_2;
   __Pyx_RefNannySetupContext("remove", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":511
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":391
+ * 
  *     def remove(self, square):
  *         piece = self.pieces[square]             # <<<<<<<<<<<<<<
  *         color = self.colors[square]
@@ -5459,7 +5928,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
  */
   __pyx_v_piece = (__pyx_v_self->pieces[__pyx_v_square]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":512
+  /* "src\cython\_genpyx_chess0x88.py":392
  *     def remove(self, square):
  *         piece = self.pieces[square]
  *         color = self.colors[square]             # <<<<<<<<<<<<<<
@@ -5468,7 +5937,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
  */
   __pyx_v_color = (__pyx_v_self->colors[__pyx_v_square]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":513
+  /* "src\cython\_genpyx_chess0x88.py":393
  *         piece = self.pieces[square]
  *         color = self.colors[square]
  *         if piece:             # <<<<<<<<<<<<<<
@@ -5478,16 +5947,16 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
   __pyx_t_1 = (__pyx_v_piece != 0);
   if (__pyx_t_1) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":514
+    /* "src\cython\_genpyx_chess0x88.py":394
  *         color = self.colors[square]
  *         if piece:
  *             self.hash ^= zobrist_pieces[piece][color][square]             # <<<<<<<<<<<<<<
  * 
  *             if piece == KING:
  */
-    __pyx_v_self->hash = (__pyx_v_self->hash ^ (((__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_pieces[__pyx_v_piece])[__pyx_v_color])[__pyx_v_square]));
+    __pyx_v_self->hash = (__pyx_v_self->hash ^ (((__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_pieces[__pyx_v_piece])[__pyx_v_color])[__pyx_v_square]));
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":516
+    /* "src\cython\_genpyx_chess0x88.py":396
  *             self.hash ^= zobrist_pieces[piece][color][square]
  * 
  *             if piece == KING:             # <<<<<<<<<<<<<<
@@ -5497,7 +5966,7 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
     __pyx_t_1 = ((__pyx_v_piece == KING) != 0);
     if (__pyx_t_1) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":517
+      /* "src\cython\_genpyx_chess0x88.py":397
  * 
  *             if piece == KING:
  *                 self.kings[color] = PIECE_EMPTY             # <<<<<<<<<<<<<<
@@ -5509,30 +5978,30 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
     }
     __pyx_L4:;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":518
+    /* "src\cython\_genpyx_chess0x88.py":398
  *             if piece == KING:
  *                 self.kings[color] = PIECE_EMPTY
  *             self.pieces[square] = PIECE_EMPTY             # <<<<<<<<<<<<<<
  *             self.colors[square] = COLOR_EMPTY
- * 
+ *             self.pieces_count[color * 7 + piece] -= 1
  */
     (__pyx_v_self->pieces[__pyx_v_square]) = PIECE_EMPTY;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":519
+    /* "src\cython\_genpyx_chess0x88.py":399
  *                 self.kings[color] = PIECE_EMPTY
  *             self.pieces[square] = PIECE_EMPTY
  *             self.colors[square] = COLOR_EMPTY             # <<<<<<<<<<<<<<
- * 
  *             self.pieces_count[color * 7 + piece] -= 1
+ * 
  */
     (__pyx_v_self->colors[__pyx_v_square]) = COLOR_EMPTY;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":521
+    /* "src\cython\_genpyx_chess0x88.py":400
+ *             self.pieces[square] = PIECE_EMPTY
  *             self.colors[square] = COLOR_EMPTY
- * 
  *             self.pieces_count[color * 7 + piece] -= 1             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def hindered(self, color):
  */
     __pyx_t_2 = ((__pyx_v_color * 7) + __pyx_v_piece);
     (__pyx_v_self->pieces_count[__pyx_t_2]) = ((__pyx_v_self->pieces_count[__pyx_t_2]) - 1);
@@ -5540,9 +6009,9 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":510
- *         update_value=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":390
+ *         self.hash ^= zobrist_pieces[piece][color][square]
+ * 
  *     def remove(self, square):             # <<<<<<<<<<<<<<
  *         piece = self.pieces[square]
  *         color = self.colors[square]
@@ -5552,16 +6021,16 @@ static void __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove(struct
   __Pyx_RefNannyFinishContext();
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":525
- *     @cython.ccall
- *     @cython.locals(color=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":402
+ *             self.pieces_count[color * 7 + piece] -= 1
+ * 
  *     def hindered(self, color):             # <<<<<<<<<<<<<<
  *         result = set()
  *         attack_moves = self.attack_moves(-1, color)
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_7hindered(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_7hindered(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_hindered(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_result = NULL;
   PyObject *__pyx_v_attack_moves = NULL;
   PyObject *__pyx_v_move = NULL;
@@ -5571,9 +6040,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   Py_ssize_t __pyx_t_4;
-  PyObject *(*__pyx_t_5)(PyObject *);
+  int __pyx_t_5;
   int __pyx_t_6;
-  int __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5582,21 +6050,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_hindered); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 525; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_hindered); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_7hindered)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_7hindered)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 525; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 525; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 525; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(PySet_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "set", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -5604,119 +6073,96 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":526
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":403
+ * 
  *     def hindered(self, color):
  *         result = set()             # <<<<<<<<<<<<<<
  *         attack_moves = self.attack_moves(-1, color)
  *         for move in attack_moves:
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 526; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 403; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_result = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":527
+  /* "src\cython\_genpyx_chess0x88.py":404
  *     def hindered(self, color):
  *         result = set()
  *         attack_moves = self.attack_moves(-1, color)             # <<<<<<<<<<<<<<
  *         for move in attack_moves:
  *             result.add(
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attack_moves(__pyx_v_self, -1, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 527; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attack_moves(__pyx_v_self, -1, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 404; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_attack_moves = __pyx_t_1;
+  __pyx_v_attack_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":528
+  /* "src\cython\_genpyx_chess0x88.py":405
  *         result = set()
  *         attack_moves = self.attack_moves(-1, color)
  *         for move in attack_moves:             # <<<<<<<<<<<<<<
  *             result.add(
  *                 p0x88_to_tuple(move.destination())
  */
-  if (PyList_CheckExact(__pyx_v_attack_moves) || PyTuple_CheckExact(__pyx_v_attack_moves)) {
-    __pyx_t_1 = __pyx_v_attack_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
-    __pyx_t_5 = NULL;
-  } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_attack_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext;
+  if (unlikely(__pyx_v_attack_moves == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
+  __pyx_t_1 = __pyx_v_attack_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
   for (;;) {
-    if (!__pyx_t_5 && PyList_CheckExact(__pyx_t_1)) {
-      if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
-      #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #else
-      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #endif
-    } else if (!__pyx_t_5 && PyTuple_CheckExact(__pyx_t_1)) {
-      if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-      #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #else
-      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #endif
-    } else {
-      __pyx_t_2 = __pyx_t_5(__pyx_t_1);
-      if (unlikely(!__pyx_t_2)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 528; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-    }
+    if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
+    #if CYTHON_COMPILING_IN_CPYTHON
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    #else
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 405; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    #endif
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":530
+    /* "src\cython\_genpyx_chess0x88.py":407
  *         for move in attack_moves:
  *             result.add(
  *                 p0x88_to_tuple(move.destination())             # <<<<<<<<<<<<<<
  *             )
  *         return result
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_destination); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_destination); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_6 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(__pyx_t_6); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(__pyx_t_5); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 407; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":529
+    /* "src\cython\_genpyx_chess0x88.py":406
  *         attack_moves = self.attack_moves(-1, color)
  *         for move in attack_moves:
  *             result.add(             # <<<<<<<<<<<<<<
  *                 p0x88_to_tuple(move.destination())
  *             )
  */
-    __pyx_t_7 = PySet_Add(__pyx_v_result, __pyx_t_3); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 529; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PySet_Add(__pyx_v_result, __pyx_t_3); if (unlikely(__pyx_t_6 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 406; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":532
+  /* "src\cython\_genpyx_chess0x88.py":409
  *                 p0x88_to_tuple(move.destination())
  *             )
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def get_value(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_result);
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":525
- *     @cython.ccall
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":402
+ *             self.pieces_count[color * 7 + piece] -= 1
+ * 
  *     def hindered(self, color):             # <<<<<<<<<<<<<<
  *         result = set()
  *         attack_moves = self.attack_moves(-1, color)
@@ -5727,7 +6173,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.hindered", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.hindered", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_result);
@@ -5739,8 +6185,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_7hindered(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_7hindered(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_7hindered(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_7hindered(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
   int __pyx_v_color;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -5749,22 +6195,22 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_7hinder
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("hindered (wrapper)", 0);
   assert(__pyx_arg_color); {
-    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 525; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.hindered", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.hindered", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_6hindered(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_6hindered(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_6hindered(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_6hindered(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5773,7 +6219,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_6hinder
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("hindered", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->hindered(__pyx_v_self, __pyx_v_color, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 525; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->hindered(__pyx_v_self, __pyx_v_color, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 402; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5782,7 +6228,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_6hinder
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.hindered", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.hindered", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5790,16 +6236,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_6hinder
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":537
- *     @cython.returns(cython.int)
- *     @cython.locals(result=cython.int, i=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":411
+ *         return result
+ * 
  *     def get_value(self):             # <<<<<<<<<<<<<<
  *         result = 0
  *         for i in range(A8, H1 + 1):
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_9get_value(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_9get_value(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_get_value(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_v_i;
   int __pyx_v_result;
   int __pyx_r;
@@ -5817,12 +6263,12 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_value); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_value); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_9get_value)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_9get_value)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5831,8 +6277,8 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":538
- *     @cython.locals(result=cython.int, i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":412
+ * 
  *     def get_value(self):
  *         result = 0             # <<<<<<<<<<<<<<
  *         for i in range(A8, H1 + 1):
@@ -5840,7 +6286,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
  */
   __pyx_v_result = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":539
+  /* "src\cython\_genpyx_chess0x88.py":413
  *     def get_value(self):
  *         result = 0
  *         for i in range(A8, H1 + 1):             # <<<<<<<<<<<<<<
@@ -5851,7 +6297,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
   for (__pyx_t_3 = A8; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":540
+    /* "src\cython\_genpyx_chess0x88.py":414
  *         result = 0
  *         for i in range(A8, H1 + 1):
  *             if is_not_square(i):             # <<<<<<<<<<<<<<
@@ -5861,7 +6307,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
     __pyx_t_5 = (is_not_square(__pyx_v_i) != 0);
     if (__pyx_t_5) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":541
+      /* "src\cython\_genpyx_chess0x88.py":415
  *         for i in range(A8, H1 + 1):
  *             if is_not_square(i):
  *                 i = i + 7             # <<<<<<<<<<<<<<
@@ -5870,7 +6316,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
  */
       __pyx_v_i = (__pyx_v_i + 7);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":542
+      /* "src\cython\_genpyx_chess0x88.py":416
  *             if is_not_square(i):
  *                 i = i + 7
  *                 continue             # <<<<<<<<<<<<<<
@@ -5880,7 +6326,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
       goto __pyx_L3_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":543
+    /* "src\cython\_genpyx_chess0x88.py":417
  *                 i = i + 7
  *                 continue
  *             result += self.values[i]             # <<<<<<<<<<<<<<
@@ -5891,19 +6337,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
     __pyx_L3_continue:;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":544
+  /* "src\cython\_genpyx_chess0x88.py":418
  *                 continue
  *             result += self.values[i]
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def possible_moves(self, color):
  */
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":537
- *     @cython.returns(cython.int)
- *     @cython.locals(result=cython.int, i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":411
+ *         return result
+ * 
  *     def get_value(self):             # <<<<<<<<<<<<<<
  *         result = 0
  *         for i in range(A8, H1 + 1):
@@ -5913,7 +6359,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Board.get_value", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Board.get_value", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -5921,19 +6367,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value(stru
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_9get_value(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_9get_value(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_9get_value(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_9get_value(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_value (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_8get_value(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_8get_value(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_8get_value(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_8get_value(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5942,7 +6388,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_8get_va
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_value", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->get_value(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->get_value(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 411; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5951,7 +6397,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_8get_va
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.get_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.get_value", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5959,16 +6405,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_8get_va
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":548
- *     @cython.ccall
- *     @cython.locals(color=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":420
+ *         return result
+ * 
  *     def possible_moves(self, color):             # <<<<<<<<<<<<<<
  *         result = self.generate_moves(LEGAL, EMPTY, color)
  *         result.sort(reverse=True, key=move_key)
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_11possible_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_11possible_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_possible_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_result = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5983,21 +6429,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_possible_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 548; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_possible_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_11possible_moves)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_11possible_moves)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 548; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 548; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 548; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -6005,55 +6452,55 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":549
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":421
+ * 
  *     def possible_moves(self, color):
  *         result = self.generate_moves(LEGAL, EMPTY, color)             # <<<<<<<<<<<<<<
  *         result.sort(reverse=True, key=move_key)
  *         return result
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, EMPTY, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 549; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, EMPTY, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 421; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_result = __pyx_t_1;
+  __pyx_v_result = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":550
+  /* "src\cython\_genpyx_chess0x88.py":422
  *     def possible_moves(self, color):
  *         result = self.generate_moves(LEGAL, EMPTY, color)
  *         result.sort(reverse=True, key=move_key)             # <<<<<<<<<<<<<<
  *         return result
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_result, __pyx_n_s_sort); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_result, __pyx_n_s_sort); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_reverse, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_move_key); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_reverse, Py_True) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_GetModuleGlobalName(__pyx_n_s_move_key); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_key, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_key, __pyx_t_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 422; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":551
+  /* "src\cython\_genpyx_chess0x88.py":423
  *         result = self.generate_moves(LEGAL, EMPTY, color)
  *         result.sort(reverse=True, key=move_key)
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def possible_killing_moves(self, color):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_result);
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":548
- *     @cython.ccall
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":420
+ *         return result
+ * 
  *     def possible_moves(self, color):             # <<<<<<<<<<<<<<
  *         result = self.generate_moves(LEGAL, EMPTY, color)
  *         result.sort(reverse=True, key=move_key)
@@ -6064,7 +6511,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_result);
@@ -6074,8 +6521,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_11possible_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_11possible_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_11possible_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_11possible_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
   int __pyx_v_color;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -6084,22 +6531,22 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_11possi
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("possible_moves (wrapper)", 0);
   assert(__pyx_arg_color); {
-    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 548; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_10possible_moves(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_10possible_moves(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_10possible_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_10possible_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6108,7 +6555,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_10possi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("possible_moves", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->possible_moves(__pyx_v_self, __pyx_v_color, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 548; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->possible_moves(__pyx_v_self, __pyx_v_color, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6117,7 +6564,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_10possi
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.possible_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6125,16 +6572,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_10possi
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":555
- *     @cython.ccall
- *     @cython.locals(color=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":425
+ *         return result
+ * 
  *     def possible_killing_moves(self, color):             # <<<<<<<<<<<<<<
  *         result = set()
  *         moves = self.generate_moves(LEGAL, EMPTY, color)
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_13possible_killing_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible_killing_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_13possible_killing_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_possible_killing_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_result = NULL;
   PyObject *__pyx_v_moves = NULL;
   PyObject *__pyx_v_move = NULL;
@@ -6144,10 +6591,9 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   Py_ssize_t __pyx_t_4;
-  PyObject *(*__pyx_t_5)(PyObject *);
-  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
   int __pyx_t_7;
-  int __pyx_t_8;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6156,21 +6602,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_possible_killing_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_possible_killing_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_13possible_killing_moves)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_13possible_killing_moves)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_r = __pyx_t_2;
+      if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -6178,126 +6625,104 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":556
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":426
+ * 
  *     def possible_killing_moves(self, color):
  *         result = set()             # <<<<<<<<<<<<<<
  *         moves = self.generate_moves(LEGAL, EMPTY, color)
  *         for move in moves:
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 556; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 426; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_result = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":557
+  /* "src\cython\_genpyx_chess0x88.py":427
  *     def possible_killing_moves(self, color):
  *         result = set()
  *         moves = self.generate_moves(LEGAL, EMPTY, color)             # <<<<<<<<<<<<<<
  *         for move in moves:
  *             if move.get_flags() & (CAPTURE | EN_PASSANT):
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, EMPTY, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 557; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, EMPTY, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 427; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_moves = __pyx_t_1;
+  __pyx_v_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":558
+  /* "src\cython\_genpyx_chess0x88.py":428
  *         result = set()
  *         moves = self.generate_moves(LEGAL, EMPTY, color)
  *         for move in moves:             # <<<<<<<<<<<<<<
  *             if move.get_flags() & (CAPTURE | EN_PASSANT):
  *                 result.add(move)
  */
-  if (PyList_CheckExact(__pyx_v_moves) || PyTuple_CheckExact(__pyx_v_moves)) {
-    __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
-    __pyx_t_5 = NULL;
-  } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext;
+  if (unlikely(__pyx_v_moves == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
+  __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
   for (;;) {
-    if (!__pyx_t_5 && PyList_CheckExact(__pyx_t_1)) {
-      if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
-      #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #else
-      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #endif
-    } else if (!__pyx_t_5 && PyTuple_CheckExact(__pyx_t_1)) {
-      if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-      #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #else
-      __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #endif
-    } else {
-      __pyx_t_2 = __pyx_t_5(__pyx_t_1);
-      if (unlikely(!__pyx_t_2)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 558; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_2);
-    }
+    if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
+    #if CYTHON_COMPILING_IN_CPYTHON
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    #else
+    __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 428; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    #endif
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":559
+    /* "src\cython\_genpyx_chess0x88.py":429
  *         moves = self.generate_moves(LEGAL, EMPTY, color)
  *         for move in moves:
  *             if move.get_flags() & (CAPTURE | EN_PASSANT):             # <<<<<<<<<<<<<<
  *                 result.add(move)
  *         return result
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_get_flags); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_get_flags); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyInt_From_int((CAPTURE | EN_PASSANT)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyInt_From_int((CAPTURE | EN_PASSANT)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_6 = PyNumber_And(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_5 = PyNumber_And(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 559; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (__pyx_t_7) {
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 429; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":560
+      /* "src\cython\_genpyx_chess0x88.py":430
  *         for move in moves:
  *             if move.get_flags() & (CAPTURE | EN_PASSANT):
  *                 result.add(move)             # <<<<<<<<<<<<<<
  *         return result
  * 
  */
-      __pyx_t_8 = PySet_Add(__pyx_v_result, __pyx_v_move); if (unlikely(__pyx_t_8 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 560; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_7 = PySet_Add(__pyx_v_result, __pyx_v_move); if (unlikely(__pyx_t_7 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 430; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       goto __pyx_L5;
     }
     __pyx_L5:;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":561
+  /* "src\cython\_genpyx_chess0x88.py":431
  *             if move.get_flags() & (CAPTURE | EN_PASSANT):
  *                 result.add(move)
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def color(self):
  */
   __Pyx_XDECREF(__pyx_r);
+  if (!(likely(PyList_CheckExact(__pyx_v_result))||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_v_result)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 431; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_INCREF(__pyx_v_result);
-  __pyx_r = __pyx_v_result;
+  __pyx_r = ((PyObject*)__pyx_v_result);
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":555
- *     @cython.ccall
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":425
+ *         return result
+ * 
  *     def possible_killing_moves(self, color):             # <<<<<<<<<<<<<<
  *         result = set()
  *         moves = self.generate_moves(LEGAL, EMPTY, color)
@@ -6308,8 +6733,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.possible_killing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.possible_killing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_result);
@@ -6321,8 +6746,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_13possible_killing_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_13possible_killing_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_13possible_killing_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_13possible_killing_moves(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
   int __pyx_v_color;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -6331,22 +6756,22 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_13possi
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("possible_killing_moves (wrapper)", 0);
   assert(__pyx_arg_color); {
-    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.possible_killing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.possible_killing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_12possible_killing_moves(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_12possible_killing_moves(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_12possible_killing_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_12possible_killing_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6355,7 +6780,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_12possi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("possible_killing_moves", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->possible_killing_moves(__pyx_v_self, __pyx_v_color, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->possible_killing_moves(__pyx_v_self, __pyx_v_color, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 425; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6364,7 +6789,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_12possi
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.possible_killing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.possible_killing_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6372,20 +6797,21 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_12possi
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":564
+/* "src\cython\_genpyx_chess0x88.py":433
+ *         return result
  * 
- *     @cython.ccall
  *     def color(self):             # <<<<<<<<<<<<<<
  *         return self.current_color
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_15color(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_color(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
-  PyObject *__pyx_r = NULL;
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_15color(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_color(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6394,37 +6820,33 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_color(st
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 564; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_15color)) {
-      __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 564; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_15color)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_r = __pyx_t_2;
-      __pyx_t_2 = 0;
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":565
- *     @cython.ccall
+  /* "src\cython\_genpyx_chess0x88.py":434
+ * 
  *     def color(self):
  *         return self.current_color             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def current_king_position(self):
  */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_self->current_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 565; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_r = __pyx_v_self->current_color;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":564
+  /* "src\cython\_genpyx_chess0x88.py":433
+ *         return result
  * 
- *     @cython.ccall
  *     def color(self):             # <<<<<<<<<<<<<<
  *         return self.current_color
  * 
@@ -6434,28 +6856,27 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_color(st
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.color", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Board.color", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_15color(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_15color(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_15color(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_15color(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("color (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_14color(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_14color(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_14color(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_14color(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6464,7 +6885,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_14color
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("color", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->color(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 564; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->color(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 433; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6473,7 +6894,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_14color
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.color", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.color", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6481,16 +6902,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_14color
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":568
+/* "src\cython\_genpyx_chess0x88.py":436
+ *         return self.current_color
  * 
- *     @cython.ccall
  *     def current_king_position(self):             # <<<<<<<<<<<<<<
  *         return p0x88_to_tuple(self._current_king_position())
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_17current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_current_king_position(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_17current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_current_king_position(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6503,13 +6924,14 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_current_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_current_king_position); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_current_king_position); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_17current_king_position)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_17current_king_position)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_r = __pyx_t_2;
+      if (!(likely(PyTuple_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -6517,23 +6939,23 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_current_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":569
- *     @cython.ccall
+  /* "src\cython\_genpyx_chess0x88.py":437
+ * 
  *     def current_king_position(self):
  *         return p0x88_to_tuple(self._current_king_position())             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def move(self, original_position, new_position):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->_current_king_position(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 569; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->_current_king_position(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 437; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
+  __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":568
+  /* "src\cython\_genpyx_chess0x88.py":436
+ *         return self.current_color
  * 
- *     @cython.ccall
  *     def current_king_position(self):             # <<<<<<<<<<<<<<
  *         return p0x88_to_tuple(self._current_king_position())
  * 
@@ -6543,7 +6965,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_current_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6552,19 +6974,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_current_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_17current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_17current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_17current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_17current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("current_king_position (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_16current_king_position(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_16current_king_position(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_16current_king_position(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_16current_king_position(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6573,7 +6995,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_16curre
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("current_king_position", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->current_king_position(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 568; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->current_king_position(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 436; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6582,7 +7004,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_16curre
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6590,16 +7012,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_16curre
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":573
- *     @cython.ccall
- *     @cython.locals(dest=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":439
+ *         return p0x88_to_tuple(self._current_king_position())
+ * 
  *     def move(self, original_position, new_position):             # <<<<<<<<<<<<<<
  *         dest = tuple_to_0x88(new_position)
  *         moves = self.generate_moves(
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_19move(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_original_position, PyObject *__pyx_v_new_position, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_19move(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_move(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_original_position, PyObject *__pyx_v_new_position, int __pyx_skip_dispatch) {
   int __pyx_v_dest;
   PyObject *__pyx_v_moves = NULL;
   PyObject *__pyx_v_move = NULL;
@@ -6609,9 +7031,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
   Py_ssize_t __pyx_t_4;
-  PyObject *(*__pyx_t_5)(PyObject *);
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_t_7;
+  PyObject *__pyx_t_5 = NULL;
+  int __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6620,11 +7041,11 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_move); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_move); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_19move)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_19move)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_v_original_position);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_original_position);
@@ -6632,7 +7053,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
       __Pyx_INCREF(__pyx_v_new_position);
       PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_new_position);
       __Pyx_GIVEREF(__pyx_v_new_position);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -6643,124 +7064,91 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":574
- *     @cython.locals(dest=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":440
+ * 
  *     def move(self, original_position, new_position):
  *         dest = tuple_to_0x88(new_position)             # <<<<<<<<<<<<<<
  *         moves = self.generate_moves(
  *             LEGAL,
  */
-  if (!(likely(PyTuple_CheckExact(__pyx_v_new_position))||((__pyx_v_new_position) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_new_position)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 574; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_dest = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(((PyObject*)__pyx_v_new_position));
+  __pyx_v_dest = __pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88(__pyx_v_new_position);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":577
- *         moves = self.generate_moves(
- *             LEGAL,
- *             tuple_to_0x88(original_position),             # <<<<<<<<<<<<<<
- *             COLOR_EMPTY,
- *         )
- */
-  if (!(likely(PyTuple_CheckExact(__pyx_v_original_position))||((__pyx_v_original_position) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_original_position)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 577; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":575
+  /* "src\cython\_genpyx_chess0x88.py":441
  *     def move(self, original_position, new_position):
  *         dest = tuple_to_0x88(new_position)
  *         moves = self.generate_moves(             # <<<<<<<<<<<<<<
  *             LEGAL,
  *             tuple_to_0x88(original_position),
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(((PyObject*)__pyx_v_original_position)), COLOR_EMPTY); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 575; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, __pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88(__pyx_v_original_position), COLOR_EMPTY); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 441; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_moves = __pyx_t_1;
+  __pyx_v_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":581
+  /* "src\cython\_genpyx_chess0x88.py":447
  *         )
  * 
  *         for move in moves:             # <<<<<<<<<<<<<<
  *             if move.destination() == dest:
  *                 move.do_update(self)
  */
-  if (PyList_CheckExact(__pyx_v_moves) || PyTuple_CheckExact(__pyx_v_moves)) {
-    __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
-    __pyx_t_5 = NULL;
-  } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = Py_TYPE(__pyx_t_1)->tp_iternext;
+  if (unlikely(__pyx_v_moves == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
+    {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
+  __pyx_t_1 = __pyx_v_moves; __Pyx_INCREF(__pyx_t_1); __pyx_t_4 = 0;
   for (;;) {
-    if (!__pyx_t_5 && PyList_CheckExact(__pyx_t_1)) {
-      if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
-      #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #else
-      __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #endif
-    } else if (!__pyx_t_5 && PyTuple_CheckExact(__pyx_t_1)) {
-      if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
-      #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #else
-      __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      #endif
-    } else {
-      __pyx_t_3 = __pyx_t_5(__pyx_t_1);
-      if (unlikely(!__pyx_t_3)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 581; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-        }
-        break;
-      }
-      __Pyx_GOTREF(__pyx_t_3);
-    }
+    if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_1)) break;
+    #if CYTHON_COMPILING_IN_CPYTHON
+    __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_4); __Pyx_INCREF(__pyx_t_3); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    #else
+    __pyx_t_3 = PySequence_ITEM(__pyx_t_1, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 447; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    #endif
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":582
+    /* "src\cython\_genpyx_chess0x88.py":448
  * 
  *         for move in moves:
  *             if move.destination() == dest:             # <<<<<<<<<<<<<<
  *                 move.do_update(self)
  *                 return True
  */
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_destination); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_destination); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dest); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_dest); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_EQ); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely(__pyx_t_7 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 582; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (__pyx_t_7) {
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 448; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":583
+      /* "src\cython\_genpyx_chess0x88.py":449
  *         for move in moves:
  *             if move.destination() == dest:
  *                 move.do_update(self)             # <<<<<<<<<<<<<<
  *                 return True
  *         return False
  */
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_do_update); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_do_update); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_INCREF(((PyObject *)__pyx_v_self));
       PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)__pyx_v_self));
       __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 583; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 449; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":584
+      /* "src\cython\_genpyx_chess0x88.py":450
  *             if move.destination() == dest:
  *                 move.do_update(self)
  *                 return True             # <<<<<<<<<<<<<<
@@ -6776,21 +7164,21 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":585
+  /* "src\cython\_genpyx_chess0x88.py":451
  *                 move.do_update(self)
  *                 return True
  *         return False             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def piece_moves(self, position):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(Py_False);
   __pyx_r = Py_False;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":573
- *     @cython.ccall
- *     @cython.locals(dest=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":439
+ *         return p0x88_to_tuple(self._current_king_position())
+ * 
  *     def move(self, original_position, new_position):             # <<<<<<<<<<<<<<
  *         dest = tuple_to_0x88(new_position)
  *         moves = self.generate_moves(
@@ -6801,8 +7189,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.move", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.move", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_moves);
@@ -6813,8 +7201,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move(str
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_19move(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_19move(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_19move(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_19move(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_original_position = 0;
   PyObject *__pyx_v_new_position = 0;
   int __pyx_lineno = 0;
@@ -6843,11 +7231,11 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_19move(
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_new_position)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("move", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("move", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "move") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "move") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -6855,25 +7243,31 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_19move(
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_original_position = values[0];
-    __pyx_v_new_position = values[1];
+    __pyx_v_original_position = ((PyObject*)values[0]);
+    __pyx_v_new_position = ((PyObject*)values[1]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("move", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("move", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.move", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.move", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_18move(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), __pyx_v_original_position, __pyx_v_new_position);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_original_position), (&PyTuple_Type), 1, "original_position", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_new_position), (&PyTuple_Type), 1, "new_position", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_18move(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), __pyx_v_original_position, __pyx_v_new_position);
 
   /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_18move(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_original_position, PyObject *__pyx_v_new_position) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_18move(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_original_position, PyObject *__pyx_v_new_position) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6882,7 +7276,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_18move(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("move", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->move(__pyx_v_self, __pyx_v_original_position, __pyx_v_new_position, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 573; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->move(__pyx_v_self, __pyx_v_original_position, __pyx_v_new_position, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 439; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -6891,7 +7285,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_18move(
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.move", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.move", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6899,16 +7293,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_18move(
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":589
- *     @cython.ccall
- *     @cython.locals(dest=cython.int, square=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":453
+ *         return False
+ * 
  *     def piece_moves(self, position):             # <<<<<<<<<<<<<<
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_21piece_moves(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_21piece_moves(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_piece_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position, int __pyx_skip_dispatch) {
   int __pyx_v_square;
   int __pyx_v_color;
   PyObject *__pyx_v_moves = NULL;
@@ -6925,19 +7319,20 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_mo
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_piece_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_piece_moves); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_21piece_moves)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_21piece_moves)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_v_position);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_position);
       __Pyx_GIVEREF(__pyx_v_position);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_r = __pyx_t_3;
+      if (!(likely(PyList_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_3)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_r = ((PyObject*)__pyx_t_3);
       __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L0;
@@ -6945,17 +7340,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_mo
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":590
- *     @cython.locals(dest=cython.int, square=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":454
+ * 
  *     def piece_moves(self, position):
  *         square = tuple_to_0x88(position)             # <<<<<<<<<<<<<<
  *         color = self.colors[square]
  *         moves = self.generate_moves(
  */
-  if (!(likely(PyTuple_CheckExact(__pyx_v_position))||((__pyx_v_position) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_position)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 590; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_square = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(((PyObject*)__pyx_v_position));
+  __pyx_v_square = __pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88(__pyx_v_position);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":591
+  /* "src\cython\_genpyx_chess0x88.py":455
  *     def piece_moves(self, position):
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]             # <<<<<<<<<<<<<<
@@ -6964,33 +7358,33 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_mo
  */
   __pyx_v_color = (__pyx_v_self->colors[__pyx_v_square]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":592
+  /* "src\cython\_genpyx_chess0x88.py":456
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]
  *         moves = self.generate_moves(             # <<<<<<<<<<<<<<
  *             LEGAL,
  *             square,
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, __pyx_v_square, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 592; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, __pyx_v_square, __pyx_v_color); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 456; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_moves = __pyx_t_1;
+  __pyx_v_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":597
+  /* "src\cython\_genpyx_chess0x88.py":461
  *             color,
  *         )
  *         return moves             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def at(self, position):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_moves);
   __pyx_r = __pyx_v_moves;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":589
- *     @cython.ccall
- *     @cython.locals(dest=cython.int, square=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":453
+ *         return False
+ * 
  *     def piece_moves(self, position):             # <<<<<<<<<<<<<<
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]
@@ -7001,7 +7395,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_mo
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.piece_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.piece_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_moves);
@@ -7011,19 +7405,27 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_mo
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_21piece_moves(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_21piece_moves(PyObject *__pyx_v_self, PyObject *__pyx_v_position) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_21piece_moves(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_21piece_moves(PyObject *__pyx_v_self, PyObject *__pyx_v_position) {
+  CYTHON_UNUSED int __pyx_lineno = 0;
+  CYTHON_UNUSED const char *__pyx_filename = NULL;
+  CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("piece_moves (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_20piece_moves(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((PyObject *)__pyx_v_position));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_position), (&PyTuple_Type), 1, "position", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_20piece_moves(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((PyObject*)__pyx_v_position));
 
   /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_20piece_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_20piece_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7032,7 +7434,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_20piece
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("piece_moves", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_moves(__pyx_v_self, __pyx_v_position, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 589; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_moves(__pyx_v_self, __pyx_v_position, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 453; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7041,7 +7443,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_20piece
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.piece_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.piece_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -7049,18 +7451,18 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_20piece
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":601
- *     @cython.ccall
- *     @cython.locals(square=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":463
+ *         return moves
+ * 
  *     def at(self, position):             # <<<<<<<<<<<<<<
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_23at(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position, int __pyx_skip_dispatch) {
-  int __pyx_v_square;
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_23at(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_at(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position, int __pyx_skip_dispatch) {
   int __pyx_v_color;
+  int __pyx_v_square;
   int __pyx_v_piece;
   PyObject *__pyx_v_result = NULL;
   PyObject *__pyx_r = NULL;
@@ -7077,16 +7479,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_at); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 601; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_at); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_23at)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_23at)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 601; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_v_position);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_position);
       __Pyx_GIVEREF(__pyx_v_position);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 601; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -7097,17 +7499,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":602
- *     @cython.locals(square=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":464
+ * 
  *     def at(self, position):
  *         square = tuple_to_0x88(position)             # <<<<<<<<<<<<<<
  *         color = self.colors[square]
  *         piece = self.pieces[square]
  */
-  if (!(likely(PyTuple_CheckExact(__pyx_v_position))||((__pyx_v_position) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "tuple", Py_TYPE(__pyx_v_position)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 602; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_v_square = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(((PyObject*)__pyx_v_position));
+  __pyx_v_square = __pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88(__pyx_v_position);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":603
+  /* "src\cython\_genpyx_chess0x88.py":465
  *     def at(self, position):
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]             # <<<<<<<<<<<<<<
@@ -7116,7 +7517,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
  */
   __pyx_v_color = (__pyx_v_self->colors[__pyx_v_square]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":604
+  /* "src\cython\_genpyx_chess0x88.py":466
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]
  *         piece = self.pieces[square]             # <<<<<<<<<<<<<<
@@ -7125,7 +7526,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
  */
   __pyx_v_piece = (__pyx_v_self->pieces[__pyx_v_square]);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":605
+  /* "src\cython\_genpyx_chess0x88.py":467
  *         color = self.colors[square]
  *         piece = self.pieces[square]
  *         if piece == PIECE_EMPTY:             # <<<<<<<<<<<<<<
@@ -7135,7 +7536,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
   __pyx_t_4 = ((__pyx_v_piece == PIECE_EMPTY) != 0);
   if (__pyx_t_4) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":606
+    /* "src\cython\_genpyx_chess0x88.py":468
  *         piece = self.pieces[square]
  *         if piece == PIECE_EMPTY:
  *             return None             # <<<<<<<<<<<<<<
@@ -7148,7 +7549,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":607
+  /* "src\cython\_genpyx_chess0x88.py":469
  *         if piece == PIECE_EMPTY:
  *             return None
  *         result = "white " if color == WHITE else "black "             # <<<<<<<<<<<<<<
@@ -7165,36 +7566,36 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
   __pyx_v_result = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":608
+  /* "src\cython\_genpyx_chess0x88.py":470
  *             return None
  *         result = "white " if color == WHITE else "black "
  *         result += NAMES[piece]             # <<<<<<<<<<<<<<
  *         return result
  * 
  */
-  __pyx_t_1 = __Pyx_PyBytes_FromString((NAMES[__pyx_v_piece])); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyBytes_FromString((NAMES[__pyx_v_piece])); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 470; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_result, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 608; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_InPlaceAdd(__pyx_v_result, __pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 470; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_result, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":609
+  /* "src\cython\_genpyx_chess0x88.py":471
  *         result = "white " if color == WHITE else "black "
  *         result += NAMES[piece]
  *         return result             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def load_fen(self, fen):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_result);
   __pyx_r = __pyx_v_result;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":601
- *     @cython.ccall
- *     @cython.locals(square=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":463
+ *         return moves
+ * 
  *     def at(self, position):             # <<<<<<<<<<<<<<
  *         square = tuple_to_0x88(position)
  *         color = self.colors[square]
@@ -7205,7 +7606,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_result);
@@ -7215,19 +7616,27 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at(struc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_23at(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_23at(PyObject *__pyx_v_self, PyObject *__pyx_v_position) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_23at(PyObject *__pyx_v_self, PyObject *__pyx_v_position); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_23at(PyObject *__pyx_v_self, PyObject *__pyx_v_position) {
+  CYTHON_UNUSED int __pyx_lineno = 0;
+  CYTHON_UNUSED const char *__pyx_filename = NULL;
+  CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("at (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_22at(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((PyObject *)__pyx_v_position));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_position), (&PyTuple_Type), 1, "position", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_22at(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((PyObject*)__pyx_v_position));
 
   /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_22at(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_22at(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_position) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7236,7 +7645,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_22at(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("at", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->at(__pyx_v_self, __pyx_v_position, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 601; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->at(__pyx_v_self, __pyx_v_position, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 463; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7245,7 +7654,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_22at(st
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -7253,16 +7662,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_22at(st
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":615
- *         x=cython.int, y=cython.int, square=cython.int, color=cython.int,
- *     )
+/* "src\cython\_genpyx_chess0x88.py":473
+ *         return result
+ * 
  *     def load_fen(self, fen):             # <<<<<<<<<<<<<<
  *         self.clear()
  *         tokens = re.compile("\s+").split(fen)
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_25load_fen(PyObject *__pyx_v_self, PyObject *__pyx_v_fen); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_fen, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_25load_fen(PyObject *__pyx_v_self, PyObject *__pyx_v_fen); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_load_fen(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_fen, int __pyx_skip_dispatch) {
   int __pyx_v_y;
   int __pyx_v_x;
   int __pyx_v_square;
@@ -7290,16 +7699,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_load_fen); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_load_fen); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 473; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_25load_fen)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_25load_fen)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 473; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_v_fen);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_fen);
       __Pyx_GIVEREF(__pyx_v_fen);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 473; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
@@ -7310,60 +7719,60 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":616
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":474
+ * 
  *     def load_fen(self, fen):
  *         self.clear()             # <<<<<<<<<<<<<<
  *         tokens = re.compile("\s+").split(fen)
  *         position = tokens[0]
  */
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 616; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->clear(__pyx_v_self, 0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 474; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":617
+  /* "src\cython\_genpyx_chess0x88.py":475
  *     def load_fen(self, fen):
  *         self.clear()
  *         tokens = re.compile("\s+").split(fen)             # <<<<<<<<<<<<<<
  *         position = tokens[0]
  *         y = 7
  */
-  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_re); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_re); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_compile); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_compile); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_split); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_fen);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_fen);
   __Pyx_GIVEREF(__pyx_v_fen);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_tokens = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":618
+  /* "src\cython\_genpyx_chess0x88.py":476
  *         self.clear()
  *         tokens = re.compile("\s+").split(fen)
  *         position = tokens[0]             # <<<<<<<<<<<<<<
  *         y = 7
  *         x = 0
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 618; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 476; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_position = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":619
+  /* "src\cython\_genpyx_chess0x88.py":477
  *         tokens = re.compile("\s+").split(fen)
  *         position = tokens[0]
  *         y = 7             # <<<<<<<<<<<<<<
@@ -7372,7 +7781,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
  */
   __pyx_v_y = 7;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":620
+  /* "src\cython\_genpyx_chess0x88.py":478
  *         position = tokens[0]
  *         y = 7
  *         x = 0             # <<<<<<<<<<<<<<
@@ -7381,7 +7790,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
  */
   __pyx_v_x = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":621
+  /* "src\cython\_genpyx_chess0x88.py":479
  *         y = 7
  *         x = 0
  *         for piece in position:             # <<<<<<<<<<<<<<
@@ -7392,7 +7801,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
     __pyx_t_2 = __pyx_v_position; __Pyx_INCREF(__pyx_t_2); __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_position); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_4 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_position); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_5 = Py_TYPE(__pyx_t_2)->tp_iternext;
   }
@@ -7400,16 +7809,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
     if (!__pyx_t_5 && PyList_CheckExact(__pyx_t_2)) {
       if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_2)) break;
       #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       #else
-      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       #endif
     } else if (!__pyx_t_5 && PyTuple_CheckExact(__pyx_t_2)) {
       if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
       #if CYTHON_COMPILING_IN_CPYTHON
-      __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_4); __Pyx_INCREF(__pyx_t_1); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       #else
-      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       #endif
     } else {
       __pyx_t_1 = __pyx_t_5(__pyx_t_2);
@@ -7417,7 +7826,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 621; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 479; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         }
         break;
       }
@@ -7426,17 +7835,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
     __Pyx_XDECREF_SET(__pyx_v_piece, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":622
+    /* "src\cython\_genpyx_chess0x88.py":480
  *         x = 0
  *         for piece in position:
  *             if piece == '/':             # <<<<<<<<<<<<<<
  *                 y -= 1
  *                 x = 0
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s__3, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 622; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s__3, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 480; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":623
+      /* "src\cython\_genpyx_chess0x88.py":481
  *         for piece in position:
  *             if piece == '/':
  *                 y -= 1             # <<<<<<<<<<<<<<
@@ -7445,7 +7854,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
  */
       __pyx_v_y = (__pyx_v_y - 1);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":624
+      /* "src\cython\_genpyx_chess0x88.py":482
  *             if piece == '/':
  *                 y -= 1
  *                 x = 0             # <<<<<<<<<<<<<<
@@ -7456,17 +7865,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":625
+    /* "src\cython\_genpyx_chess0x88.py":483
  *                 y -= 1
  *                 x = 0
  *             elif piece == '1':             # <<<<<<<<<<<<<<
  *                 x += 1
  *             elif piece == '2':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_1, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 625; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_1, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 483; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":626
+      /* "src\cython\_genpyx_chess0x88.py":484
  *                 x = 0
  *             elif piece == '1':
  *                 x += 1             # <<<<<<<<<<<<<<
@@ -7477,17 +7886,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":627
+    /* "src\cython\_genpyx_chess0x88.py":485
  *             elif piece == '1':
  *                 x += 1
  *             elif piece == '2':             # <<<<<<<<<<<<<<
  *                 x += 2
  *             elif piece == '3':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_2, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 627; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_2, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 485; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":628
+      /* "src\cython\_genpyx_chess0x88.py":486
  *                 x += 1
  *             elif piece == '2':
  *                 x += 2             # <<<<<<<<<<<<<<
@@ -7498,17 +7907,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":629
+    /* "src\cython\_genpyx_chess0x88.py":487
  *             elif piece == '2':
  *                 x += 2
  *             elif piece == '3':             # <<<<<<<<<<<<<<
  *                 x += 3
  *             elif piece == '4':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_3, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 629; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_3, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 487; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":630
+      /* "src\cython\_genpyx_chess0x88.py":488
  *                 x += 2
  *             elif piece == '3':
  *                 x += 3             # <<<<<<<<<<<<<<
@@ -7519,17 +7928,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":631
+    /* "src\cython\_genpyx_chess0x88.py":489
  *             elif piece == '3':
  *                 x += 3
  *             elif piece == '4':             # <<<<<<<<<<<<<<
  *                 x += 4
  *             elif piece == '5':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_4, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 631; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_4, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 489; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":632
+      /* "src\cython\_genpyx_chess0x88.py":490
  *                 x += 3
  *             elif piece == '4':
  *                 x += 4             # <<<<<<<<<<<<<<
@@ -7540,17 +7949,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":633
+    /* "src\cython\_genpyx_chess0x88.py":491
  *             elif piece == '4':
  *                 x += 4
  *             elif piece == '5':             # <<<<<<<<<<<<<<
  *                 x += 5
  *             elif piece == '6':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_5, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 633; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_5, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 491; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":634
+      /* "src\cython\_genpyx_chess0x88.py":492
  *                 x += 4
  *             elif piece == '5':
  *                 x += 5             # <<<<<<<<<<<<<<
@@ -7561,17 +7970,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":635
+    /* "src\cython\_genpyx_chess0x88.py":493
  *             elif piece == '5':
  *                 x += 5
  *             elif piece == '6':             # <<<<<<<<<<<<<<
  *                 x += 6
  *             elif piece == '7':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_6, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 635; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_6, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 493; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":636
+      /* "src\cython\_genpyx_chess0x88.py":494
  *                 x += 5
  *             elif piece == '6':
  *                 x += 6             # <<<<<<<<<<<<<<
@@ -7582,17 +7991,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":637
+    /* "src\cython\_genpyx_chess0x88.py":495
  *             elif piece == '6':
  *                 x += 6
  *             elif piece == '7':             # <<<<<<<<<<<<<<
  *                 x += 7
  *             elif piece == '8':
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_7, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 637; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_7, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 495; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":638
+      /* "src\cython\_genpyx_chess0x88.py":496
  *                 x += 6
  *             elif piece == '7':
  *                 x += 7             # <<<<<<<<<<<<<<
@@ -7603,17 +8012,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       goto __pyx_L5;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":639
+    /* "src\cython\_genpyx_chess0x88.py":497
  *             elif piece == '7':
  *                 x += 7
  *             elif piece == '8':             # <<<<<<<<<<<<<<
  *                 x += 8
  *             else:
  */
-    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_8, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 639; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_piece, __pyx_kp_s_8, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 497; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     if (__pyx_t_6) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":640
+      /* "src\cython\_genpyx_chess0x88.py":498
  *                 x += 7
  *             elif piece == '8':
  *                 x += 8             # <<<<<<<<<<<<<<
@@ -7625,7 +8034,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
     }
     /*else*/ {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":642
+      /* "src\cython\_genpyx_chess0x88.py":500
  *                 x += 8
  *             else:
  *                 square = (7 - y) * 16 + x             # <<<<<<<<<<<<<<
@@ -7634,7 +8043,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
  */
       __pyx_v_square = (((7 - __pyx_v_y) * 16) + __pyx_v_x);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":643
+      /* "src\cython\_genpyx_chess0x88.py":501
  *             else:
  *                 square = (7 - y) * 16 + x
  *                 color = WHITE             # <<<<<<<<<<<<<<
@@ -7643,34 +8052,34 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
  */
       __pyx_v_color = WHITE;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":644
+      /* "src\cython\_genpyx_chess0x88.py":502
  *                 square = (7 - y) * 16 + x
  *                 color = WHITE
  *                 lp = piece.lower()             # <<<<<<<<<<<<<<
  *                 if piece == lp:
  *                     color = BLACK
  */
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_lower); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 644; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_n_s_lower); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 644; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 502; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_lp, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":645
+      /* "src\cython\_genpyx_chess0x88.py":503
  *                 color = WHITE
  *                 lp = piece.lower()
  *                 if piece == lp:             # <<<<<<<<<<<<<<
  *                     color = BLACK
  *                 if lp == 'p':
  */
-      __pyx_t_3 = PyObject_RichCompare(__pyx_v_piece, __pyx_v_lp, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 645; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyObject_RichCompare(__pyx_v_piece, __pyx_v_lp, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 503; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 503; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":646
+        /* "src\cython\_genpyx_chess0x88.py":504
  *                 lp = piece.lower()
  *                 if piece == lp:
  *                     color = BLACK             # <<<<<<<<<<<<<<
@@ -7682,190 +8091,190 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       }
       __pyx_L6:;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":647
+      /* "src\cython\_genpyx_chess0x88.py":505
  *                 if piece == lp:
  *                     color = BLACK
  *                 if lp == 'p':             # <<<<<<<<<<<<<<
  *                     self.add(PAWN, color, square)
  *                     self.values[square] = self.piece_value(PAWN, color, square)
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_p, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 647; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_p, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 505; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":648
+        /* "src\cython\_genpyx_chess0x88.py":506
  *                     color = BLACK
  *                 if lp == 'p':
  *                     self.add(PAWN, color, square)             # <<<<<<<<<<<<<<
  *                     self.values[square] = self.piece_value(PAWN, color, square)
  *                 elif lp == 'n':
  */
-        ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, PAWN, __pyx_v_color, __pyx_v_square);
+        ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, PAWN, __pyx_v_color, __pyx_v_square);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":649
+        /* "src\cython\_genpyx_chess0x88.py":507
  *                 if lp == 'p':
  *                     self.add(PAWN, color, square)
  *                     self.values[square] = self.piece_value(PAWN, color, square)             # <<<<<<<<<<<<<<
  *                 elif lp == 'n':
  *                     self.add(KNIGHT, color, square)
  */
-        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, PAWN, __pyx_v_color, __pyx_v_square);
+        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, PAWN, __pyx_v_color, __pyx_v_square);
         goto __pyx_L7;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":650
+      /* "src\cython\_genpyx_chess0x88.py":508
  *                     self.add(PAWN, color, square)
  *                     self.values[square] = self.piece_value(PAWN, color, square)
  *                 elif lp == 'n':             # <<<<<<<<<<<<<<
  *                     self.add(KNIGHT, color, square)
- *                     self.values[square] = self.piece_value(KNIGHT, color, square)
+ *                     self.values[square] = self.piece_value(KNIGHT,
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_n, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_n, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 508; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":651
+        /* "src\cython\_genpyx_chess0x88.py":509
  *                     self.values[square] = self.piece_value(PAWN, color, square)
  *                 elif lp == 'n':
  *                     self.add(KNIGHT, color, square)             # <<<<<<<<<<<<<<
- *                     self.values[square] = self.piece_value(KNIGHT, color, square)
- *                 elif lp == 'b':
+ *                     self.values[square] = self.piece_value(KNIGHT,
+ *                                                            color, square)
  */
-        ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, KNIGHT, __pyx_v_color, __pyx_v_square);
+        ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, KNIGHT, __pyx_v_color, __pyx_v_square);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":652
+        /* "src\cython\_genpyx_chess0x88.py":510
  *                 elif lp == 'n':
  *                     self.add(KNIGHT, color, square)
- *                     self.values[square] = self.piece_value(KNIGHT, color, square)             # <<<<<<<<<<<<<<
+ *                     self.values[square] = self.piece_value(KNIGHT,             # <<<<<<<<<<<<<<
+ *                                                            color, square)
  *                 elif lp == 'b':
- *                     self.add(BISHOP, color, square)
  */
-        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, KNIGHT, __pyx_v_color, __pyx_v_square);
+        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, KNIGHT, __pyx_v_color, __pyx_v_square);
         goto __pyx_L7;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":653
- *                     self.add(KNIGHT, color, square)
- *                     self.values[square] = self.piece_value(KNIGHT, color, square)
+      /* "src\cython\_genpyx_chess0x88.py":512
+ *                     self.values[square] = self.piece_value(KNIGHT,
+ *                                                            color, square)
  *                 elif lp == 'b':             # <<<<<<<<<<<<<<
  *                     self.add(BISHOP, color, square)
- *                     self.values[square] = self.piece_value(BISHOP, color, square)
+ *                     self.values[square] = self.piece_value(BISHOP,
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_b, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_b, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 512; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":654
- *                     self.values[square] = self.piece_value(KNIGHT, color, square)
+        /* "src\cython\_genpyx_chess0x88.py":513
+ *                                                            color, square)
  *                 elif lp == 'b':
  *                     self.add(BISHOP, color, square)             # <<<<<<<<<<<<<<
- *                     self.values[square] = self.piece_value(BISHOP, color, square)
- *                 elif lp == 'r':
+ *                     self.values[square] = self.piece_value(BISHOP,
+ *                                                            color, square)
  */
-        ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, BISHOP, __pyx_v_color, __pyx_v_square);
+        ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, BISHOP, __pyx_v_color, __pyx_v_square);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":655
+        /* "src\cython\_genpyx_chess0x88.py":514
  *                 elif lp == 'b':
  *                     self.add(BISHOP, color, square)
- *                     self.values[square] = self.piece_value(BISHOP, color, square)             # <<<<<<<<<<<<<<
+ *                     self.values[square] = self.piece_value(BISHOP,             # <<<<<<<<<<<<<<
+ *                                                            color, square)
  *                 elif lp == 'r':
- *                     self.add(ROOK, color, square)
  */
-        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, BISHOP, __pyx_v_color, __pyx_v_square);
+        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, BISHOP, __pyx_v_color, __pyx_v_square);
         goto __pyx_L7;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":656
- *                     self.add(BISHOP, color, square)
- *                     self.values[square] = self.piece_value(BISHOP, color, square)
+      /* "src\cython\_genpyx_chess0x88.py":516
+ *                     self.values[square] = self.piece_value(BISHOP,
+ *                                                            color, square)
  *                 elif lp == 'r':             # <<<<<<<<<<<<<<
  *                     self.add(ROOK, color, square)
- *                     self.values[square] = self.piece_value(ROOK, color, square)
+ *                     self.values[square] = self.piece_value(ROOK,
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_r, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 656; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_r, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 516; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":657
- *                     self.values[square] = self.piece_value(BISHOP, color, square)
+        /* "src\cython\_genpyx_chess0x88.py":517
+ *                                                            color, square)
  *                 elif lp == 'r':
  *                     self.add(ROOK, color, square)             # <<<<<<<<<<<<<<
- *                     self.values[square] = self.piece_value(ROOK, color, square)
- *                 elif lp == 'q':
+ *                     self.values[square] = self.piece_value(ROOK,
+ *                                                            color, square)
  */
-        ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, ROOK, __pyx_v_color, __pyx_v_square);
+        ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, ROOK, __pyx_v_color, __pyx_v_square);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":658
+        /* "src\cython\_genpyx_chess0x88.py":518
  *                 elif lp == 'r':
  *                     self.add(ROOK, color, square)
- *                     self.values[square] = self.piece_value(ROOK, color, square)             # <<<<<<<<<<<<<<
+ *                     self.values[square] = self.piece_value(ROOK,             # <<<<<<<<<<<<<<
+ *                                                            color, square)
  *                 elif lp == 'q':
- *                     self.add(QUEEN, color, square)
  */
-        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, ROOK, __pyx_v_color, __pyx_v_square);
+        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, ROOK, __pyx_v_color, __pyx_v_square);
         goto __pyx_L7;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":659
- *                     self.add(ROOK, color, square)
- *                     self.values[square] = self.piece_value(ROOK, color, square)
+      /* "src\cython\_genpyx_chess0x88.py":520
+ *                     self.values[square] = self.piece_value(ROOK,
+ *                                                            color, square)
  *                 elif lp == 'q':             # <<<<<<<<<<<<<<
  *                     self.add(QUEEN, color, square)
- *                     self.values[square] = self.piece_value(QUEEN, color, square)
+ *                     self.values[square] = self.piece_value(QUEEN,
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_q, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 659; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_q, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 520; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":660
- *                     self.values[square] = self.piece_value(ROOK, color, square)
+        /* "src\cython\_genpyx_chess0x88.py":521
+ *                                                            color, square)
  *                 elif lp == 'q':
  *                     self.add(QUEEN, color, square)             # <<<<<<<<<<<<<<
- *                     self.values[square] = self.piece_value(QUEEN, color, square)
- *                 elif lp == 'k':
+ *                     self.values[square] = self.piece_value(QUEEN,
+ *                                                            color, square)
  */
-        ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, QUEEN, __pyx_v_color, __pyx_v_square);
+        ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, QUEEN, __pyx_v_color, __pyx_v_square);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":661
+        /* "src\cython\_genpyx_chess0x88.py":522
  *                 elif lp == 'q':
  *                     self.add(QUEEN, color, square)
- *                     self.values[square] = self.piece_value(QUEEN, color, square)             # <<<<<<<<<<<<<<
+ *                     self.values[square] = self.piece_value(QUEEN,             # <<<<<<<<<<<<<<
+ *                                                            color, square)
  *                 elif lp == 'k':
- *                     self.add(KING, color, square)
  */
-        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, QUEEN, __pyx_v_color, __pyx_v_square);
+        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, QUEEN, __pyx_v_color, __pyx_v_square);
         goto __pyx_L7;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":662
- *                     self.add(QUEEN, color, square)
- *                     self.values[square] = self.piece_value(QUEEN, color, square)
+      /* "src\cython\_genpyx_chess0x88.py":524
+ *                     self.values[square] = self.piece_value(QUEEN,
+ *                                                            color, square)
  *                 elif lp == 'k':             # <<<<<<<<<<<<<<
  *                     self.add(KING, color, square)
- *                     self.values[square] = self.piece_value(KING, color, square)
+ *                     self.values[square] = self.piece_value(KING,
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_k, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 662; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_lp, __pyx_n_s_k, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 524; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":663
- *                     self.values[square] = self.piece_value(QUEEN, color, square)
+        /* "src\cython\_genpyx_chess0x88.py":525
+ *                                                            color, square)
  *                 elif lp == 'k':
  *                     self.add(KING, color, square)             # <<<<<<<<<<<<<<
- *                     self.values[square] = self.piece_value(KING, color, square)
- *                 x += 1
+ *                     self.values[square] = self.piece_value(KING,
+ *                                                            color, square)
  */
-        ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, KING, __pyx_v_color, __pyx_v_square);
+        ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->add(__pyx_v_self, KING, __pyx_v_color, __pyx_v_square);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":664
+        /* "src\cython\_genpyx_chess0x88.py":526
  *                 elif lp == 'k':
  *                     self.add(KING, color, square)
- *                     self.values[square] = self.piece_value(KING, color, square)             # <<<<<<<<<<<<<<
+ *                     self.values[square] = self.piece_value(KING,             # <<<<<<<<<<<<<<
+ *                                                            color, square)
  *                 x += 1
- * 
  */
-        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, KING, __pyx_v_color, __pyx_v_square);
+        (__pyx_v_self->values[__pyx_v_square]) = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->piece_value(__pyx_v_self, KING, __pyx_v_color, __pyx_v_square);
         goto __pyx_L7;
       }
       __pyx_L7:;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":665
- *                     self.add(KING, color, square)
- *                     self.values[square] = self.piece_value(KING, color, square)
+      /* "src\cython\_genpyx_chess0x88.py":528
+ *                     self.values[square] = self.piece_value(KING,
+ *                                                            color, square)
  *                 x += 1             # <<<<<<<<<<<<<<
  * 
  *         if tokens[1] == 'w':
@@ -7876,20 +8285,20 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":667
+  /* "src\cython\_genpyx_chess0x88.py":530
  *                 x += 1
  * 
  *         if tokens[1] == 'w':             # <<<<<<<<<<<<<<
  *             self.current_color = WHITE
  *         else:
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 667; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_n_s_w, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 667; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_n_s_w, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 530; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":668
+    /* "src\cython\_genpyx_chess0x88.py":531
  * 
  *         if tokens[1] == 'w':
  *             self.current_color = WHITE             # <<<<<<<<<<<<<<
@@ -7901,7 +8310,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":670
+    /* "src\cython\_genpyx_chess0x88.py":533
  *             self.current_color = WHITE
  *         else:
  *             self.current_color = BLACK             # <<<<<<<<<<<<<<
@@ -7910,44 +8319,44 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
  */
     __pyx_v_self->current_color = BLACK;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":671
+    /* "src\cython\_genpyx_chess0x88.py":534
  *         else:
  *             self.current_color = BLACK
  *             self.hash ^= zobrist_color             # <<<<<<<<<<<<<<
  * 
  *         if tokens[2] != '-':
  */
-    __pyx_v_self->hash = (__pyx_v_self->hash ^ __pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_color);
+    __pyx_v_self->hash = (__pyx_v_self->hash ^ __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_color);
   }
   __pyx_L8:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":673
+  /* "src\cython\_genpyx_chess0x88.py":536
  *             self.hash ^= zobrist_color
  * 
  *         if tokens[2] != '-':             # <<<<<<<<<<<<<<
  *             for c in tokens[2]:
  *                 if c == 'K':
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 536; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_kp_s__4, Py_NE)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 673; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_2, __pyx_kp_s__4, Py_NE)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 536; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":674
+    /* "src\cython\_genpyx_chess0x88.py":537
  * 
  *         if tokens[2] != '-':
  *             for c in tokens[2]:             # <<<<<<<<<<<<<<
  *                 if c == 'K':
  *                     self.castling[WHITE] |= KINGSIDE
  */
-    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_2);
     if (PyList_CheckExact(__pyx_t_2) || PyTuple_CheckExact(__pyx_t_2)) {
       __pyx_t_3 = __pyx_t_2; __Pyx_INCREF(__pyx_t_3); __pyx_t_4 = 0;
       __pyx_t_5 = NULL;
     } else {
-      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_5 = Py_TYPE(__pyx_t_3)->tp_iternext;
     }
@@ -7956,16 +8365,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       if (!__pyx_t_5 && PyList_CheckExact(__pyx_t_3)) {
         if (__pyx_t_4 >= PyList_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #endif
       } else if (!__pyx_t_5 && PyTuple_CheckExact(__pyx_t_3)) {
         if (__pyx_t_4 >= PyTuple_GET_SIZE(__pyx_t_3)) break;
         #if CYTHON_COMPILING_IN_CPYTHON
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_4); __Pyx_INCREF(__pyx_t_2); __pyx_t_4++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #else
-        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_2 = PySequence_ITEM(__pyx_t_3, __pyx_t_4); __pyx_t_4++; if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         #endif
       } else {
         __pyx_t_2 = __pyx_t_5(__pyx_t_3);
@@ -7973,7 +8382,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(exc_type == PyExc_StopIteration || PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 674; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            else {__pyx_filename = __pyx_f[0]; __pyx_lineno = 537; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           }
           break;
         }
@@ -7982,17 +8391,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
       __Pyx_XDECREF_SET(__pyx_v_c, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":675
+      /* "src\cython\_genpyx_chess0x88.py":538
  *         if tokens[2] != '-':
  *             for c in tokens[2]:
  *                 if c == 'K':             # <<<<<<<<<<<<<<
  *                     self.castling[WHITE] |= KINGSIDE
  *                 elif c == 'Q':
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_K, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 675; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_K, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 538; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":676
+        /* "src\cython\_genpyx_chess0x88.py":539
  *             for c in tokens[2]:
  *                 if c == 'K':
  *                     self.castling[WHITE] |= KINGSIDE             # <<<<<<<<<<<<<<
@@ -8004,17 +8413,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
         goto __pyx_L12;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":677
+      /* "src\cython\_genpyx_chess0x88.py":540
  *                 if c == 'K':
  *                     self.castling[WHITE] |= KINGSIDE
  *                 elif c == 'Q':             # <<<<<<<<<<<<<<
  *                     self.castling[WHITE] |= QUEENSIDE
  *                 elif c == 'k':
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_Q, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 677; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_Q, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 540; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":678
+        /* "src\cython\_genpyx_chess0x88.py":541
  *                     self.castling[WHITE] |= KINGSIDE
  *                 elif c == 'Q':
  *                     self.castling[WHITE] |= QUEENSIDE             # <<<<<<<<<<<<<<
@@ -8026,17 +8435,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
         goto __pyx_L12;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":679
+      /* "src\cython\_genpyx_chess0x88.py":542
  *                 elif c == 'Q':
  *                     self.castling[WHITE] |= QUEENSIDE
  *                 elif c == 'k':             # <<<<<<<<<<<<<<
  *                     self.castling[BLACK] |= KINGSIDE
  *                 elif c == 'q':
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_k, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 679; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_k, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 542; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":680
+        /* "src\cython\_genpyx_chess0x88.py":543
  *                     self.castling[WHITE] |= QUEENSIDE
  *                 elif c == 'k':
  *                     self.castling[BLACK] |= KINGSIDE             # <<<<<<<<<<<<<<
@@ -8048,17 +8457,17 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
         goto __pyx_L12;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":681
+      /* "src\cython\_genpyx_chess0x88.py":544
  *                 elif c == 'k':
  *                     self.castling[BLACK] |= KINGSIDE
  *                 elif c == 'q':             # <<<<<<<<<<<<<<
  *                     self.castling[BLACK] |= QUEENSIDE
  * 
  */
-      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_q, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 681; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_v_c, __pyx_n_s_q, Py_EQ)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 544; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       if (__pyx_t_6) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":682
+        /* "src\cython\_genpyx_chess0x88.py":545
  *                     self.castling[BLACK] |= KINGSIDE
  *                 elif c == 'q':
  *                     self.castling[BLACK] |= QUEENSIDE             # <<<<<<<<<<<<<<
@@ -8076,87 +8485,87 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
   }
   __pyx_L9:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":684
+  /* "src\cython\_genpyx_chess0x88.py":547
  *                     self.castling[BLACK] |= QUEENSIDE
  * 
  *         self.hash ^= zobrist_castling[self.castle()]             # <<<<<<<<<<<<<<
  * 
  *         if tokens[3] != '-':
  */
-  __pyx_v_self->hash = (__pyx_v_self->hash ^ (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_castling[((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->castle(__pyx_v_self)]));
+  __pyx_v_self->hash = (__pyx_v_self->hash ^ (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_castling[((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->castle(__pyx_v_self)]));
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":686
+  /* "src\cython\_genpyx_chess0x88.py":549
  *         self.hash ^= zobrist_castling[self.castle()]
  * 
  *         if tokens[3] != '-':             # <<<<<<<<<<<<<<
  *             self.en_passant_square = chess_notation_to_0x88(tokens[3])
  *             self.hash ^= zobrist_en_passant[self.en_passant_square]
  */
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_tokens, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_tokens, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 549; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s__4, Py_NE)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_6 = (__Pyx_PyString_Equals(__pyx_t_3, __pyx_kp_s__4, Py_NE)); if (unlikely(__pyx_t_6 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 549; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_6) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":687
+    /* "src\cython\_genpyx_chess0x88.py":550
  * 
  *         if tokens[3] != '-':
  *             self.en_passant_square = chess_notation_to_0x88(tokens[3])             # <<<<<<<<<<<<<<
  *             self.hash ^= zobrist_en_passant[self.en_passant_square]
  * 
  */
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_tokens, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 687; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_tokens, 3, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 550; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_v_self->en_passant_square = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_chess_notation_to_0x88(__pyx_t_3);
+    __pyx_v_self->en_passant_square = __pyx_f_3src_6cython_17_genpyx_chess0x88_chess_notation_to_0x88(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":688
+    /* "src\cython\_genpyx_chess0x88.py":551
  *         if tokens[3] != '-':
  *             self.en_passant_square = chess_notation_to_0x88(tokens[3])
  *             self.hash ^= zobrist_en_passant[self.en_passant_square]             # <<<<<<<<<<<<<<
  * 
  *         self.half_moves = int(tokens[4])
  */
-    __pyx_v_self->hash = (__pyx_v_self->hash ^ (__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_en_passant[__pyx_v_self->en_passant_square]));
+    __pyx_v_self->hash = (__pyx_v_self->hash ^ (__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_en_passant[__pyx_v_self->en_passant_square]));
     goto __pyx_L13;
   }
   __pyx_L13:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":690
+  /* "src\cython\_genpyx_chess0x88.py":553
  *             self.hash ^= zobrist_en_passant[self.en_passant_square]
  * 
  *         self.half_moves = int(tokens[4])             # <<<<<<<<<<<<<<
  * 
  *         self.moves = int(tokens[5])
  */
-  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_tokens, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_tokens, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_3 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = PyNumber_Int(__pyx_t_3); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 690; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 553; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_self->half_moves = __pyx_t_8;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":692
+  /* "src\cython\_genpyx_chess0x88.py":555
  *         self.half_moves = int(tokens[4])
  * 
  *         self.moves = int(tokens[5])             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def castle(self):
  */
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 692; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_tokens, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 692; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_3 = PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 692; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_8 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 555; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->moves = __pyx_t_8;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":615
- *         x=cython.int, y=cython.int, square=cython.int, color=cython.int,
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":473
+ *         return result
+ * 
  *     def load_fen(self, fen):             # <<<<<<<<<<<<<<
  *         self.clear()
  *         tokens = re.compile("\s+").split(fen)
@@ -8169,7 +8578,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.load_fen", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.load_fen", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_tokens);
@@ -8183,19 +8592,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_25load_fen(PyObject *__pyx_v_self, PyObject *__pyx_v_fen); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_25load_fen(PyObject *__pyx_v_self, PyObject *__pyx_v_fen) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_25load_fen(PyObject *__pyx_v_self, PyObject *__pyx_v_fen); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_25load_fen(PyObject *__pyx_v_self, PyObject *__pyx_v_fen) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("load_fen (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_24load_fen(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((PyObject *)__pyx_v_fen));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_24load_fen(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((PyObject *)__pyx_v_fen));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_24load_fen(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_fen) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_24load_fen(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_fen) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -8204,7 +8613,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_24load_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("load_fen", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->load_fen(__pyx_v_self, __pyx_v_fen, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 615; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->load_fen(__pyx_v_self, __pyx_v_fen, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 473; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -8213,7 +8622,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_24load_
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.load_fen", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.load_fen", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -8221,20 +8630,20 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_24load_
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":696
- *     @cython.cfunc
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":557
+ *         self.moves = int(tokens[5])
+ * 
  *     def castle(self):             # <<<<<<<<<<<<<<
  *         return (
  *             (self.castling[WHITE] >> 4 >> 1) | (self.castling[BLACK] >> 2 >> 1)
  */
 
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_castle(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_castle(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("castle", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":698
+  /* "src\cython\_genpyx_chess0x88.py":559
  *     def castle(self):
  *         return (
  *             (self.castling[WHITE] >> 4 >> 1) | (self.castling[BLACK] >> 2 >> 1)             # <<<<<<<<<<<<<<
@@ -8244,9 +8653,9 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_castle(struct 
   __pyx_r = ((((__pyx_v_self->castling[WHITE]) >> 4) >> 1) | (((__pyx_v_self->castling[BLACK]) >> 2) >> 1));
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":696
- *     @cython.cfunc
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":557
+ *         self.moves = int(tokens[5])
+ * 
  *     def castle(self):             # <<<<<<<<<<<<<<
  *         return (
  *             (self.castling[WHITE] >> 4 >> 1) | (self.castling[BLACK] >> 2 >> 1)
@@ -8258,19 +8667,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_castle(struct 
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":708
- *         i=cython.int, j=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":562
+ *         )
+ * 
  *     def attack_moves(self, square, color):             # <<<<<<<<<<<<<<
  *         moves = []
  *         current = color
  */
 
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_square, int __pyx_v_color) {
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_attack_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_square, int __pyx_v_color) {
   int __pyx_v_last;
+  int __pyx_v_i;
   int __pyx_v_j;
   int __pyx_v_current;
-  int __pyx_v_i;
   int __pyx_v_offset;
   int __pyx_v_piece;
   int __pyx_v_first;
@@ -8293,19 +8702,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("attack_moves", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":709
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":563
+ * 
  *     def attack_moves(self, square, color):
  *         moves = []             # <<<<<<<<<<<<<<
  *         current = color
  *         first = A8
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 563; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":710
+  /* "src\cython\_genpyx_chess0x88.py":564
  *     def attack_moves(self, square, color):
  *         moves = []
  *         current = color             # <<<<<<<<<<<<<<
@@ -8314,7 +8723,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
   __pyx_v_current = __pyx_v_color;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":711
+  /* "src\cython\_genpyx_chess0x88.py":565
  *         moves = []
  *         current = color
  *         first = A8             # <<<<<<<<<<<<<<
@@ -8323,7 +8732,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
   __pyx_v_first = A8;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":712
+  /* "src\cython\_genpyx_chess0x88.py":566
  *         current = color
  *         first = A8
  *         last = H1             # <<<<<<<<<<<<<<
@@ -8332,7 +8741,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
   __pyx_v_last = H1;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":713
+  /* "src\cython\_genpyx_chess0x88.py":567
  *         first = A8
  *         last = H1
  *         if (current == -1):             # <<<<<<<<<<<<<<
@@ -8342,7 +8751,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   __pyx_t_2 = ((__pyx_v_current == -1) != 0);
   if (__pyx_t_2) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":714
+    /* "src\cython\_genpyx_chess0x88.py":568
  *         last = H1
  *         if (current == -1):
  *             current = self.current_color             # <<<<<<<<<<<<<<
@@ -8355,7 +8764,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":716
+  /* "src\cython\_genpyx_chess0x88.py":570
  *             current = self.current_color
  * 
  *         if is_square(square):             # <<<<<<<<<<<<<<
@@ -8365,7 +8774,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   __pyx_t_2 = (is_square(__pyx_v_square) != 0);
   if (__pyx_t_2) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":717
+    /* "src\cython\_genpyx_chess0x88.py":571
  * 
  *         if is_square(square):
  *             first = square             # <<<<<<<<<<<<<<
@@ -8374,7 +8783,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
     __pyx_v_first = __pyx_v_square;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":718
+    /* "src\cython\_genpyx_chess0x88.py":572
  *         if is_square(square):
  *             first = square
  *             last = square             # <<<<<<<<<<<<<<
@@ -8386,7 +8795,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   }
   __pyx_L4:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":720
+  /* "src\cython\_genpyx_chess0x88.py":574
  *             last = square
  * 
  *         for i in range(first, last + 1):             # <<<<<<<<<<<<<<
@@ -8397,7 +8806,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   for (__pyx_t_3 = __pyx_v_first; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":721
+    /* "src\cython\_genpyx_chess0x88.py":575
  * 
  *         for i in range(first, last + 1):
  *             if is_not_square(i):             # <<<<<<<<<<<<<<
@@ -8407,7 +8816,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
     __pyx_t_2 = (is_not_square(__pyx_v_i) != 0);
     if (__pyx_t_2) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":722
+      /* "src\cython\_genpyx_chess0x88.py":576
  *         for i in range(first, last + 1):
  *             if is_not_square(i):
  *                 i = i + 7             # <<<<<<<<<<<<<<
@@ -8416,7 +8825,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
       __pyx_v_i = (__pyx_v_i + 7);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":723
+      /* "src\cython\_genpyx_chess0x88.py":577
  *             if is_not_square(i):
  *                 i = i + 7
  *                 continue             # <<<<<<<<<<<<<<
@@ -8426,7 +8835,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
       goto __pyx_L5_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":724
+    /* "src\cython\_genpyx_chess0x88.py":578
  *                 i = i + 7
  *                 continue
  *             if self.colors[i] != current:             # <<<<<<<<<<<<<<
@@ -8436,7 +8845,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
     __pyx_t_2 = (((__pyx_v_self->colors[__pyx_v_i]) != __pyx_v_current) != 0);
     if (__pyx_t_2) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":725
+      /* "src\cython\_genpyx_chess0x88.py":579
  *                 continue
  *             if self.colors[i] != current:
  *                 continue             # <<<<<<<<<<<<<<
@@ -8446,7 +8855,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
       goto __pyx_L5_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":727
+    /* "src\cython\_genpyx_chess0x88.py":581
  *                 continue
  * 
  *             piece = self.pieces[i]             # <<<<<<<<<<<<<<
@@ -8455,7 +8864,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
     __pyx_v_piece = (__pyx_v_self->pieces[__pyx_v_i]);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":728
+    /* "src\cython\_genpyx_chess0x88.py":582
  * 
  *             piece = self.pieces[i]
  *             if piece == PAWN:             # <<<<<<<<<<<<<<
@@ -8465,7 +8874,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
     __pyx_t_2 = ((__pyx_v_piece == PAWN) != 0);
     if (__pyx_t_2) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":729
+      /* "src\cython\_genpyx_chess0x88.py":583
  *             piece = self.pieces[i]
  *             if piece == PAWN:
  *                 for j in range(2, 4):             # <<<<<<<<<<<<<<
@@ -8475,7 +8884,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
       for (__pyx_t_5 = 2; __pyx_t_5 < 4; __pyx_t_5+=1) {
         __pyx_v_j = __pyx_t_5;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":730
+        /* "src\cython\_genpyx_chess0x88.py":584
  *             if piece == PAWN:
  *                 for j in range(2, 4):
  *                     square = i + PAWN_OFFSETS[current][j]             # <<<<<<<<<<<<<<
@@ -8484,7 +8893,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
         __pyx_v_square = (__pyx_v_i + ((PAWN_OFFSETS[__pyx_v_current])[__pyx_v_j]));
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":731
+        /* "src\cython\_genpyx_chess0x88.py":585
  *                 for j in range(2, 4):
  *                     square = i + PAWN_OFFSETS[current][j]
  *                     if is_not_square(square):             # <<<<<<<<<<<<<<
@@ -8494,7 +8903,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
         __pyx_t_2 = (is_not_square(__pyx_v_square) != 0);
         if (__pyx_t_2) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":732
+          /* "src\cython\_genpyx_chess0x88.py":586
  *                     square = i + PAWN_OFFSETS[current][j]
  *                     if is_not_square(square):
  *                         continue             # <<<<<<<<<<<<<<
@@ -8504,7 +8913,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
           goto __pyx_L10_continue;
         }
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":733
+        /* "src\cython\_genpyx_chess0x88.py":587
  *                     if is_not_square(square):
  *                         continue
  *                     if self.colors[square] != current:             # <<<<<<<<<<<<<<
@@ -8514,22 +8923,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
         __pyx_t_2 = (((__pyx_v_self->colors[__pyx_v_square]) != __pyx_v_current) != 0);
         if (__pyx_t_2) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":734
+          /* "src\cython\_genpyx_chess0x88.py":588
  *                         continue
  *                     if self.colors[square] != current:
  *                         moves.append(Move(self, current, i, square, CAPTURE))             # <<<<<<<<<<<<<<
  *             else:
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
  */
-          __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_8 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_9 = PyTuple_New(5); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_9 = PyTuple_New(5); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_INCREF(((PyObject *)__pyx_v_self));
           PyTuple_SET_ITEM(__pyx_t_9, 0, ((PyObject *)__pyx_v_self));
@@ -8546,10 +8955,10 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
           __pyx_t_6 = 0;
           __pyx_t_7 = 0;
           __pyx_t_8 = 0;
-          __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_9, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_9, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-          __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_8); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 734; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_8); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 588; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           goto __pyx_L13;
         }
@@ -8560,7 +8969,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
     }
     /*else*/ {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":736
+      /* "src\cython\_genpyx_chess0x88.py":590
  *                         moves.append(Move(self, current, i, square, CAPTURE))
  *             else:
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):             # <<<<<<<<<<<<<<
@@ -8571,7 +8980,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
       for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_5; __pyx_t_11+=1) {
         __pyx_v_j = __pyx_t_11;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":737
+        /* "src\cython\_genpyx_chess0x88.py":591
  *             else:
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
  *                     offset = PIECE_OFFSET[piece][j]             # <<<<<<<<<<<<<<
@@ -8580,7 +8989,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
         __pyx_v_offset = ((PIECE_OFFSET[__pyx_v_piece])[__pyx_v_j]);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":738
+        /* "src\cython\_genpyx_chess0x88.py":592
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
  *                     offset = PIECE_OFFSET[piece][j]
  *                     square = i             # <<<<<<<<<<<<<<
@@ -8589,7 +8998,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
         __pyx_v_square = __pyx_v_i;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":739
+        /* "src\cython\_genpyx_chess0x88.py":593
  *                     offset = PIECE_OFFSET[piece][j]
  *                     square = i
  *                     while True:             # <<<<<<<<<<<<<<
@@ -8598,7 +9007,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
         while (1) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":740
+          /* "src\cython\_genpyx_chess0x88.py":594
  *                     square = i
  *                     while True:
  *                         square += offset             # <<<<<<<<<<<<<<
@@ -8607,7 +9016,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
  */
           __pyx_v_square = (__pyx_v_square + __pyx_v_offset);
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":741
+          /* "src\cython\_genpyx_chess0x88.py":595
  *                     while True:
  *                         square += offset
  *                         if is_not_square(square):             # <<<<<<<<<<<<<<
@@ -8617,7 +9026,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
           __pyx_t_2 = (is_not_square(__pyx_v_square) != 0);
           if (__pyx_t_2) {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":742
+            /* "src\cython\_genpyx_chess0x88.py":596
  *                         square += offset
  *                         if is_not_square(square):
  *                             break             # <<<<<<<<<<<<<<
@@ -8627,7 +9036,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
             goto __pyx_L17_break;
           }
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":743
+          /* "src\cython\_genpyx_chess0x88.py":597
  *                         if is_not_square(square):
  *                             break
  *                         if not self.pieces[square]:             # <<<<<<<<<<<<<<
@@ -8637,22 +9046,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
           __pyx_t_2 = ((!((__pyx_v_self->pieces[__pyx_v_square]) != 0)) != 0);
           if (__pyx_t_2) {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":745
+            /* "src\cython\_genpyx_chess0x88.py":599
  *                         if not self.pieces[square]:
  *                             moves.append(
  *                                 Move(self, current, i, square, NORMAL))             # <<<<<<<<<<<<<<
  *                         else:
  *                             if self.colors[square] == current:
  */
-            __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_8);
-            __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_9 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_9);
-            __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_6 = __Pyx_PyInt_From_int(NORMAL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_6 = __Pyx_PyInt_From_int(NORMAL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_self));
@@ -8669,24 +9078,24 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
             __pyx_t_9 = 0;
             __pyx_t_7 = 0;
             __pyx_t_6 = 0;
-            __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 745; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_6 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 599; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":744
+            /* "src\cython\_genpyx_chess0x88.py":598
  *                             break
  *                         if not self.pieces[square]:
  *                             moves.append(             # <<<<<<<<<<<<<<
  *                                 Move(self, current, i, square, NORMAL))
  *                         else:
  */
-            __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_6); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 744; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_6); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 598; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             goto __pyx_L19;
           }
           /*else*/ {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":747
+            /* "src\cython\_genpyx_chess0x88.py":601
  *                                 Move(self, current, i, square, NORMAL))
  *                         else:
  *                             if self.colors[square] == current:             # <<<<<<<<<<<<<<
@@ -8696,7 +9105,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
             __pyx_t_2 = (((__pyx_v_self->colors[__pyx_v_square]) == __pyx_v_current) != 0);
             if (__pyx_t_2) {
 
-              /* "src/cython/_genpyx_64bit__chess0x88.pyx":748
+              /* "src\cython\_genpyx_chess0x88.py":602
  *                         else:
  *                             if self.colors[square] == current:
  *                                 break             # <<<<<<<<<<<<<<
@@ -8706,22 +9115,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
               goto __pyx_L17_break;
             }
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":750
+            /* "src\cython\_genpyx_chess0x88.py":604
  *                                 break
  *                             moves.append(
  *                                 Move(self, current, i, square, CAPTURE))             # <<<<<<<<<<<<<<
  *                             break
  *                         # Stop after first move for king and knight
  */
-            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_9 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_9 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_9);
-            __pyx_t_8 = PyTuple_New(5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_8 = PyTuple_New(5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_8, 0, ((PyObject *)__pyx_v_self));
@@ -8738,21 +9147,21 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
             __pyx_t_1 = 0;
             __pyx_t_7 = 0;
             __pyx_t_9 = 0;
-            __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 750; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_9 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 604; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_9);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":749
+            /* "src\cython\_genpyx_chess0x88.py":603
  *                             if self.colors[square] == current:
  *                                 break
  *                             moves.append(             # <<<<<<<<<<<<<<
  *                                 Move(self, current, i, square, CAPTURE))
  *                             break
  */
-            __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_9); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 749; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_10 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_9); if (unlikely(__pyx_t_10 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 603; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":751
+            /* "src\cython\_genpyx_chess0x88.py":605
  *                             moves.append(
  *                                 Move(self, current, i, square, CAPTURE))
  *                             break             # <<<<<<<<<<<<<<
@@ -8763,7 +9172,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
           }
           __pyx_L19:;
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":753
+          /* "src\cython\_genpyx_chess0x88.py":607
  *                             break
  *                         # Stop after first move for king and knight
  *                         if (piece == KING or piece == KNIGHT):             # <<<<<<<<<<<<<<
@@ -8774,7 +9183,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
             case KING:
             case KNIGHT:
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":754
+            /* "src\cython\_genpyx_chess0x88.py":608
  *                         # Stop after first move for king and knight
  *                         if (piece == KING or piece == KNIGHT):
  *                             break             # <<<<<<<<<<<<<<
@@ -8793,21 +9202,21 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
     __pyx_L5_continue:;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":755
+  /* "src\cython\_genpyx_chess0x88.py":609
  *                         if (piece == KING or piece == KNIGHT):
  *                             break
  *         return moves             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def generate_moves(self, legal, square, color):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_moves);
   __pyx_r = __pyx_v_moves;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":708
- *         i=cython.int, j=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":562
+ *         )
+ * 
  *     def attack_moves(self, square, color):             # <<<<<<<<<<<<<<
  *         moves = []
  *         current = color
@@ -8820,7 +9229,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.attack_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.attack_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_moves);
@@ -8829,24 +9238,24 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_m
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":765
- *         origin=cython.int, dest=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":611
+ *         return moves
+ * 
  *     def generate_moves(self, legal, square, color):             # <<<<<<<<<<<<<<
  *         moves = []
  *         current = color
  */
 
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate_moves(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_legal, int __pyx_v_square, int __pyx_v_color) {
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_generate_moves(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_legal, int __pyx_v_square, int __pyx_v_color) {
   int __pyx_v_origin;
   int __pyx_v_last;
+  int __pyx_v_i;
   int __pyx_v_j;
   int __pyx_v_current;
-  int __pyx_v_i;
+  int __pyx_v_dest;
   int __pyx_v_single;
   int __pyx_v_other;
   int __pyx_v_offset;
-  int __pyx_v_dest;
   int __pyx_v_piece;
   int __pyx_v_first;
   PyObject *__pyx_v_moves = NULL;
@@ -8878,19 +9287,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("generate_moves", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":766
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":612
+ * 
  *     def generate_moves(self, legal, square, color):
  *         moves = []             # <<<<<<<<<<<<<<
  *         current = color
  *         first = A8
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 612; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":767
+  /* "src\cython\_genpyx_chess0x88.py":613
  *     def generate_moves(self, legal, square, color):
  *         moves = []
  *         current = color             # <<<<<<<<<<<<<<
@@ -8899,7 +9308,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
   __pyx_v_current = __pyx_v_color;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":768
+  /* "src\cython\_genpyx_chess0x88.py":614
  *         moves = []
  *         current = color
  *         first = A8             # <<<<<<<<<<<<<<
@@ -8908,7 +9317,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
   __pyx_v_first = A8;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":769
+  /* "src\cython\_genpyx_chess0x88.py":615
  *         current = color
  *         first = A8
  *         last = H1             # <<<<<<<<<<<<<<
@@ -8917,7 +9326,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
   __pyx_v_last = H1;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":770
+  /* "src\cython\_genpyx_chess0x88.py":616
  *         first = A8
  *         last = H1
  *         single = 0             # <<<<<<<<<<<<<<
@@ -8926,7 +9335,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
   __pyx_v_single = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":771
+  /* "src\cython\_genpyx_chess0x88.py":617
  *         last = H1
  *         single = 0
  *         if current == COLOR_EMPTY:             # <<<<<<<<<<<<<<
@@ -8936,7 +9345,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   __pyx_t_2 = ((__pyx_v_current == COLOR_EMPTY) != 0);
   if (__pyx_t_2) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":772
+    /* "src\cython\_genpyx_chess0x88.py":618
  *         single = 0
  *         if current == COLOR_EMPTY:
  *             current = self.current_color             # <<<<<<<<<<<<<<
@@ -8949,7 +9358,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":773
+  /* "src\cython\_genpyx_chess0x88.py":619
  *         if current == COLOR_EMPTY:
  *             current = self.current_color
  *         other = next_color(current)             # <<<<<<<<<<<<<<
@@ -8958,7 +9367,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
   __pyx_v_other = next_color(__pyx_v_current);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":775
+  /* "src\cython\_genpyx_chess0x88.py":621
  *         other = next_color(current)
  * 
  *         if is_square(square):             # <<<<<<<<<<<<<<
@@ -8968,7 +9377,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   __pyx_t_2 = (is_square(__pyx_v_square) != 0);
   if (__pyx_t_2) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":776
+    /* "src\cython\_genpyx_chess0x88.py":622
  * 
  *         if is_square(square):
  *             first = square             # <<<<<<<<<<<<<<
@@ -8977,7 +9386,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
     __pyx_v_first = __pyx_v_square;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":777
+    /* "src\cython\_genpyx_chess0x88.py":623
  *         if is_square(square):
  *             first = square
  *             last = square             # <<<<<<<<<<<<<<
@@ -8986,7 +9395,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
     __pyx_v_last = __pyx_v_square;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":778
+    /* "src\cython\_genpyx_chess0x88.py":624
  *             first = square
  *             last = square
  *             single = 1             # <<<<<<<<<<<<<<
@@ -8998,7 +9407,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   }
   __pyx_L4:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":780
+  /* "src\cython\_genpyx_chess0x88.py":626
  *             single = 1
  * 
  *         for i in range(first, last + 1):             # <<<<<<<<<<<<<<
@@ -9009,7 +9418,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   for (__pyx_t_3 = __pyx_v_first; __pyx_t_3 < __pyx_t_4; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":781
+    /* "src\cython\_genpyx_chess0x88.py":627
  * 
  *         for i in range(first, last + 1):
  *             if is_not_square(i):             # <<<<<<<<<<<<<<
@@ -9019,7 +9428,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     __pyx_t_2 = (is_not_square(__pyx_v_i) != 0);
     if (__pyx_t_2) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":782
+      /* "src\cython\_genpyx_chess0x88.py":628
  *         for i in range(first, last + 1):
  *             if is_not_square(i):
  *                 i = i + 7             # <<<<<<<<<<<<<<
@@ -9028,7 +9437,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
       __pyx_v_i = (__pyx_v_i + 7);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":783
+      /* "src\cython\_genpyx_chess0x88.py":629
  *             if is_not_square(i):
  *                 i = i + 7
  *                 continue             # <<<<<<<<<<<<<<
@@ -9038,7 +9447,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       goto __pyx_L5_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":784
+    /* "src\cython\_genpyx_chess0x88.py":630
  *                 i = i + 7
  *                 continue
  *             if self.colors[i] != current:             # <<<<<<<<<<<<<<
@@ -9048,7 +9457,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     __pyx_t_2 = (((__pyx_v_self->colors[__pyx_v_i]) != __pyx_v_current) != 0);
     if (__pyx_t_2) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":785
+      /* "src\cython\_genpyx_chess0x88.py":631
  *                 continue
  *             if self.colors[i] != current:
  *                 continue             # <<<<<<<<<<<<<<
@@ -9058,7 +9467,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       goto __pyx_L5_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":787
+    /* "src\cython\_genpyx_chess0x88.py":633
  *                 continue
  * 
  *             piece = self.pieces[i]             # <<<<<<<<<<<<<<
@@ -9067,7 +9476,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
     __pyx_v_piece = (__pyx_v_self->pieces[__pyx_v_i]);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":788
+    /* "src\cython\_genpyx_chess0x88.py":634
  * 
  *             piece = self.pieces[i]
  *             if piece == PAWN:             # <<<<<<<<<<<<<<
@@ -9077,7 +9486,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     __pyx_t_2 = ((__pyx_v_piece == PAWN) != 0);
     if (__pyx_t_2) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":790
+      /* "src\cython\_genpyx_chess0x88.py":636
  *             if piece == PAWN:
  *                 # 1 step forward
  *                 square = i + PAWN_OFFSETS[current][0]             # <<<<<<<<<<<<<<
@@ -9086,7 +9495,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
       __pyx_v_square = (__pyx_v_i + ((PAWN_OFFSETS[__pyx_v_current])[0]));
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":791
+      /* "src\cython\_genpyx_chess0x88.py":637
  *                 # 1 step forward
  *                 square = i + PAWN_OFFSETS[current][0]
  *                 if not self.pieces[square]:             # <<<<<<<<<<<<<<
@@ -9096,22 +9505,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       __pyx_t_2 = ((!((__pyx_v_self->pieces[__pyx_v_square]) != 0)) != 0);
       if (__pyx_t_2) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":792
+        /* "src\cython\_genpyx_chess0x88.py":638
  *                 square = i + PAWN_OFFSETS[current][0]
  *                 if not self.pieces[square]:
  *                     moves.append(Move(self, current, i, square, NORMAL))             # <<<<<<<<<<<<<<
  *                     # 2 steps forward
  *                     square = i + PAWN_OFFSETS[current][1]
  */
-        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_7 = __Pyx_PyInt_From_int(NORMAL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = __Pyx_PyInt_From_int(NORMAL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_8 = PyTuple_New(5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = PyTuple_New(5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_INCREF(((PyObject *)__pyx_v_self));
         PyTuple_SET_ITEM(__pyx_t_8, 0, ((PyObject *)__pyx_v_self));
@@ -9128,13 +9537,13 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_5 = 0;
         __pyx_t_6 = 0;
         __pyx_t_7 = 0;
-        __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_7); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 792; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_7); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 638; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":794
+        /* "src\cython\_genpyx_chess0x88.py":640
  *                     moves.append(Move(self, current, i, square, NORMAL))
  *                     # 2 steps forward
  *                     square = i + PAWN_OFFSETS[current][1]             # <<<<<<<<<<<<<<
@@ -9143,7 +9552,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
         __pyx_v_square = (__pyx_v_i + ((PAWN_OFFSETS[__pyx_v_current])[1]));
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":795
+        /* "src\cython\_genpyx_chess0x88.py":641
  *                     # 2 steps forward
  *                     square = i + PAWN_OFFSETS[current][1]
  *                     if (rank(i) == SECOND_RANK[current] and             # <<<<<<<<<<<<<<
@@ -9153,7 +9562,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_2 = ((rank(__pyx_v_i) == (SECOND_RANK[__pyx_v_current])) != 0);
         if (__pyx_t_2) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":796
+          /* "src\cython\_genpyx_chess0x88.py":642
  *                     square = i + PAWN_OFFSETS[current][1]
  *                     if (rank(i) == SECOND_RANK[current] and
  *                             not self.pieces[square]):             # <<<<<<<<<<<<<<
@@ -9167,22 +9576,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         }
         if (__pyx_t_11) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":797
+          /* "src\cython\_genpyx_chess0x88.py":643
  *                     if (rank(i) == SECOND_RANK[current] and
  *                             not self.pieces[square]):
  *                         moves.append(Move(self, current, i, square, BIG_PAWN))             # <<<<<<<<<<<<<<
  *                 # Captures
  *                 for j in range(2, 4):
  */
-          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_5 = __Pyx_PyInt_From_int(BIG_PAWN); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_5 = __Pyx_PyInt_From_int(BIG_PAWN); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_5);
-          __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_INCREF(((PyObject *)__pyx_v_self));
           PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_self));
@@ -9199,10 +9608,10 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           __pyx_t_8 = 0;
           __pyx_t_6 = 0;
           __pyx_t_5 = 0;
-          __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_5); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 797; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_5); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 643; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
           goto __pyx_L11;
         }
@@ -9211,7 +9620,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       }
       __pyx_L10:;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":799
+      /* "src\cython\_genpyx_chess0x88.py":645
  *                         moves.append(Move(self, current, i, square, BIG_PAWN))
  *                 # Captures
  *                 for j in range(2, 4):             # <<<<<<<<<<<<<<
@@ -9221,7 +9630,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       for (__pyx_t_12 = 2; __pyx_t_12 < 4; __pyx_t_12+=1) {
         __pyx_v_j = __pyx_t_12;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":800
+        /* "src\cython\_genpyx_chess0x88.py":646
  *                 # Captures
  *                 for j in range(2, 4):
  *                     square = i + PAWN_OFFSETS[current][j]             # <<<<<<<<<<<<<<
@@ -9230,7 +9639,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
         __pyx_v_square = (__pyx_v_i + ((PAWN_OFFSETS[__pyx_v_current])[__pyx_v_j]));
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":801
+        /* "src\cython\_genpyx_chess0x88.py":647
  *                 for j in range(2, 4):
  *                     square = i + PAWN_OFFSETS[current][j]
  *                     if is_not_square(square):             # <<<<<<<<<<<<<<
@@ -9240,7 +9649,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_11 = (is_not_square(__pyx_v_square) != 0);
         if (__pyx_t_11) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":802
+          /* "src\cython\_genpyx_chess0x88.py":648
  *                     square = i + PAWN_OFFSETS[current][j]
  *                     if is_not_square(square):
  *                         continue             # <<<<<<<<<<<<<<
@@ -9250,7 +9659,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           goto __pyx_L12_continue;
         }
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":803
+        /* "src\cython\_genpyx_chess0x88.py":649
  *                     if is_not_square(square):
  *                         continue
  *                     if self.pieces[square] and self.colors[square] == other:             # <<<<<<<<<<<<<<
@@ -9265,22 +9674,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         }
         if (__pyx_t_2) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":804
+          /* "src\cython\_genpyx_chess0x88.py":650
  *                         continue
  *                     if self.pieces[square] and self.colors[square] == other:
  *                         moves.append(Move(self, current, i, square, CAPTURE))             # <<<<<<<<<<<<<<
  *                     elif square == self.en_passant_square:
  *                         moves.append(
  */
-          __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_5);
-          __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_8 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_7 = PyTuple_New(5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_7 = PyTuple_New(5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_7);
           __Pyx_INCREF(((PyObject *)__pyx_v_self));
           PyTuple_SET_ITEM(__pyx_t_7, 0, ((PyObject *)__pyx_v_self));
@@ -9297,15 +9706,15 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           __pyx_t_1 = 0;
           __pyx_t_6 = 0;
           __pyx_t_8 = 0;
-          __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_8); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_8); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 650; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           goto __pyx_L15;
         }
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":805
+        /* "src\cython\_genpyx_chess0x88.py":651
  *                     if self.pieces[square] and self.colors[square] == other:
  *                         moves.append(Move(self, current, i, square, CAPTURE))
  *                     elif square == self.en_passant_square:             # <<<<<<<<<<<<<<
@@ -9315,22 +9724,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_2 = ((__pyx_v_square == __pyx_v_self->en_passant_square) != 0);
         if (__pyx_t_2) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":807
+          /* "src\cython\_genpyx_chess0x88.py":653
  *                     elif square == self.en_passant_square:
  *                         moves.append(
  *                             Move(self, current, i, square, EN_PASSANT))             # <<<<<<<<<<<<<<
  *             else:
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
  */
-          __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 807; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_8);
-          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 807; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 807; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_1 = __Pyx_PyInt_From_int(EN_PASSANT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 807; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = __Pyx_PyInt_From_int(EN_PASSANT); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 807; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_5);
           __Pyx_INCREF(((PyObject *)__pyx_v_self));
           PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)__pyx_v_self));
@@ -9347,18 +9756,18 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           __pyx_t_7 = 0;
           __pyx_t_6 = 0;
           __pyx_t_1 = 0;
-          __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 807; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 653; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":806
+          /* "src\cython\_genpyx_chess0x88.py":652
  *                         moves.append(Move(self, current, i, square, CAPTURE))
  *                     elif square == self.en_passant_square:
  *                         moves.append(             # <<<<<<<<<<<<<<
  *                             Move(self, current, i, square, EN_PASSANT))
  *             else:
  */
-          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_1); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 806; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_1); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 652; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
           goto __pyx_L15;
         }
@@ -9369,7 +9778,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     }
     /*else*/ {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":809
+      /* "src\cython\_genpyx_chess0x88.py":655
  *                             Move(self, current, i, square, EN_PASSANT))
  *             else:
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):             # <<<<<<<<<<<<<<
@@ -9380,7 +9789,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
         __pyx_v_j = __pyx_t_13;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":810
+        /* "src\cython\_genpyx_chess0x88.py":656
  *             else:
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
  *                     offset = PIECE_OFFSET[piece][j]             # <<<<<<<<<<<<<<
@@ -9389,7 +9798,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
         __pyx_v_offset = ((PIECE_OFFSET[__pyx_v_piece])[__pyx_v_j]);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":811
+        /* "src\cython\_genpyx_chess0x88.py":657
  *                 for j in range(0, PIECE_OFFSET_SIZE[piece]):
  *                     offset = PIECE_OFFSET[piece][j]
  *                     square = i             # <<<<<<<<<<<<<<
@@ -9398,7 +9807,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
         __pyx_v_square = __pyx_v_i;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":812
+        /* "src\cython\_genpyx_chess0x88.py":658
  *                     offset = PIECE_OFFSET[piece][j]
  *                     square = i
  *                     while True:             # <<<<<<<<<<<<<<
@@ -9407,7 +9816,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
         while (1) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":813
+          /* "src\cython\_genpyx_chess0x88.py":659
  *                     square = i
  *                     while True:
  *                         square += offset             # <<<<<<<<<<<<<<
@@ -9416,7 +9825,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
           __pyx_v_square = (__pyx_v_square + __pyx_v_offset);
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":814
+          /* "src\cython\_genpyx_chess0x88.py":660
  *                     while True:
  *                         square += offset
  *                         if is_not_square(square):             # <<<<<<<<<<<<<<
@@ -9426,7 +9835,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           __pyx_t_2 = (is_not_square(__pyx_v_square) != 0);
           if (__pyx_t_2) {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":815
+            /* "src\cython\_genpyx_chess0x88.py":661
  *                         square += offset
  *                         if is_not_square(square):
  *                             break             # <<<<<<<<<<<<<<
@@ -9436,7 +9845,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
             goto __pyx_L19_break;
           }
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":816
+          /* "src\cython\_genpyx_chess0x88.py":662
  *                         if is_not_square(square):
  *                             break
  *                         if not self.pieces[square]:             # <<<<<<<<<<<<<<
@@ -9446,22 +9855,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           __pyx_t_2 = ((!((__pyx_v_self->pieces[__pyx_v_square]) != 0)) != 0);
           if (__pyx_t_2) {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":818
+            /* "src\cython\_genpyx_chess0x88.py":664
  *                         if not self.pieces[square]:
  *                             moves.append(
  *                                 Move(self, current, i, square, NORMAL))             # <<<<<<<<<<<<<<
  *                         else:
  *                             if self.colors[square] == current:
  */
-            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 818; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 818; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_5);
-            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 818; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_7 = __Pyx_PyInt_From_int(NORMAL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 818; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_7 = __Pyx_PyInt_From_int(NORMAL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_8 = PyTuple_New(5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 818; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_8 = PyTuple_New(5); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_8, 0, ((PyObject *)__pyx_v_self));
@@ -9478,24 +9887,24 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
             __pyx_t_5 = 0;
             __pyx_t_6 = 0;
             __pyx_t_7 = 0;
-            __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 818; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_7 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_8, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 664; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_7);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":817
+            /* "src\cython\_genpyx_chess0x88.py":663
  *                             break
  *                         if not self.pieces[square]:
  *                             moves.append(             # <<<<<<<<<<<<<<
  *                                 Move(self, current, i, square, NORMAL))
  *                         else:
  */
-            __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_7); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 817; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_7); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 663; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
             goto __pyx_L21;
           }
           /*else*/ {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":820
+            /* "src\cython\_genpyx_chess0x88.py":666
  *                                 Move(self, current, i, square, NORMAL))
  *                         else:
  *                             if self.colors[square] == current:             # <<<<<<<<<<<<<<
@@ -9505,7 +9914,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
             __pyx_t_2 = (((__pyx_v_self->colors[__pyx_v_square]) == __pyx_v_current) != 0);
             if (__pyx_t_2) {
 
-              /* "src/cython/_genpyx_64bit__chess0x88.pyx":821
+              /* "src\cython\_genpyx_chess0x88.py":667
  *                         else:
  *                             if self.colors[square] == current:
  *                                 break             # <<<<<<<<<<<<<<
@@ -9515,22 +9924,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
               goto __pyx_L19_break;
             }
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":823
+            /* "src\cython\_genpyx_chess0x88.py":669
  *                                 break
  *                             moves.append(
  *                                 Move(self, current, i, square, CAPTURE))             # <<<<<<<<<<<<<<
  *                             break
  *                         # Stop after first for king and knight
  */
-            __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_8);
-            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_square); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_5 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_5 = __Pyx_PyInt_From_int(CAPTURE); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_5);
-            __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_1 = PyTuple_New(5); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_INCREF(((PyObject *)__pyx_v_self));
             PyTuple_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_self));
@@ -9547,21 +9956,21 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
             __pyx_t_8 = 0;
             __pyx_t_6 = 0;
             __pyx_t_5 = 0;
-            __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 823; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_5 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 669; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_5);
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":822
+            /* "src\cython\_genpyx_chess0x88.py":668
  *                             if self.colors[square] == current:
  *                                 break
  *                             moves.append(             # <<<<<<<<<<<<<<
  *                                 Move(self, current, i, square, CAPTURE))
  *                             break
  */
-            __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_5); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 822; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+            __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_5); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 668; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":824
+            /* "src\cython\_genpyx_chess0x88.py":670
  *                             moves.append(
  *                                 Move(self, current, i, square, CAPTURE))
  *                             break             # <<<<<<<<<<<<<<
@@ -9572,7 +9981,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           }
           __pyx_L21:;
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":826
+          /* "src\cython\_genpyx_chess0x88.py":672
  *                             break
  *                         # Stop after first for king and knight
  *                         if (piece == KING or piece == KNIGHT):             # <<<<<<<<<<<<<<
@@ -9583,7 +9992,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
             case KING:
             case KNIGHT:
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":827
+            /* "src\cython\_genpyx_chess0x88.py":673
  *                         # Stop after first for king and knight
  *                         if (piece == KING or piece == KNIGHT):
  *                             break             # <<<<<<<<<<<<<<
@@ -9602,7 +10011,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     __pyx_L5_continue:;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":830
+  /* "src\cython\_genpyx_chess0x88.py":676
  * 
  *         # Castling
  *         if ((not single or last == self.kings[current]) and             # <<<<<<<<<<<<<<
@@ -9618,7 +10027,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   }
   if (__pyx_t_10) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":831
+    /* "src\cython\_genpyx_chess0x88.py":677
  *         # Castling
  *         if ((not single or last == self.kings[current]) and
  *                 self.kings[current] != EMPTY):             # <<<<<<<<<<<<<<
@@ -9632,7 +10041,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   }
   if (__pyx_t_11) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":832
+    /* "src\cython\_genpyx_chess0x88.py":678
  *         if ((not single or last == self.kings[current]) and
  *                 self.kings[current] != EMPTY):
  *             if self.castling[current] & KINGSIDE:             # <<<<<<<<<<<<<<
@@ -9642,7 +10051,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     __pyx_t_11 = (((__pyx_v_self->castling[__pyx_v_current]) & KINGSIDE) != 0);
     if (__pyx_t_11) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":833
+      /* "src\cython\_genpyx_chess0x88.py":679
  *                 self.kings[current] != EMPTY):
  *             if self.castling[current] & KINGSIDE:
  *                 origin = self.kings[current]             # <<<<<<<<<<<<<<
@@ -9651,7 +10060,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
       __pyx_v_origin = (__pyx_v_self->kings[__pyx_v_current]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":834
+      /* "src\cython\_genpyx_chess0x88.py":680
  *             if self.castling[current] & KINGSIDE:
  *                 origin = self.kings[current]
  *                 dest = origin + E + E             # <<<<<<<<<<<<<<
@@ -9660,7 +10069,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
       __pyx_v_dest = ((__pyx_v_origin + E) + E);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":835
+      /* "src\cython\_genpyx_chess0x88.py":681
  *                 origin = self.kings[current]
  *                 dest = origin + E + E
  *                 if (not self.pieces[origin + E] and             # <<<<<<<<<<<<<<
@@ -9670,7 +10079,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       __pyx_t_11 = ((!((__pyx_v_self->pieces[(__pyx_v_origin + E)]) != 0)) != 0);
       if (__pyx_t_11) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":836
+        /* "src\cython\_genpyx_chess0x88.py":682
  *                 dest = origin + E + E
  *                 if (not self.pieces[origin + E] and
  *                         not self.pieces[dest] and             # <<<<<<<<<<<<<<
@@ -9680,34 +10089,34 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_10 = ((!((__pyx_v_self->pieces[__pyx_v_dest]) != 0)) != 0);
         if (__pyx_t_10) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":837
+          /* "src\cython\_genpyx_chess0x88.py":683
  *                 if (not self.pieces[origin + E] and
  *                         not self.pieces[dest] and
  *                         not self.attacked(origin, other) and             # <<<<<<<<<<<<<<
  *                         not self.attacked(origin + E, other) and
  *                         not self.attacked(dest, other)):
  */
-          __pyx_t_2 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_origin, __pyx_v_other) != 0)) != 0);
+          __pyx_t_2 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_origin, __pyx_v_other) != 0)) != 0);
           if (__pyx_t_2) {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":838
+            /* "src\cython\_genpyx_chess0x88.py":684
  *                         not self.pieces[dest] and
  *                         not self.attacked(origin, other) and
  *                         not self.attacked(origin + E, other) and             # <<<<<<<<<<<<<<
  *                         not self.attacked(dest, other)):
  *                     moves.append(Move(self, current, origin, dest, KINGSIDE))
  */
-            __pyx_t_14 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, (__pyx_v_origin + E), __pyx_v_other) != 0)) != 0);
+            __pyx_t_14 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, (__pyx_v_origin + E), __pyx_v_other) != 0)) != 0);
             if (__pyx_t_14) {
 
-              /* "src/cython/_genpyx_64bit__chess0x88.pyx":839
+              /* "src\cython\_genpyx_chess0x88.py":685
  *                         not self.attacked(origin, other) and
  *                         not self.attacked(origin + E, other) and
  *                         not self.attacked(dest, other)):             # <<<<<<<<<<<<<<
  *                     moves.append(Move(self, current, origin, dest, KINGSIDE))
  *             if self.castling[current] & QUEENSIDE:
  */
-              __pyx_t_15 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_dest, __pyx_v_other) != 0)) != 0);
+              __pyx_t_15 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_dest, __pyx_v_other) != 0)) != 0);
               __pyx_t_16 = __pyx_t_15;
             } else {
               __pyx_t_16 = __pyx_t_14;
@@ -9726,22 +10135,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       }
       if (__pyx_t_10) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":840
+        /* "src\cython\_genpyx_chess0x88.py":686
  *                         not self.attacked(origin + E, other) and
  *                         not self.attacked(dest, other)):
  *                     moves.append(Move(self, current, origin, dest, KINGSIDE))             # <<<<<<<<<<<<<<
  *             if self.castling[current] & QUEENSIDE:
  *                 origin = self.kings[current]
  */
-        __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_origin); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_dest); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_dest); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_8 = __Pyx_PyInt_From_int(KINGSIDE); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = __Pyx_PyInt_From_int(KINGSIDE); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_7 = PyTuple_New(5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = PyTuple_New(5); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_INCREF(((PyObject *)__pyx_v_self));
         PyTuple_SET_ITEM(__pyx_t_7, 0, ((PyObject *)__pyx_v_self));
@@ -9758,10 +10167,10 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_1 = 0;
         __pyx_t_6 = 0;
         __pyx_t_8 = 0;
-        __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_7, NULL); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_8); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 840; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_8); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 686; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         goto __pyx_L25;
       }
@@ -9770,7 +10179,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     }
     __pyx_L24:;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":841
+    /* "src\cython\_genpyx_chess0x88.py":687
  *                         not self.attacked(dest, other)):
  *                     moves.append(Move(self, current, origin, dest, KINGSIDE))
  *             if self.castling[current] & QUEENSIDE:             # <<<<<<<<<<<<<<
@@ -9780,7 +10189,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     __pyx_t_10 = (((__pyx_v_self->castling[__pyx_v_current]) & QUEENSIDE) != 0);
     if (__pyx_t_10) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":842
+      /* "src\cython\_genpyx_chess0x88.py":688
  *                     moves.append(Move(self, current, origin, dest, KINGSIDE))
  *             if self.castling[current] & QUEENSIDE:
  *                 origin = self.kings[current]             # <<<<<<<<<<<<<<
@@ -9789,7 +10198,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
       __pyx_v_origin = (__pyx_v_self->kings[__pyx_v_current]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":843
+      /* "src\cython\_genpyx_chess0x88.py":689
  *             if self.castling[current] & QUEENSIDE:
  *                 origin = self.kings[current]
  *                 dest = origin + W + W             # <<<<<<<<<<<<<<
@@ -9798,7 +10207,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
  */
       __pyx_v_dest = ((__pyx_v_origin + W) + W);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":844
+      /* "src\cython\_genpyx_chess0x88.py":690
  *                 origin = self.kings[current]
  *                 dest = origin + W + W
  *                 if (not self.pieces[origin + W] and             # <<<<<<<<<<<<<<
@@ -9808,7 +10217,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       __pyx_t_10 = ((!((__pyx_v_self->pieces[(__pyx_v_origin + W)]) != 0)) != 0);
       if (__pyx_t_10) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":845
+        /* "src\cython\_genpyx_chess0x88.py":691
  *                 dest = origin + W + W
  *                 if (not self.pieces[origin + W] and
  *                         not self.pieces[origin + W + W] and             # <<<<<<<<<<<<<<
@@ -9818,7 +10227,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_11 = ((!((__pyx_v_self->pieces[((__pyx_v_origin + W) + W)]) != 0)) != 0);
         if (__pyx_t_11) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":846
+          /* "src\cython\_genpyx_chess0x88.py":692
  *                 if (not self.pieces[origin + W] and
  *                         not self.pieces[origin + W + W] and
  *                         not self.pieces[origin + W + W + W] and             # <<<<<<<<<<<<<<
@@ -9828,7 +10237,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
           __pyx_t_2 = ((!((__pyx_v_self->pieces[(((__pyx_v_origin + W) + W) + W)]) != 0)) != 0);
           if (__pyx_t_2) {
 
-            /* "src/cython/_genpyx_64bit__chess0x88.pyx":847
+            /* "src\cython\_genpyx_chess0x88.py":693
  *                         not self.pieces[origin + W + W] and
  *                         not self.pieces[origin + W + W + W] and
  *                         not self.pieces[dest] and             # <<<<<<<<<<<<<<
@@ -9838,34 +10247,34 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
             __pyx_t_14 = ((!((__pyx_v_self->pieces[__pyx_v_dest]) != 0)) != 0);
             if (__pyx_t_14) {
 
-              /* "src/cython/_genpyx_64bit__chess0x88.pyx":848
+              /* "src\cython\_genpyx_chess0x88.py":694
  *                         not self.pieces[origin + W + W + W] and
  *                         not self.pieces[dest] and
  *                         not self.attacked(origin, other) and             # <<<<<<<<<<<<<<
  *                         not self.attacked(origin + W, other) and
  *                         not self.attacked(dest, other)):
  */
-              __pyx_t_16 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_origin, __pyx_v_other) != 0)) != 0);
+              __pyx_t_16 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_origin, __pyx_v_other) != 0)) != 0);
               if (__pyx_t_16) {
 
-                /* "src/cython/_genpyx_64bit__chess0x88.pyx":849
+                /* "src\cython\_genpyx_chess0x88.py":695
  *                         not self.pieces[dest] and
  *                         not self.attacked(origin, other) and
  *                         not self.attacked(origin + W, other) and             # <<<<<<<<<<<<<<
  *                         not self.attacked(dest, other)):
  *                     moves.append(Move(self, current, origin, dest, QUEENSIDE))
  */
-                __pyx_t_15 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, (__pyx_v_origin + W), __pyx_v_other) != 0)) != 0);
+                __pyx_t_15 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, (__pyx_v_origin + W), __pyx_v_other) != 0)) != 0);
                 if (__pyx_t_15) {
 
-                  /* "src/cython/_genpyx_64bit__chess0x88.pyx":850
+                  /* "src\cython\_genpyx_chess0x88.py":696
  *                         not self.attacked(origin, other) and
  *                         not self.attacked(origin + W, other) and
  *                         not self.attacked(dest, other)):             # <<<<<<<<<<<<<<
  *                     moves.append(Move(self, current, origin, dest, QUEENSIDE))
  * 
  */
-                  __pyx_t_17 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_dest, __pyx_v_other) != 0)) != 0);
+                  __pyx_t_17 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, __pyx_v_dest, __pyx_v_other) != 0)) != 0);
                   __pyx_t_18 = __pyx_t_17;
                 } else {
                   __pyx_t_18 = __pyx_t_15;
@@ -9892,22 +10301,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
       }
       if (__pyx_t_11) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":851
+        /* "src\cython\_genpyx_chess0x88.py":697
  *                         not self.attacked(origin + W, other) and
  *                         not self.attacked(dest, other)):
  *                     moves.append(Move(self, current, origin, dest, QUEENSIDE))             # <<<<<<<<<<<<<<
  * 
  *         if not legal:
  */
-        __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_8 = __Pyx_PyInt_From_int(__pyx_v_current); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_8);
-        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_origin); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_origin); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_dest); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_6 = __Pyx_PyInt_From_int(__pyx_v_dest); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_1 = __Pyx_PyInt_From_int(QUEENSIDE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyInt_From_int(QUEENSIDE); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_5 = PyTuple_New(5); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_INCREF(((PyObject *)__pyx_v_self));
         PyTuple_SET_ITEM(__pyx_t_5, 0, ((PyObject *)__pyx_v_self));
@@ -9924,10 +10333,10 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
         __pyx_t_7 = 0;
         __pyx_t_6 = 0;
         __pyx_t_1 = 0;
-        __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move)), __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move)), __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_1); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_moves, __pyx_t_1); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 697; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         goto __pyx_L27;
       }
@@ -9939,7 +10348,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   }
   __pyx_L23:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":853
+  /* "src\cython\_genpyx_chess0x88.py":699
  *                     moves.append(Move(self, current, origin, dest, QUEENSIDE))
  * 
  *         if not legal:             # <<<<<<<<<<<<<<
@@ -9949,7 +10358,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   __pyx_t_11 = ((!(__pyx_v_legal != 0)) != 0);
   if (__pyx_t_11) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":854
+    /* "src\cython\_genpyx_chess0x88.py":700
  * 
  *         if not legal:
  *             return moves             # <<<<<<<<<<<<<<
@@ -9962,19 +10371,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":856
+  /* "src\cython\_genpyx_chess0x88.py":702
  *             return moves
  * 
  *         legal_moves = []             # <<<<<<<<<<<<<<
  *         for move in moves:
  *             move.do(self)
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 702; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_legal_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":857
+  /* "src\cython\_genpyx_chess0x88.py":703
  * 
  *         legal_moves = []
  *         for move in moves:             # <<<<<<<<<<<<<<
@@ -9985,70 +10394,70 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   for (;;) {
     if (__pyx_t_19 >= PyList_GET_SIZE(__pyx_t_1)) break;
     #if CYTHON_COMPILING_IN_CPYTHON
-    __pyx_t_5 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_19); __Pyx_INCREF(__pyx_t_5); __pyx_t_19++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 857; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_19); __Pyx_INCREF(__pyx_t_5); __pyx_t_19++; if (unlikely(0 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     #else
-    __pyx_t_5 = PySequence_ITEM(__pyx_t_1, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 857; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = PySequence_ITEM(__pyx_t_1, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 703; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     #endif
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":858
+    /* "src\cython\_genpyx_chess0x88.py":704
  *         legal_moves = []
  *         for move in moves:
  *             move.do(self)             # <<<<<<<<<<<<<<
  *             if not self.in_check(current):
  *                 legal_moves.append(move)
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_do); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 858; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_do); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 704; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 858; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 704; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(((PyObject *)__pyx_v_self));
     PyTuple_SET_ITEM(__pyx_t_6, 0, ((PyObject *)__pyx_v_self));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 858; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_6, NULL); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 704; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":859
+    /* "src\cython\_genpyx_chess0x88.py":705
  *         for move in moves:
  *             move.do(self)
  *             if not self.in_check(current):             # <<<<<<<<<<<<<<
  *                 legal_moves.append(move)
  *             #else:
  */
-    __pyx_t_11 = ((!(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->in_check(__pyx_v_self, __pyx_v_current, 0) != 0)) != 0);
+    __pyx_t_11 = ((!(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->in_check(__pyx_v_self, __pyx_v_current, 0) != 0)) != 0);
     if (__pyx_t_11) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":860
+      /* "src\cython\_genpyx_chess0x88.py":706
  *             move.do(self)
  *             if not self.in_check(current):
  *                 legal_moves.append(move)             # <<<<<<<<<<<<<<
  *             #else:
  *             #    self.display()
  */
-      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_legal_moves, __pyx_v_move); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 860; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_legal_moves, __pyx_v_move); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 706; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       goto __pyx_L31;
     }
     __pyx_L31:;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":863
+    /* "src\cython\_genpyx_chess0x88.py":709
  *             #else:
  *             #    self.display()
  *             move.undo(self)             # <<<<<<<<<<<<<<
  *         return legal_moves
  * 
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_undo); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 863; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_n_s_undo); if (unlikely(!__pyx_t_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 863; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_6 = PyTuple_New(1); if (unlikely(!__pyx_t_6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(((PyObject *)__pyx_v_self));
     PyTuple_SET_ITEM(__pyx_t_6, 0, ((PyObject *)__pyx_v_self));
     __Pyx_GIVEREF(((PyObject *)__pyx_v_self));
-    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 863; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_6, NULL); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 709; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -10056,21 +10465,21 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":864
+  /* "src\cython\_genpyx_chess0x88.py":710
  *             #    self.display()
  *             move.undo(self)
  *         return legal_moves             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def attacked(self, square, color):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_legal_moves);
   __pyx_r = __pyx_v_legal_moves;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":765
- *         origin=cython.int, dest=cython.int
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":611
+ *         return moves
+ * 
  *     def generate_moves(self, legal, square, color):             # <<<<<<<<<<<<<<
  *         moves = []
  *         current = color
@@ -10083,7 +10492,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.generate_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.generate_moves", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_moves);
@@ -10094,19 +10503,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":873
- *         offset=cython.int, i=cython.int, j=cython.int,
- *     )
+/* "src\cython\_genpyx_chess0x88.py":712
+ *         return legal_moves
+ * 
  *     def attacked(self, square, color):             # <<<<<<<<<<<<<<
  *         for i in range(A8, H1 + 1):
  *             if is_not_square(i):
  */
 
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_square, int __pyx_v_color) {
-  int __pyx_v_j;
-  int __pyx_v_i;
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_attacked(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_square, int __pyx_v_color) {
   int __pyx_v_offset;
+  int __pyx_v_i;
   int __pyx_v_diff_0x88;
+  int __pyx_v_j;
   int __pyx_v_diff;
   int __pyx_v_blocked;
   int __pyx_v_piece;
@@ -10120,8 +10529,8 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
   int __pyx_t_6;
   __Pyx_RefNannySetupContext("attacked", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":874
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":713
+ * 
  *     def attacked(self, square, color):
  *         for i in range(A8, H1 + 1):             # <<<<<<<<<<<<<<
  *             if is_not_square(i):
@@ -10131,7 +10540,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
   for (__pyx_t_2 = A8; __pyx_t_2 < __pyx_t_1; __pyx_t_2+=1) {
     __pyx_v_i = __pyx_t_2;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":875
+    /* "src\cython\_genpyx_chess0x88.py":714
  *     def attacked(self, square, color):
  *         for i in range(A8, H1 + 1):
  *             if is_not_square(i):             # <<<<<<<<<<<<<<
@@ -10141,7 +10550,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
     __pyx_t_3 = (is_not_square(__pyx_v_i) != 0);
     if (__pyx_t_3) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":876
+      /* "src\cython\_genpyx_chess0x88.py":715
  *         for i in range(A8, H1 + 1):
  *             if is_not_square(i):
  *                 i = i + 7             # <<<<<<<<<<<<<<
@@ -10150,7 +10559,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
       __pyx_v_i = (__pyx_v_i + 7);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":877
+      /* "src\cython\_genpyx_chess0x88.py":716
  *             if is_not_square(i):
  *                 i = i + 7
  *                 continue             # <<<<<<<<<<<<<<
@@ -10160,7 +10569,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
       goto __pyx_L3_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":879
+    /* "src\cython\_genpyx_chess0x88.py":718
  *                 continue
  * 
  *             if self.colors[i] != color:             # <<<<<<<<<<<<<<
@@ -10170,7 +10579,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
     __pyx_t_3 = (((__pyx_v_self->colors[__pyx_v_i]) != __pyx_v_color) != 0);
     if (__pyx_t_3) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":880
+      /* "src\cython\_genpyx_chess0x88.py":719
  * 
  *             if self.colors[i] != color:
  *                 continue             # <<<<<<<<<<<<<<
@@ -10180,7 +10589,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
       goto __pyx_L3_continue;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":882
+    /* "src\cython\_genpyx_chess0x88.py":721
  *                 continue
  * 
  *             piece = self.pieces[i]             # <<<<<<<<<<<<<<
@@ -10189,7 +10598,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
     __pyx_v_piece = (__pyx_v_self->pieces[__pyx_v_i]);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":883
+    /* "src\cython\_genpyx_chess0x88.py":722
  * 
  *             piece = self.pieces[i]
  *             diff = i - square             # <<<<<<<<<<<<<<
@@ -10198,7 +10607,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
     __pyx_v_diff = (__pyx_v_i - __pyx_v_square);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":884
+    /* "src\cython\_genpyx_chess0x88.py":723
  *             piece = self.pieces[i]
  *             diff = i - square
  *             diff_0x88 = 0x77 + diff             # <<<<<<<<<<<<<<
@@ -10207,7 +10616,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
     __pyx_v_diff_0x88 = (0x77 + __pyx_v_diff);
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":885
+    /* "src\cython\_genpyx_chess0x88.py":724
  *             diff = i - square
  *             diff_0x88 = 0x77 + diff
  *             if ATTACKS[diff_0x88] & (1 << SHIFTS[piece]):             # <<<<<<<<<<<<<<
@@ -10217,7 +10626,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
     __pyx_t_3 = (((ATTACKS[__pyx_v_diff_0x88]) & (1 << (SHIFTS[__pyx_v_piece]))) != 0);
     if (__pyx_t_3) {
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":886
+      /* "src\cython\_genpyx_chess0x88.py":725
  *             diff_0x88 = 0x77 + diff
  *             if ATTACKS[diff_0x88] & (1 << SHIFTS[piece]):
  *                 if piece == PAWN:             # <<<<<<<<<<<<<<
@@ -10227,7 +10636,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
       __pyx_t_3 = ((__pyx_v_piece == PAWN) != 0);
       if (__pyx_t_3) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":887
+        /* "src\cython\_genpyx_chess0x88.py":726
  *             if ATTACKS[diff_0x88] & (1 << SHIFTS[piece]):
  *                 if piece == PAWN:
  *                     if ((diff > 0 and color == WHITE) or             # <<<<<<<<<<<<<<
@@ -10243,7 +10652,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         }
         if (!__pyx_t_5) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":888
+          /* "src\cython\_genpyx_chess0x88.py":727
  *                 if piece == PAWN:
  *                     if ((diff > 0 and color == WHITE) or
  *                             (diff <= 0 and color == BLACK)):             # <<<<<<<<<<<<<<
@@ -10263,7 +10672,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         }
         if (__pyx_t_3) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":889
+          /* "src\cython\_genpyx_chess0x88.py":728
  *                     if ((diff > 0 and color == WHITE) or
  *                             (diff <= 0 and color == BLACK)):
  *                         return True             # <<<<<<<<<<<<<<
@@ -10274,7 +10683,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
           goto __pyx_L0;
         }
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":890
+        /* "src\cython\_genpyx_chess0x88.py":729
  *                             (diff <= 0 and color == BLACK)):
  *                         return True
  *                     continue             # <<<<<<<<<<<<<<
@@ -10284,7 +10693,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         goto __pyx_L3_continue;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":892
+      /* "src\cython\_genpyx_chess0x88.py":731
  *                     continue
  * 
  *                 if piece == KING or piece == KNIGHT:             # <<<<<<<<<<<<<<
@@ -10295,7 +10704,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         case KING:
         case KNIGHT:
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":893
+        /* "src\cython\_genpyx_chess0x88.py":732
  * 
  *                 if piece == KING or piece == KNIGHT:
  *                     return True             # <<<<<<<<<<<<<<
@@ -10308,7 +10717,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         default: break;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":895
+      /* "src\cython\_genpyx_chess0x88.py":734
  *                     return True
  * 
  *                 offset = RAYS[diff_0x88]             # <<<<<<<<<<<<<<
@@ -10317,7 +10726,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
       __pyx_v_offset = (RAYS[__pyx_v_diff_0x88]);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":896
+      /* "src\cython\_genpyx_chess0x88.py":735
  * 
  *                 offset = RAYS[diff_0x88]
  *                 j = i + offset             # <<<<<<<<<<<<<<
@@ -10326,7 +10735,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
       __pyx_v_j = (__pyx_v_i + __pyx_v_offset);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":897
+      /* "src\cython\_genpyx_chess0x88.py":736
  *                 offset = RAYS[diff_0x88]
  *                 j = i + offset
  *                 blocked = False             # <<<<<<<<<<<<<<
@@ -10335,7 +10744,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
       __pyx_v_blocked = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":898
+      /* "src\cython\_genpyx_chess0x88.py":737
  *                 j = i + offset
  *                 blocked = False
  *                 while j != square:             # <<<<<<<<<<<<<<
@@ -10346,7 +10755,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         __pyx_t_3 = ((__pyx_v_j != __pyx_v_square) != 0);
         if (!__pyx_t_3) break;
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":899
+        /* "src\cython\_genpyx_chess0x88.py":738
  *                 blocked = False
  *                 while j != square:
  *                     if self.pieces[j]:             # <<<<<<<<<<<<<<
@@ -10356,7 +10765,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
         __pyx_t_3 = ((__pyx_v_self->pieces[__pyx_v_j]) != 0);
         if (__pyx_t_3) {
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":900
+          /* "src\cython\_genpyx_chess0x88.py":739
  *                 while j != square:
  *                     if self.pieces[j]:
  *                         blocked = True             # <<<<<<<<<<<<<<
@@ -10365,7 +10774,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
  */
           __pyx_v_blocked = 1;
 
-          /* "src/cython/_genpyx_64bit__chess0x88.pyx":901
+          /* "src\cython\_genpyx_chess0x88.py":740
  *                     if self.pieces[j]:
  *                         blocked = True
  *                         break             # <<<<<<<<<<<<<<
@@ -10375,7 +10784,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
           goto __pyx_L11_break;
         }
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":902
+        /* "src\cython\_genpyx_chess0x88.py":741
  *                         blocked = True
  *                         break
  *                     j += offset             # <<<<<<<<<<<<<<
@@ -10386,7 +10795,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
       }
       __pyx_L11_break:;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":903
+      /* "src\cython\_genpyx_chess0x88.py":742
  *                         break
  *                     j += offset
  *                 if not blocked:             # <<<<<<<<<<<<<<
@@ -10396,7 +10805,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
       __pyx_t_3 = ((!(__pyx_v_blocked != 0)) != 0);
       if (__pyx_t_3) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":904
+        /* "src\cython\_genpyx_chess0x88.py":743
  *                     j += offset
  *                 if not blocked:
  *                     return True             # <<<<<<<<<<<<<<
@@ -10412,19 +10821,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
     __pyx_L3_continue:;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":905
+  /* "src\cython\_genpyx_chess0x88.py":744
  *                 if not blocked:
  *                     return True
  *         return False             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def in_check(self, color):
  */
   __pyx_r = 0;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":873
- *         offset=cython.int, i=cython.int, j=cython.int,
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":712
+ *         return legal_moves
+ * 
  *     def attacked(self, square, color):             # <<<<<<<<<<<<<<
  *         for i in range(A8, H1 + 1):
  *             if is_not_square(i):
@@ -10436,16 +10845,16 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked(struc
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":910
- *     @cython.returns(cython.int)
- *     @cython.locals(color=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":746
+ *         return False
+ * 
  *     def in_check(self, color):             # <<<<<<<<<<<<<<
  *         if color == COLOR_EMPTY:
  *             color = self.current_color
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_27in_check(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_27in_check(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_in_check(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10461,20 +10870,20 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_in_check); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_in_check); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_27in_check)) {
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_27in_check)) {
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_4;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10483,8 +10892,8 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":911
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":747
+ * 
  *     def in_check(self, color):
  *         if color == COLOR_EMPTY:             # <<<<<<<<<<<<<<
  *             color = self.current_color
@@ -10493,7 +10902,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
   __pyx_t_5 = ((__pyx_v_color == COLOR_EMPTY) != 0);
   if (__pyx_t_5) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":912
+    /* "src\cython\_genpyx_chess0x88.py":748
  *     def in_check(self, color):
  *         if color == COLOR_EMPTY:
  *             color = self.current_color             # <<<<<<<<<<<<<<
@@ -10506,7 +10915,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":913
+  /* "src\cython\_genpyx_chess0x88.py":749
  *         if color == COLOR_EMPTY:
  *             color = self.current_color
  *         if self.kings[color] == EMPTY:             # <<<<<<<<<<<<<<
@@ -10516,7 +10925,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
   __pyx_t_5 = (((__pyx_v_self->kings[__pyx_v_color]) == EMPTY) != 0);
   if (__pyx_t_5) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":914
+    /* "src\cython\_genpyx_chess0x88.py":750
  *             color = self.current_color
  *         if self.kings[color] == EMPTY:
  *             return False             # <<<<<<<<<<<<<<
@@ -10527,19 +10936,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":915
+  /* "src\cython\_genpyx_chess0x88.py":751
  *         if self.kings[color] == EMPTY:
  *             return False
  *         return self.attacked(self.kings[color], next_color(color))             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def _current_king_position(self):
  */
-  __pyx_r = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, (__pyx_v_self->kings[__pyx_v_color]), next_color(__pyx_v_color));
+  __pyx_r = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->attacked(__pyx_v_self, (__pyx_v_self->kings[__pyx_v_color]), next_color(__pyx_v_color));
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":910
- *     @cython.returns(cython.int)
- *     @cython.locals(color=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":746
+ *         return False
+ * 
  *     def in_check(self, color):             # <<<<<<<<<<<<<<
  *         if color == COLOR_EMPTY:
  *             color = self.current_color
@@ -10550,7 +10959,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Board.in_check", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Board.in_check", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -10558,8 +10967,8 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check(struc
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_27in_check(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_27in_check(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_27in_check(PyObject *__pyx_v_self, PyObject *__pyx_arg_color); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_27in_check(PyObject *__pyx_v_self, PyObject *__pyx_arg_color) {
   int __pyx_v_color;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -10568,22 +10977,22 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_27in_ch
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("in_check (wrapper)", 0);
   assert(__pyx_arg_color); {
-    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_color = __Pyx_PyInt_As_int(__pyx_arg_color); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.in_check", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.in_check", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_26in_check(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_26in_check(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((int)__pyx_v_color));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_26in_check(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_26in_check(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10592,7 +11001,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_26in_ch
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("in_check", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->in_check(__pyx_v_self, __pyx_v_color, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 910; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->in_check(__pyx_v_self, __pyx_v_color, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 746; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10601,7 +11010,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_26in_ch
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.in_check", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.in_check", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -10609,16 +11018,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_26in_ch
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":919
- *     @cython.ccall
- *     @cython.returns(cython.int)
+/* "src\cython\_genpyx_chess0x88.py":753
+ *         return self.attacked(self.kings[color], next_color(color))
+ * 
  *     def _current_king_position(self):             # <<<<<<<<<<<<<<
  *         return self.kings[self.current_color]
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_29_current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board__current_king_position(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_29_current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board__current_king_position(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10632,12 +11041,12 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board__current_king_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_current_king_position_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 919; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_current_king_position_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 753; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_29_current_king_position)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 919; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_29_current_king_position)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 753; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 919; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 753; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -10646,19 +11055,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board__current_king_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":920
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":754
+ * 
  *     def _current_king_position(self):
  *         return self.kings[self.current_color]             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def display(self):
  */
   __pyx_r = (__pyx_v_self->kings[__pyx_v_self->current_color]);
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":919
- *     @cython.ccall
- *     @cython.returns(cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":753
+ *         return self.attacked(self.kings[color], next_color(color))
+ * 
  *     def _current_king_position(self):             # <<<<<<<<<<<<<<
  *         return self.kings[self.current_color]
  * 
@@ -10668,7 +11077,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board__current_king_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Board._current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Board._current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -10676,19 +11085,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board__current_king_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_29_current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_29_current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_29_current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_29_current_king_position(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_current_king_position (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_28_current_king_position(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_28_current_king_position(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_28_current_king_position(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_28_current_king_position(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10697,7 +11106,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_28_curr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_current_king_position", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->_current_king_position(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 919; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->_current_king_position(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 753; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10706,7 +11115,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_28_curr
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board._current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board._current_king_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -10714,16 +11123,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_28_curr
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":924
- *     @cython.ccall
- *     @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":756
+ *         return self.kings[self.current_color]
+ * 
  *     def display(self):             # <<<<<<<<<<<<<<
  *         print("  a b c d e f g h")
  *         for irow in range(8):
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_31display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_31display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_display(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_v_sq;
   int __pyx_v_icol;
   int __pyx_v_irow;
@@ -10742,11 +11151,11 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_display); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 924; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_display); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_31display)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_31display)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 924; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -10756,16 +11165,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":925
- *     @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":757
+ * 
  *     def display(self):
  *         print("  a b c d e f g h")             # <<<<<<<<<<<<<<
  *         for irow in range(8):
  *             s = "%d" % (8 - irow)
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 925; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 757; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":926
+  /* "src\cython\_genpyx_chess0x88.py":758
  *     def display(self):
  *         print("  a b c d e f g h")
  *         for irow in range(8):             # <<<<<<<<<<<<<<
@@ -10775,22 +11184,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
   for (__pyx_t_3 = 0; __pyx_t_3 < 8; __pyx_t_3+=1) {
     __pyx_v_irow = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":927
+    /* "src\cython\_genpyx_chess0x88.py":759
  *         print("  a b c d e f g h")
  *         for irow in range(8):
  *             s = "%d" % (8 - irow)             # <<<<<<<<<<<<<<
  *             for icol in range(8):
  *                 sq = irow * 16 + icol
  */
-    __pyx_t_1 = __Pyx_PyInt_From_long((8 - __pyx_v_irow)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 927; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyInt_From_long((8 - __pyx_v_irow)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_d, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 927; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_d, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 759; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":928
+    /* "src\cython\_genpyx_chess0x88.py":760
  *         for irow in range(8):
  *             s = "%d" % (8 - irow)
  *             for icol in range(8):             # <<<<<<<<<<<<<<
@@ -10800,7 +11209,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
     for (__pyx_t_4 = 0; __pyx_t_4 < 8; __pyx_t_4+=1) {
       __pyx_v_icol = __pyx_t_4;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":929
+      /* "src\cython\_genpyx_chess0x88.py":761
  *             s = "%d" % (8 - irow)
  *             for icol in range(8):
  *                 sq = irow * 16 + icol             # <<<<<<<<<<<<<<
@@ -10809,47 +11218,47 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
  */
       __pyx_v_sq = ((__pyx_v_irow * 16) + __pyx_v_icol);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":930
+      /* "src\cython\_genpyx_chess0x88.py":762
  *             for icol in range(8):
  *                 sq = irow * 16 + icol
  *                 s += " %c" % PRINT_ARRAY[self.colors[sq]][self.pieces[sq]]             # <<<<<<<<<<<<<<
  *             print(s)
  *         print("  a b c d e f g h\n")
  */
-      __pyx_t_2 = __Pyx_PyInt_From_char(((PRINT_ARRAY[(__pyx_v_self->colors[__pyx_v_sq])])[(__pyx_v_self->pieces[__pyx_v_sq])])); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 930; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyInt_From_char(((PRINT_ARRAY[(__pyx_v_self->colors[__pyx_v_sq])])[(__pyx_v_self->pieces[__pyx_v_sq])])); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 762; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_c, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 930; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_c, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 762; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 930; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 762; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
       __pyx_t_2 = 0;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":931
+    /* "src\cython\_genpyx_chess0x88.py":763
  *                 sq = irow * 16 + icol
  *                 s += " %c" % PRINT_ARRAY[self.colors[sq]][self.pieces[sq]]
  *             print(s)             # <<<<<<<<<<<<<<
  *         print("  a b c d e f g h\n")
  * 
  */
-    if (__Pyx_PrintOne(0, __pyx_v_s) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 931; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_PrintOne(0, __pyx_v_s) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 763; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":932
+  /* "src\cython\_genpyx_chess0x88.py":764
  *                 s += " %c" % PRINT_ARRAY[self.colors[sq]][self.pieces[sq]]
  *             print(s)
  *         print("  a b c d e f g h\n")             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def display_values(self):
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 932; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h_2) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 764; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":924
- *     @cython.ccall
- *     @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":756
+ *         return self.kings[self.current_color]
+ * 
  *     def display(self):             # <<<<<<<<<<<<<<
  *         print("  a b c d e f g h")
  *         for irow in range(8):
@@ -10861,7 +11270,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_s);
@@ -10871,19 +11280,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display(
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_31display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_31display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_31display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_31display(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("display (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_30display(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_30display(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_30display(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_30display(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10892,7 +11301,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_30displ
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("display", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->display(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 924; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->display(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 756; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10901,7 +11310,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_30displ
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.display", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -10909,16 +11318,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_30displ
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":936
- *     @cython.ccall
- *     @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":766
+ *         print("  a b c d e f g h\n")
+ * 
  *     def display_values(self):             # <<<<<<<<<<<<<<
  *         print("  a      b      c      d      e      f      g      h      ")
  *         for irow in range(8):
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_33display_values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_values(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_33display_values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_display_values(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_v_sq;
   int __pyx_v_icol;
   int __pyx_v_irow;
@@ -10939,11 +11348,11 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_display_values); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 936; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_display_values); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_33display_values)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_33display_values)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 936; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __pyx_r = __pyx_t_2;
       __pyx_t_2 = 0;
@@ -10953,16 +11362,16 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":937
- *     @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":767
+ * 
  *     def display_values(self):
  *         print("  a      b      c      d      e      f      g      h      ")             # <<<<<<<<<<<<<<
  *         for irow in range(8):
  *             s = "%d " % (8 - irow)
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 937; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 767; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":938
+  /* "src\cython\_genpyx_chess0x88.py":768
  *     def display_values(self):
  *         print("  a      b      c      d      e      f      g      h      ")
  *         for irow in range(8):             # <<<<<<<<<<<<<<
@@ -10972,22 +11381,22 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
   for (__pyx_t_3 = 0; __pyx_t_3 < 8; __pyx_t_3+=1) {
     __pyx_v_irow = __pyx_t_3;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":939
+    /* "src\cython\_genpyx_chess0x88.py":769
  *         print("  a      b      c      d      e      f      g      h      ")
  *         for irow in range(8):
  *             s = "%d " % (8 - irow)             # <<<<<<<<<<<<<<
  *             for icol in range(8):
  *                 sq = irow * 16 + icol
  */
-    __pyx_t_1 = __Pyx_PyInt_From_long((8 - __pyx_v_irow)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 939; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyInt_From_long((8 - __pyx_v_irow)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_d_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 939; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_d_2, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 769; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_s, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":940
+    /* "src\cython\_genpyx_chess0x88.py":770
  *         for irow in range(8):
  *             s = "%d " % (8 - irow)
  *             for icol in range(8):             # <<<<<<<<<<<<<<
@@ -10997,7 +11406,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
     for (__pyx_t_4 = 0; __pyx_t_4 < 8; __pyx_t_4+=1) {
       __pyx_v_icol = __pyx_t_4;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":941
+      /* "src\cython\_genpyx_chess0x88.py":771
  *             s = "%d " % (8 - irow)
  *             for icol in range(8):
  *                 sq = irow * 16 + icol             # <<<<<<<<<<<<<<
@@ -11006,40 +11415,40 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
  */
       __pyx_v_sq = ((__pyx_v_irow * 16) + __pyx_v_icol);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":942
+      /* "src\cython\_genpyx_chess0x88.py":772
  *             for icol in range(8):
  *                 sq = irow * 16 + icol
  *                 num = str(self.values[sq])             # <<<<<<<<<<<<<<
  *                 s += "%s%s" % (num, " " * (7 - len(num)))
  *             print(s)
  */
-      __pyx_t_2 = __Pyx_PyInt_From_int((__pyx_v_self->values[__pyx_v_sq])); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyInt_From_int((__pyx_v_self->values[__pyx_v_sq])); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
       __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 942; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 772; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF_SET(__pyx_v_num, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":943
+      /* "src\cython\_genpyx_chess0x88.py":773
  *                 sq = irow * 16 + icol
  *                 num = str(self.values[sq])
  *                 s += "%s%s" % (num, " " * (7 - len(num)))             # <<<<<<<<<<<<<<
  *             print(s)
  *         print("  a      b      c      d      e      f      g      h      ")
  */
-      __pyx_t_5 = PyObject_Length(__pyx_v_num); if (unlikely(__pyx_t_5 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-      __pyx_t_2 = PyInt_FromSsize_t((7 - __pyx_t_5)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = PyObject_Length(__pyx_v_num); if (unlikely(__pyx_t_5 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyInt_FromSsize_t((7 - __pyx_t_5)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_1 = PyNumber_Multiply(__pyx_kp_s__5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = PyNumber_Multiply(__pyx_kp_s__5, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_INCREF(__pyx_v_num);
       PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_num);
@@ -11047,38 +11456,38 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
       PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_s_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_s_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 943; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 773; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF_SET(__pyx_v_s, __pyx_t_2);
       __pyx_t_2 = 0;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":944
+    /* "src\cython\_genpyx_chess0x88.py":774
  *                 num = str(self.values[sq])
  *                 s += "%s%s" % (num, " " * (7 - len(num)))
  *             print(s)             # <<<<<<<<<<<<<<
  *         print("  a      b      c      d      e      f      g      h      ")
  * 
  */
-    if (__Pyx_PrintOne(0, __pyx_v_s) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 944; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_PrintOne(0, __pyx_v_s) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 774; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":945
+  /* "src\cython\_genpyx_chess0x88.py":775
  *                 s += "%s%s" % (num, " " * (7 - len(num)))
  *             print(s)
  *         print("  a      b      c      d      e      f      g      h      ")             # <<<<<<<<<<<<<<
  * 
  *     def status(self, possible_moves):
  */
-  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 945; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PrintOne(0, __pyx_kp_s_a_b_c_d_e_f_g_h_3) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 775; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":936
- *     @cython.ccall
- *     @cython.locals(irow=cython.int, icol=cython.int, sq=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":766
+ *         print("  a b c d e f g h\n")
+ * 
  *     def display_values(self):             # <<<<<<<<<<<<<<
  *         print("  a      b      c      d      e      f      g      h      ")
  *         for irow in range(8):
@@ -11090,7 +11499,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.display_values", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.display_values", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_s);
@@ -11101,19 +11510,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_33display_values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_33display_values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_33display_values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_33display_values(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("display_values (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_32display_values(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_32display_values(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_32display_values(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_32display_values(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11122,7 +11531,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_32displ
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("display_values", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->display_values(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 936; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->display_values(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 766; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11131,7 +11540,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_32displ
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.display_values", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.display_values", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -11139,7 +11548,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_32displ
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":947
+/* "src\cython\_genpyx_chess0x88.py":777
  *         print("  a      b      c      d      e      f      g      h      ")
  * 
  *     def status(self, possible_moves):             # <<<<<<<<<<<<<<
@@ -11147,68 +11556,81 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_32displ
  *             possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)
  */
 
-/* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_35status(PyObject *__pyx_v_self, PyObject *__pyx_v_possible_moves); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_35status(PyObject *__pyx_v_self, PyObject *__pyx_v_possible_moves) {
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("status (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34status(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), ((PyObject *)__pyx_v_possible_moves));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34status(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_possible_moves) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_35status(PyObject *__pyx_v_self, PyObject *__pyx_v_possible_moves); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_status(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_possible_moves, int __pyx_skip_dispatch) {
   int __pyx_v_in_check;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  int __pyx_t_2;
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_4;
+  int __pyx_t_5;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("status", 0);
   __Pyx_INCREF(__pyx_v_possible_moves);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_status); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_35status)) {
+      __Pyx_XDECREF(__pyx_r);
+      __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_INCREF(__pyx_v_possible_moves);
+      PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_possible_moves);
+      __Pyx_GIVEREF(__pyx_v_possible_moves);
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __pyx_r = __pyx_t_3;
+      __pyx_t_3 = 0;
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      goto __pyx_L0;
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":948
+  /* "src\cython\_genpyx_chess0x88.py":778
  * 
  *     def status(self, possible_moves):
  *         if not possible_moves:             # <<<<<<<<<<<<<<
  *             possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)
  *         in_check = self.in_check(COLOR_EMPTY)
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_possible_moves); if (unlikely(__pyx_t_1 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 948; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_2 = ((!__pyx_t_1) != 0);
-  if (__pyx_t_2) {
+  __pyx_t_4 = (__pyx_v_possible_moves != Py_None) && (PyList_GET_SIZE(__pyx_v_possible_moves) != 0);
+  __pyx_t_5 = ((!__pyx_t_4) != 0);
+  if (__pyx_t_5) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":949
+    /* "src\cython\_genpyx_chess0x88.py":779
  *     def status(self, possible_moves):
  *         if not possible_moves:
  *             possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)             # <<<<<<<<<<<<<<
  *         in_check = self.in_check(COLOR_EMPTY)
  *         if in_check and not possible_moves:
  */
-    __pyx_t_3 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, EMPTY, COLOR_EMPTY); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 949; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF_SET(__pyx_v_possible_moves, __pyx_t_3);
-    __pyx_t_3 = 0;
+    __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->generate_moves(__pyx_v_self, LEGAL, EMPTY, COLOR_EMPTY); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 779; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF_SET(__pyx_v_possible_moves, ((PyObject*)__pyx_t_1));
+    __pyx_t_1 = 0;
     goto __pyx_L3;
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":950
+  /* "src\cython\_genpyx_chess0x88.py":780
  *         if not possible_moves:
  *             possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)
  *         in_check = self.in_check(COLOR_EMPTY)             # <<<<<<<<<<<<<<
  *         if in_check and not possible_moves:
  *             return "checkmate"
  */
-  __pyx_v_in_check = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->in_check(__pyx_v_self, COLOR_EMPTY, 0);
+  __pyx_v_in_check = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->in_check(__pyx_v_self, COLOR_EMPTY, 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":951
+  /* "src\cython\_genpyx_chess0x88.py":781
  *             possible_moves = self.generate_moves(LEGAL, EMPTY, COLOR_EMPTY)
  *         in_check = self.in_check(COLOR_EMPTY)
  *         if in_check and not possible_moves:             # <<<<<<<<<<<<<<
@@ -11216,15 +11638,15 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
  *         if in_check:
  */
   if ((__pyx_v_in_check != 0)) {
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_possible_moves); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 951; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    __pyx_t_1 = (!__pyx_t_2);
-    __pyx_t_2 = __pyx_t_1;
+    __pyx_t_5 = (__pyx_v_possible_moves != Py_None) && (PyList_GET_SIZE(__pyx_v_possible_moves) != 0);
+    __pyx_t_4 = (!__pyx_t_5);
+    __pyx_t_5 = __pyx_t_4;
   } else {
-    __pyx_t_2 = (__pyx_v_in_check != 0);
+    __pyx_t_5 = (__pyx_v_in_check != 0);
   }
-  if (__pyx_t_2) {
+  if (__pyx_t_5) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":952
+    /* "src\cython\_genpyx_chess0x88.py":782
  *         in_check = self.in_check(COLOR_EMPTY)
  *         if in_check and not possible_moves:
  *             return "checkmate"             # <<<<<<<<<<<<<<
@@ -11237,17 +11659,17 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":953
+  /* "src\cython\_genpyx_chess0x88.py":783
  *         if in_check and not possible_moves:
  *             return "checkmate"
  *         if in_check:             # <<<<<<<<<<<<<<
  *             return "check"
  *         if not possible_moves:
  */
-  __pyx_t_2 = (__pyx_v_in_check != 0);
-  if (__pyx_t_2) {
+  __pyx_t_5 = (__pyx_v_in_check != 0);
+  if (__pyx_t_5) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":954
+    /* "src\cython\_genpyx_chess0x88.py":784
  *             return "checkmate"
  *         if in_check:
  *             return "check"             # <<<<<<<<<<<<<<
@@ -11260,18 +11682,18 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":955
+  /* "src\cython\_genpyx_chess0x88.py":785
  *         if in_check:
  *             return "check"
  *         if not possible_moves:             # <<<<<<<<<<<<<<
  *             return "stalemate"
  *         if self.half_moves >= 50:
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_possible_moves); if (unlikely(__pyx_t_2 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 955; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_t_1 = ((!__pyx_t_2) != 0);
-  if (__pyx_t_1) {
+  __pyx_t_5 = (__pyx_v_possible_moves != Py_None) && (PyList_GET_SIZE(__pyx_v_possible_moves) != 0);
+  __pyx_t_4 = ((!__pyx_t_5) != 0);
+  if (__pyx_t_4) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":956
+    /* "src\cython\_genpyx_chess0x88.py":786
  *             return "check"
  *         if not possible_moves:
  *             return "stalemate"             # <<<<<<<<<<<<<<
@@ -11284,17 +11706,17 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":957
+  /* "src\cython\_genpyx_chess0x88.py":787
  *         if not possible_moves:
  *             return "stalemate"
  *         if self.half_moves >= 50:             # <<<<<<<<<<<<<<
  *             return "fifty move"
  *         return 'normal'
  */
-  __pyx_t_1 = ((__pyx_v_self->half_moves >= 50) != 0);
-  if (__pyx_t_1) {
+  __pyx_t_4 = ((__pyx_v_self->half_moves >= 50) != 0);
+  if (__pyx_t_4) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":958
+    /* "src\cython\_genpyx_chess0x88.py":788
  *             return "stalemate"
  *         if self.half_moves >= 50:
  *             return "fifty move"             # <<<<<<<<<<<<<<
@@ -11307,19 +11729,19 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":959
+  /* "src\cython\_genpyx_chess0x88.py":789
  *         if self.half_moves >= 50:
  *             return "fifty move"
  *         return 'normal'             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def get_pieces(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_n_s_normal);
   __pyx_r = __pyx_n_s_normal;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":947
+  /* "src\cython\_genpyx_chess0x88.py":777
  *         print("  a      b      c      d      e      f      g      h      ")
  * 
  *     def status(self, possible_moves):             # <<<<<<<<<<<<<<
@@ -11329,9 +11751,11 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
 
   /* function exit code */
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.status", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.status", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_possible_moves);
   __Pyx_XGIVEREF(__pyx_r);
@@ -11339,16 +11763,63 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_34statu
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":964
- *     @cython.returns(list)
- *     @cython.locals(i=cython.int)
+/* Python wrapper */
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_35status(PyObject *__pyx_v_self, PyObject *__pyx_v_possible_moves); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_35status(PyObject *__pyx_v_self, PyObject *__pyx_v_possible_moves) {
+  CYTHON_UNUSED int __pyx_lineno = 0;
+  CYTHON_UNUSED const char *__pyx_filename = NULL;
+  CYTHON_UNUSED int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("status (wrapper)", 0);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_possible_moves), (&PyList_Type), 1, "possible_moves", 1))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_34status(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), ((PyObject*)__pyx_v_possible_moves));
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_34status(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, PyObject *__pyx_v_possible_moves) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("status", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->status(__pyx_v_self, __pyx_v_possible_moves, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 777; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.status", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "src\cython\_genpyx_chess0x88.py":791
+ *         return 'normal'
+ * 
  *     def get_pieces(self):             # <<<<<<<<<<<<<<
  *         if self.hash != self.last_hash:
  *             pieces_list = []
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_37get_pieces(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_pieces(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_37get_pieces(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_get_pieces(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   int __pyx_v_i;
   PyObject *__pyx_v_pieces_list = NULL;
   PyObject *__pyx_r = NULL;
@@ -11371,13 +11842,13 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_pieces); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_pieces); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_37get_pieces)) {
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_37get_pieces)) {
       __Pyx_XDECREF(__pyx_r);
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "list", Py_TYPE(__pyx_t_2)->tp_name), 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __pyx_r = ((PyObject*)__pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11386,8 +11857,8 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":965
- *     @cython.locals(i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":792
+ * 
  *     def get_pieces(self):
  *         if self.hash != self.last_hash:             # <<<<<<<<<<<<<<
  *             pieces_list = []
@@ -11396,19 +11867,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
   __pyx_t_3 = ((__pyx_v_self->hash != __pyx_v_self->last_hash) != 0);
   if (__pyx_t_3) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":966
+    /* "src\cython\_genpyx_chess0x88.py":793
  *     def get_pieces(self):
  *         if self.hash != self.last_hash:
  *             pieces_list = []             # <<<<<<<<<<<<<<
  * 
  *             for i in range(A8, H1 + 1):
  */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 966; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 793; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_v_pieces_list = ((PyObject*)__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":968
+    /* "src\cython\_genpyx_chess0x88.py":795
  *             pieces_list = []
  * 
  *             for i in range(A8, H1 + 1):             # <<<<<<<<<<<<<<
@@ -11419,7 +11890,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
     for (__pyx_t_5 = A8; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
       __pyx_v_i = __pyx_t_5;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":969
+      /* "src\cython\_genpyx_chess0x88.py":796
  * 
  *             for i in range(A8, H1 + 1):
  *                 if is_not_square(i):             # <<<<<<<<<<<<<<
@@ -11429,7 +11900,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
       __pyx_t_3 = (is_not_square(__pyx_v_i) != 0);
       if (__pyx_t_3) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":970
+        /* "src\cython\_genpyx_chess0x88.py":797
  *             for i in range(A8, H1 + 1):
  *                 if is_not_square(i):
  *                     i = i + 7             # <<<<<<<<<<<<<<
@@ -11438,7 +11909,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
  */
         __pyx_v_i = (__pyx_v_i + 7);
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":971
+        /* "src\cython\_genpyx_chess0x88.py":798
  *                 if is_not_square(i):
  *                     i = i + 7
  *                     continue             # <<<<<<<<<<<<<<
@@ -11448,7 +11919,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
         goto __pyx_L4_continue;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":973
+      /* "src\cython\_genpyx_chess0x88.py":800
  *                     continue
  * 
  *                 if (self.pieces[i] == PIECE_EMPTY or             # <<<<<<<<<<<<<<
@@ -11458,7 +11929,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
       __pyx_t_3 = (((__pyx_v_self->pieces[__pyx_v_i]) == PIECE_EMPTY) != 0);
       if (!__pyx_t_3) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":974
+        /* "src\cython\_genpyx_chess0x88.py":801
  * 
  *                 if (self.pieces[i] == PIECE_EMPTY or
  *                         self.colors[i] == COLOR_EMPTY):             # <<<<<<<<<<<<<<
@@ -11472,7 +11943,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
       }
       if (__pyx_t_7) {
 
-        /* "src/cython/_genpyx_64bit__chess0x88.pyx":975
+        /* "src\cython\_genpyx_chess0x88.py":802
  *                 if (self.pieces[i] == PIECE_EMPTY or
  *                         self.colors[i] == COLOR_EMPTY):
  *                     continue             # <<<<<<<<<<<<<<
@@ -11482,43 +11953,43 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
         goto __pyx_L4_continue;
       }
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":977
+      /* "src\cython\_genpyx_chess0x88.py":804
  *                     continue
  * 
  *                 pieces_list.append(Piece(             # <<<<<<<<<<<<<<
  *                     name=NAMES[self.pieces[i]],
  *                     position=p0x88_to_tuple(i),
  */
-      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_Piece); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_1 = __Pyx_GetModuleGlobalName(__pyx_n_s_Piece); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_2 = PyDict_New(); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":978
+      /* "src\cython\_genpyx_chess0x88.py":805
  * 
  *                 pieces_list.append(Piece(
  *                     name=NAMES[self.pieces[i]],             # <<<<<<<<<<<<<<
  *                     position=p0x88_to_tuple(i),
  *                     color="white" if self.colors[i] == WHITE else "black",
  */
-      __pyx_t_8 = __Pyx_PyBytes_FromString((NAMES[(__pyx_v_self->pieces[__pyx_v_i])])); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 978; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyBytes_FromString((NAMES[(__pyx_v_self->pieces[__pyx_v_i])])); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 805; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_name, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_name, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":979
+      /* "src\cython\_genpyx_chess0x88.py":806
  *                 pieces_list.append(Piece(
  *                     name=NAMES[self.pieces[i]],
  *                     position=p0x88_to_tuple(i),             # <<<<<<<<<<<<<<
  *                     color="white" if self.colors[i] == WHITE else "black",
  *                 ))
  */
-      __pyx_t_8 = __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(__pyx_v_i); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 979; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple(__pyx_v_i); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 806; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_position, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_position, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":980
+      /* "src\cython\_genpyx_chess0x88.py":807
  *                     name=NAMES[self.pieces[i]],
  *                     position=p0x88_to_tuple(i),
  *                     color="white" if self.colors[i] == WHITE else "black",             # <<<<<<<<<<<<<<
@@ -11532,26 +12003,26 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
         __Pyx_INCREF(__pyx_n_s_black_2);
         __pyx_t_8 = __pyx_n_s_black_2;
       }
-      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_color, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_color, __pyx_t_8) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "src/cython/_genpyx_64bit__chess0x88.pyx":977
+      /* "src\cython\_genpyx_chess0x88.py":804
  *                     continue
  * 
  *                 pieces_list.append(Piece(             # <<<<<<<<<<<<<<
  *                     name=NAMES[self.pieces[i]],
  *                     position=p0x88_to_tuple(i),
  */
-      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pieces_list, __pyx_t_8); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 977; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_pieces_list, __pyx_t_8); if (unlikely(__pyx_t_9 == -1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 804; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_L4_continue:;
     }
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":982
+    /* "src\cython\_genpyx_chess0x88.py":809
  *                     color="white" if self.colors[i] == WHITE else "black",
  *                 ))
  *             self.pieces_list = pieces_list             # <<<<<<<<<<<<<<
@@ -11564,7 +12035,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
     __Pyx_DECREF(__pyx_v_self->pieces_list);
     __pyx_v_self->pieces_list = __pyx_v_pieces_list;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":983
+    /* "src\cython\_genpyx_chess0x88.py":810
  *                 ))
  *             self.pieces_list = pieces_list
  *             self.last_hash = self.hash             # <<<<<<<<<<<<<<
@@ -11577,21 +12048,21 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":984
+  /* "src\cython\_genpyx_chess0x88.py":811
  *             self.pieces_list = pieces_list
  *             self.last_hash = self.hash
  *         return self.pieces_list             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def get_hash(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_self->pieces_list);
   __pyx_r = __pyx_v_self->pieces_list;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":964
- *     @cython.returns(list)
- *     @cython.locals(i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":791
+ *         return 'normal'
+ * 
  *     def get_pieces(self):             # <<<<<<<<<<<<<<
  *         if self.hash != self.last_hash:
  *             pieces_list = []
@@ -11602,7 +12073,7 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.get_pieces", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.get_pieces", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_pieces_list);
@@ -11612,19 +12083,19 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_piec
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_37get_pieces(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_37get_pieces(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_37get_pieces(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_37get_pieces(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_pieces (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_36get_pieces(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_36get_pieces(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_36get_pieces(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_36get_pieces(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11633,7 +12104,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_36get_p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_pieces", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->get_pieces(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 964; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->get_pieces(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 791; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11642,7 +12113,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_36get_p
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.get_pieces", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.get_pieces", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -11650,16 +12121,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_36get_p
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":988
- *     @cython.ccall
- *     @cython.returns(cython.ulonglong)
+/* "src\cython\_genpyx_chess0x88.py":813
+ *         return self.pieces_list
+ * 
  *     def get_hash(self):             # <<<<<<<<<<<<<<
  *         return self.hash
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_39get_hash(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static unsigned PY_LONG_LONG __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_hash(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_39get_hash(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static unsigned PY_LONG_LONG __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_get_hash(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_skip_dispatch) {
   unsigned PY_LONG_LONG __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11673,12 +12144,12 @@ static unsigned PY_LONG_LONG __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Bo
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_hash); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 988; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_hash); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 813; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_39get_hash)) {
-      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 988; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_39get_hash)) {
+      __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 813; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_As_unsigned_PY_LONG_LONG(__pyx_t_2); if (unlikely((__pyx_t_3 == (unsigned PY_LONG_LONG)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 988; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_As_unsigned_PY_LONG_LONG(__pyx_t_2); if (unlikely((__pyx_t_3 == (unsigned PY_LONG_LONG)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 813; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_r = __pyx_t_3;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11687,19 +12158,19 @@ static unsigned PY_LONG_LONG __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Bo
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":989
- *     @cython.returns(cython.ulonglong)
+  /* "src\cython\_genpyx_chess0x88.py":814
+ * 
  *     def get_hash(self):
  *         return self.hash             # <<<<<<<<<<<<<<
  * 
- *     @cython.ccall
+ *     def count(self, color, piece):
  */
   __pyx_r = __pyx_v_self->hash;
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":988
- *     @cython.ccall
- *     @cython.returns(cython.ulonglong)
+  /* "src\cython\_genpyx_chess0x88.py":813
+ *         return self.pieces_list
+ * 
  *     def get_hash(self):             # <<<<<<<<<<<<<<
  *         return self.hash
  * 
@@ -11709,7 +12180,7 @@ static unsigned PY_LONG_LONG __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Bo
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Board.get_hash", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Board.get_hash", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -11717,19 +12188,19 @@ static unsigned PY_LONG_LONG __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Bo
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_39get_hash(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_39get_hash(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_39get_hash(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_39get_hash(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_hash (wrapper)", 0);
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_38get_hash(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_38get_hash(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_38get_hash(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_38get_hash(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11738,7 +12209,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_38get_h
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_hash", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->get_hash(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 988; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_PY_LONG_LONG(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->get_hash(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 813; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11747,7 +12218,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_38get_h
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.get_hash", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.get_hash", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -11755,16 +12226,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_38get_h
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":994
- *     @cython.returns(cython.int)
- *     @cython.locals(color=cython.int, piece=cython.int)
+/* "src\cython\_genpyx_chess0x88.py":816
+ *         return self.hash
+ * 
  *     def count(self, color, piece):             # <<<<<<<<<<<<<<
  *         return self.pieces_count[color * 7 + piece]
  * 
  */
 
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_41count(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_v_piece, int __pyx_skip_dispatch) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_41count(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_count(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_v_piece, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11780,14 +12251,14 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count(struct _
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
   else if (unlikely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0)) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_count); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_count); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_1);
-    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_41count)) {
-      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_41count)) {
+      __pyx_t_2 = __Pyx_PyInt_From_int(__pyx_v_color); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_piece); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_piece); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_4);
       PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
       __Pyx_GIVEREF(__pyx_t_2);
@@ -11795,10 +12266,10 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count(struct _
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_2 = 0;
       __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+      __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_r = __pyx_t_5;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -11807,19 +12278,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count(struct _
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":995
- *     @cython.locals(color=cython.int, piece=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":817
+ * 
  *     def count(self, color, piece):
  *         return self.pieces_count[color * 7 + piece]             # <<<<<<<<<<<<<<
  * 
- *     @cython.cfunc
+ *     def piece_value(self, piece, color, square):
  */
   __pyx_r = (__pyx_v_self->pieces_count[((__pyx_v_color * 7) + __pyx_v_piece)]);
   goto __pyx_L0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":994
- *     @cython.returns(cython.int)
- *     @cython.locals(color=cython.int, piece=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":816
+ *         return self.hash
+ * 
  *     def count(self, color, piece):             # <<<<<<<<<<<<<<
  *         return self.pieces_count[color * 7 + piece]
  * 
@@ -11831,7 +12302,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count(struct _
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.Board.count", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
+  __Pyx_WriteUnraisable("src.cython._genpyx_chess0x88.Board.count", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -11839,8 +12310,8 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count(struct _
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_41count(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_41count(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_41count(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_41count(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   int __pyx_v_color;
   int __pyx_v_piece;
   int __pyx_lineno = 0;
@@ -11869,11 +12340,11 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_41count
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_piece)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("count", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+          __Pyx_RaiseArgtupleInvalid("count", 1, 2, 2, 1); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "count") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "count") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -11881,25 +12352,25 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_41count
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
-    __pyx_v_color = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
-    __pyx_v_piece = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_piece == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_color = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+    __pyx_v_piece = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_piece == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("count", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __Pyx_RaiseArgtupleInvalid("count", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.count", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_40count(((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self), __pyx_v_color, __pyx_v_piece);
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_40count(((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self), __pyx_v_color, __pyx_v_piece);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_40count(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_v_piece) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_40count(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_color, int __pyx_v_piece) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11908,7 +12379,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_40count
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("count", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board *)__pyx_v_self->__pyx_vtab)->count(__pyx_v_self, __pyx_v_color, __pyx_v_piece, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 994; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->count(__pyx_v_self, __pyx_v_color, __pyx_v_piece, 1)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 816; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11917,7 +12388,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_40count
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.count", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -11925,15 +12396,19 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_40count
   return __pyx_r;
 }
 
-/* "src/cython/_genpyx_64bit__chess0x88.pyx":1003
- *         mult=cython.int
- *     )
+/* "src\cython\_genpyx_chess0x88.py":819
+ *         return self.pieces_count[color * 7 + piece]
+ * 
  *     def piece_value(self, piece, color, square):             # <<<<<<<<<<<<<<
  *         if color == WHITE:
  *             mult = 1
  */
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *__pyx_v_self, int __pyx_v_piece, int __pyx_v_color, int __pyx_v_square) {
+=======
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_piece_value(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self, int __pyx_v_piece, int __pyx_v_color, int __pyx_v_square) {
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   int __pyx_v_mult;
   int __pyx_r;
   __Pyx_RefNannyDeclarations
@@ -11945,8 +12420,8 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("piece_value", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":1004
- *     )
+  /* "src\cython\_genpyx_chess0x88.py":820
+ * 
  *     def piece_value(self, piece, color, square):
  *         if color == WHITE:             # <<<<<<<<<<<<<<
  *             mult = 1
@@ -11955,7 +12430,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
   __pyx_t_1 = ((__pyx_v_color == WHITE) != 0);
   if (__pyx_t_1) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1005
+    /* "src\cython\_genpyx_chess0x88.py":821
  *     def piece_value(self, piece, color, square):
  *         if color == WHITE:
  *             mult = 1             # <<<<<<<<<<<<<<
@@ -11967,7 +12442,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
   }
   /*else*/ {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1007
+    /* "src\cython\_genpyx_chess0x88.py":823
  *             mult = 1
  *         else:
  *             mult = -1             # <<<<<<<<<<<<<<
@@ -11976,7 +12451,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     __pyx_v_mult = -1;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1008
+    /* "src\cython\_genpyx_chess0x88.py":824
  *         else:
  *             mult = -1
  *             square = square ^ 0x77             # <<<<<<<<<<<<<<
@@ -11987,7 +12462,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
   }
   __pyx_L3:;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":1009
+  /* "src\cython\_genpyx_chess0x88.py":825
  *             mult = -1
  *             square = square ^ 0x77
  *         if piece == PIECE_EMPTY:             # <<<<<<<<<<<<<<
@@ -11997,7 +12472,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
   __pyx_t_1 = ((__pyx_v_piece == PIECE_EMPTY) != 0);
   if (__pyx_t_1) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1010
+    /* "src\cython\_genpyx_chess0x88.py":826
  *             square = square ^ 0x77
  *         if piece == PIECE_EMPTY:
  *             return 0             # <<<<<<<<<<<<<<
@@ -12008,7 +12483,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
     goto __pyx_L0;
   }
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":1021
+  /* "src\cython\_genpyx_chess0x88.py":837
  *         elif piece == QUEEN:
  *             return mult * (900 + QUEEN_TABLE[square])
  *         elif piece == KING:             # <<<<<<<<<<<<<<
@@ -12017,7 +12492,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
   switch (__pyx_v_piece) {
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1011
+    /* "src\cython\_genpyx_chess0x88.py":827
  *         if piece == PIECE_EMPTY:
  *             return 0
  *         if piece == PAWN:             # <<<<<<<<<<<<<<
@@ -12026,7 +12501,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     case PAWN:
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1012
+    /* "src\cython\_genpyx_chess0x88.py":828
  *             return 0
  *         if piece == PAWN:
  *             return mult * (100 + PAWN_TABLE[square])             # <<<<<<<<<<<<<<
@@ -12037,7 +12512,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
     goto __pyx_L0;
     break;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1013
+    /* "src\cython\_genpyx_chess0x88.py":829
  *         if piece == PAWN:
  *             return mult * (100 + PAWN_TABLE[square])
  *         elif piece == KNIGHT:             # <<<<<<<<<<<<<<
@@ -12046,7 +12521,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     case KNIGHT:
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1014
+    /* "src\cython\_genpyx_chess0x88.py":830
  *             return mult * (100 + PAWN_TABLE[square])
  *         elif piece == KNIGHT:
  *             return mult * (300 + KNIGHT_TABLE[square])             # <<<<<<<<<<<<<<
@@ -12057,7 +12532,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
     goto __pyx_L0;
     break;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1015
+    /* "src\cython\_genpyx_chess0x88.py":831
  *         elif piece == KNIGHT:
  *             return mult * (300 + KNIGHT_TABLE[square])
  *         elif piece == BISHOP:             # <<<<<<<<<<<<<<
@@ -12066,7 +12541,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     case BISHOP:
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1016
+    /* "src\cython\_genpyx_chess0x88.py":832
  *             return mult * (300 + KNIGHT_TABLE[square])
  *         elif piece == BISHOP:
  *             return mult * (301 + BISHOP_TABLE[square])             # <<<<<<<<<<<<<<
@@ -12077,7 +12552,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
     goto __pyx_L0;
     break;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1017
+    /* "src\cython\_genpyx_chess0x88.py":833
  *         elif piece == BISHOP:
  *             return mult * (301 + BISHOP_TABLE[square])
  *         elif piece == ROOK:             # <<<<<<<<<<<<<<
@@ -12086,7 +12561,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     case ROOK:
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1018
+    /* "src\cython\_genpyx_chess0x88.py":834
  *             return mult * (301 + BISHOP_TABLE[square])
  *         elif piece == ROOK:
  *             return mult * (500 + ROOK_TABLE[square])             # <<<<<<<<<<<<<<
@@ -12097,7 +12572,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
     goto __pyx_L0;
     break;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1019
+    /* "src\cython\_genpyx_chess0x88.py":835
  *         elif piece == ROOK:
  *             return mult * (500 + ROOK_TABLE[square])
  *         elif piece == QUEEN:             # <<<<<<<<<<<<<<
@@ -12106,7 +12581,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     case QUEEN:
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1020
+    /* "src\cython\_genpyx_chess0x88.py":836
  *             return mult * (500 + ROOK_TABLE[square])
  *         elif piece == QUEEN:
  *             return mult * (900 + QUEEN_TABLE[square])             # <<<<<<<<<<<<<<
@@ -12117,7 +12592,7 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
     goto __pyx_L0;
     break;
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1021
+    /* "src\cython\_genpyx_chess0x88.py":837
  *         elif piece == QUEEN:
  *             return mult * (900 + QUEEN_TABLE[square])
  *         elif piece == KING:             # <<<<<<<<<<<<<<
@@ -12126,12 +12601,13 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value(st
  */
     case KING:
 
-    /* "src/cython/_genpyx_64bit__chess0x88.pyx":1022
+    /* "src\cython\_genpyx_chess0x88.py":838
  *             return mult * (900 + QUEEN_TABLE[square])
  *         elif piece == KING:
  *             if self.is_endgame():             # <<<<<<<<<<<<<<
  *                 return mult * (20000 + KING_ENDGAME_TABLE[square])
  *             else:
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
  */
     __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_is_endgame); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1022; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     __Pyx_GOTREF(__pyx_t_2);
@@ -12359,8 +12835,13 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_44is_va
  *     def is_valid_position(position):             # <<<<<<<<<<<<<<
  *         """ Check if position is inside the board """
  *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
+=======
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  */
+    __pyx_t_1 = (((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board *)__pyx_v_self->__pyx_vtab)->is_endgame(__pyx_v_self) != 0);
+    if (__pyx_t_1) {
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
@@ -12513,52 +12994,85 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_5Board_46chess
   goto __pyx_L0;
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1036
+=======
+      /* "src\cython\_genpyx_chess0x88.py":839
+ *         elif piece == KING:
+ *             if self.is_endgame():
+ *                 return mult * (20000 + KING_ENDGAME_TABLE[square])             # <<<<<<<<<<<<<<
+ *             else:
+ *                 return mult * (20000 + KING_EARLYGAME_TABLE[square])
+ */
+      __pyx_r = (__pyx_v_mult * (20000 + (KING_ENDGAME_TABLE[__pyx_v_square])));
+      goto __pyx_L0;
+    }
+    /*else*/ {
+
+      /* "src\cython\_genpyx_chess0x88.py":841
+ *                 return mult * (20000 + KING_ENDGAME_TABLE[square])
+ *             else:
+ *                 return mult * (20000 + KING_EARLYGAME_TABLE[square])             # <<<<<<<<<<<<<<
  * 
- *     @staticmethod
- *     def chess_notation_to_position(chess_notation):             # <<<<<<<<<<<<<<
- *         """ Convert chess notation (a1) to position (0, 0) """
- *         return (
+ *     def is_endgame(self):
+ */
+      __pyx_r = (__pyx_v_mult * (20000 + (KING_EARLYGAME_TABLE[__pyx_v_square])));
+      goto __pyx_L0;
+    }
+    break;
+    default: break;
+  }
+
+  /* "src\cython\_genpyx_chess0x88.py":819
+ *         return self.pieces_count[color * 7 + piece]
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
+ * 
+ *     def piece_value(self, piece, color, square):             # <<<<<<<<<<<<<<
+ *         if color == WHITE:
+ *             mult = 1
  */
 
   /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.Board.chess_notation_to_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
+  __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 /* "src/cython/_genpyx_64bit__chess0x88.pyx":1047
  * @cython.returns(tuple)
  * @cython.locals(position=cython.int)
  * def p0x88_to_tuple(position):             # <<<<<<<<<<<<<<
  *     return (col(position), rank(position))
+=======
+/* "src\cython\_genpyx_chess0x88.py":843
+ *                 return mult * (20000 + KING_EARLYGAME_TABLE[square])
+ * 
+ *     def is_endgame(self):             # <<<<<<<<<<<<<<
+ *         return False
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  */
 
-static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(int __pyx_v_position) {
-  PyObject *__pyx_r = NULL;
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_is_endgame(CYTHON_UNUSED struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *__pyx_v_self) {
+  int __pyx_r;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("p0x88_to_tuple", 0);
+  __Pyx_RefNannySetupContext("is_endgame", 0);
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1048
  * @cython.locals(position=cython.int)
  * def p0x88_to_tuple(position):
  *     return (col(position), rank(position))             # <<<<<<<<<<<<<<
+=======
+  /* "src\cython\_genpyx_chess0x88.py":844
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
+ *     def is_endgame(self):
+ *         return False             # <<<<<<<<<<<<<<
  * 
+ *     @staticmethod
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyInt_From_int(col(__pyx_v_position)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1048; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
@@ -12581,40 +13095,52 @@ static PyObject *__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_tuple(
  * @cython.locals(position=cython.int)
  * def p0x88_to_tuple(position):             # <<<<<<<<<<<<<<
  *     return (col(position), rank(position))
+=======
+  __pyx_r = 0;
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":843
+ *                 return mult * (20000 + KING_EARLYGAME_TABLE[square])
+ * 
+ *     def is_endgame(self):             # <<<<<<<<<<<<<<
+ *         return False
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  */
 
   /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.p0x88_to_tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 /* "src/cython/_genpyx_64bit__chess0x88.pyx":1054
  * @cython.returns(cython.int)
  * @cython.locals(position=tuple, icol=cython.int, irow=cython.int)
  * def tuple_to_0x88(position):             # <<<<<<<<<<<<<<
  *     icol = position[0]
  *     irow = position[1]
+=======
+/* "src\cython\_genpyx_chess0x88.py":847
+ * 
+ *     @staticmethod
+ *     def is_valid_position(position):             # <<<<<<<<<<<<<<
+ *         """ Check if position is inside the board """
+ *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  */
 
-static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(PyObject *__pyx_v_position) {
-  int __pyx_v_icol;
-  int __pyx_v_irow;
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_t_2;
+/* Python wrapper */
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_43is_valid_position(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3src_6cython_17_genpyx_chess0x88_5Board_42is_valid_position[] = " Check if position is inside the board ";
+static PyMethodDef __pyx_mdef_3src_6cython_17_genpyx_chess0x88_5Board_43is_valid_position = {__Pyx_NAMESTR("is_valid_position"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_43is_valid_position, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(__pyx_doc_3src_6cython_17_genpyx_chess0x88_5Board_42is_valid_position)};
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_43is_valid_position(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_position = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __Pyx_RefNannySetupContext("tuple_to_0x88", 0);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1055
@@ -12668,17 +13194,54 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_tuple_to_0x88(PyObjec
  *     icol = position[0]
  *     irow = position[1]
  */
+=======
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("is_valid_position (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_position,0};
+    PyObject* values[1] = {0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_position)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "is_valid_position") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+    }
+    __pyx_v_position = values[0];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("is_valid_position", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.is_valid_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_42is_valid_position(__pyx_v_position);
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
 
   /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.tuple_to_0x88", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
-  __pyx_r = 0;
-  __pyx_L0:;
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 /* "src/cython/_genpyx_64bit__chess0x88.pyx":1063
  * @cython.returns(cython.int)
  * @cython.locals(icol=cython.int, irow=cython.int)
@@ -12691,13 +13254,19 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_chess_notation_to_0x8
   int __pyx_v_icol;
   int __pyx_v_irow;
   int __pyx_r;
+=======
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_42is_valid_position(PyObject *__pyx_v_position) {
+  PyObject *__pyx_r = NULL;
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   int __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __Pyx_RefNannySetupContext("chess_notation_to_0x88", 0);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1064
@@ -12729,8 +13298,18 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_chess_notation_to_0x8
  *     icol = ord(cn[0]) - 97
  *     irow = int(cn[1]) - 1             # <<<<<<<<<<<<<<
  *     return (7 - irow) * 16 + icol
+=======
+  __Pyx_RefNannySetupContext("is_valid_position", 0);
+
+  /* "src\cython\_genpyx_chess0x88.py":849
+ *     def is_valid_position(position):
+ *         """ Check if position is inside the board """
+ *         return 0 <= position[0] < 8 and 0 <= position[1] < 8             # <<<<<<<<<<<<<<
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
+ *     @staticmethod
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_cn, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_2 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1065; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = PyNumber_Int(__pyx_t_2); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1065; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
@@ -12759,57 +13338,132 @@ static int __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_chess_notation_to_0x8
  * def chess_notation_to_0x88(cn):             # <<<<<<<<<<<<<<
  *     icol = ord(cn[0]) - 97
  *     irow = int(cn[1]) - 1
+=======
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_position, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyObject_RichCompare(__pyx_int_0, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_PyObject_IsTrue(__pyx_t_2)) {
+    __Pyx_DECREF(__pyx_t_2);
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_int_8, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_t_3) {
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_position, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_4 = PyObject_RichCompare(__pyx_int_0, __pyx_t_1, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (__Pyx_PyObject_IsTrue(__pyx_t_4)) {
+      __Pyx_DECREF(__pyx_t_4);
+      __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_int_8, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 849; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __pyx_t_4;
+    __pyx_t_4 = 0;
+  } else {
+    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_2 = 0;
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":847
+ * 
+ *     @staticmethod
+ *     def is_valid_position(position):             # <<<<<<<<<<<<<<
+ *         """ Check if position is inside the board """
+ *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_WriteUnraisable("src.cython._genpyx_64bit__chess0x88.chess_notation_to_0x88", __pyx_clineno, __pyx_lineno, __pyx_filename, 0);
-  __pyx_r = 0;
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.is_valid_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 /* "src/cython/_genpyx_64bit__chess0x88.pyx":1070
+=======
+/* "src\cython\_genpyx_chess0x88.py":852
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
- * @cython.locals(x=cython.int, icol=cython.int, irow=cython.int)
- * def p0x88_to_chess_notation(x):             # <<<<<<<<<<<<<<
- *     icol = col(x)
- *     irow = rank(x)
+ *     @staticmethod
+ *     def chess_notation_to_position(chess_notation):             # <<<<<<<<<<<<<<
+ *         """ Convert chess notation (a1) to position (0, 0) """
+ *         return (
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_1p0x88_to_chess_notation(PyObject *__pyx_self, PyObject *__pyx_arg_x); /*proto*/
-static PyMethodDef __pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_1p0x88_to_chess_notation = {__Pyx_NAMESTR("p0x88_to_chess_notation"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_1p0x88_to_chess_notation, METH_O, __Pyx_DOCSTR(0)};
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_1p0x88_to_chess_notation(PyObject *__pyx_self, PyObject *__pyx_arg_x) {
-  int __pyx_v_x;
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_45chess_notation_to_position(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_3src_6cython_17_genpyx_chess0x88_5Board_44chess_notation_to_position[] = " Convert chess notation (a1) to position (0, 0) ";
+static PyMethodDef __pyx_mdef_3src_6cython_17_genpyx_chess0x88_5Board_45chess_notation_to_position = {__Pyx_NAMESTR("chess_notation_to_position"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_45chess_notation_to_position, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(__pyx_doc_3src_6cython_17_genpyx_chess0x88_5Board_44chess_notation_to_position)};
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_45chess_notation_to_position(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_chess_notation = 0;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __Pyx_RefNannySetupContext("p0x88_to_chess_notation (wrapper)", 0);
   assert(__pyx_arg_x); {
     __pyx_v_x = __Pyx_PyInt_As_int(__pyx_arg_x); if (unlikely((__pyx_v_x == (int)-1) && PyErr_Occurred())) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1070; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+=======
+  __Pyx_RefNannySetupContext("chess_notation_to_position (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_chess_notation,0};
+    PyObject* values[1] = {0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_chess_notation)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "chess_notation_to_position") < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+    }
+    __pyx_v_chess_notation = values[0];
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   }
   goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("chess_notation_to_position", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L3_error;}
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.p0x88_to_chess_notation", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.chess_notation_to_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess_notation(__pyx_self, ((int)__pyx_v_x));
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_44chess_notation_to_position(__pyx_v_chess_notation);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess_notation(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_x) {
-  int __pyx_v_icol;
-  int __pyx_v_irow;
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_5Board_44chess_notation_to_position(PyObject *__pyx_v_chess_notation) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -12818,6 +13472,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __Pyx_RefNannySetupContext("p0x88_to_chess_notation", 0);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1071
@@ -12835,9 +13490,20 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
  *     irow = rank(x)             # <<<<<<<<<<<<<<
  *     return chr(icol + 97) + str(irow + 1)
  * 
- */
-  __pyx_v_irow = rank(__pyx_v_x);
+=======
+  __Pyx_RefNannySetupContext("chess_notation_to_position", 0);
 
+  /* "src\cython\_genpyx_chess0x88.py":854
+ *     def chess_notation_to_position(chess_notation):
+ *         """ Convert chess notation (a1) to position (0, 0) """
+ *         return (             # <<<<<<<<<<<<<<
+ *             ord(chess_notation[0]) - 97,
+ *             int(chess_notation[1]) - 1
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
+ */
+  __Pyx_XDECREF(__pyx_r);
+
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1073
  *     icol = col(x)
  *     irow = rank(x)
@@ -12849,20 +13515,69 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
   __pyx_t_1 = __Pyx_PyInt_From_long((__pyx_v_icol + 97)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  /* "src\cython\_genpyx_chess0x88.py":855
+ *         """ Convert chess notation (a1) to position (0, 0) """
+ *         return (
+ *             ord(chess_notation[0]) - 97,             # <<<<<<<<<<<<<<
+ *             int(chess_notation[1]) - 1
+ *         )
+ */
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_chess_notation, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 855; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_chr, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_PyInt_From_long((__pyx_v_irow + 1)); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ord, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, __pyx_int_97); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "src\cython\_genpyx_chess0x88.py":856
+ *         return (
+ *             ord(chess_notation[0]) - 97,
+ *             int(chess_notation[1]) - 1             # <<<<<<<<<<<<<<
+ *         )
+ * 
+ */
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_chess_notation, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(__pyx_t_1 == NULL)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 856; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyNumber_Subtract(__pyx_t_3, __pyx_int_1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 856; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "src\cython\_genpyx_chess0x88.py":855
+ *         """ Convert chess notation (a1) to position (0, 0) """
+ *         return (
+ *             ord(chess_notation[0]) - 97,             # <<<<<<<<<<<<<<
+ *             int(chess_notation[1]) - 1
+ *         )
+ */
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 855; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_3);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_2 = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)((PyObject*)(&PyString_Type))), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -12870,16 +13585,23 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+=======
+  __pyx_t_1 = 0;
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1070
+=======
+  /* "src\cython\_genpyx_chess0x88.py":852
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
- * @cython.locals(x=cython.int, icol=cython.int, irow=cython.int)
- * def p0x88_to_chess_notation(x):             # <<<<<<<<<<<<<<
- *     icol = col(x)
- *     irow = rank(x)
+ *     @staticmethod
+ *     def chess_notation_to_position(chess_notation):             # <<<<<<<<<<<<<<
+ *         """ Convert chess notation (a1) to position (0, 0) """
+ *         return (
  */
 
   /* function exit code */
@@ -12887,7 +13609,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.p0x88_to_chess_notation", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.Board.chess_notation_to_position", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -12895,25 +13617,60 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_p0x88_to_chess
   return __pyx_r;
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 /* "src/cython/_genpyx_64bit__chess0x88.pyx":1077
+=======
+/* "src\cython\_genpyx_chess0x88.py":860
  * 
- * @cython.locals(move=Move)
+ * 
  * def move_key(move):             # <<<<<<<<<<<<<<
  *     return move.score()
  */
 
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_1move_key(PyObject *__pyx_self, PyObject *__pyx_v_move); /*proto*/
+static int __pyx_f_3src_6cython_17_genpyx_chess0x88_move_key(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_move, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("move_key", 0);
+
+  /* "src\cython\_genpyx_chess0x88.py":861
+ * 
+ * def move_key(move):
+ *     return move.score()             # <<<<<<<<<<<<<<
+ */
+  __pyx_r = ((struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_move->__pyx_vtab)->score(__pyx_v_move, 0);
+  goto __pyx_L0;
+
+  /* "src\cython\_genpyx_chess0x88.py":860
+ * 
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
+ * 
+ * def move_key(move):             # <<<<<<<<<<<<<<
+ *     return move.score()
+ */
+
+  /* function exit code */
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_3move_key(PyObject *__pyx_self, PyObject *__pyx_v_move); /*proto*/
-static PyMethodDef __pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_3move_key = {__Pyx_NAMESTR("move_key"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_3move_key, METH_O, __Pyx_DOCSTR(0)};
-static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_3move_key(PyObject *__pyx_self, PyObject *__pyx_v_move) {
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_1move_key(PyObject *__pyx_self, PyObject *__pyx_v_move); /*proto*/
+static PyObject *__pyx_pw_3src_6cython_17_genpyx_chess0x88_1move_key(PyObject *__pyx_self, PyObject *__pyx_v_move) {
   CYTHON_UNUSED int __pyx_lineno = 0;
   CYTHON_UNUSED const char *__pyx_filename = NULL;
   CYTHON_UNUSED int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("move_key (wrapper)", 0);
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_move), __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move, 1, "move", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_r = __pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_2move_key(__pyx_self, ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_move));
+=======
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_move), __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move, 1, "move", 0))) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 860; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_r = __pyx_pf_3src_6cython_17_genpyx_chess0x88_move_key(__pyx_self, ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)__pyx_v_move));
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
 
   /* function exit code */
   goto __pyx_L0;
@@ -12924,7 +13681,7 @@ static PyObject *__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_3move_key(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_2move_key(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *__pyx_v_move) {
+static PyObject *__pyx_pf_3src_6cython_17_genpyx_chess0x88_move_key(CYTHON_UNUSED PyObject *__pyx_self, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *__pyx_v_move) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -12932,6 +13689,7 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_2move_key(CYTH
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("move_key", 0);
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1078
  * @cython.locals(move=Move)
@@ -12940,11 +13698,16 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_2move_key(CYTH
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move *)__pyx_v_move->__pyx_vtab)->score(__pyx_v_move, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1078; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_3src_6cython_17_genpyx_chess0x88_move_key(__pyx_v_move, 0)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 860; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1077
  * 
  * @cython.locals(move=Move)
@@ -12952,20 +13715,22 @@ static PyObject *__pyx_pf_3src_6cython_24_genpyx_64bit__chess0x88_2move_key(CYTH
  *     return move.score()
  */
 
+=======
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.cython._genpyx_64bit__chess0x88.move_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cython._genpyx_chess0x88.move_key", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Move __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move;
+static struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Move __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move;
 
-static PyObject *__pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Move(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *p;
+static PyObject *__pyx_tp_new_3src_6cython_17_genpyx_chess0x88_Move(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -12973,12 +13738,12 @@ static PyObject *__pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Move(PyTyp
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *)o);
-  p->__pyx_vtab = __pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Move;
+  p = ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *)o);
+  p->__pyx_vtab = __pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Move;
   return o;
 }
 
-static void __pyx_tp_dealloc_3src_6cython_24_genpyx_64bit__chess0x88_Move(PyObject *o) {
+static void __pyx_tp_dealloc_3src_6cython_17_genpyx_chess0x88_Move(PyObject *o) {
   #if PY_VERSION_HEX >= 0x030400a1
   if (unlikely(Py_TYPE(o)->tp_finalize) && (!PyType_IS_GC(Py_TYPE(o)) || !_PyGC_FINALIZED(o))) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -12987,26 +13752,26 @@ static void __pyx_tp_dealloc_3src_6cython_24_genpyx_64bit__chess0x88_Move(PyObje
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static PyMethodDef __pyx_methods_3src_6cython_24_genpyx_64bit__chess0x88_Move[] = {
-  {__Pyx_NAMESTR("do"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_3do, METH_O, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("do_update"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_5do_update, METH_O, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("undo"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_7undo, METH_O, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("undo_update"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_9undo_update, METH_O, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("origin"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_11origin, METH_NOARGS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("destination"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_13destination, METH_NOARGS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("tuple"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_15tuple, METH_NOARGS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("score"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_17score, METH_NOARGS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("get_flags"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_19get_flags, METH_NOARGS, __Pyx_DOCSTR(0)},
-  {__Pyx_NAMESTR("readable"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_21readable, METH_NOARGS, __Pyx_DOCSTR(0)},
+static PyMethodDef __pyx_methods_3src_6cython_17_genpyx_chess0x88_Move[] = {
+  {__Pyx_NAMESTR("do"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_3do, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("do_update"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_5do_update, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("undo"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_7undo, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("undo_update"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_9undo_update, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("origin"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_11origin, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("destination"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_13destination, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("tuple"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_15tuple, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("score"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_17score, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("get_flags"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_19get_flags, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("readable"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_21readable, METH_NOARGS, __Pyx_DOCSTR(0)},
   {0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move = {
+static PyTypeObject __pyx_type_3src_6cython_17_genpyx_chess0x88_Move = {
   PyVarObject_HEAD_INIT(0, 0)
-  __Pyx_NAMESTR("src.cython._genpyx_64bit__chess0x88.Move"), /*tp_name*/
-  sizeof(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move), /*tp_basicsize*/
+  __Pyx_NAMESTR("src.cython._genpyx_chess0x88.Move"), /*tp_name*/
+  sizeof(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_3src_6cython_24_genpyx_64bit__chess0x88_Move, /*tp_dealloc*/
+  __pyx_tp_dealloc_3src_6cython_17_genpyx_chess0x88_Move, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -13033,7 +13798,7 @@ static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move = {
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_3src_6cython_24_genpyx_64bit__chess0x88_Move, /*tp_methods*/
+  __pyx_methods_3src_6cython_17_genpyx_chess0x88_Move, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -13041,9 +13806,9 @@ static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move = {
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   0, /*tp_dictoffset*/
-  __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_4Move_1__init__, /*tp_init*/
+  __pyx_pw_3src_6cython_17_genpyx_chess0x88_4Move_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Move, /*tp_new*/
+  __pyx_tp_new_3src_6cython_17_genpyx_chess0x88_Move, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -13059,10 +13824,10 @@ static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move = {
   0, /*tp_finalize*/
   #endif
 };
-static struct __pyx_vtabstruct_3src_6cython_24_genpyx_64bit__chess0x88_Board __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board;
+static struct __pyx_vtabstruct_3src_6cython_17_genpyx_chess0x88_Board __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board;
 
-static PyObject *__pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *p;
+static PyObject *__pyx_tp_new_3src_6cython_17_genpyx_chess0x88_Board(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *p;
   PyObject *o;
   if (likely((t->tp_flags & Py_TPFLAGS_IS_ABSTRACT) == 0)) {
     o = (*t->tp_alloc)(t, 0);
@@ -13070,14 +13835,14 @@ static PyObject *__pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyTy
     o = (PyObject *) PyBaseObject_Type.tp_new(t, __pyx_empty_tuple, 0);
   }
   if (unlikely(!o)) return 0;
-  p = ((struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)o);
-  p->__pyx_vtab = __pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Board;
+  p = ((struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)o);
+  p->__pyx_vtab = __pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Board;
   p->pieces_list = ((PyObject*)Py_None); Py_INCREF(Py_None);
   return o;
 }
 
-static void __pyx_tp_dealloc_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyObject *o) {
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *p = (struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)o;
+static void __pyx_tp_dealloc_3src_6cython_17_genpyx_chess0x88_Board(PyObject *o) {
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *p = (struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)o;
   #if PY_VERSION_HEX >= 0x030400a1
   if (unlikely(Py_TYPE(o)->tp_finalize) && !_PyGC_FINALIZED(o)) {
     if (PyObject_CallFinalizerFromDealloc(o)) return;
@@ -13088,24 +13853,25 @@ static void __pyx_tp_dealloc_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyObj
   (*Py_TYPE(o)->tp_free)(o);
 }
 
-static int __pyx_tp_traverse_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_3src_6cython_17_genpyx_chess0x88_Board(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *p = (struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)o;
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *p = (struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)o;
   if (p->pieces_list) {
     e = (*v)(p->pieces_list, a); if (e) return e;
   }
   return 0;
 }
 
-static int __pyx_tp_clear_3src_6cython_24_genpyx_64bit__chess0x88_Board(PyObject *o) {
+static int __pyx_tp_clear_3src_6cython_17_genpyx_chess0x88_Board(PyObject *o) {
   PyObject* tmp;
-  struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *p = (struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *)o;
+  struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *p = (struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *)o;
   tmp = ((PyObject*)p->pieces_list);
   p->pieces_list = ((PyObject*)Py_None); Py_INCREF(Py_None);
   Py_XDECREF(tmp);
   return 0;
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
 static PyMethodDef __pyx_methods_3src_6cython_24_genpyx_64bit__chess0x88_Board[] = {
   {__Pyx_NAMESTR("clear"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_3clear, METH_NOARGS, __Pyx_DOCSTR(0)},
   {__Pyx_NAMESTR("clone"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_5clone, METH_NOARGS, __Pyx_DOCSTR(0)},
@@ -13130,15 +13896,40 @@ static PyMethodDef __pyx_methods_3src_6cython_24_genpyx_64bit__chess0x88_Board[]
   {__Pyx_NAMESTR("is_endgame"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_43is_endgame, METH_NOARGS, __Pyx_DOCSTR(0)},
   {__Pyx_NAMESTR("is_valid_position"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_45is_valid_position, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(__pyx_doc_3src_6cython_24_genpyx_64bit__chess0x88_5Board_44is_valid_position)},
   {__Pyx_NAMESTR("chess_notation_to_position"), (PyCFunction)__pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_47chess_notation_to_position, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(__pyx_doc_3src_6cython_24_genpyx_64bit__chess0x88_5Board_46chess_notation_to_position)},
+=======
+static PyMethodDef __pyx_methods_3src_6cython_17_genpyx_chess0x88_Board[] = {
+  {__Pyx_NAMESTR("clear"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_3clear, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("clone"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_5clone, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("hindered"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_7hindered, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("get_value"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_9get_value, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("possible_moves"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_11possible_moves, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("possible_killing_moves"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_13possible_killing_moves, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("color"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_15color, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("current_king_position"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_17current_king_position, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("move"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_19move, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("piece_moves"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_21piece_moves, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("at"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_23at, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("load_fen"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_25load_fen, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("in_check"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_27in_check, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("_current_king_position"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_29_current_king_position, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("display"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_31display, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("display_values"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_33display_values, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("status"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_35status, METH_O, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("get_pieces"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_37get_pieces, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("get_hash"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_39get_hash, METH_NOARGS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("count"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_41count, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(0)},
+  {__Pyx_NAMESTR("is_valid_position"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_43is_valid_position, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(__pyx_doc_3src_6cython_17_genpyx_chess0x88_5Board_42is_valid_position)},
+  {__Pyx_NAMESTR("chess_notation_to_position"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_45chess_notation_to_position, METH_VARARGS|METH_KEYWORDS, __Pyx_DOCSTR(__pyx_doc_3src_6cython_17_genpyx_chess0x88_5Board_44chess_notation_to_position)},
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   {0, 0, 0, 0}
 };
 
-static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board = {
+static PyTypeObject __pyx_type_3src_6cython_17_genpyx_chess0x88_Board = {
   PyVarObject_HEAD_INIT(0, 0)
-  __Pyx_NAMESTR("src.cython._genpyx_64bit__chess0x88.Board"), /*tp_name*/
-  sizeof(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board), /*tp_basicsize*/
+  __Pyx_NAMESTR("src.cython._genpyx_chess0x88.Board"), /*tp_name*/
+  sizeof(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_3src_6cython_24_genpyx_64bit__chess0x88_Board, /*tp_dealloc*/
+  __pyx_tp_dealloc_3src_6cython_17_genpyx_chess0x88_Board, /*tp_dealloc*/
   0, /*tp_print*/
   0, /*tp_getattr*/
   0, /*tp_setattr*/
@@ -13159,13 +13950,13 @@ static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board = {
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_3src_6cython_24_genpyx_64bit__chess0x88_Board, /*tp_traverse*/
-  __pyx_tp_clear_3src_6cython_24_genpyx_64bit__chess0x88_Board, /*tp_clear*/
+  __pyx_tp_traverse_3src_6cython_17_genpyx_chess0x88_Board, /*tp_traverse*/
+  __pyx_tp_clear_3src_6cython_17_genpyx_chess0x88_Board, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
   0, /*tp_iter*/
   0, /*tp_iternext*/
-  __pyx_methods_3src_6cython_24_genpyx_64bit__chess0x88_Board, /*tp_methods*/
+  __pyx_methods_3src_6cython_17_genpyx_chess0x88_Board, /*tp_methods*/
   0, /*tp_members*/
   0, /*tp_getset*/
   0, /*tp_base*/
@@ -13173,9 +13964,9 @@ static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board = {
   0, /*tp_descr_get*/
   0, /*tp_descr_set*/
   0, /*tp_dictoffset*/
-  __pyx_pw_3src_6cython_24_genpyx_64bit__chess0x88_5Board_1__init__, /*tp_init*/
+  __pyx_pw_3src_6cython_17_genpyx_chess0x88_5Board_1__init__, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_3src_6cython_24_genpyx_64bit__chess0x88_Board, /*tp_new*/
+  __pyx_tp_new_3src_6cython_17_genpyx_chess0x88_Board, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -13193,6 +13984,7 @@ static PyTypeObject __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board = {
 };
 
 static PyMethodDef __pyx_methods[] = {
+  {__Pyx_NAMESTR("move_key"), (PyCFunction)__pyx_pw_3src_6cython_17_genpyx_chess0x88_1move_key, METH_O, __Pyx_DOCSTR(0)},
   {0, 0, 0, 0}
 };
 
@@ -13203,7 +13995,7 @@ static struct PyModuleDef __pyx_moduledef = {
   #else
     PyModuleDef_HEAD_INIT,
   #endif
-    __Pyx_NAMESTR("_genpyx_64bit__chess0x88"),
+    __Pyx_NAMESTR("_genpyx_chess0x88"),
     0, /* m_doc */
     -1, /* m_size */
     __pyx_methods /* m_methods */,
@@ -13223,10 +14015,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_s_6, __pyx_k_6, sizeof(__pyx_k_6), 0, 0, 1, 0},
   {&__pyx_kp_s_7, __pyx_k_7, sizeof(__pyx_k_7), 0, 0, 1, 0},
   {&__pyx_kp_s_8, __pyx_k_8, sizeof(__pyx_k_8), 0, 0, 1, 0},
+  {&__pyx_n_s_Board_chess_notation_to_position, __pyx_k_Board_chess_notation_to_position, sizeof(__pyx_k_Board_chess_notation_to_position), 0, 0, 1, 1},
+  {&__pyx_n_s_Board_is_valid_position, __pyx_k_Board_is_valid_position, sizeof(__pyx_k_Board_is_valid_position), 0, 0, 1, 1},
+  {&__pyx_n_s_CHECKSUM, __pyx_k_CHECKSUM, sizeof(__pyx_k_CHECKSUM), 0, 0, 1, 1},
   {&__pyx_n_s_K, __pyx_k_K, sizeof(__pyx_k_K), 0, 0, 1, 1},
   {&__pyx_n_s_Piece, __pyx_k_Piece, sizeof(__pyx_k_Piece), 0, 0, 1, 1},
   {&__pyx_n_s_Q, __pyx_k_Q, sizeof(__pyx_k_Q), 0, 0, 1, 1},
-  {&__pyx_kp_s_Users_lvieira_virtualenvs_XADRE, __pyx_k_Users_lvieira_virtualenvs_XADRE, sizeof(__pyx_k_Users_lvieira_virtualenvs_XADRE), 0, 0, 1, 0},
   {&__pyx_kp_s__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 0, 1, 0},
   {&__pyx_kp_s__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 0, 1, 0},
   {&__pyx_kp_s__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 0, 1, 0},
@@ -13239,6 +14033,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_black_2, __pyx_k_black_2, sizeof(__pyx_k_black_2), 0, 0, 1, 1},
   {&__pyx_n_s_board, __pyx_k_board, sizeof(__pyx_k_board), 0, 0, 1, 1},
   {&__pyx_kp_s_c, __pyx_k_c, sizeof(__pyx_k_c), 0, 0, 1, 0},
+  {&__pyx_kp_s_c_Users_Joao_XADREZ_ES2_src_cyth, __pyx_k_c_Users_Joao_XADREZ_ES2_src_cyth, sizeof(__pyx_k_c_Users_Joao_XADREZ_ES2_src_cyth), 0, 0, 1, 0},
   {&__pyx_n_s_check, __pyx_k_check, sizeof(__pyx_k_check), 0, 0, 1, 1},
   {&__pyx_n_s_checkmate, __pyx_k_checkmate, sizeof(__pyx_k_checkmate), 0, 0, 1, 1},
   {&__pyx_n_s_chess_notation, __pyx_k_chess_notation, sizeof(__pyx_k_chess_notation), 0, 0, 1, 1},
@@ -13269,11 +14064,13 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_get_pieces, __pyx_k_get_pieces, sizeof(__pyx_k_get_pieces), 0, 0, 1, 1},
   {&__pyx_n_s_get_value, __pyx_k_get_value, sizeof(__pyx_k_get_value), 0, 0, 1, 1},
   {&__pyx_n_s_hindered, __pyx_k_hindered, sizeof(__pyx_k_hindered), 0, 0, 1, 1},
-  {&__pyx_n_s_icol, __pyx_k_icol, sizeof(__pyx_k_icol), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_in_check, __pyx_k_in_check, sizeof(__pyx_k_in_check), 0, 0, 1, 1},
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   {&__pyx_n_s_irow, __pyx_k_irow, sizeof(__pyx_k_irow), 0, 0, 1, 1},
   {&__pyx_n_s_is_endgame, __pyx_k_is_endgame, sizeof(__pyx_k_is_endgame), 0, 0, 1, 1},
+=======
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   {&__pyx_n_s_is_valid_position, __pyx_k_is_valid_position, sizeof(__pyx_k_is_valid_position), 0, 0, 1, 1},
   {&__pyx_n_s_k, __pyx_k_k, sizeof(__pyx_k_k), 0, 0, 1, 1},
   {&__pyx_n_s_key, __pyx_k_key, sizeof(__pyx_k_key), 0, 0, 1, 1},
@@ -13293,13 +14090,13 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_origin, __pyx_k_origin, sizeof(__pyx_k_origin), 0, 0, 1, 1},
   {&__pyx_n_s_original_position, __pyx_k_original_position, sizeof(__pyx_k_original_position), 0, 0, 1, 1},
   {&__pyx_n_s_p, __pyx_k_p, sizeof(__pyx_k_p), 0, 0, 1, 1},
-  {&__pyx_n_s_p0x88_to_chess_notation, __pyx_k_p0x88_to_chess_notation, sizeof(__pyx_k_p0x88_to_chess_notation), 0, 0, 1, 1},
   {&__pyx_n_s_piece, __pyx_k_piece, sizeof(__pyx_k_piece), 0, 0, 1, 1},
   {&__pyx_n_s_piece_moves, __pyx_k_piece_moves, sizeof(__pyx_k_piece_moves), 0, 0, 1, 1},
   {&__pyx_n_s_position, __pyx_k_position, sizeof(__pyx_k_position), 0, 0, 1, 1},
   {&__pyx_n_s_possible_killing_moves, __pyx_k_possible_killing_moves, sizeof(__pyx_k_possible_killing_moves), 0, 0, 1, 1},
   {&__pyx_n_s_possible_moves, __pyx_k_possible_moves, sizeof(__pyx_k_possible_moves), 0, 0, 1, 1},
   {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
+  {&__pyx_n_s_pyx_capi, __pyx_k_pyx_capi, sizeof(__pyx_k_pyx_capi), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_q, __pyx_k_q, sizeof(__pyx_k_q), 0, 0, 1, 1},
   {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
@@ -13314,9 +14111,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_score, __pyx_k_score, sizeof(__pyx_k_score), 0, 0, 1, 1},
   {&__pyx_n_s_sort, __pyx_k_sort, sizeof(__pyx_k_sort), 0, 0, 1, 1},
   {&__pyx_n_s_split, __pyx_k_split, sizeof(__pyx_k_split), 0, 0, 1, 1},
-  {&__pyx_n_s_src_cython__genpyx_64bit__chess0, __pyx_k_src_cython__genpyx_64bit__chess0, sizeof(__pyx_k_src_cython__genpyx_64bit__chess0), 0, 0, 1, 1},
+  {&__pyx_n_s_src_cython__genpyx_chess0x88, __pyx_k_src_cython__genpyx_chess0x88, sizeof(__pyx_k_src_cython__genpyx_chess0x88), 0, 0, 1, 1},
   {&__pyx_n_s_stalemate, __pyx_k_stalemate, sizeof(__pyx_k_stalemate), 0, 0, 1, 1},
   {&__pyx_n_s_staticmethod, __pyx_k_staticmethod, sizeof(__pyx_k_staticmethod), 0, 0, 1, 1},
+  {&__pyx_n_s_status, __pyx_k_status, sizeof(__pyx_k_status), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_tuple, __pyx_k_tuple, sizeof(__pyx_k_tuple), 0, 0, 1, 1},
   {&__pyx_n_s_undo, __pyx_k_undo, sizeof(__pyx_k_undo), 0, 0, 1, 1},
@@ -13324,14 +14122,24 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
   {&__pyx_kp_s_white, __pyx_k_white, sizeof(__pyx_k_white), 0, 0, 1, 0},
   {&__pyx_n_s_white_2, __pyx_k_white_2, sizeof(__pyx_k_white_2), 0, 0, 1, 1},
-  {&__pyx_n_s_x, __pyx_k_x, sizeof(__pyx_k_x), 0, 0, 1, 1},
+  {&__pyx_n_s_zobrist_castling, __pyx_k_zobrist_castling, sizeof(__pyx_k_zobrist_castling), 0, 0, 1, 1},
+  {&__pyx_n_s_zobrist_color, __pyx_k_zobrist_color, sizeof(__pyx_k_zobrist_color), 0, 0, 1, 1},
+  {&__pyx_n_s_zobrist_en_passant, __pyx_k_zobrist_en_passant, sizeof(__pyx_k_zobrist_en_passant), 0, 0, 1, 1},
+  {&__pyx_n_s_zobrist_pieces, __pyx_k_zobrist_pieces, sizeof(__pyx_k_zobrist_pieces), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 77; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_ord = __Pyx_GetBuiltinName(__pyx_n_s_ord); if (!__pyx_builtin_ord) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1039; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __pyx_builtin_chr = __Pyx_GetBuiltinName(__pyx_n_s_chr); if (!__pyx_builtin_chr) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1073; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_n_s_staticmethod); if (!__pyx_builtin_staticmethod) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 846; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_ord = __Pyx_GetBuiltinName(__pyx_n_s_ord); if (!__pyx_builtin_ord) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 17; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_chr = __Pyx_GetBuiltinName(__pyx_n_s_chr); if (!__pyx_builtin_chr) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 32; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -13341,58 +14149,72 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":465
- *     @cython.locals(result=Board, i=cython.int)
+  /* "src\cython\_genpyx_chess0x88.py":357
+ * 
  *     def clone(self):
  *         result = Board(False)             # <<<<<<<<<<<<<<
  *         for i in range(128):
  *             result.pieces[i] = self.pieces[i]
  */
-  __pyx_tuple_ = PyTuple_Pack(1, Py_False); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 465; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple_ = PyTuple_Pack(1, Py_False); if (unlikely(!__pyx_tuple_)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 357; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":617
+  /* "src\cython\_genpyx_chess0x88.py":475
  *     def load_fen(self, fen):
  *         self.clear()
  *         tokens = re.compile("\s+").split(fen)             # <<<<<<<<<<<<<<
  *         position = tokens[0]
  *         y = 7
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_s); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 617; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_s); if (unlikely(!__pyx_tuple__2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 475; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":6
+  /* "src\cython\_genpyx_chess0x88.py":322
  * from collections import namedtuple
  * 
  * Piece = namedtuple("Piece", "name position color")             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_Piece, __pyx_kp_s_name_position_color); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_tuple__6 = PyTuple_Pack(2, __pyx_n_s_Piece, __pyx_kp_s_name_position_color); if (unlikely(!__pyx_tuple__6)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1031
+=======
+  /* "src\cython\_genpyx_chess0x88.py":847
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  *     @staticmethod
  *     def is_valid_position(position):             # <<<<<<<<<<<<<<
  *         """ Check if position is inside the board """
  *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_tuple__7 = PyTuple_Pack(1, __pyx_n_s_position); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
   __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_lvieira_virtualenvs_XADRE, __pyx_n_s_is_valid_position, 1031, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1036
+=======
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_n_s_position); if (unlikely(!__pyx_tuple__7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_c_Users_Joao_XADREZ_ES2_src_cyth, __pyx_n_s_is_valid_position, 847, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "src\cython\_genpyx_chess0x88.py":852
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  *     @staticmethod
  *     def chess_notation_to_position(chess_notation):             # <<<<<<<<<<<<<<
  *         """ Convert chess notation (a1) to position (0, 0) """
  *         return (
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_tuple__9 = PyTuple_Pack(1, __pyx_n_s_chess_notation); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1036; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
@@ -13420,6 +14242,12 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
   __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_Users_lvieira_virtualenvs_XADRE, __pyx_n_s_move_key, 1077, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_n_s_chess_notation); if (unlikely(!__pyx_tuple__9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_c_Users_Joao_XADREZ_ES2_src_cyth, __pyx_n_s_chess_notation_to_position, 852, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -13428,22 +14256,25 @@ static int __Pyx_InitCachedConstants(void) {
 }
 
 static int __Pyx_InitGlobals(void) {
-  if (__Pyx_InitStrings(__pyx_string_tab) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
-  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_int_8 = PyInt_FromLong(8); if (unlikely(!__pyx_int_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_int_97 = PyInt_FromLong(97); if (unlikely(!__pyx_int_97)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_InitStrings(__pyx_string_tab) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_7 = PyInt_FromLong(7); if (unlikely(!__pyx_int_7)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_8 = PyInt_FromLong(8); if (unlikely(!__pyx_int_8)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_16 = PyInt_FromLong(16); if (unlikely(!__pyx_int_16)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_97 = PyInt_FromLong(97); if (unlikely(!__pyx_int_97)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_int_115717966303337494788217948518299776995248656663452023092065502891522956903447 = PyInt_FromString((char *)"115717966303337494788217948518299776995248656663452023092065502891522956903447", 0, 0); if (unlikely(!__pyx_int_115717966303337494788217948518299776995248656663452023092065502891522956903447)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   return 0;
   __pyx_L1_error:;
   return -1;
 }
 
 #if PY_MAJOR_VERSION < 3
-PyMODINIT_FUNC init_genpyx_64bit__chess0x88(void); /*proto*/
-PyMODINIT_FUNC init_genpyx_64bit__chess0x88(void)
+PyMODINIT_FUNC init_genpyx_chess0x88(void); /*proto*/
+PyMODINIT_FUNC init_genpyx_chess0x88(void)
 #else
-PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void); /*proto*/
-PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void)
+PyMODINIT_FUNC PyInit__genpyx_chess0x88(void); /*proto*/
+PyMODINIT_FUNC PyInit__genpyx_chess0x88(void)
 #endif
 {
   PyObject *__pyx_t_1 = NULL;
@@ -13461,18 +14292,18 @@ PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void)
           Py_FatalError("failed to import 'refnanny' module");
   }
   #endif
-  __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void)", 0);
-  if ( __Pyx_check_binary_version() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_RefNannySetupContext("PyMODINIT_FUNC PyInit__genpyx_chess0x88(void)", 0);
+  if ( __Pyx_check_binary_version() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_empty_tuple)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_empty_bytes = PyBytes_FromStringAndSize("", 0); if (unlikely(!__pyx_empty_bytes)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #ifdef __Pyx_CyFunction_USED
-  if (__Pyx_CyFunction_init() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_CyFunction_init() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
   #ifdef __Pyx_FusedFunction_USED
-  if (__pyx_FusedFunction_init() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_FusedFunction_init() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
   #ifdef __Pyx_Generator_USED
-  if (__pyx_Generator_init() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__pyx_Generator_init() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
   /*--- Library function declarations ---*/
   /*--- Threads initialization code ---*/
@@ -13483,143 +14314,173 @@ PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void)
   #endif
   /*--- Module creation code ---*/
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4(__Pyx_NAMESTR("_genpyx_64bit__chess0x88"), __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4(__Pyx_NAMESTR("_genpyx_chess0x88"), __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
-  if (unlikely(!__pyx_m)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(!__pyx_m)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_d = PyModule_GetDict(__pyx_m); if (unlikely(!__pyx_d)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   Py_INCREF(__pyx_d);
-  __pyx_b = PyImport_AddModule(__Pyx_NAMESTR(__Pyx_BUILTIN_MODULE_NAME)); if (unlikely(!__pyx_b)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_b = PyImport_AddModule(__Pyx_NAMESTR(__Pyx_BUILTIN_MODULE_NAME)); if (unlikely(!__pyx_b)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #if CYTHON_COMPILING_IN_PYPY
   Py_INCREF(__pyx_b);
   #endif
-  if (__Pyx_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  if (__Pyx_SetAttrString(__pyx_m, "__builtins__", __pyx_b) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   /*--- Initialize various global constants etc. ---*/
-  if (unlikely(__Pyx_InitGlobals() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(__Pyx_InitGlobals() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
-  if (__Pyx_init_sys_getdefaultencoding_params() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_init_sys_getdefaultencoding_params() < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   #endif
-  if (__pyx_module_is_main_src__cython___genpyx_64bit__chess0x88) {
-    if (__Pyx_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
+  if (__pyx_module_is_main_src__cython___genpyx_chess0x88) {
+    if (__Pyx_SetAttrString(__pyx_m, "__name__", __pyx_n_s_main) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;};
   }
   #if PY_MAJOR_VERSION >= 3
   {
-    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-    if (!PyDict_GetItemString(modules, "src.cython._genpyx_64bit__chess0x88")) {
-      if (unlikely(PyDict_SetItemString(modules, "src.cython._genpyx_64bit__chess0x88", __pyx_m) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+    if (!PyDict_GetItemString(modules, "src.cython._genpyx_chess0x88")) {
+      if (unlikely(PyDict_SetItemString(modules, "src.cython._genpyx_chess0x88", __pyx_m) < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
     }
   }
   #endif
   /*--- Builtin init code ---*/
-  if (unlikely(__Pyx_InitCachedBuiltins() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(__Pyx_InitCachedBuiltins() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Constants init code ---*/
-  if (unlikely(__Pyx_InitCachedConstants() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (unlikely(__Pyx_InitCachedConstants() < 0)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Global init code ---*/
   /*--- Variable export code ---*/
+  if (__Pyx_ExportVoidPtr(__pyx_n_s_zobrist_pieces, (void *)&__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_pieces, "unsigned PY_LONG_LONG [7][2][128]") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportVoidPtr(__pyx_n_s_zobrist_color, (void *)&__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_color, "unsigned PY_LONG_LONG") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportVoidPtr(__pyx_n_s_zobrist_castling, (void *)&__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_castling, "unsigned PY_LONG_LONG [16]") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportVoidPtr(__pyx_n_s_zobrist_en_passant, (void *)&__pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_en_passant, "unsigned PY_LONG_LONG [128]") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Function export code ---*/
+  if (__Pyx_ExportFunction("init_zobrist", (void (*)(void))__pyx_f_3src_6cython_17_genpyx_chess0x88_init_zobrist, "unsigned PY_LONG_LONG (void)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("p0x88_to_tuple", (void (*)(void))__pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_tuple, "PyObject *(int)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("tuple_to_0x88", (void (*)(void))__pyx_f_3src_6cython_17_genpyx_chess0x88_tuple_to_0x88, "int (PyObject *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("chess_notation_to_0x88", (void (*)(void))__pyx_f_3src_6cython_17_genpyx_chess0x88_chess_notation_to_0x88, "int (PyObject *)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("p0x88_to_chess_notation", (void (*)(void))__pyx_f_3src_6cython_17_genpyx_chess0x88_p0x88_to_chess_notation, "PyObject *(int)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_ExportFunction("move_key", (void (*)(void))__pyx_f_3src_6cython_17_genpyx_chess0x88_move_key, "int (struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch)") < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   /*--- Type init code ---*/
-  __pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Move = &__pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.__pyx_do = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.do_update = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_do_update;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.undo = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.undo_update = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_undo_update;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.origin = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_origin;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.destination = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_destination;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.castle = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_castle;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.tuple = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_tuple;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.score = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_score;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.get_flags = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_get_flags;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Move.readable = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_4Move_readable;
-  if (PyType_Ready(&__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move.tp_dict, __pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Move) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_SetAttrString(__pyx_m, "Move", (PyObject *)&__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 94; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Move = &__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Move;
-  __pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Board = &__pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.clear = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clear;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.clone = (struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_clone;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.add = (void (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_add;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.remove = (void (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_remove;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.hindered = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_hindered;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.get_value = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_value;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.possible_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible_moves;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.possible_killing_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_possible_killing_moves;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.color = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_color;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.current_king_position = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_current_king_position;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.move = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_move;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.piece_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_moves;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.at = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_at;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.load_fen = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_load_fen;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.castle = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_castle;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.attack_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attack_moves;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.generate_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_generate_moves;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.attacked = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_attacked;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.in_check = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_in_check;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board._current_king_position = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board__current_king_position;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.display = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.display_values = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_display_values;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.get_pieces = (PyObject *(*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_pieces;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.get_hash = (unsigned PY_LONG_LONG (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_get_hash;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.count = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_count;
-  __pyx_vtable_3src_6cython_24_genpyx_64bit__chess0x88_Board.piece_value = (int (*)(struct __pyx_obj_3src_6cython_24_genpyx_64bit__chess0x88_Board *, int, int, int))__pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_5Board_piece_value;
-  if (PyType_Ready(&__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board.tp_print = 0;
-  if (__Pyx_SetVtable(__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board.tp_dict, __pyx_vtabptr_3src_6cython_24_genpyx_64bit__chess0x88_Board) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  if (__Pyx_SetAttrString(__pyx_m, "Board", (PyObject *)&__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 420; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board = &__pyx_type_3src_6cython_24_genpyx_64bit__chess0x88_Board;
+  __pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Move = &__pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.__pyx_do = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_do;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.do_update = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_do_update;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.undo = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_undo;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.undo_update = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_undo_update;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.origin = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_origin;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.destination = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_destination;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.castle = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_castle;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.tuple = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_tuple;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.score = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_score;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.get_flags = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_get_flags;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Move.readable = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Move *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_4Move_readable;
+  if (PyType_Ready(&__pyx_type_3src_6cython_17_genpyx_chess0x88_Move) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_type_3src_6cython_17_genpyx_chess0x88_Move.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_3src_6cython_17_genpyx_chess0x88_Move.tp_dict, __pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Move) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetAttrString(__pyx_m, "Move", (PyObject *)&__pyx_type_3src_6cython_17_genpyx_chess0x88_Move) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 47; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Move = &__pyx_type_3src_6cython_17_genpyx_chess0x88_Move;
+  __pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Board = &__pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.clear = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_clear;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.clone = (struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_clone;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.add = (void (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_add;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.remove = (void (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_remove;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.hindered = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_hindered;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.get_value = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_get_value;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.possible_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_possible_moves;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.possible_killing_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_possible_killing_moves;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.color = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_color;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.current_king_position = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_current_king_position;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.move = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_move;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.piece_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_piece_moves;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.at = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_at;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.load_fen = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_load_fen;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.castle = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_castle;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.attack_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_attack_moves;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.generate_moves = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_generate_moves;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.attacked = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_attacked;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.in_check = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_in_check;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board._current_king_position = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board__current_king_position;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.display = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_display;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.display_values = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_display_values;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.status = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, PyObject *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_status;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.get_pieces = (PyObject *(*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_get_pieces;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.get_hash = (unsigned PY_LONG_LONG (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_get_hash;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.count = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int __pyx_skip_dispatch))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_count;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.piece_value = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *, int, int, int))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_piece_value;
+  __pyx_vtable_3src_6cython_17_genpyx_chess0x88_Board.is_endgame = (int (*)(struct __pyx_obj_3src_6cython_17_genpyx_chess0x88_Board *))__pyx_f_3src_6cython_17_genpyx_chess0x88_5Board_is_endgame;
+  if (PyType_Ready(&__pyx_type_3src_6cython_17_genpyx_chess0x88_Board) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_type_3src_6cython_17_genpyx_chess0x88_Board.tp_print = 0;
+  if (__Pyx_SetVtable(__pyx_type_3src_6cython_17_genpyx_chess0x88_Board.tp_dict, __pyx_vtabptr_3src_6cython_17_genpyx_chess0x88_Board) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (__Pyx_SetAttrString(__pyx_m, "Board", (PyObject *)&__pyx_type_3src_6cython_17_genpyx_chess0x88_Board) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 326; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board = &__pyx_type_3src_6cython_17_genpyx_chess0x88_Board;
   /*--- Type import code ---*/
   /*--- Variable import code ---*/
   /*--- Function import code ---*/
   /*--- Execution code ---*/
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":2
+  /* "src\cython\_genpyx_chess0x88.py":1
+ * CHECKSUM = 115717966303337494788217948518299776995248656663452023092065502891522956903447             # <<<<<<<<<<<<<<
+ * import cython
+ * 
+ */
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_CHECKSUM, __pyx_int_115717966303337494788217948518299776995248656663452023092065502891522956903447) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+
+  /* "src\cython\_genpyx_chess0x88.py":43
+ *     return zobrist_color
+ * 
+ * zobrist_color = init_zobrist()             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __pyx_v_3src_6cython_17_genpyx_chess0x88_zobrist_color = __pyx_f_3src_6cython_17_genpyx_chess0x88_init_zobrist();
+
+  /* "src\cython\_genpyx_chess0x88.py":319
+ *         )
  * 
  * import re             # <<<<<<<<<<<<<<
- * 
  * from collections import namedtuple
+ * 
  */
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_re, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_re, 0, -1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_re, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_re, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 319; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":4
- * import re
+  /* "src\cython\_genpyx_chess0x88.py":320
  * 
+ * import re
  * from collections import namedtuple             # <<<<<<<<<<<<<<
  * 
  * Piece = namedtuple("Piece", "name position color")
  */
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_s_namedtuple);
   PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_s_namedtuple);
   __Pyx_GIVEREF(__pyx_n_s_namedtuple);
-  __pyx_t_2 = __Pyx_Import(__pyx_n_s_collections, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_Import(__pyx_n_s_collections, __pyx_t_1, -1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_namedtuple); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_ImportFrom(__pyx_t_2, __pyx_n_s_namedtuple); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_namedtuple, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 4; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_namedtuple, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 320; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":6
+  /* "src\cython\_genpyx_chess0x88.py":322
  * from collections import namedtuple
  * 
  * Piece = namedtuple("Piece", "name position color")             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_namedtuple); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_2 = __Pyx_GetModuleGlobalName(__pyx_n_s_namedtuple); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Piece, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 6; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_Piece, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 322; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":88
  * 
  * 
@@ -13630,163 +14491,236 @@ PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void)
   __pyx_f_3src_6cython_24_genpyx_64bit__chess0x88_init_zobrist(__pyx_v_3src_6cython_24_genpyx_64bit__chess0x88_zobrist_color);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1031
+=======
+  /* "src\cython\_genpyx_chess0x88.py":847
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  *     @staticmethod
  *     def is_valid_position(position):             # <<<<<<<<<<<<<<
  *         """ Check if position is inside the board """
  *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_5Board_45is_valid_position, NULL, __pyx_n_s_src_cython__genpyx_64bit__chess0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1030
+=======
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_3src_6cython_17_genpyx_chess0x88_5Board_43is_valid_position, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Board_is_valid_position, NULL, __pyx_n_s_src_cython__genpyx_chess0x88, PyModule_GetDict(__pyx_m), ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "src\cython\_genpyx_chess0x88.py":846
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  *         return False
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def is_valid_position(position):
  *         """ Check if position is inside the board """
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 846; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board->tp_dict, __pyx_n_s_is_valid_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 846; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board->tp_dict, __pyx_n_s_is_valid_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board);
+  PyType_Modified(__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board);
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1031
+=======
+  /* "src\cython\_genpyx_chess0x88.py":847
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  *     @staticmethod
  *     def is_valid_position(position):             # <<<<<<<<<<<<<<
  *         """ Check if position is inside the board """
  *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, __pyx_n_s_is_valid_position); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1030
+=======
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, __pyx_n_s_is_valid_position); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "src\cython\_genpyx_chess0x88.py":846
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  *         return False
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def is_valid_position(position):
  *         """ Check if position is inside the board """
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 846; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1030; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board->tp_dict, __pyx_n_s_is_valid_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1031; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 846; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board->tp_dict, __pyx_n_s_is_valid_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 847; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board);
+  PyType_Modified(__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board);
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1036
+=======
+  /* "src\cython\_genpyx_chess0x88.py":852
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  *     @staticmethod
  *     def chess_notation_to_position(chess_notation):             # <<<<<<<<<<<<<<
  *         """ Convert chess notation (a1) to position (0, 0) """
  *         return (
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_5Board_47chess_notation_to_position, NULL, __pyx_n_s_src_cython__genpyx_64bit__chess0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1036; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1035
+=======
+  __pyx_t_1 = __Pyx_CyFunction_NewEx(&__pyx_mdef_3src_6cython_17_genpyx_chess0x88_5Board_45chess_notation_to_position, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Board_chess_notation_to_position, NULL, __pyx_n_s_src_cython__genpyx_chess0x88, PyModule_GetDict(__pyx_m), ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "src\cython\_genpyx_chess0x88.py":851
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def chess_notation_to_position(chess_notation):
  *         """ Convert chess notation (a1) to position (0, 0) """
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1035; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1035; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board->tp_dict, __pyx_n_s_chess_notation_to_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1036; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board->tp_dict, __pyx_n_s_chess_notation_to_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board);
+  PyType_Modified(__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board);
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1036
+=======
+  /* "src\cython\_genpyx_chess0x88.py":852
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
  *     @staticmethod
  *     def chess_notation_to_position(chess_notation):             # <<<<<<<<<<<<<<
  *         """ Convert chess notation (a1) to position (0, 0) """
  *         return (
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board, __pyx_n_s_chess_notation_to_position); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1036; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
 
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1035
+=======
+  __pyx_t_1 = __Pyx_GetNameInClass((PyObject *)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board, __pyx_n_s_chess_notation_to_position); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+
+  /* "src\cython\_genpyx_chess0x88.py":851
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  *         return 0 <= position[0] < 8 and 0 <= position[1] < 8
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def chess_notation_to_position(chess_notation):
  *         """ Convert chess notation (a1) to position (0, 0) """
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1035; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_GOTREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1035; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board->tp_dict, __pyx_n_s_chess_notation_to_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1036; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_staticmethod, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 851; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board->tp_dict, __pyx_n_s_chess_notation_to_position, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 852; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  PyType_Modified(__pyx_ptype_3src_6cython_24_genpyx_64bit__chess0x88_Board);
+  PyType_Modified(__pyx_ptype_3src_6cython_17_genpyx_chess0x88_Board);
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   /* "src/cython/_genpyx_64bit__chess0x88.pyx":1070
+=======
+  /* "src\cython\_genpyx_chess0x88.py":1
+ * CHECKSUM = 115717966303337494788217948518299776995248656663452023092065502891522956903447             # <<<<<<<<<<<<<<
+ * import cython
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
  * 
- * @cython.locals(x=cython.int, icol=cython.int, irow=cython.int)
- * def p0x88_to_chess_notation(x):             # <<<<<<<<<<<<<<
- *     icol = col(x)
- *     irow = rank(x)
  */
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_1p0x88_to_chess_notation, NULL, __pyx_n_s_src_cython__genpyx_64bit__chess0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1070; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_p0x88_to_chess_notation, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1070; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":1077
- * 
- * @cython.locals(move=Move)
- * def move_key(move):             # <<<<<<<<<<<<<<
- *     return move.score()
- */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_3move_key, NULL, __pyx_n_s_src_cython__genpyx_64bit__chess0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+=======
+  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_move_key, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "src/cython/_genpyx_64bit__chess0x88.pyx":2
- * 
- * import re             # <<<<<<<<<<<<<<
- * 
- * from collections import namedtuple
- */
-  __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
-  __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 2; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_test, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   if (__pyx_m) {
-    __Pyx_AddTraceback("init src.cython._genpyx_64bit__chess0x88", __pyx_clineno, __pyx_lineno, __pyx_filename);
+    __Pyx_AddTraceback("init src.cython._genpyx_chess0x88", __pyx_clineno, __pyx_lineno, __pyx_filename);
     Py_DECREF(__pyx_m); __pyx_m = 0;
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init src.cython._genpyx_64bit__chess0x88");
+    PyErr_SetString(PyExc_ImportError, "init src.cython._genpyx_chess0x88");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -13797,6 +14731,18 @@ PyMODINIT_FUNC PyInit__genpyx_64bit__chess0x88(void)
   #endif
 }
 
+<<<<<<< HEAD:src/cython/_genpyx_64bit__chess0x88.c
+  /* "src/cython/_genpyx_64bit__chess0x88.pyx":1077
+ * 
+ * @cython.locals(move=Move)
+ * def move_key(move):             # <<<<<<<<<<<<<<
+ *     return move.score()
+ */
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_6cython_24_genpyx_64bit__chess0x88_3move_key, NULL, __pyx_n_s_src_cython__genpyx_64bit__chess0); if (unlikely(!__pyx_t_1)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_move_key, __pyx_t_1) < 0) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 1077; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+=======
 /* Runtime support code */
 #if CYTHON_REFNANNY
 static __Pyx_RefNannyAPIStruct *__Pyx_RefNannyImportAPI(const char *modname) {
@@ -13826,6 +14772,166 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     }
     return result;
 }
+
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
+    PyObject *r;
+    if (!j) return NULL;
+    r = PyObject_GetItem(o, j);
+    Py_DECREF(j);
+    return r;
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    if (wraparound & unlikely(i < 0)) i += PyList_GET_SIZE(o);
+    if ((!boundscheck) || likely((0 <= i) & (i < PyList_GET_SIZE(o)))) {
+        PyObject *r = PyList_GET_ITEM(o, i);
+        Py_INCREF(r);
+        return r;
+    }
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+#else
+    return PySequence_GetItem(o, i);
+#endif
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
+                                                              int wraparound, int boundscheck) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    if (wraparound & unlikely(i < 0)) i += PyTuple_GET_SIZE(o);
+    if ((!boundscheck) || likely((0 <= i) & (i < PyTuple_GET_SIZE(o)))) {
+        PyObject *r = PyTuple_GET_ITEM(o, i);
+        Py_INCREF(r);
+        return r;
+    }
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+#else
+    return PySequence_GetItem(o, i);
+#endif
+}
+static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
+                                                     int is_list, int wraparound, int boundscheck) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    if (is_list || PyList_CheckExact(o)) {
+        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyList_GET_SIZE(o);
+        if ((!boundscheck) || (likely((n >= 0) & (n < PyList_GET_SIZE(o))))) {
+            PyObject *r = PyList_GET_ITEM(o, n);
+            Py_INCREF(r);
+            return r;
+        }
+    }
+    else if (PyTuple_CheckExact(o)) {
+        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyTuple_GET_SIZE(o);
+        if ((!boundscheck) || likely((n >= 0) & (n < PyTuple_GET_SIZE(o)))) {
+            PyObject *r = PyTuple_GET_ITEM(o, n);
+            Py_INCREF(r);
+            return r;
+        }
+    } else {
+        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
+        if (likely(m && m->sq_item)) {
+            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
+                Py_ssize_t l = m->sq_length(o);
+                if (likely(l >= 0)) {
+                    i += l;
+                } else {
+                    if (PyErr_ExceptionMatches(PyExc_OverflowError))
+                        PyErr_Clear();
+                    else
+                        return NULL;
+                }
+            }
+            return m->sq_item(o, i);
+        }
+    }
+#else
+    if (is_list || PySequence_Check(o)) {
+        return PySequence_GetItem(o, i);
+    }
+#endif
+    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
+}
+>>>>>>> 7afb37bcd8f92d2b20adff77016fd34ae0ffba9b:src/cython/_genpyx_chess0x88.c
+
+static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyObject *tmp_type, *tmp_value, *tmp_tb;
+    PyThreadState *tstate = PyThreadState_GET();
+    tmp_type = tstate->curexc_type;
+    tmp_value = tstate->curexc_value;
+    tmp_tb = tstate->curexc_traceback;
+    tstate->curexc_type = type;
+    tstate->curexc_value = value;
+    tstate->curexc_traceback = tb;
+    Py_XDECREF(tmp_type);
+    Py_XDECREF(tmp_value);
+    Py_XDECREF(tmp_tb);
+#else
+    PyErr_Restore(type, value, tb);
+#endif
+}
+static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
+#if CYTHON_COMPILING_IN_CPYTHON
+    PyThreadState *tstate = PyThreadState_GET();
+    *type = tstate->curexc_type;
+    *value = tstate->curexc_value;
+    *tb = tstate->curexc_traceback;
+    tstate->curexc_type = 0;
+    tstate->curexc_value = 0;
+    tstate->curexc_traceback = 0;
+#else
+    PyErr_Fetch(type, value, tb);
+#endif
+}
+
+static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
+                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
+                                  int full_traceback) {
+    PyObject *old_exc, *old_val, *old_tb;
+    PyObject *ctx;
+    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
+    if (full_traceback) {
+        Py_XINCREF(old_exc);
+        Py_XINCREF(old_val);
+        Py_XINCREF(old_tb);
+        __Pyx_ErrRestore(old_exc, old_val, old_tb);
+        PyErr_PrintEx(1);
+    }
+    #if PY_MAJOR_VERSION < 3
+    ctx = PyString_FromString(name);
+    #else
+    ctx = PyUnicode_FromString(name);
+    #endif
+    __Pyx_ErrRestore(old_exc, old_val, old_tb);
+    if (!ctx) {
+        PyErr_WriteUnraisable(Py_None);
+    } else {
+        PyErr_WriteUnraisable(ctx);
+        Py_DECREF(ctx);
+    }
+}
+
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+#if PY_VERSION_HEX >= 0x02060000
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+#endif
+    result = (*call)(func, arg, kw);
+#if PY_VERSION_HEX >= 0x02060000
+    Py_LeaveRecursiveCall();
+#endif
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
 
 static void __Pyx_RaiseArgtupleInvalid(
     const char* func_name,
@@ -13992,85 +15098,16 @@ static CYTHON_INLINE int __Pyx_ArgTypeTest(PyObject *obj, PyTypeObject *type, in
     return 0;
 }
 
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-#if PY_VERSION_HEX >= 0x02060000
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-#endif
-    result = (*call)(func, arg, kw);
-#if PY_VERSION_HEX >= 0x02060000
-    Py_LeaveRecursiveCall();
-#endif
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+    if (unlikely(!type)) {
+        PyErr_SetString(PyExc_SystemError, "Missing type object");
+        return 0;
     }
-    return result;
-}
-#endif
-
-static CYTHON_INLINE void __Pyx_ErrRestore(PyObject *type, PyObject *value, PyObject *tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyObject *tmp_type, *tmp_value, *tmp_tb;
-    PyThreadState *tstate = PyThreadState_GET();
-    tmp_type = tstate->curexc_type;
-    tmp_value = tstate->curexc_value;
-    tmp_tb = tstate->curexc_traceback;
-    tstate->curexc_type = type;
-    tstate->curexc_value = value;
-    tstate->curexc_traceback = tb;
-    Py_XDECREF(tmp_type);
-    Py_XDECREF(tmp_value);
-    Py_XDECREF(tmp_tb);
-#else
-    PyErr_Restore(type, value, tb);
-#endif
-}
-static CYTHON_INLINE void __Pyx_ErrFetch(PyObject **type, PyObject **value, PyObject **tb) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    PyThreadState *tstate = PyThreadState_GET();
-    *type = tstate->curexc_type;
-    *value = tstate->curexc_value;
-    *tb = tstate->curexc_traceback;
-    tstate->curexc_type = 0;
-    tstate->curexc_value = 0;
-    tstate->curexc_traceback = 0;
-#else
-    PyErr_Fetch(type, value, tb);
-#endif
-}
-
-static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
-                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
-                                  int full_traceback) {
-    PyObject *old_exc, *old_val, *old_tb;
-    PyObject *ctx;
-    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
-    if (full_traceback) {
-        Py_XINCREF(old_exc);
-        Py_XINCREF(old_val);
-        Py_XINCREF(old_tb);
-        __Pyx_ErrRestore(old_exc, old_val, old_tb);
-        PyErr_PrintEx(1);
-    }
-    #if PY_MAJOR_VERSION < 3
-    ctx = PyString_FromString(name);
-    #else
-    ctx = PyUnicode_FromString(name);
-    #endif
-    __Pyx_ErrRestore(old_exc, old_val, old_tb);
-    if (!ctx) {
-        PyErr_WriteUnraisable(Py_None);
-    } else {
-        PyErr_WriteUnraisable(ctx);
-        Py_DECREF(ctx);
-    }
+    if (likely(PyObject_TypeCheck(obj, type)))
+        return 1;
+    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
+                 Py_TYPE(obj)->tp_name, type->tp_name);
+    return 0;
 }
 
 static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name) {
@@ -14088,96 +15125,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetModuleGlobalName(PyObject *name) {
         result = __Pyx_GetBuiltinName(name);
     }
     return result;
-}
-
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
-    }
-    if (likely(PyObject_TypeCheck(obj, type)))
-        return 1;
-    PyErr_Format(PyExc_TypeError, "Cannot convert %.200s to %.200s",
-                 Py_TYPE(obj)->tp_name, type->tp_name);
-    return 0;
-}
-
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {
-    PyObject *r;
-    if (!j) return NULL;
-    r = PyObject_GetItem(o, j);
-    Py_DECREF(j);
-    return r;
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_List_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    if (wraparound & unlikely(i < 0)) i += PyList_GET_SIZE(o);
-    if ((!boundscheck) || likely((0 <= i) & (i < PyList_GET_SIZE(o)))) {
-        PyObject *r = PyList_GET_ITEM(o, i);
-        Py_INCREF(r);
-        return r;
-    }
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-#else
-    return PySequence_GetItem(o, i);
-#endif
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Tuple_Fast(PyObject *o, Py_ssize_t i,
-                                                              int wraparound, int boundscheck) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    if (wraparound & unlikely(i < 0)) i += PyTuple_GET_SIZE(o);
-    if ((!boundscheck) || likely((0 <= i) & (i < PyTuple_GET_SIZE(o)))) {
-        PyObject *r = PyTuple_GET_ITEM(o, i);
-        Py_INCREF(r);
-        return r;
-    }
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
-#else
-    return PySequence_GetItem(o, i);
-#endif
-}
-static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
-                                                     int is_list, int wraparound, int boundscheck) {
-#if CYTHON_COMPILING_IN_CPYTHON
-    if (is_list || PyList_CheckExact(o)) {
-        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyList_GET_SIZE(o);
-        if ((!boundscheck) || (likely((n >= 0) & (n < PyList_GET_SIZE(o))))) {
-            PyObject *r = PyList_GET_ITEM(o, n);
-            Py_INCREF(r);
-            return r;
-        }
-    }
-    else if (PyTuple_CheckExact(o)) {
-        Py_ssize_t n = ((!wraparound) | likely(i >= 0)) ? i : i + PyTuple_GET_SIZE(o);
-        if ((!boundscheck) || likely((n >= 0) & (n < PyTuple_GET_SIZE(o)))) {
-            PyObject *r = PyTuple_GET_ITEM(o, n);
-            Py_INCREF(r);
-            return r;
-        }
-    } else {
-        PySequenceMethods *m = Py_TYPE(o)->tp_as_sequence;
-        if (likely(m && m->sq_item)) {
-            if (wraparound && unlikely(i < 0) && likely(m->sq_length)) {
-                Py_ssize_t l = m->sq_length(o);
-                if (likely(l >= 0)) {
-                    i += l;
-                } else {
-                    if (PyErr_ExceptionMatches(PyExc_OverflowError))
-                        PyErr_Clear();
-                    else
-                        return NULL;
-                }
-            }
-            return m->sq_item(o, i);
-        }
-    }
-#else
-    if (is_list || PySequence_Check(o)) {
-        return PySequence_GetItem(o, i);
-    }
-#endif
-    return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
 }
 
 static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
@@ -14332,94 +15279,597 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
     return value;
 }
 
+static PyTypeObject* __Pyx_FetchCommonType(PyTypeObject* type) {
+    PyObject* fake_module;
+    PyTypeObject* cached_type = NULL;
+    fake_module = PyImport_AddModule((char*) "_cython_" CYTHON_ABI);
+    if (!fake_module) return NULL;
+    Py_INCREF(fake_module);
+    cached_type = (PyTypeObject*) PyObject_GetAttrString(fake_module, type->tp_name);
+    if (cached_type) {
+        if (!PyType_Check((PyObject*)cached_type)) {
+            PyErr_Format(PyExc_TypeError,
+                "Shared Cython type %.200s is not a type object",
+                type->tp_name);
+            goto bad;
+        }
+        if (cached_type->tp_basicsize != type->tp_basicsize) {
+            PyErr_Format(PyExc_TypeError,
+                "Shared Cython type %.200s has the wrong size, try recompiling",
+                type->tp_name);
+            goto bad;
+        }
+    } else {
+        if (!PyErr_ExceptionMatches(PyExc_AttributeError)) goto bad;
+        PyErr_Clear();
+        if (PyType_Ready(type) < 0) goto bad;
+        if (PyObject_SetAttrString(fake_module, type->tp_name, (PyObject*) type) < 0)
+            goto bad;
+        Py_INCREF(type);
+        cached_type = type;
+    }
+done:
+    Py_DECREF(fake_module);
+    return cached_type;
+bad:
+    Py_XDECREF(cached_type);
+    cached_type = NULL;
+    goto done;
+}
+
+static PyObject *
+__Pyx_CyFunction_get_doc(__pyx_CyFunctionObject *op, CYTHON_UNUSED void *closure)
+{
+    if (unlikely(op->func_doc == NULL)) {
+        if (op->func.m_ml->ml_doc) {
+#if PY_MAJOR_VERSION >= 3
+            op->func_doc = PyUnicode_FromString(op->func.m_ml->ml_doc);
+#else
+            op->func_doc = PyString_FromString(op->func.m_ml->ml_doc);
+#endif
+            if (unlikely(op->func_doc == NULL))
+                return NULL;
+        } else {
+            Py_INCREF(Py_None);
+            return Py_None;
+        }
+    }
+    Py_INCREF(op->func_doc);
+    return op->func_doc;
+}
+static int
+__Pyx_CyFunction_set_doc(__pyx_CyFunctionObject *op, PyObject *value)
+{
+    PyObject *tmp = op->func_doc;
+    if (value == NULL)
+        value = Py_None; /* Mark as deleted */
+    Py_INCREF(value);
+    op->func_doc = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_name(__pyx_CyFunctionObject *op)
+{
+    if (unlikely(op->func_name == NULL)) {
+#if PY_MAJOR_VERSION >= 3
+        op->func_name = PyUnicode_InternFromString(op->func.m_ml->ml_name);
+#else
+        op->func_name = PyString_InternFromString(op->func.m_ml->ml_name);
+#endif
+        if (unlikely(op->func_name == NULL))
+            return NULL;
+    }
+    Py_INCREF(op->func_name);
+    return op->func_name;
+}
+static int
+__Pyx_CyFunction_set_name(__pyx_CyFunctionObject *op, PyObject *value)
+{
+    PyObject *tmp;
+#if PY_MAJOR_VERSION >= 3
+    if (unlikely(value == NULL || !PyUnicode_Check(value))) {
+#else
+    if (unlikely(value == NULL || !PyString_Check(value))) {
+#endif
+        PyErr_SetString(PyExc_TypeError,
+                        "__name__ must be set to a string object");
+        return -1;
+    }
+    tmp = op->func_name;
+    Py_INCREF(value);
+    op->func_name = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_qualname(__pyx_CyFunctionObject *op)
+{
+    Py_INCREF(op->func_qualname);
+    return op->func_qualname;
+}
+static int
+__Pyx_CyFunction_set_qualname(__pyx_CyFunctionObject *op, PyObject *value)
+{
+    PyObject *tmp;
+#if PY_MAJOR_VERSION >= 3
+    if (unlikely(value == NULL || !PyUnicode_Check(value))) {
+#else
+    if (unlikely(value == NULL || !PyString_Check(value))) {
+#endif
+        PyErr_SetString(PyExc_TypeError,
+                        "__qualname__ must be set to a string object");
+        return -1;
+    }
+    tmp = op->func_qualname;
+    Py_INCREF(value);
+    op->func_qualname = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_self(__pyx_CyFunctionObject *m, CYTHON_UNUSED void *closure)
+{
+    PyObject *self;
+    self = m->func_closure;
+    if (self == NULL)
+        self = Py_None;
+    Py_INCREF(self);
+    return self;
+}
+static PyObject *
+__Pyx_CyFunction_get_dict(__pyx_CyFunctionObject *op)
+{
+    if (unlikely(op->func_dict == NULL)) {
+        op->func_dict = PyDict_New();
+        if (unlikely(op->func_dict == NULL))
+            return NULL;
+    }
+    Py_INCREF(op->func_dict);
+    return op->func_dict;
+}
+static int
+__Pyx_CyFunction_set_dict(__pyx_CyFunctionObject *op, PyObject *value)
+{
+    PyObject *tmp;
+    if (unlikely(value == NULL)) {
+        PyErr_SetString(PyExc_TypeError,
+               "function's dictionary may not be deleted");
+        return -1;
+    }
+    if (unlikely(!PyDict_Check(value))) {
+        PyErr_SetString(PyExc_TypeError,
+               "setting function's dictionary to a non-dict");
+        return -1;
+    }
+    tmp = op->func_dict;
+    Py_INCREF(value);
+    op->func_dict = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_globals(__pyx_CyFunctionObject *op)
+{
+    Py_INCREF(op->func_globals);
+    return op->func_globals;
+}
+static PyObject *
+__Pyx_CyFunction_get_closure(CYTHON_UNUSED __pyx_CyFunctionObject *op)
+{
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+static PyObject *
+__Pyx_CyFunction_get_code(__pyx_CyFunctionObject *op)
+{
+    PyObject* result = (op->func_code) ? op->func_code : Py_None;
+    Py_INCREF(result);
+    return result;
+}
+static int
+__Pyx_CyFunction_init_defaults(__pyx_CyFunctionObject *op) {
+    PyObject *res = op->defaults_getter((PyObject *) op);
+    if (unlikely(!res))
+        return -1;
+    op->defaults_tuple = PyTuple_GET_ITEM(res, 0);
+    Py_INCREF(op->defaults_tuple);
+    op->defaults_kwdict = PyTuple_GET_ITEM(res, 1);
+    Py_INCREF(op->defaults_kwdict);
+    Py_DECREF(res);
+    return 0;
+}
+static int
+__Pyx_CyFunction_set_defaults(__pyx_CyFunctionObject *op, PyObject* value) {
+    PyObject* tmp;
+    if (!value) {
+        value = Py_None;
+    } else if (value != Py_None && !PyTuple_Check(value)) {
+        PyErr_SetString(PyExc_TypeError,
+                        "__defaults__ must be set to a tuple object");
+        return -1;
+    }
+    Py_INCREF(value);
+    tmp = op->defaults_tuple;
+    op->defaults_tuple = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_defaults(__pyx_CyFunctionObject *op) {
+    PyObject* result = op->defaults_tuple;
+    if (unlikely(!result)) {
+        if (op->defaults_getter) {
+            if (__Pyx_CyFunction_init_defaults(op) < 0) return NULL;
+            result = op->defaults_tuple;
+        } else {
+            result = Py_None;
+        }
+    }
+    Py_INCREF(result);
+    return result;
+}
+static int
+__Pyx_CyFunction_set_kwdefaults(__pyx_CyFunctionObject *op, PyObject* value) {
+    PyObject* tmp;
+    if (!value) {
+        value = Py_None;
+    } else if (value != Py_None && !PyDict_Check(value)) {
+        PyErr_SetString(PyExc_TypeError,
+                        "__kwdefaults__ must be set to a dict object");
+        return -1;
+    }
+    Py_INCREF(value);
+    tmp = op->defaults_kwdict;
+    op->defaults_kwdict = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_kwdefaults(__pyx_CyFunctionObject *op) {
+    PyObject* result = op->defaults_kwdict;
+    if (unlikely(!result)) {
+        if (op->defaults_getter) {
+            if (__Pyx_CyFunction_init_defaults(op) < 0) return NULL;
+            result = op->defaults_kwdict;
+        } else {
+            result = Py_None;
+        }
+    }
+    Py_INCREF(result);
+    return result;
+}
+static int
+__Pyx_CyFunction_set_annotations(__pyx_CyFunctionObject *op, PyObject* value) {
+    PyObject* tmp;
+    if (!value || value == Py_None) {
+        value = NULL;
+    } else if (!PyDict_Check(value)) {
+        PyErr_SetString(PyExc_TypeError,
+                        "__annotations__ must be set to a dict object");
+        return -1;
+    }
+    Py_XINCREF(value);
+    tmp = op->func_annotations;
+    op->func_annotations = value;
+    Py_XDECREF(tmp);
+    return 0;
+}
+static PyObject *
+__Pyx_CyFunction_get_annotations(__pyx_CyFunctionObject *op) {
+    PyObject* result = op->func_annotations;
+    if (unlikely(!result)) {
+        result = PyDict_New();
+        if (unlikely(!result)) return NULL;
+        op->func_annotations = result;
+    }
+    Py_INCREF(result);
+    return result;
+}
+static PyGetSetDef __pyx_CyFunction_getsets[] = {
+    {(char *) "func_doc", (getter)__Pyx_CyFunction_get_doc, (setter)__Pyx_CyFunction_set_doc, 0, 0},
+    {(char *) "__doc__",  (getter)__Pyx_CyFunction_get_doc, (setter)__Pyx_CyFunction_set_doc, 0, 0},
+    {(char *) "func_name", (getter)__Pyx_CyFunction_get_name, (setter)__Pyx_CyFunction_set_name, 0, 0},
+    {(char *) "__name__", (getter)__Pyx_CyFunction_get_name, (setter)__Pyx_CyFunction_set_name, 0, 0},
+    {(char *) "__qualname__", (getter)__Pyx_CyFunction_get_qualname, (setter)__Pyx_CyFunction_set_qualname, 0, 0},
+    {(char *) "__self__", (getter)__Pyx_CyFunction_get_self, 0, 0, 0},
+    {(char *) "func_dict", (getter)__Pyx_CyFunction_get_dict, (setter)__Pyx_CyFunction_set_dict, 0, 0},
+    {(char *) "__dict__", (getter)__Pyx_CyFunction_get_dict, (setter)__Pyx_CyFunction_set_dict, 0, 0},
+    {(char *) "func_globals", (getter)__Pyx_CyFunction_get_globals, 0, 0, 0},
+    {(char *) "__globals__", (getter)__Pyx_CyFunction_get_globals, 0, 0, 0},
+    {(char *) "func_closure", (getter)__Pyx_CyFunction_get_closure, 0, 0, 0},
+    {(char *) "__closure__", (getter)__Pyx_CyFunction_get_closure, 0, 0, 0},
+    {(char *) "func_code", (getter)__Pyx_CyFunction_get_code, 0, 0, 0},
+    {(char *) "__code__", (getter)__Pyx_CyFunction_get_code, 0, 0, 0},
+    {(char *) "func_defaults", (getter)__Pyx_CyFunction_get_defaults, (setter)__Pyx_CyFunction_set_defaults, 0, 0},
+    {(char *) "__defaults__", (getter)__Pyx_CyFunction_get_defaults, (setter)__Pyx_CyFunction_set_defaults, 0, 0},
+    {(char *) "__kwdefaults__", (getter)__Pyx_CyFunction_get_kwdefaults, (setter)__Pyx_CyFunction_set_kwdefaults, 0, 0},
+    {(char *) "__annotations__", (getter)__Pyx_CyFunction_get_annotations, (setter)__Pyx_CyFunction_set_annotations, 0, 0},
+    {0, 0, 0, 0, 0}
+};
+#ifndef PY_WRITE_RESTRICTED /* < Py2.5 */
+#define PY_WRITE_RESTRICTED WRITE_RESTRICTED
+#endif
+static PyMemberDef __pyx_CyFunction_members[] = {
+    {(char *) "__module__", T_OBJECT, offsetof(__pyx_CyFunctionObject, func.m_module), PY_WRITE_RESTRICTED, 0},
+    {0, 0, 0,  0, 0}
+};
+static PyObject *
+__Pyx_CyFunction_reduce(__pyx_CyFunctionObject *m, CYTHON_UNUSED PyObject *args)
+{
+#if PY_MAJOR_VERSION >= 3
+    return PyUnicode_FromString(m->func.m_ml->ml_name);
+#else
+    return PyString_FromString(m->func.m_ml->ml_name);
+#endif
+}
+static PyMethodDef __pyx_CyFunction_methods[] = {
+    {__Pyx_NAMESTR("__reduce__"), (PyCFunction)__Pyx_CyFunction_reduce, METH_VARARGS, 0},
+    {0, 0, 0, 0}
+};
+static PyObject *__Pyx_CyFunction_New(PyTypeObject *type, PyMethodDef *ml, int flags, PyObject* qualname,
+                                      PyObject *closure, PyObject *module, PyObject* globals, PyObject* code) {
+    __pyx_CyFunctionObject *op = PyObject_GC_New(__pyx_CyFunctionObject, type);
+    if (op == NULL)
+        return NULL;
+    op->flags = flags;
+    op->func_weakreflist = NULL;
+    op->func.m_ml = ml;
+    op->func.m_self = (PyObject *) op;
+    Py_XINCREF(closure);
+    op->func_closure = closure;
+    Py_XINCREF(module);
+    op->func.m_module = module;
+    op->func_dict = NULL;
+    op->func_name = NULL;
+    Py_INCREF(qualname);
+    op->func_qualname = qualname;
+    op->func_doc = NULL;
+    op->func_classobj = NULL;
+    op->func_globals = globals;
+    Py_INCREF(op->func_globals);
+    Py_XINCREF(code);
+    op->func_code = code;
+    op->defaults_pyobjects = 0;
+    op->defaults = NULL;
+    op->defaults_tuple = NULL;
+    op->defaults_kwdict = NULL;
+    op->defaults_getter = NULL;
+    op->func_annotations = NULL;
+    PyObject_GC_Track(op);
+    return (PyObject *) op;
+}
+static int
+__Pyx_CyFunction_clear(__pyx_CyFunctionObject *m)
+{
+    Py_CLEAR(m->func_closure);
+    Py_CLEAR(m->func.m_module);
+    Py_CLEAR(m->func_dict);
+    Py_CLEAR(m->func_name);
+    Py_CLEAR(m->func_qualname);
+    Py_CLEAR(m->func_doc);
+    Py_CLEAR(m->func_globals);
+    Py_CLEAR(m->func_code);
+    Py_CLEAR(m->func_classobj);
+    Py_CLEAR(m->defaults_tuple);
+    Py_CLEAR(m->defaults_kwdict);
+    Py_CLEAR(m->func_annotations);
+    if (m->defaults) {
+        PyObject **pydefaults = __Pyx_CyFunction_Defaults(PyObject *, m);
+        int i;
+        for (i = 0; i < m->defaults_pyobjects; i++)
+            Py_XDECREF(pydefaults[i]);
+        PyMem_Free(m->defaults);
+        m->defaults = NULL;
+    }
+    return 0;
+}
+static void __Pyx_CyFunction_dealloc(__pyx_CyFunctionObject *m)
+{
+    PyObject_GC_UnTrack(m);
+    if (m->func_weakreflist != NULL)
+        PyObject_ClearWeakRefs((PyObject *) m);
+    __Pyx_CyFunction_clear(m);
+    PyObject_GC_Del(m);
+}
+static int __Pyx_CyFunction_traverse(__pyx_CyFunctionObject *m, visitproc visit, void *arg)
+{
+    Py_VISIT(m->func_closure);
+    Py_VISIT(m->func.m_module);
+    Py_VISIT(m->func_dict);
+    Py_VISIT(m->func_name);
+    Py_VISIT(m->func_qualname);
+    Py_VISIT(m->func_doc);
+    Py_VISIT(m->func_globals);
+    Py_VISIT(m->func_code);
+    Py_VISIT(m->func_classobj);
+    Py_VISIT(m->defaults_tuple);
+    Py_VISIT(m->defaults_kwdict);
+    if (m->defaults) {
+        PyObject **pydefaults = __Pyx_CyFunction_Defaults(PyObject *, m);
+        int i;
+        for (i = 0; i < m->defaults_pyobjects; i++)
+            Py_VISIT(pydefaults[i]);
+    }
+    return 0;
+}
+static PyObject *__Pyx_CyFunction_descr_get(PyObject *func, PyObject *obj, PyObject *type)
+{
+    __pyx_CyFunctionObject *m = (__pyx_CyFunctionObject *) func;
+    if (m->flags & __Pyx_CYFUNCTION_STATICMETHOD) {
+        Py_INCREF(func);
+        return func;
+    }
+    if (m->flags & __Pyx_CYFUNCTION_CLASSMETHOD) {
+        if (type == NULL)
+            type = (PyObject *)(Py_TYPE(obj));
+        return PyMethod_New(func,
+                            type, (PyObject *)(Py_TYPE(type)));
+    }
+    if (obj == Py_None)
+        obj = NULL;
+    return PyMethod_New(func, obj, type);
+}
+static PyObject*
+__Pyx_CyFunction_repr(__pyx_CyFunctionObject *op)
+{
+#if PY_MAJOR_VERSION >= 3
+    return PyUnicode_FromFormat("<cyfunction %U at %p>",
+                                op->func_qualname, (void *)op);
+#else
+    return PyString_FromFormat("<cyfunction %s at %p>",
+                               PyString_AsString(op->func_qualname), (void *)op);
+#endif
+}
+#if CYTHON_COMPILING_IN_PYPY
+static PyObject * __Pyx_CyFunction_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyCFunctionObject* f = (PyCFunctionObject*)func;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    Py_ssize_t size;
+    switch (PyCFunction_GET_FLAGS(func) & ~(METH_CLASS | METH_STATIC | METH_COEXIST)) {
+    case METH_VARARGS:
+        if (likely(kw == NULL) || PyDict_Size(kw) == 0)
+            return (*meth)(self, arg);
+        break;
+    case METH_VARARGS | METH_KEYWORDS:
+        return (*(PyCFunctionWithKeywords)meth)(self, arg, kw);
+    case METH_NOARGS:
+        if (likely(kw == NULL) || PyDict_Size(kw) == 0) {
+            size = PyTuple_GET_SIZE(arg);
+            if (size == 0)
+                return (*meth)(self, NULL);
+            PyErr_Format(PyExc_TypeError,
+                "%.200s() takes no arguments (%zd given)",
+                f->m_ml->ml_name, size);
+            return NULL;
+        }
+        break;
+    case METH_O:
+        if (likely(kw == NULL) || PyDict_Size(kw) == 0) {
+            size = PyTuple_GET_SIZE(arg);
+            if (size == 1)
+                return (*meth)(self, PyTuple_GET_ITEM(arg, 0));
+            PyErr_Format(PyExc_TypeError,
+                "%.200s() takes exactly one argument (%zd given)",
+                f->m_ml->ml_name, size);
+            return NULL;
+        }
+        break;
+    default:
+        PyErr_SetString(PyExc_SystemError, "Bad call flags in "
+                        "__Pyx_CyFunction_Call. METH_OLDARGS is no "
+                        "longer supported!");
+        return NULL;
+    }
+    PyErr_Format(PyExc_TypeError, "%.200s() takes no keyword arguments",
+                 f->m_ml->ml_name);
+    return NULL;
+}
+#else
+static PyObject * __Pyx_CyFunction_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+	return PyCFunction_Call(func, arg, kw);
+}
+#endif
+static PyTypeObject __pyx_CyFunctionType_type = {
+    PyVarObject_HEAD_INIT(0, 0)
+    __Pyx_NAMESTR("cython_function_or_method"), /*tp_name*/
+    sizeof(__pyx_CyFunctionObject),   /*tp_basicsize*/
+    0,                                  /*tp_itemsize*/
+    (destructor) __Pyx_CyFunction_dealloc, /*tp_dealloc*/
+    0,                                  /*tp_print*/
+    0,                                  /*tp_getattr*/
+    0,                                  /*tp_setattr*/
+#if PY_MAJOR_VERSION < 3
+    0,                                  /*tp_compare*/
+#else
+    0,                                  /*reserved*/
+#endif
+    (reprfunc) __Pyx_CyFunction_repr,   /*tp_repr*/
+    0,                                  /*tp_as_number*/
+    0,                                  /*tp_as_sequence*/
+    0,                                  /*tp_as_mapping*/
+    0,                                  /*tp_hash*/
+    __Pyx_CyFunction_Call,              /*tp_call*/
+    0,                                  /*tp_str*/
+    0,                                  /*tp_getattro*/
+    0,                                  /*tp_setattro*/
+    0,                                  /*tp_as_buffer*/
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC, /* tp_flags*/
+    0,                                  /*tp_doc*/
+    (traverseproc) __Pyx_CyFunction_traverse,   /*tp_traverse*/
+    (inquiry) __Pyx_CyFunction_clear,   /*tp_clear*/
+    0,                                  /*tp_richcompare*/
+    offsetof(__pyx_CyFunctionObject, func_weakreflist), /* tp_weaklistoffse */
+    0,                                  /*tp_iter*/
+    0,                                  /*tp_iternext*/
+    __pyx_CyFunction_methods,           /*tp_methods*/
+    __pyx_CyFunction_members,           /*tp_members*/
+    __pyx_CyFunction_getsets,           /*tp_getset*/
+    0,                                  /*tp_base*/
+    0,                                  /*tp_dict*/
+    __Pyx_CyFunction_descr_get,         /*tp_descr_get*/
+    0,                                  /*tp_descr_set*/
+    offsetof(__pyx_CyFunctionObject, func_dict),/*tp_dictoffset*/
+    0,                                  /*tp_init*/
+    0,                                  /*tp_alloc*/
+    0,                                  /*tp_new*/
+    0,                                  /*tp_free*/
+    0,                                  /*tp_is_gc*/
+    0,                                  /*tp_bases*/
+    0,                                  /*tp_mro*/
+    0,                                  /*tp_cache*/
+    0,                                  /*tp_subclasses*/
+    0,                                  /*tp_weaklist*/
+    0,                                  /*tp_del*/
+#if PY_VERSION_HEX >= 0x02060000
+    0,                                  /*tp_version_tag*/
+#endif
+#if PY_VERSION_HEX >= 0x030400a1
+    0,                                  /*tp_finalize*/
+#endif
+};
+static int __Pyx_CyFunction_init(void) {
+#if !CYTHON_COMPILING_IN_PYPY
+    __pyx_CyFunctionType_type.tp_call = PyCFunction_Call;
+#endif
+    __pyx_CyFunctionType = __Pyx_FetchCommonType(&__pyx_CyFunctionType_type);
+    if (__pyx_CyFunctionType == NULL) {
+        return -1;
+    }
+    return 0;
+}
+static CYTHON_INLINE void *__Pyx_CyFunction_InitDefaults(PyObject *func, size_t size, int pyobjects) {
+    __pyx_CyFunctionObject *m = (__pyx_CyFunctionObject *) func;
+    m->defaults = PyMem_Malloc(size);
+    if (!m->defaults)
+        return PyErr_NoMemory();
+    memset(m->defaults, 0, size);
+    m->defaults_pyobjects = pyobjects;
+    return m->defaults;
+}
+static CYTHON_INLINE void __Pyx_CyFunction_SetDefaultsTuple(PyObject *func, PyObject *tuple) {
+    __pyx_CyFunctionObject *m = (__pyx_CyFunctionObject *) func;
+    m->defaults_tuple = tuple;
+    Py_INCREF(tuple);
+}
+static CYTHON_INLINE void __Pyx_CyFunction_SetDefaultsKwDict(PyObject *func, PyObject *dict) {
+    __pyx_CyFunctionObject *m = (__pyx_CyFunctionObject *) func;
+    m->defaults_kwdict = dict;
+    Py_INCREF(dict);
+}
+static CYTHON_INLINE void __Pyx_CyFunction_SetAnnotationsDict(PyObject *func, PyObject *dict) {
+    __pyx_CyFunctionObject *m = (__pyx_CyFunctionObject *) func;
+    m->func_annotations = dict;
+    Py_INCREF(dict);
+}
+
 static PyObject *__Pyx_GetNameInClass(PyObject *nmspace, PyObject *name) {
     PyObject *result;
     result = __Pyx_PyObject_GetAttrStr(nmspace, name);
     if (!result)
         result = __Pyx_GetModuleGlobalName(name);
     return result;
-}
-
-static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
-    PyObject *empty_list = 0;
-    PyObject *module = 0;
-    PyObject *global_dict = 0;
-    PyObject *empty_dict = 0;
-    PyObject *list;
-    #if PY_VERSION_HEX < 0x03030000
-    PyObject *py_import;
-    py_import = __Pyx_PyObject_GetAttrStr(__pyx_b, __pyx_n_s_import);
-    if (!py_import)
-        goto bad;
-    #endif
-    if (from_list)
-        list = from_list;
-    else {
-        empty_list = PyList_New(0);
-        if (!empty_list)
-            goto bad;
-        list = empty_list;
-    }
-    global_dict = PyModule_GetDict(__pyx_m);
-    if (!global_dict)
-        goto bad;
-    empty_dict = PyDict_New();
-    if (!empty_dict)
-        goto bad;
-    #if PY_VERSION_HEX >= 0x02050000
-    {
-        #if PY_MAJOR_VERSION >= 3
-        if (level == -1) {
-            if (strchr(__Pyx_MODULE_NAME, '.')) {
-                #if PY_VERSION_HEX < 0x03030000
-                PyObject *py_level = PyInt_FromLong(1);
-                if (!py_level)
-                    goto bad;
-                module = PyObject_CallFunctionObjArgs(py_import,
-                    name, global_dict, empty_dict, list, py_level, NULL);
-                Py_DECREF(py_level);
-                #else
-                module = PyImport_ImportModuleLevelObject(
-                    name, global_dict, empty_dict, list, 1);
-                #endif
-                if (!module) {
-                    if (!PyErr_ExceptionMatches(PyExc_ImportError))
-                        goto bad;
-                    PyErr_Clear();
-                }
-            }
-            level = 0; /* try absolute import on failure */
-        }
-        #endif
-        if (!module) {
-            #if PY_VERSION_HEX < 0x03030000
-            PyObject *py_level = PyInt_FromLong(level);
-            if (!py_level)
-                goto bad;
-            module = PyObject_CallFunctionObjArgs(py_import,
-                name, global_dict, empty_dict, list, py_level, NULL);
-            Py_DECREF(py_level);
-            #else
-            module = PyImport_ImportModuleLevelObject(
-                name, global_dict, empty_dict, list, level);
-            #endif
-        }
-    }
-    #else
-    if (level>0) {
-        PyErr_SetString(PyExc_RuntimeError, "Relative import is not supported for Python <=2.4.");
-        goto bad;
-    }
-    module = PyObject_CallFunctionObjArgs(py_import,
-        name, global_dict, empty_dict, list, NULL);
-    #endif
-bad:
-    #if PY_VERSION_HEX < 0x03030000
-    Py_XDECREF(py_import);
-    #endif
-    Py_XDECREF(empty_list);
-    Py_XDECREF(empty_dict);
-    return module;
 }
 
 #define __PYX_VERIFY_RETURN_INT(target_type, func_type, func)             \
@@ -14538,6 +15988,88 @@ static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
     }
 }
 
+static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
+    PyObject *empty_list = 0;
+    PyObject *module = 0;
+    PyObject *global_dict = 0;
+    PyObject *empty_dict = 0;
+    PyObject *list;
+    #if PY_VERSION_HEX < 0x03030000
+    PyObject *py_import;
+    py_import = __Pyx_PyObject_GetAttrStr(__pyx_b, __pyx_n_s_import);
+    if (!py_import)
+        goto bad;
+    #endif
+    if (from_list)
+        list = from_list;
+    else {
+        empty_list = PyList_New(0);
+        if (!empty_list)
+            goto bad;
+        list = empty_list;
+    }
+    global_dict = PyModule_GetDict(__pyx_m);
+    if (!global_dict)
+        goto bad;
+    empty_dict = PyDict_New();
+    if (!empty_dict)
+        goto bad;
+    #if PY_VERSION_HEX >= 0x02050000
+    {
+        #if PY_MAJOR_VERSION >= 3
+        if (level == -1) {
+            if (strchr(__Pyx_MODULE_NAME, '.')) {
+                #if PY_VERSION_HEX < 0x03030000
+                PyObject *py_level = PyInt_FromLong(1);
+                if (!py_level)
+                    goto bad;
+                module = PyObject_CallFunctionObjArgs(py_import,
+                    name, global_dict, empty_dict, list, py_level, NULL);
+                Py_DECREF(py_level);
+                #else
+                module = PyImport_ImportModuleLevelObject(
+                    name, global_dict, empty_dict, list, 1);
+                #endif
+                if (!module) {
+                    if (!PyErr_ExceptionMatches(PyExc_ImportError))
+                        goto bad;
+                    PyErr_Clear();
+                }
+            }
+            level = 0; /* try absolute import on failure */
+        }
+        #endif
+        if (!module) {
+            #if PY_VERSION_HEX < 0x03030000
+            PyObject *py_level = PyInt_FromLong(level);
+            if (!py_level)
+                goto bad;
+            module = PyObject_CallFunctionObjArgs(py_import,
+                name, global_dict, empty_dict, list, py_level, NULL);
+            Py_DECREF(py_level);
+            #else
+            module = PyImport_ImportModuleLevelObject(
+                name, global_dict, empty_dict, list, level);
+            #endif
+        }
+    }
+    #else
+    if (level>0) {
+        PyErr_SetString(PyExc_RuntimeError, "Relative import is not supported for Python <=2.4.");
+        goto bad;
+    }
+    module = PyObject_CallFunctionObjArgs(py_import,
+        name, global_dict, empty_dict, list, NULL);
+    #endif
+bad:
+    #if PY_VERSION_HEX < 0x03030000
+    Py_XDECREF(py_import);
+    #endif
+    Py_XDECREF(empty_list);
+    Py_XDECREF(empty_dict);
+    return module;
+}
+
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
     const int neg_one = (int) -1, const_zero = 0;
     const int is_unsigned = neg_one > const_zero;
@@ -14564,32 +16096,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
     }
 }
 
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_char(char value) {
-    const char neg_one = (char) -1, const_zero = 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(char) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(char) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-        } else if (sizeof(char) <= sizeof(unsigned long long)) {
-            return PyLong_FromUnsignedLongLong((unsigned long long) value);
-        }
-    } else {
-        if (sizeof(char) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(char) <= sizeof(long long)) {
-            return PyLong_FromLongLong((long long) value);
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(char),
-                                     little, !is_unsigned);
-    }
-}
-
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
     const long neg_one = (long) -1, const_zero = 0;
     const int is_unsigned = neg_one > const_zero;
@@ -14612,6 +16118,32 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
         int one = 1; int little = (int)*(unsigned char *)&one;
         unsigned char *bytes = (unsigned char *)&value;
         return _PyLong_FromByteArray(bytes, sizeof(long),
+                                     little, !is_unsigned);
+    }
+}
+
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_char(char value) {
+    const char neg_one = (char) -1, const_zero = 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(char) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(char) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+        } else if (sizeof(char) <= sizeof(unsigned long long)) {
+            return PyLong_FromUnsignedLongLong((unsigned long long) value);
+        }
+    } else {
+        if (sizeof(char) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(char) <= sizeof(long long)) {
+            return PyLong_FromLongLong((long long) value);
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(char),
                                      little, !is_unsigned);
     }
 }
@@ -15000,6 +16532,72 @@ static int __Pyx_check_binary_version(void) {
         #endif
     }
     return 0;
+}
+
+static int __Pyx_ExportVoidPtr(PyObject *name, void *p, const char *sig) {
+    PyObject *d;
+    PyObject *cobj = 0;
+    d = PyDict_GetItem(__pyx_d, __pyx_n_s_pyx_capi);
+    Py_XINCREF(d);
+    if (!d) {
+        d = PyDict_New();
+        if (!d)
+            goto bad;
+        if (__Pyx_PyObject_SetAttrStr(__pyx_m, __pyx_n_s_pyx_capi, d) < 0)
+            goto bad;
+    }
+#if PY_VERSION_HEX >= 0x02070000 && !(PY_MAJOR_VERSION==3 && PY_MINOR_VERSION==0)
+    cobj = PyCapsule_New(p, sig, 0);
+#else
+    cobj = PyCObject_FromVoidPtrAndDesc(p, (void *)sig, 0);
+#endif
+    if (!cobj)
+        goto bad;
+    if (PyDict_SetItem(d, name, cobj) < 0)
+        goto bad;
+    Py_DECREF(cobj);
+    Py_DECREF(d);
+    return 0;
+bad:
+    Py_XDECREF(cobj);
+    Py_XDECREF(d);
+    return -1;
+}
+
+static int __Pyx_ExportFunction(const char *name, void (*f)(void), const char *sig) {
+    PyObject *d = 0;
+    PyObject *cobj = 0;
+    union {
+        void (*fp)(void);
+        void *p;
+    } tmp;
+    d = PyObject_GetAttrString(__pyx_m, (char *)"__pyx_capi__");
+    if (!d) {
+        PyErr_Clear();
+        d = PyDict_New();
+        if (!d)
+            goto bad;
+        Py_INCREF(d);
+        if (PyModule_AddObject(__pyx_m, (char *)"__pyx_capi__", d) < 0)
+            goto bad;
+    }
+    tmp.fp = f;
+#if PY_VERSION_HEX >= 0x02070000 && !(PY_MAJOR_VERSION==3&&PY_MINOR_VERSION==0)
+    cobj = PyCapsule_New(tmp.p, sig, 0);
+#else
+    cobj = PyCObject_FromVoidPtrAndDesc(tmp.p, (void *)sig, 0);
+#endif
+    if (!cobj)
+        goto bad;
+    if (PyDict_SetItemString(d, name, cobj) < 0)
+        goto bad;
+    Py_DECREF(cobj);
+    Py_DECREF(d);
+    return 0;
+bad:
+    Py_XDECREF(cobj);
+    Py_XDECREF(d);
+    return -1;
 }
 
 static int __pyx_bisect_code_objects(__Pyx_CodeObjectCacheEntry* entries, int count, int code_line) {

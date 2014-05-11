@@ -1,7 +1,7 @@
 #ifndef CHESS_CONSTANTS_H
 #define CHESS_CONSTANTS_H
 
-/* if you edit this file, remember to edit the constants.h */
+/* if you edit this file, remember to edit the constants.py */
 
 /* Movement directions */
 
