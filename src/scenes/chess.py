@@ -180,7 +180,7 @@ class Chess(Scene, ChessInterface):
         movement = self.board.move(self.selected, square)
         self.do_jit_draw()
         if movement:
-            self.change_turn()
+            self.change_turn(square)
             self.verify_status(self.board.status(None))
             return True
 
@@ -188,9 +188,22 @@ class Chess(Scene, ChessInterface):
         self.do_jit_draw()
         return False
 
-    def change_turn(self):
+    def change_turn(self, square):
+        from cython.functions import *
+        opening = ''.join([
+            p0x88_to_chess_notation(tuple_to_0x88(self.selected)),
+            p0x88_to_chess_notation(tuple_to_0x88(square))
+        ])
         self.selected = None
         self.fail = None
+
+        if hasattr(self.current_player, 'openings'):
+            if self.current_player.openings:
+                try:
+                    self.current_player.openings = self.current_player.openings[opening]
+                except KeyError:
+                    self.current_player.openings = {}
+
         self.other_player.end_turn()
         self.current_player.start_turn()
 

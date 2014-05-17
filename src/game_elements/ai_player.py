@@ -17,6 +17,7 @@ from .player import Player, END
 import scenes
 from cython.constants import ILLEGAL, LEGAL, EMPTY
 from cython.board import move_key
+from cython.functions import *
 
 PLAYER = None
 RANDOM = 0
@@ -59,6 +60,20 @@ class AIPlayer(Player):
     def select(self, square):
         super(AIPlayer, self).select(square)
         sleep(0.1)
+
+    def do_opening_move(self):
+        chosen_move = random.choice(self.openings.keys())
+        chess = self.chess
+        while chess.state == scenes.chess.PAUSE:
+            self.try_to_exit_thread_loop()
+            pass
+        if not chosen_move:
+            return
+
+        self.openings = self.openings[chosen_move]
+        self.select(p0x88_to_tuple(chess_notation_to_0x88(chosen_move[:2])))
+        self.play(p0x88_to_tuple(chess_notation_to_0x88(chosen_move[-2:])))
+        chess.do_jit_draw()
 
     def do_move(self, chosen_move):
         chess = self.chess
@@ -106,13 +121,22 @@ class AIPlayer(Player):
             self.do_move(random.choice(moves))
 
         elif self.level == EASY:
-            self.do_move(self.negamax_move(2))
+            if self.openings:
+                self.do_opening_move()
+            else:
+                self.do_move(self.negamax_move(2))
 
         elif self.level == MEDIUM:
-            self.do_move(self.negamax_move(4))
+            if self.openings:
+                self.do_opening_move()
+            else:
+                self.do_move(self.negamax_move(4))
 
         elif self.level == HARD:
-            self.do_move(self.negamax_move(5))
+            if self.openings:
+                self.do_opening_move()
+            else:
+                self.do_move(self.negamax_move(5))
 
     def confirm_draw(self):
         self.chess.deny_draw(self)
