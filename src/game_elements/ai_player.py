@@ -25,9 +25,16 @@ SEMI_RANDOM = 1
 EASY = 2
 MEDIUM = 3
 HARD = 4
+EXACT = 0
+LOWERBOUND = 1
+UPPERBOUND = 2
+
+
 
 
 class AIPlayer(Player):
+
+    hash_table = {}
 
     def __init__(self, color, timer, chess, level, *args, **kwargs):
         super(AIPlayer, self).__init__(color, timer, chess, *args, **kwargs)
@@ -160,6 +167,23 @@ class AIPlayer(Player):
         return max_move
 
     def negamax_alpha_beta(self, board, depth, a, b, color):
+        alphaOrig = a
+        ttEntry = None
+        try:
+            print (self.hash_table)
+            ttEntry = self.hash_table[board.get_hash()]
+            if ttEntry is not None and ttEntry.depth >= depth:
+                if ttEntry.flag == EXACT:
+                    return ttEntry.evaluation
+                elif ttEntry.flag == LOWERBOUND:
+                    a = max(a, ttEntry.evaluation)
+                elif ttEntry.Flag == UPPERBOUND:
+                    b = min(b, ttEntry.evaluation)
+                if a >= b:
+                    return ttEntry.evaluation
+        except KeyError:
+            pass
+
         moves = board.possible_moves(board.color())
         if depth == 0:
             return color * self.evaluate_state(board)
@@ -173,6 +197,15 @@ class AIPlayer(Player):
             move.undo_update(board)
             if a > b:
                 break
+
+        if best_value <= alphaOrig:
+            ttEntry = TT(UPPERBOUND, depth, best_value)
+        elif best_value >= b:
+            ttEntry = TT(LOWERBOUND, depth, best_value)
+        else:
+            ttEntry = TT(EXACT, depth, best_value)
+        self.hash_table[board.get_hash] = ttEntry
+
         return best_value
 
     @staticmethod
@@ -189,4 +222,13 @@ def parse_opening(raw_opening, openings):
         openings[raw_opening[0]] = {}
 
     parse_opening(raw_opening[1:], openings[raw_opening[0]])
+
+class TT():
+    def __init__(self, flag, depth, evaluetion):
+
+        self.flag = flag
+        self.depth = depth
+        self.evaluation = evaluetion
+
+
 
