@@ -1,0 +1,13 @@
+[report]
+
+exclude_lines =
+	pass
+	sys\.exit\(0\)
+
+
+[run]
+
+source = .
+
+[html]
+directory = ../htmlcov

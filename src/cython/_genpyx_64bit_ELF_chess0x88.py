@@ -1,4 +1,4 @@
-CHECKSUM = 349497899122671187030312837948508871083731796346219802757737826383390282780090
+CHECKSUM = 368694774141083325099943698315062885412771516507523664701873192639768859084447
 import cython
 
 
@@ -24,6 +24,12 @@ def p0x88_to_chess_notation(x):
     irow = rank(x)
     return chr(icol + 97) + str(irow + 1)
 
+
+def chess_notation_to_tuple(cn):
+    return (
+        ord(cn[0]) - 97,
+        int(cn[1]) - 1
+    )
 
 
 def init_zobrist():
@@ -458,6 +464,15 @@ class Board(object):
         )
         return moves
 
+    def piece_attack_moves(self, position):
+        square = tuple_to_0x88(position)
+        color = self.colors[square]
+        moves = self.attack_moves(
+            square,
+            color,
+        )
+        return moves
+
     def at(self, position):
         square = tuple_to_0x88(position)
         color = self.colors[square]
@@ -840,19 +855,6 @@ class Board(object):
 
     def is_endgame(self):
         return False
-
-    @staticmethod
-    def is_valid_position(position):
-        """ Check if position is inside the board """
-        return 0 <= position[0] < 8 and 0 <= position[1] < 8
-
-    @staticmethod
-    def chess_notation_to_position(chess_notation):
-        """ Convert chess notation (a1) to position (0, 0) """
-        return (
-            ord(chess_notation[0]) - 97,
-            int(chess_notation[1]) - 1
-        )
 
 
 def move_key(move):

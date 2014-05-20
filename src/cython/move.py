@@ -29,6 +29,7 @@ from zobrist import (
     zobrist_color,
     zobrist_en_passant
 )
+
 #<EndReplace>#
 
 

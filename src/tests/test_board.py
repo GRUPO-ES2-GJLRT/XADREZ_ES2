@@ -19,29 +19,6 @@ BQ, WQ = "black queen", "white queen"
 BK, WK = "black king", "white king"
 
 
-class TestBoardValid(unittest.TestCase):
-
-    def test_valid_4_4_should_be_true(self):
-        board = Board(False)
-        self.assertTrue(board.is_valid_position((4, 4)))
-
-    def test_valid_negative1_4_should_be_false(self):
-        board = Board(False)
-        self.assertFalse(board.is_valid_position((-1, 4)))
-
-    def test_valid_4_negative1_should_be_false(self):
-        board = Board(False)
-        self.assertFalse(board.is_valid_position((4, -1)))
-
-    def test_valid_8_4_should_be_false(self):
-        board = Board(False)
-        self.assertFalse(board.is_valid_position((8, 4)))
-
-    def test_valid_4_8_should_be_false(self):
-        board = Board(False)
-        self.assertFalse(board.is_valid_position((4, 8)))
-
-
 class TestBoardAt(unittest.TestCase):
 
     def test_get_from_valid_position_without_piece_returns_none(self):
@@ -56,6 +33,18 @@ class TestBoardAt(unittest.TestCase):
     def test_get_from_invalid_position_returns_none(self):
         board = Board(False)
         self.assertEqual(board.at((-4, 4)), None)
+
+    def test_current_king_position_white(self):
+        board = Board(True)
+        self.assertEqual(board.current_king_position(), (4, 0))
+
+    def test_current_king_position_black(self):
+        board = Board(True)
+        board.load_fen(
+                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR b KQkq - 0 1")
+        self.assertEqual(board.current_king_position(), (4, 7))
+
+
 
 
 class TestBoardNewGame(unittest.TestCase):
@@ -111,6 +100,7 @@ class TestBoardHindered(unittest.TestCase):
         expected_hindered_black = set()
         self.assertEqual(board.hindered(WHITE), expected_hindered_white)
         self.assertEqual(board.hindered(BLACK), expected_hindered_black)
+        self.assertEqual(board.hindered(-1), expected_hindered_white)
 
     def test_hindered_in_a_new_game(self):
         board = Board(True)
@@ -122,6 +112,7 @@ class TestBoardHindered(unittest.TestCase):
         ])
         self.assertEqual(board.hindered(WHITE), expected_hindered_white)
         self.assertEqual(board.hindered(BLACK), expected_hindered_black)
+        self.assertEqual(board.hindered(-1), expected_hindered_white)
 
 
 class TestBoardMoves(unittest.TestCase):
@@ -197,6 +188,47 @@ class TestBoardMoves(unittest.TestCase):
             ((4, 0), (5, 1)),
         ])
         self.assertEqual(tuples(board.possible_moves(WHITE)),
+                         expected_moves_white)
+
+
+
+class TestKillingMoves(unittest.TestCase):
+    
+    def test_capture_killing_moves(self):
+        board = Board(False)
+        board.load_fen("8/8/8/8/8/2p5/3P3P/8 w kQkq - 0 1")
+        expected_moves_white = set([
+            ((3, 1), (2, 2)),
+        ])
+        expected_moves_black = set([
+            ((2, 2), (3, 1)),
+        ])
+        self.assertEqual(tuples(board.possible_killing_moves(WHITE)),
+                         expected_moves_white)
+        self.assertEqual(tuples(board.possible_killing_moves(BLACK)),
+                         expected_moves_black)
+
+    def test_en_passant_killing_moves(self):
+        board = Board(False)
+        board.load_fen("8/8/8/8/2pP4/8/7P/8 b kQkq d3 0 1")
+        expected_moves_white = set()
+        expected_moves_black = set([
+            ((2, 3), (3, 2)),
+        ])
+        self.assertEqual(tuples(board.possible_killing_moves(WHITE)),
+                         expected_moves_white)
+        self.assertEqual(tuples(board.possible_killing_moves(BLACK)),
+                         expected_moves_black)
+
+
+    def test_piece_attack_moves(self):
+        board = Board(False)
+        board.load_fen("8/8/8/8/8/p7/8/R3P3 b kQkq d3 0 1")
+        expected_moves_white = set([
+            ((0, 0), (0, 1)), ((0, 0), (0, 2)), 
+            ((0, 0), (1, 0)), ((0, 0), (2, 0)), ((0, 0), (3, 0)),
+        ])
+        self.assertEqual(tuples(board.piece_attack_moves((0, 0))),
                          expected_moves_white)
 
 
@@ -350,11 +382,41 @@ class TestBoardMove(unittest.TestCase):
         self.assertEqual(board.at((4, 4)), WR)
 
 
-class TestBoard(TestBoardValid,
-                TestBoardAt,
+class TestClone(unittest.TestCase):
+
+    def test_clone_board(self):
+        board = Board(False)
+        board.load_fen("4k3/8/8/5R2/8/8/8/3R1R2 w kQkq - 0 1")
+        clone = board.clone()
+        self.assertEqual(clone.at((5, 4)), WR)
+        self.assertEqual(clone.at((4, 7)), BK)
+        self.assertEqual(clone.at((3, 0)), WR)
+        self.assertEqual(clone.at((5, 0)), WR)
+        self.assertEqual(clone.color(), board.color())
+        self.assertEqual(clone.get_hash(), board.get_hash())
+
+
+class TestPieces(unittest.TestCase):
+
+    def test_get_pieces(self):
+        board = Board(False)
+        board.load_fen("8/8/8/5R2/5p2/8/8/8 w kQkq - 0 1")
+        pieces = board.get_pieces()
+        self.assertEqual(pieces[0].name, "rook")
+        self.assertEqual(pieces[0].color, "white")
+        self.assertEqual(pieces[0].position, (5, 4))
+        self.assertEqual(pieces[1].name, "pawn")
+        self.assertEqual(pieces[1].color, "black")
+        self.assertEqual(pieces[1].position, (5, 3))
+
+
+class TestBoard(TestBoardAt,
                 TestBoardNewGame,
                 TestBoardHindered,
                 TestBoardMoves,
+                TestKillingMoves,
                 TestBoardStatus,
-                TestBoardMove):
+                TestBoardMove,
+                TestClone,
+                TestPieces):
     pass

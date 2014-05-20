@@ -10,6 +10,10 @@ from .test_bishop import TestBishop
 from .test_queen import TestQueen
 from .test_king import TestKing
 from .test_pawn import TestPawn
+from .test_cython_functions import TestCythonFunctions
+from .test_ai import TestAI
+from .test_player import TestPlayer
+
 
 __all__ = [
     b'TestBoard',
@@ -19,4 +23,7 @@ __all__ = [
     b'TestQueen',
     b'TestKing',
     b'TestPawn',
+    b'TestCythonFunctions',
+    b'TestAI',
+    b'TestPlayer',
 ]

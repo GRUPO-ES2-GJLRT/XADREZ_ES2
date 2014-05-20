@@ -18,27 +18,16 @@ from game_elements.player import END
 from consts.colors import BLACK, WHITE, next
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS, FIFTY_MOVE_OPTIONS
+from consts.i18n import CONFIRM_DRAW
+from consts.end_game import (
+    GAME_DRAW, WHITE_WINS, BLACK_WINS, PAUSE, MAX_DRAW_DELTA,
+    END_GAME, WINS, CHECK_COUNTDOWN
+)
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 from .pause_menu import PauseMenu
 from .end_menu import EndMenu
 from .dialog import Dialog
-from consts.i18n import CONFIRM_DRAW
-
-CHECK_COUNTDOWN = 0.5
-
-GAME_DRAW = 0
-WHITE_WINS = 1
-BLACK_WINS = 2
-PAUSE = 3
-MAX_DRAW_DELTA = 0.5
-
-
-END_GAME = [GAME_DRAW, WHITE_WINS, BLACK_WINS]
-
-WINS = {
-    WHITE: WHITE_WINS,
-    BLACK: BLACK_WINS,
-}
+from cython.functions import p0x88_to_chess_notation, tuple_to_0x88
 
 
 class Chess(Scene, ChessInterface):
@@ -189,7 +178,6 @@ class Chess(Scene, ChessInterface):
         return False
 
     def change_turn(self, square):
-        from cython.functions import *
         opening = ''.join([
             p0x88_to_chess_notation(tuple_to_0x88(self.selected)),
             p0x88_to_chess_notation(tuple_to_0x88(square))

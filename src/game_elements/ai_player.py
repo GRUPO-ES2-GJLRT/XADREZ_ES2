@@ -11,10 +11,10 @@ from time import sleep
 from consts.moves import (
     CHECKMATE, STALEMATE
 )
+from consts.end_game import END_GAME, PAUSE
 from consts.pieces import PAWN, KING
 from consts.colors import WHITE, BLACK
 from .player import Player, END
-import scenes
 from cython.constants import ILLEGAL, LEGAL, EMPTY
 from cython.board import move_key
 from cython.functions import *
@@ -25,6 +25,12 @@ SEMI_RANDOM = 1
 EASY = 2
 MEDIUM = 3
 HARD = 4
+
+DEPTH = {
+    EASY: 2,
+    MEDIUM: 4,
+    HARD: 5,
+}
 
 
 class AIPlayer(Player):
@@ -64,7 +70,7 @@ class AIPlayer(Player):
     def do_opening_move(self):
         chosen_move = random.choice(self.openings.keys())
         chess = self.chess
-        while chess.state == scenes.chess.PAUSE:
+        while chess.state == PAUSE:
             self.try_to_exit_thread_loop()
             pass
         if not chosen_move:
@@ -77,7 +83,7 @@ class AIPlayer(Player):
 
     def do_move(self, chosen_move):
         chess = self.chess
-        while chess.state == scenes.chess.PAUSE:
+        while chess.state == PAUSE:
             self.try_to_exit_thread_loop()
             pass
         if not chosen_move:
@@ -88,12 +94,12 @@ class AIPlayer(Player):
         chess.do_jit_draw()
 
     def try_to_exit_thread_loop(self):
-        if (self.state == END or self.chess.state in scenes.chess.END_GAME
+        if (self.state == END or self.chess.state in END_GAME
                 or not self.chess.game.running):
             sys.exit(0)
 
     def ai_move(self):
-        if (self.state == END or self.chess.state in scenes.chess.END_GAME):
+        if (self.state == END or self.chess.state in END_GAME):
             return
 
         if self.level == RANDOM:
@@ -120,23 +126,12 @@ class AIPlayer(Player):
 
             self.do_move(random.choice(moves))
 
-        elif self.level == EASY:
+        elif self.level in [EASY, MEDIUM, HARD]:
             if self.openings:
                 self.do_opening_move()
             else:
-                self.do_move(self.negamax_move(2))
+                self.do_move(self.negamax_move(DEPTH[self.level]))
 
-        elif self.level == MEDIUM:
-            if self.openings:
-                self.do_opening_move()
-            else:
-                self.do_move(self.negamax_move(4))
-
-        elif self.level == HARD:
-            if self.openings:
-                self.do_opening_move()
-            else:
-                self.do_move(self.negamax_move(5))
 
     def confirm_draw(self):
         self.chess.deny_draw(self)

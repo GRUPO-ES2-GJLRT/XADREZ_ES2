@@ -23,3 +23,10 @@ def p0x88_to_chess_notation(x):
     icol = col(x)
     irow = rank(x)
     return chr(icol + 97) + str(irow + 1)
+
+
+def chess_notation_to_tuple(cn):
+    return (
+        ord(cn[0]) - 97,
+        int(cn[1]) - 1
+    )

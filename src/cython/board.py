@@ -189,6 +189,15 @@ class Board(object):
         )
         return moves
 
+    def piece_attack_moves(self, position):
+        square = tuple_to_0x88(position)
+        color = self.colors[square]
+        moves = self.attack_moves(
+            square,
+            color,
+        )
+        return moves
+
     def at(self, position):
         square = tuple_to_0x88(position)
         color = self.colors[square]
@@ -571,19 +580,6 @@ class Board(object):
 
     def is_endgame(self):
         return False
-
-    @staticmethod
-    def is_valid_position(position):
-        """ Check if position is inside the board """
-        return 0 <= position[0] < 8 and 0 <= position[1] < 8
-
-    @staticmethod
-    def chess_notation_to_position(chess_notation):
-        """ Convert chess notation (a1) to position (0, 0) """
-        return (
-            ord(chess_notation[0]) - 97,
-            int(chess_notation[1]) - 1
-        )
 
 
 def move_key(move):

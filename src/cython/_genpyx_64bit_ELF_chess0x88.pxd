@@ -159,7 +159,7 @@ cdef class Board:
 
     cpdef list possible_moves(self, int color)
 
-    cpdef list possible_killing_moves(self, int color)
+    cpdef set possible_killing_moves(self, int color)
 
     cpdef int color(self)
 
@@ -170,6 +170,9 @@ cdef class Board:
 
     @cython.locals(dest=cython.int, square=cython.int)
     cpdef list piece_moves(self, tuple position)
+
+    @cython.locals(dest=cython.int, square=cython.int)
+    cpdef list piece_attack_moves(self, tuple position)
 
     @cython.locals(square=cython.int, color=cython.int, piece=cython.int)
     cpdef at(self, tuple position)
@@ -239,3 +242,5 @@ cdef p0x88_to_chess_notation(int x)
 
 
 cpdef int move_key(Move move)
+
+cdef tuple chess_notation_to_tuple(cn)
