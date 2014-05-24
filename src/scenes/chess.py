@@ -174,10 +174,11 @@ class Chess(Scene, ChessInterface):
         self.snap_board.snap()
         movement = self.do_move(selected, square)
         if movement:
-            self.change_turn(selected, square)
-            self.verify_status(self.board.status(None))
             self.snap_board.dynamic()
             self.do_jit_draw()
+            self.change_turn(selected, square)
+            self.verify_status(self.board.status(None))
+            
             return True
         self.selected = selected
         self.fail = square
