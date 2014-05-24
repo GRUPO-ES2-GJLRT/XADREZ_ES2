@@ -30,3 +30,8 @@ def chess_notation_to_tuple(cn):
         ord(cn[0]) - 97,
         int(cn[1]) - 1
     )
+
+def tuple_to_chess_notation(position):
+    icol = position[0]
+    irow = position[1]
+    return chr(icol + 97) + str(irow + 1)

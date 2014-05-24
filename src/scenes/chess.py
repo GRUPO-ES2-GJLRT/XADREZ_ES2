@@ -34,6 +34,7 @@ class Chess(Scene, ChessInterface):
 
     def __init__(self, game, level_white, level_black, *args, **kwargs):
         super(Chess, self).__init__(game, *args, **kwargs)
+        self.finished = False
         self.game = game
         self.white_minutes = lambda: "20:00"
         self.black_minutes = lambda: "20:00"
@@ -162,11 +163,11 @@ class Chess(Scene, ChessInterface):
         self.selected = square
         self.do_jit_draw()
 
-    def play(self, square, skip_validation=False):
+    def play(self, square):
         self.fail = None
         self.check = None
 
-        movement = self.board.move(self.selected, square)
+        movement = self.do_move(self.selected, square)
         self.do_jit_draw()
         if movement:
             self.change_turn(square)
@@ -176,6 +177,9 @@ class Chess(Scene, ChessInterface):
         self.fail = square
         self.do_jit_draw()
         return False
+
+    def do_move(self, selected, square):
+        return self.board.move(selected, square)
 
     def change_turn(self, square):
         opening = ''.join([
@@ -201,16 +205,21 @@ class Chess(Scene, ChessInterface):
             self.countdown = CHECK_COUNTDOWN
         elif status == CHECKMATE:
             self.current_player.lose()
+            return True
         elif status == STALEMATE:
             self.end_game(GAME_DRAW)
+            return True
         elif status == FIFTY_MOVE:
             if self.fifty_move == FIFTY_MOVE_OPTIONS["auto"]:
                 self.end_game(GAME_DRAW)
+                return True
+        return False
 
     def win(self, color):
         self.end_game(WINS[color])
 
     def end_game(self, state):
+        self.finished = True
         for player in self.players.values():
             player.state = END
         self.state = state
@@ -258,3 +267,9 @@ class Chess(Scene, ChessInterface):
 
     def deny_draw(self, player):
         self.denied_countdown = CHECK_COUNTDOWN
+
+    @property
+    def running(self):
+        return self.game.running and not self.finished
+
+    

@@ -3,6 +3,7 @@ from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 
 from consts.colors import next
+from consts.end_game import END_GAME
 
 SELECT = 0
 PLAY = 1
@@ -50,3 +51,8 @@ class Player(object):
 
     def confirm_draw(self):
         pass
+
+    def try_to_exit_thread_loop(self):
+        if (self.state == END or self.chess.state in END_GAME
+                or not self.chess.game.running):
+            sys.exit(0)

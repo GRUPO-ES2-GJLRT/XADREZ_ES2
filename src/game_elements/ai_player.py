@@ -26,6 +26,21 @@ EASY = 2
 MEDIUM = 3
 HARD = 4
 
+LEVEL_MAP = {
+    '-1': PLAYER,
+    "player": PLAYER,
+    '0': RANDOM,
+    "random": RANDOM,
+    '1': SEMI_RANDOM,
+    "semirandom": SEMI_RANDOM,
+    '2': EASY,
+    "easy": EASY,
+    '3': MEDIUM,
+    "medium": MEDIUM,
+    '4': HARD,
+    "hard": HARD,
+}
+
 DEPTH = {
     EASY: 2,
     MEDIUM: 4,
@@ -42,7 +57,6 @@ class AIPlayer(Player):
         self.temp_board = self.board
         self.chosen_move = None
         self.openings = {}
-        self.skip_validation = True
         self.parse_openings()
 
     def parse_openings(self):
@@ -92,11 +106,6 @@ class AIPlayer(Player):
         self.select(tup[0])
         self.play(tup[1])
         chess.do_jit_draw()
-
-    def try_to_exit_thread_loop(self):
-        if (self.state == END or self.chess.state in END_GAME
-                or not self.chess.game.running):
-            sys.exit(0)
 
     def ai_move(self):
         if (self.state == END or self.chess.state in END_GAME):

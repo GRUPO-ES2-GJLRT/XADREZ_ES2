@@ -13,6 +13,7 @@ from .test_pawn import TestPawn
 from .test_cython_functions import TestCythonFunctions
 from .test_ai import TestAI
 from .test_player import TestPlayer
+from .test_online_chess import TestOnlineChess
 
 
 __all__ = [
@@ -26,4 +27,5 @@ __all__ = [
     b'TestCythonFunctions',
     b'TestAI',
     b'TestPlayer',
+    b'TestOnlineChess',
 ]

@@ -176,7 +176,7 @@ class Board(object):
         for move in moves:
             if move.destination() == dest:
                 move.do_update(self)
-                return True
+                return move
         return False
 
     def piece_moves(self, position):

@@ -4,11 +4,18 @@ from __future__ import (absolute_import, division,
 
 import time
 import pygame
+from optparse import OptionParser
 from pygame.locals import (
     HWSURFACE, DOUBLEBUF, RESIZABLE
 )
 
-from consts.i18n import TITLE
+from consts.i18n import (
+    TITLE, CREATE_ARG, CREATE_HELP, JOIN_ARG, JOIN_HELP,
+    CREATE_JOIN_ERROR
+)
+from game_elements.ai_player import LEVEL_MAP
+
+from scenes.online_chess import OnlineChess
 
 WIDTH, HEIGHT = 1024, 768
 
@@ -21,13 +28,13 @@ class Game(object):
         self.resize((width, height))
         self.running = True
         self.scene = None
-
-    def loop(self):
         from scenes.main_menu import MainMenu
         self.scene = MainMenu(self)
+
+
+    def loop(self):
         last_frame_time = 0
         #import yappi
-    
     
         #yappi.start()
         while self.running:
@@ -72,5 +79,27 @@ class Game(object):
         return self.__relative(y, self.height)
 
 if __name__ == '__main__':
+    parser = OptionParser()
+    parser.add_option('-c', '--create', dest="create", metavar=CREATE_ARG,
+                      help=CREATE_HELP)
+    parser.add_option('-j', '--join', dest="join",
+                      help=JOIN_HELP, nargs=2, metavar=JOIN_ARG) 
+    (opts, args) = parser.parse_args()
     game = Game(WIDTH, HEIGHT)
+    if opts.create and opts.join:
+        print(CREATE_JOIN_ERROR)
+        parser.print_help()
+        exit(-1)
+    elif opts.create:
+        black = -1
+        white = LEVEL_MAP[opts.create]
+        chess = OnlineChess(game, white, black)
+        print(chess.game_id)
+        game.scene = chess
+    elif opts.join:
+        white = -1
+        black = LEVEL_MAP[opts.join[1]]
+        chess = OnlineChess(game, white, black, int(opts.join[0]))
+        print(chess.game_id)
+        game.scene = chess
     game.loop()
