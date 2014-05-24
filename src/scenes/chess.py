@@ -160,30 +160,38 @@ class Chess(Scene, ChessInterface):
                 self.pause()
 
     def select(self, square):
+        self.snap_board.dynamic()
         self.selected = square
         self.do_jit_draw()
 
     def play(self, square):
+        selected = self.selected
+        self.selected = None
         self.fail = None
         self.check = None
-
-        movement = self.do_move(self.selected, square)
+        self.snap_board.dynamic()
         self.do_jit_draw()
+        self.snap_board.snap()
+        movement = self.do_move(selected, square)
         if movement:
-            self.change_turn(square)
+            self.change_turn(selected, square)
             self.verify_status(self.board.status(None))
+            self.snap_board.dynamic()
+            self.do_jit_draw()
             return True
-
+        self.selected = selected
         self.fail = square
+        self.do_jit_draw()
+        self.snap_board.dynamic()
         self.do_jit_draw()
         return False
 
     def do_move(self, selected, square):
         return self.board.move(selected, square)
 
-    def change_turn(self, square):
+    def change_turn(self, selected, square):
         opening = ''.join([
-            p0x88_to_chess_notation(tuple_to_0x88(self.selected)),
+            p0x88_to_chess_notation(tuple_to_0x88(selected)),
             p0x88_to_chess_notation(tuple_to_0x88(square))
         ])
         self.selected = None

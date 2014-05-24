@@ -34,7 +34,7 @@ class SnapElement(GameDiv):
             screen.blit(self.image, (x, y))
 
     def snap(self):
-        self.change_snap = 25
+        self.change_snap = 10
 
     def dynamic(self):
         self.show_snap = False

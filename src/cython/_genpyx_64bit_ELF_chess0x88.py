@@ -1,4 +1,4 @@
-CHECKSUM = 368694774141083325099943698315062885412771516507523664701873192639768859084447
+CHECKSUM = 388218746039472482709091591098382343822271238368654216332319165191608119090286
 import cython
 
 
@@ -30,6 +30,12 @@ def chess_notation_to_tuple(cn):
         ord(cn[0]) - 97,
         int(cn[1]) - 1
     )
+
+def tuple_to_chess_notation(position):
+    icol = position[0]
+    irow = position[1]
+    return chr(icol + 97) + str(irow + 1)
+
 
 
 def init_zobrist():
@@ -451,7 +457,7 @@ class Board(object):
         for move in moves:
             if move.destination() == dest:
                 move.do_update(self)
-                return True
+                return move
         return False
 
     def piece_moves(self, position):
