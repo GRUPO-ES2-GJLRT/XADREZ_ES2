@@ -29,15 +29,14 @@ EXACT = 0
 LOWERBOUND = 1
 UPPERBOUND = 2
 
-
+TRANSPOSITION = {}
 
 
 class AIPlayer(Player):
 
-    hash_table = {}
-
     def __init__(self, color, timer, chess, level, *args, **kwargs):
         super(AIPlayer, self).__init__(color, timer, chess, *args, **kwargs)
+        self.transposition = TRANSPOSITION
         self.level = level
         self.board = chess.board
         self.temp_board = self.board
@@ -170,9 +169,9 @@ class AIPlayer(Player):
         alphaOrig = a
         ttEntry = None
         try:
-            print (self.hash_table)
-            ttEntry = self.hash_table[board.get_hash()]
-            if ttEntry is not None and ttEntry.depth >= depth:
+            #print (self.transposition)
+            ttEntry = self.transposition[board.get_hash()]
+            if ttEntry.depth >= depth:
                 if ttEntry.flag == EXACT:
                     return ttEntry.evaluation
                 elif ttEntry.flag == LOWERBOUND:
@@ -204,7 +203,7 @@ class AIPlayer(Player):
             ttEntry = TT(LOWERBOUND, depth, best_value)
         else:
             ttEntry = TT(EXACT, depth, best_value)
-        self.hash_table[board.get_hash] = ttEntry
+        self.transposition[board.get_hash()] = ttEntry
 
         return best_value
 
