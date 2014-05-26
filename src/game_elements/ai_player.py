@@ -4,6 +4,7 @@ from __future__ import (absolute_import, division,
 
 import random
 import sys
+import time
 from os import path
 import threading
 from collections import Counter
@@ -136,47 +137,62 @@ class AIPlayer(Player):
             if self.openings:
                 self.do_opening_move()
             else:
-                self.do_move(self.negamax_move(4))
+                self.do_move(self.iterative_deep(4, 32))
 
         elif self.level == HARD:
             if self.openings:
                 self.do_opening_move()
             else:
-                self.do_move(self.negamax_move(5))
+                self.do_move(self.iterative_deep(5, 32))
 
     def confirm_draw(self):
         self.chess.deny_draw(self)
 
-    def negamax_move(self, depth):
+    def iterative_deep(self, depth, max_time):
+        now = int(round(time.time() * 1000))
+        best_move = list(self.temp_board.possible_moves(self.color))[0]
+        for i in range(1, depth):
+            best_move = self.negamax_move(i, now, best_move)
+        return best_move
+
+    def negamax_move(self, depth, now, best_move):
         a = float('-inf')
         b = float('inf')
         board = self.temp_board
         moves = board.possible_moves(board.color())
+
+        best_move.do_update(board)
+        value_best_move = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
+                1 if board.color() == WHITE else -1)
+        best_move.undo_update(board)
+
         max_move = None
         if moves:
-            max_move = moves[0]
+            max_move = best_move
         for move in moves:
+            if(int(round(time.time() * 1000)) - now) > 15000:
+                return max_move
             move.do_update(board)
             value = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
                 1 if board.color() == WHITE else -1)
             move.undo_update(board)
-            if value > a:
+            if value > a and value > value_best_move:
                 max_move = move
                 a = value
+
         return max_move
 
     def negamax_alpha_beta(self, board, depth, a, b, color):
         alphaOrig = a
         ttEntry = None
         try:
-            #print (self.transposition)
             ttEntry = self.transposition[board.get_hash()]
             if ttEntry.depth >= depth:
                 if ttEntry.flag == EXACT:
                     return ttEntry.evaluation
                 elif ttEntry.flag == LOWERBOUND:
                     a = max(a, ttEntry.evaluation)
-                elif ttEntry.Flag == UPPERBOUND:
+                elif ttEntry.flag == UPPERBOUND:
                     b = min(b, ttEntry.evaluation)
                 if a >= b:
                     return ttEntry.evaluation
@@ -223,11 +239,11 @@ def parse_opening(raw_opening, openings):
     parse_opening(raw_opening[1:], openings[raw_opening[0]])
 
 class TT():
-    def __init__(self, flag, depth, evaluetion):
+    def __init__(self, flag, depth, evaluation):
 
         self.flag = flag
         self.depth = depth
-        self.evaluation = evaluetion
+        self.evaluation = evaluation
 
 
 
