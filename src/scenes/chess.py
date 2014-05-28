@@ -99,6 +99,7 @@ class Chess(Scene, ChessInterface):
         self.config = self.load_stored_config()
         self.fifty_move = self.config['fifty_move']
         self.jit_draw = self.config['jit_draw']
+        self.ai_timeout = self.config['timeout']
         self.board = Board(True)
         # Marked squares
         self.selected = None

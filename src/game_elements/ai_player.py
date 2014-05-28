@@ -25,7 +25,9 @@ RANDOM = 0
 SEMI_RANDOM = 1
 EASY = 2
 MEDIUM = 3
-HARD = 4
+HARD = 5
+HARDEST = 8
+
 EXACT = 0
 LOWERBOUND = 1
 UPPERBOUND = 2
@@ -37,6 +39,7 @@ class AIPlayer(Player):
 
     def __init__(self, color, timer, chess, level, *args, **kwargs):
         super(AIPlayer, self).__init__(color, timer, chess, *args, **kwargs)
+        self.timeout = self.chess.ai_timeout * 1000
         self.transposition = TRANSPOSITION
         self.level = level
         self.board = chess.board
@@ -137,18 +140,24 @@ class AIPlayer(Player):
             if self.openings:
                 self.do_opening_move()
             else:
-                self.do_move(self.iterative_deep(4, 32))
+                self.do_move(self.iterative_deep(4))
 
         elif self.level == HARD:
             if self.openings:
                 self.do_opening_move()
             else:
-                self.do_move(self.iterative_deep(5, 32))
+                self.do_move(self.iterative_deep(5))
+
+        elif self.level == HARDEST:
+            if self.openings:
+                self.do_opening_move()
+            else:
+                self.do_move(self.iterative_deep(8))
 
     def confirm_draw(self):
         self.chess.deny_draw(self)
 
-    def iterative_deep(self, depth, max_time):
+    def iterative_deep(self, depth):
         now = int(round(time.time() * 1000))
         best_move = list(self.temp_board.possible_moves(self.color))[0]
         for i in range(1, depth):
@@ -162,7 +171,7 @@ class AIPlayer(Player):
         moves = board.possible_moves(board.color())
 
         best_move.do_update(board)
-        value_best_move = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
+        a = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
                 1 if board.color() == WHITE else -1, now)
         best_move.undo_update(board)
 
@@ -170,13 +179,13 @@ class AIPlayer(Player):
         if moves:
             max_move = best_move
         for move in moves:
-            if(int(round(time.time() * 1000)) - now) > 15000:
+            if(int(round(time.time() * 1000)) - now) > self.timeout:
                 return max_move
             move.do_update(board)
             value = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
                 1 if board.color() == WHITE else -1, now)
             move.undo_update(board)
-            if value > a and value > value_best_move:
+            if value > a:
                 max_move = move
                 a = value
 
@@ -187,7 +196,7 @@ class AIPlayer(Player):
         ttEntry = None
         try:
             ttEntry = self.transposition[board.get_hash()]
-            if ttEntry.depth >= depth:
+            if ttEntry.depth >= depth and ttEntry.pieces_count == board.get_pieces_count():
                 if ttEntry.flag == EXACT:
                     return ttEntry.evaluation
                 elif ttEntry.flag == LOWERBOUND:
@@ -205,7 +214,7 @@ class AIPlayer(Player):
 
         best_value = float('-inf')
         for move in moves:
-            if(int(round(time.time() * 1000)) - now) > 15000:
+            if(int(round(time.time() * 1000)) - now) > self.timeout:
                 return float('-inf')
             move.do_update(board)
             value = -self.negamax_alpha_beta(board, depth - 1, -b, -a, -color, now)
@@ -216,11 +225,11 @@ class AIPlayer(Player):
                 break
 
         if best_value <= alphaOrig:
-            ttEntry = TT(UPPERBOUND, depth, best_value)
+            ttEntry = TT(UPPERBOUND, depth, best_value, board.get_pieces_count())
         elif best_value >= b:
-            ttEntry = TT(LOWERBOUND, depth, best_value)
+            ttEntry = TT(LOWERBOUND, depth, best_value, board.get_pieces_count())
         else:
-            ttEntry = TT(EXACT, depth, best_value)
+            ttEntry = TT(EXACT, depth, best_value, board.get_pieces_count())
         self.transposition[board.get_hash()] = ttEntry
 
         return best_value
@@ -241,11 +250,12 @@ def parse_opening(raw_opening, openings):
     parse_opening(raw_opening[1:], openings[raw_opening[0]])
 
 class TT():
-    def __init__(self, flag, depth, evaluation):
+    def __init__(self, flag, depth, evaluation, pieces_count):
 
         self.flag = flag
         self.depth = depth
         self.evaluation = evaluation
+        self.pieces_count = pieces_count
 
 
 

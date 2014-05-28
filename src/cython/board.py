@@ -572,6 +572,13 @@ class Board(object):
     def is_endgame(self):
         return False
 
+    def get_pieces_count(self):
+        the_sum = 0
+        for i in range(14):
+            the_sum += self.pieces_count[i]
+        return the_sum
+
+
     @staticmethod
     def is_valid_position(position):
         """ Check if position is inside the board """

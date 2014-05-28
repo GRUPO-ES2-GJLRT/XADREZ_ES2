@@ -1,4 +1,4 @@
-CHECKSUM = 349497899122671187030312837948508871083731796346219802757737826383390282780090
+CHECKSUM = 386673763119980227369258710751222839973875074163302502053441482722285177869516
 import cython
 
 
@@ -840,6 +840,13 @@ class Board(object):
 
     def is_endgame(self):
         return False
+
+    def get_pieces_count(self):
+        the_sum = 0
+        for i in range(14):
+            the_sum += self.pieces_count[i]
+        return the_sum
+
 
     @staticmethod
     def is_valid_position(position):
