@@ -163,7 +163,7 @@ class AIPlayer(Player):
 
         best_move.do_update(board)
         value_best_move = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
-                1 if board.color() == WHITE else -1)
+                1 if board.color() == WHITE else -1, now)
         best_move.undo_update(board)
 
         max_move = None
@@ -174,7 +174,7 @@ class AIPlayer(Player):
                 return max_move
             move.do_update(board)
             value = -self.negamax_alpha_beta(board, depth - 1, -b, -a,
-                1 if board.color() == WHITE else -1)
+                1 if board.color() == WHITE else -1, now)
             move.undo_update(board)
             if value > a and value > value_best_move:
                 max_move = move
@@ -182,7 +182,7 @@ class AIPlayer(Player):
 
         return max_move
 
-    def negamax_alpha_beta(self, board, depth, a, b, color):
+    def negamax_alpha_beta(self, board, depth, a, b, color, now):
         alphaOrig = a
         ttEntry = None
         try:
@@ -205,8 +205,10 @@ class AIPlayer(Player):
 
         best_value = float('-inf')
         for move in moves:
+            if(int(round(time.time() * 1000)) - now) > 15000:
+                return float('-inf')
             move.do_update(board)
-            value = -self.negamax_alpha_beta(board, depth - 1, -b, -a, -color)
+            value = -self.negamax_alpha_beta(board, depth - 1, -b, -a, -color, now)
             best_value = max(best_value, value)
             a = max(a, value)
             move.undo_update(board)
