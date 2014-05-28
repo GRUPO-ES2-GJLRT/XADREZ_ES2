@@ -44,7 +44,7 @@ class OnlinePlayer(Player):
             if not tup:
                 return
             self.select(tup[0])
-            if self.play(tup[1]):
+            if self.play(tup[1], tup[2]):
                 self.chess.do_jit_draw()
                 return
 

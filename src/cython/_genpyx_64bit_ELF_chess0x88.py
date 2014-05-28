@@ -1,4 +1,4 @@
-CHECKSUM = 388218746039472482709091591098382343822271238368654216332319165191608119090286
+CHECKSUM = 360643762315716546770547873659848472436972189301127811458938816500993013742813
 import cython
 
 
@@ -326,6 +326,35 @@ class Move(object):
             PRINT_ARRAY[self.color][self.piece]
         )
 
+    def type(self):
+        flags = self.flags
+        if flags & KINGSIDE or flags & QUEENSIDE:
+            return 1
+        elif flags & EN_PASSANT:
+            return 2
+        elif flags & PROMOTION:
+            return 3
+        return 0
+
+    def set_promotion(self, new_piece):
+        if self.promotion != 0:
+            self.promotion = new_piece
+
+    def get_eliminated_pawn(self):
+        return p0x88_to_tuple(self._destination +
+                              (N if self.color == BLACK else S))
+        
+    def rook_from(self):
+        if self.flags & KINGSIDE:
+            return p0x88_to_tuple(self._destination + E)
+        else:
+            return p0x88_to_tuple(self._destination + W + W)
+
+    def rook_to(self):
+        if self.flags & KINGSIDE:
+            return p0x88_to_tuple(self._destination + W)
+        else:
+            return p0x88_to_tuple(self._destination + E)
 import re
 from collections import namedtuple
 
@@ -446,7 +475,7 @@ class Board(object):
     def current_king_position(self):
         return p0x88_to_tuple(self._current_king_position())
 
-    def move(self, original_position, new_position):
+    def move(self, original_position, new_position, promotion):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
             LEGAL,
@@ -456,6 +485,7 @@ class Board(object):
 
         for move in moves:
             if move.destination() == dest:
+                move.set_promotion(promotion)
                 move.do_update(self)
                 return move
         return False

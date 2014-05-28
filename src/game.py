@@ -17,7 +17,7 @@ from game_elements.ai_player import LEVEL_MAP
 
 from scenes.online_chess import OnlineChess
 
-WIDTH, HEIGHT = 1024, 768
+WIDTH, HEIGHT = 512, 384
 
 
 class Game(object):

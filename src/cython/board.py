@@ -165,7 +165,7 @@ class Board(object):
     def current_king_position(self):
         return p0x88_to_tuple(self._current_king_position())
 
-    def move(self, original_position, new_position):
+    def move(self, original_position, new_position, promotion):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
             LEGAL,
@@ -175,6 +175,7 @@ class Board(object):
 
         for move in moves:
             if move.destination() == dest:
+                move.set_promotion(promotion)
                 move.do_update(self)
                 return move
         return False

@@ -124,6 +124,17 @@ cdef class Move(object):
 
     cpdef readable(self)
 
+    @cython.locals(flags=cython.int)
+    cpdef int type(self)
+
+    cpdef set_promotion(self, int new_piece)
+
+    cpdef tuple get_eliminated_pawn(self)
+
+    cpdef tuple rook_from(self)
+
+    cpdef tuple rook_to(self)
+
 
 cdef class Board:
     cdef int pieces[128]
@@ -166,7 +177,7 @@ cdef class Board:
     cpdef tuple current_king_position(self)
 
     @cython.locals(dest=cython.int)
-    cpdef move(self, tuple original_position, tuple new_position)
+    cpdef move(self, tuple original_position, tuple new_position, int promotion)
 
     @cython.locals(dest=cython.int, square=cython.int)
     cpdef list piece_moves(self, tuple position)

@@ -41,8 +41,8 @@ class Player(object):
         self.chess.select(square)
         self.state = PLAY
 
-    def play(self, square):
-        moved = self.chess.play(square)
+    def play(self, square, promotion=5):
+        moved = self.chess.play(square, promotion)
         self.state = PLAY if not moved else self.state
         return moved
 

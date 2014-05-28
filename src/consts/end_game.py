@@ -4,7 +4,7 @@ from __future__ import (absolute_import, division,
 
 from consts.colors import WHITE, BLACK
 
-CHECK_COUNTDOWN = 0.5
+CHECK_COUNTDOWN = 1.5
 
 
 GAME_DRAW = 0

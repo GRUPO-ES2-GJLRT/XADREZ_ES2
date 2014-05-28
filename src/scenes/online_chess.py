@@ -26,11 +26,28 @@ from consts.urls import (
 	SUCCESS,
 	SUCCESS_CODES
 )
+from consts.pieces import (
+	PAWN,
+	KNIGHT,
+	BISHOP,
+	ROOK,
+	QUEEN,
+	KING,
+)
 
 
 
 INVALID_REQUEST = "INVALID REQUEST"
 INVALID_TURN = "INVALID TURN"
+
+PROMOTION_MAP = {
+	0: ROOK,
+	1: KNIGHT,
+	2: BISHOP,
+	3: QUEEN,
+	4: KING,
+	5: PAWN
+}
 
 
 def html_request(url, method, values={}):
@@ -40,8 +57,10 @@ def html_request(url, method, values={}):
 		request.get_method = lambda: method
 		result = json.load(urllib2.urlopen(request))
 		if not result['code'] in SUCCESS_CODES:
-			raise Exception(INVALID_REQUEST, result['message'])
+			raise Exception(INVALID_REQUEST, result['code'], result['message'])
 		if not result['code'] == 19:
+			if 'board' in result:
+				del result['board']
 			print(time(), result)
 		return result
 	except Exception as e:
@@ -79,9 +98,9 @@ class OnlineChess(Chess):
 		super(OnlineChess, self).__init__(game, level_white, level_black, *args, **kwargs)
 		threading.Thread(target=self.wait_end_game_validation).start()
 
-	def do_move(self, selected, square):
+	def do_move(self, selected, square, promotion=5):
 		color = self.board.color()
-		move = self.board.move(selected, square)
+		move = self.board.move(selected, square, promotion)
 		if self.online == color:
 			data = post(URL_BASE + VALIDATE_MOVE, {
 				'move_id': self.move_id,
@@ -90,13 +109,30 @@ class OnlineChess(Chess):
 			})
 			return move
 		elif move:
-			data = post(URL_BASE + NEW_MOVE, {
-				'move_from': tuple_to_chess_notation(selected),
-				'move_to': tuple_to_chess_notation(square),
+			move_type = move.type()
+			param = {
 				'game_id': self.game_id,
-				'player_key': self.player_key
-			})
-			self.move_id = data['move_id']
+				'player_key': self.player_key,
+				'type': move_type
+			}
+			if move_type in [0, 2, 3]:
+				param['move_from'] = tuple_to_chess_notation(selected)
+				param['move_to'] = tuple_to_chess_notation(square)
+			if move_type == 1: #castling
+				param['rook_from'] = tuple_to_chess_notation(move.rook_from())
+				param['rook_to'] = tuple_to_chess_notation(move.rook_to())
+				param['king_from'] = tuple_to_chess_notation(selected)
+				param['king_to'] = tuple_to_chess_notation(square)
+
+			if move_type == 2: #en passant
+				param['eliminated_pawn'] = tuple_to_chess_notation(
+					move.get_eliminated_pawn())
+			if move_type == 3: #promotion
+				param['promotion_type'] = 3 #queen
+
+
+			data = post(URL_BASE + NEW_MOVE, param)
+			self.move_id = data['move']['id']
 			while self.running:
 				self.do_jit_draw()
 				data = get(URL_BASE + SHOW_MOVE.format(self.move_id))
@@ -115,11 +151,28 @@ class OnlineChess(Chess):
 			data = get(URL_BASE + WAITING_MOVE_VALIDATION, {
 				'game_id': self.game_id
 			})
-			if 'move_id' in data:
-				self.move_id = data['move_id']
+			if 'move' in data:
+				self.move_id = data['move']['id']
+				move_type = data['move']['move_type']
+				move = data['move']['movimentations'][0]
+				if move_type == 1: #castling
+					for move in data['move']['movimentations']:
+						if move['from'] in ['e1', 'e8']:
+							return (
+								chess_notation_to_tuple(move['from']),
+								chess_notation_to_tuple(move['to']),
+								5
+							)
+				elif move_type == 3: #promotion
+					return (
+						chess_notation_to_tuple(move['from']),
+						chess_notation_to_tuple(move['to']),
+						PROMOTION_MAP[data['move']['promotion_type']]
+					)
 				return (
-					chess_notation_to_tuple(data['move_from']),
-					chess_notation_to_tuple(data['move_to'])
+					chess_notation_to_tuple(move['from']),
+					chess_notation_to_tuple(move['to']),
+					5
 				)
 			sleep(3)
 
@@ -137,14 +190,28 @@ class OnlineChess(Chess):
 				else:
 					end = self.verify_status(self.board.status(None))
 					if not end:
-						post(URL_BASE + NEW_GAME_OVER_REQUEST, {
-							'game_id': self.game_id,
-							'player_key': self.player_key,
-							'result': 1
-						})
+						if not request['winner']:
+							self.sent_end_game = True
+							self.other_player.confirm_draw()
+						else:
+							self.send_illigal_endgame()
+							
 
 	def request_draw(self):
 		self.end_game(0)
+
+	def send_illigal_endgame(self):
+		post(URL_BASE + NEW_GAME_OVER_REQUEST, {
+			'game_id': self.game_id,
+			'player_key': self.player_key,
+			'result': 1
+		})
+
+	def deny_draw(self, player, send=True):
+		if send:
+			self.send_illigal_endgame()
+		Chess.deny_draw(self, player)
+		self.sent_end_game = False
 
 	def end_game(self, state):
 		self.sent_end_game = True
@@ -165,8 +232,7 @@ class OnlineChess(Chess):
 					Chess.end_game(self, state)
 					#self.sent_end_game = False
 				else:
-					self.deny_draw(self.current_player)
-					self.sent_end_game = False
+					self.deny_draw(self.current_player, send=False)
 				return None
 			sleep(3)
 	

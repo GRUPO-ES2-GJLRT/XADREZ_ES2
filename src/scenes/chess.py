@@ -164,7 +164,7 @@ class Chess(Scene, ChessInterface):
         self.selected = square
         self.do_jit_draw()
 
-    def play(self, square):
+    def play(self, square, promotion=5):
         selected = self.selected
         self.selected = None
         self.fail = None
@@ -172,7 +172,7 @@ class Chess(Scene, ChessInterface):
         self.snap_board.dynamic()
         self.do_jit_draw()
         self.snap_board.snap()
-        movement = self.do_move(selected, square)
+        movement = self.do_move(selected, square, promotion)
         if movement:
             self.snap_board.dynamic()
             self.do_jit_draw()
@@ -187,8 +187,8 @@ class Chess(Scene, ChessInterface):
         self.do_jit_draw()
         return False
 
-    def do_move(self, selected, square):
-        return self.board.move(selected, square)
+    def do_move(self, selected, square, promotion=5):
+        return self.board.move(selected, square, promotion)
 
     def change_turn(self, selected, square):
         opening = ''.join([
