@@ -240,6 +240,9 @@ cdef class Board:
 
     cdef int is_endgame(self)
 
+    @cython.locals(i=cython.int, the_sum=cython.int)
+    cpdef int get_pieces_count(self)
+
 
 cdef tuple p0x88_to_tuple(int position)
 

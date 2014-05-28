@@ -17,7 +17,8 @@ from consts.i18n import (
     SEMI_RANDOM_LABEL,
     EASY_LABEL,
     MEDIUM_LABEL,
-    HARD_LABEL
+    HARD_LABEL,
+    HARDEST_LABEL
 )
 
 from game_elements.ai_player import (
@@ -26,7 +27,8 @@ from game_elements.ai_player import (
     SEMI_RANDOM,
     EASY,
     MEDIUM,
-    HARD
+    HARD,
+    HARDEST
 )
 
 
@@ -42,6 +44,7 @@ class MainMenu(Scene, MainMenuInterface):
             (EASY, EASY_LABEL),
             (MEDIUM, MEDIUM_LABEL),
             (HARD, HARD_LABEL),
+            (HARDEST, HARDEST_LABEL)
         ])
         self.white_player = None
         self.black_player = None

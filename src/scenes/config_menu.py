@@ -30,8 +30,11 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         # Fifty Move Rule
         self.fifty_move = self.data['fifty_move']
 
-        # Fifty Move Rule
+        # Jit Draw
         self.current_jit_draw = self.data['jit_draw']
+
+        # Timeout
+        self.timeout = self.data['timeout']
 
         # State
         self.show_moves = False
@@ -71,6 +74,9 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         def select_jit_draw(it, option):
             self.current_jit_draw = option
 
+        def select_timeout(it, option):
+            self.timeout = option
+
         def motion(it, collides, color):
             if collides:
                 it.color = self.button_hover
@@ -89,6 +95,7 @@ class ConfigMenu(Scene, ConfigMenuInterface):
         self.select_timer = select_timer
         self.select_fiftymove = select_fiftymove
         self.select_jit_draw = select_jit_draw
+        self.select_timeout = select_timeout
         self.motion = partial(motion, color=lambda: self.button_color)
         self.motion_options = partial(motion, color=lambda: self.value_color)
 
@@ -107,7 +114,8 @@ class ConfigMenu(Scene, ConfigMenuInterface):
             'moves': int(self.moves.value),
             'bonus': int(self.bonus.value),
             'fifty_move': self.fifty_move,
-            'jit_draw': self.current_jit_draw
+            'jit_draw': self.current_jit_draw,
+            'timeout': self.timeout
         }
 
         try:

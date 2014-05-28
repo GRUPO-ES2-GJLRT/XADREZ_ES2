@@ -264,37 +264,37 @@ class TestBoardMove(unittest.TestCase):
 
     def test_invalid_original_position(self):
         board = Board(False)
-        self.assertEqual(False, board.move((-1, 0), (0, 0)))
+        self.assertEqual(False, board.move((-1, 0), (0, 0), 5))
 
     def test_invalid_new_position(self):
         board = Board(False)
         board.load_fen("8/8/8/8/8/8/8/K7 w kQkq - 0 1")
-        self.assertEqual(False, board.move((0, 0), (-1, 0)))
+        self.assertEqual(False, board.move((0, 0), (-1, 0), 5))
 
     def test_no_piece_on_original_position(self):
         board = Board(False)
-        self.assertEqual(False, board.move((0, 0), (1, 0)))
+        self.assertEqual(False, board.move((0, 0), (1, 0), 5))
 
     def test_invalid_equal_position(self):
         board = Board(False)
         board.load_fen("8/8/8/8/8/8/8/K7 w kQkq - 0 1")
-        self.assertEqual(False, board.move((0, 0), (0, 0)))
+        self.assertEqual(False, board.move((0, 0), (0, 0), 5))
 
     def test_invalid_move(self):
         board = Board(False)
         board.load_fen("8/8/8/8/8/8/8/K7 w kQkq - 0 1")
-        self.assertEqual(False, board.move((0, 0), (0, 2)))
+        self.assertEqual(False, board.move((0, 0), (0, 2), 5))
 
     def test_invalid_color(self):
         board = Board(False)
         board.load_fen("8/8/8/8/8/8/8/K7 b kQkq - 0 1")
-        self.assertEqual(False, board.move((0, 0), (0, 1)))
+        self.assertEqual(False, board.move((0, 0), (0, 1), 5))
 
     def test_normal_move(self):
         board = Board(False)
         board.load_fen("8/8/8/8/8/8/8/4K3 w kQkq - 0 1")
         self.assertEqual(board.at((4, 0)), WK)
-        self.assertEqual(True, bool(board.move((4, 0), (4, 1))))
+        self.assertEqual(True, bool(board.move((4, 0), (4, 1), 5)))
         self.assertEqual(board.at((4, 0)), None)
         self.assertEqual(board.at((4, 1)), WK)
 
@@ -303,7 +303,7 @@ class TestBoardMove(unittest.TestCase):
         board.load_fen("8/8/8/8/8/8/4p3/4K3 w kQkq - 0 1")
         self.assertEqual(board.at((4, 0)), WK)
         self.assertEqual(board.at((4, 1)), BP)
-        self.assertEqual(True, bool(board.move((4, 0), (4, 1))))
+        self.assertEqual(True, bool(board.move((4, 0), (4, 1), 5)))
         self.assertEqual(board.at((4, 0)), None)
         self.assertEqual(board.at((4, 1)), WK)
 
@@ -312,7 +312,7 @@ class TestBoardMove(unittest.TestCase):
         board.load_fen("8/8/8/8/8/8/8/R3K3 w kQkq - 0 1")
         self.assertEqual(board.at((4, 0)), WK)
         self.assertEqual(board.at((0, 0)), WR)
-        self.assertEqual(True, bool(board.move((4, 0), (2, 0))))
+        self.assertEqual(True, bool(board.move((4, 0), (2, 0), 5)))
         self.assertEqual(board.at((4, 0)), None)
         self.assertEqual(board.at((0, 0)), None)
         self.assertEqual(board.at((2, 0)), WK)
@@ -323,7 +323,7 @@ class TestBoardMove(unittest.TestCase):
         board.load_fen("4k2r/8/8/8/8/8/8/8 b kQkq - 0 1")
         self.assertEqual(board.at((4, 7)), BK)
         self.assertEqual(board.at((7, 7)), BR)
-        self.assertEqual(True, bool(board.move((4, 7), (6, 7))))
+        self.assertEqual(True, bool(board.move((4, 7), (6, 7), 5)))
         self.assertEqual(board.at((4, 7)), None)
         self.assertEqual(board.at((7, 7)), None)
         self.assertEqual(board.at((6, 7)), BK)
@@ -332,10 +332,10 @@ class TestBoardMove(unittest.TestCase):
     def test_right_en_passant_move(self):
         board = Board(False)
         board.load_fen("8/5p2/8/4P3/8/8/8/8 b kQkq - 0 1")
-        self.assertEqual(True, bool(board.move((5, 6), (5, 4))))
+        self.assertEqual(True, bool(board.move((5, 6), (5, 4), 5)))
         self.assertEqual(board.at((4, 4)), WP)
         self.assertEqual(board.at((5, 4)), BP)
-        self.assertEqual(True, bool(board.move((4, 4), (5, 5))))
+        self.assertEqual(True, bool(board.move((4, 4), (5, 5), 5)))
         self.assertEqual(board.at((4, 4)), None)
         self.assertEqual(board.at((5, 5)), WP)
         self.assertEqual(board.at((5, 4)), None)
@@ -343,10 +343,10 @@ class TestBoardMove(unittest.TestCase):
     def test_left_en_passant_move(self):
         board = Board(False)
         board.load_fen("8/3p4/8/4P3/8/8/8/8 b kQkq - 0 1")
-        self.assertEqual(True, bool(board.move((3, 6), (3, 4))))
+        self.assertEqual(True, bool(board.move((3, 6), (3, 4), 5)))
         self.assertEqual(board.at((4, 4)), WP)
         self.assertEqual(board.at((3, 4)), BP)
-        self.assertEqual(True, bool(board.move((4, 4), (3, 5))))
+        self.assertEqual(True, bool(board.move((4, 4), (3, 5), 5)))
         self.assertEqual(board.at((4, 4)), None)
         self.assertEqual(board.at((3, 5)), WP)
         self.assertEqual(board.at((3, 4)), None)
@@ -355,7 +355,7 @@ class TestBoardMove(unittest.TestCase):
         board = Board(False)
         board.load_fen("8/4P3/8/8/8/8/8/8 w kQkq - 0 1")
         self.assertEqual(board.at((4, 6)), WP)
-        self.assertEqual(True, bool(board.move((4, 6), (4, 7))))
+        self.assertEqual(True, bool(board.move((4, 6), (4, 7), 5)))
         # ToDo: verificar. Vai ser sempre rainha?
         self.assertEqual(board.at((4, 7)), WQ)
         self.assertEqual(board.at((4, 6)), None)
@@ -363,21 +363,21 @@ class TestBoardMove(unittest.TestCase):
     def test_invalid_keep_check(self):
         board = Board(False)
         board.load_fen("8/4P3/8/8/8/8/4P3/r3Kr2 w kQkq - 0 1")
-        self.assertEqual(False, board.move((4, 0), (5, 0)))
+        self.assertEqual(False, board.move((4, 0), (5, 0), 5))
         self.assertEqual(board.at((4, 0)), WK)
         self.assertEqual(board.at((5, 0)), BR)
 
     def test_check(self):
         board = Board(False)
         board.load_fen("4k3/8/8/5R2/8/8/8/8 w kQkq - 0 1")
-        self.assertEqual(True, bool(board.move((5, 4), (4, 4))))
+        self.assertEqual(True, bool(board.move((5, 4), (4, 4), 5)))
         self.assertEqual(board.at((5, 4)), None)
         self.assertEqual(board.at((4, 4)), WR)
 
     def test_checkmate(self):
         board = Board(False)
         board.load_fen("4k3/8/8/5R2/8/8/8/3R1R2 w kQkq - 0 1")
-        self.assertEqual(True, bool(board.move((5, 4), (4, 4))))
+        self.assertEqual(True, bool(board.move((5, 4), (4, 4), 5)))
         self.assertEqual(board.at((5, 4)), None)
         self.assertEqual(board.at((4, 4)), WR)
 

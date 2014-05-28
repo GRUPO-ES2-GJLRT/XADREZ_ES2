@@ -15,8 +15,12 @@ from consts.urls import (
     NEW_MOVE,
     WAITING_MOVE_VALIDATION,
     VALIDATE_MOVE,
+    NEW_GAME_OVER_REQUEST,
+    WAITING_GAME_OVER_VALIDATION,
+    SHOW_GAME_OVER,
     SUCCESS,
-    SUCCESS_CODES
+    SUCCESS_CODES,
+
 )
 
 
@@ -26,11 +30,17 @@ valid_html_request = lambda url, m, v={}: {
     (URL_BASE + SHOW_MOVE.format(1)): {'move': {'validation_time': '2014', 
                                                 'legal': 1,}, 
                                        'code': 0},
-    (URL_BASE + NEW_MOVE): {'code': 0, 'move_id': 1},
-    (URL_BASE + WAITING_MOVE_VALIDATION): {'code': 0, 'move_id': 1, 
-                                           'move_from': 'c1',
-                                           'move_to': 'c3'},
+    (URL_BASE + NEW_MOVE): {'code': 0, 'move': {"id": 1}},
+    (URL_BASE + WAITING_MOVE_VALIDATION): {'code': 0, 'move': {
+        "id": 1, "move_type": 0,
+        "movimentations": [{'from': 'c1', 'to': 'c3'}]}},
     (URL_BASE + VALIDATE_MOVE): {'code': 0},
+    (URL_BASE + NEW_GAME_OVER_REQUEST): {'code': 0, 'game_over_request_id': 1},
+    (URL_BASE + WAITING_GAME_OVER_VALIDATION): {'code': 0},
+    (URL_BASE + SHOW_GAME_OVER): {'code': 0, 'game_over_request': {
+        'validation_time': '2014', 'legal': 0
+    }},
+    
 }[url]
 
 invalid_sent_move = lambda url, m, v={}: {
@@ -39,11 +49,16 @@ invalid_sent_move = lambda url, m, v={}: {
     (URL_BASE + SHOW_MOVE.format(1)): {'move': {'validation_time': '2014', 
                                                 'legal': 0,}, 
                                        'code': 0},
-    (URL_BASE + NEW_MOVE): {'code': 0, 'move_id': 1},
-    (URL_BASE + WAITING_MOVE_VALIDATION): {'code': 0, 'move_id': 1, 
-                                           'move_from': 'c1',
-                                           'move_to': 'c3'},
+    (URL_BASE + NEW_MOVE): {'code': 0, 'move': {"id": 1}},
+    (URL_BASE + WAITING_MOVE_VALIDATION): {'code': 0, 'move': {
+        "id": 1, "move_type": 0,
+        "movimentations": [{'from': 'c1', 'to': 'c3'}]}},
     (URL_BASE + VALIDATE_MOVE): {'code': 0},
+    (URL_BASE + NEW_GAME_OVER_REQUEST): {'code': 0, 'game_over_request_id': 1},
+    (URL_BASE + WAITING_GAME_OVER_VALIDATION): {'code': 0},
+    (URL_BASE + SHOW_GAME_OVER): {'code': 0, 'game_over_request': {
+        'validation_time': '2014', 'legal': 0
+    }},
 }[url]
 
 class GameStub(object):

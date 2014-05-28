@@ -35,6 +35,7 @@ class MockChess(object):
         self.confirm_draw = None
         self.draw_denied = None
         self.state = None
+        self.ai_timeout = 1
         self.game = MockGame()
 
     def win(self, color):
@@ -43,7 +44,7 @@ class MockChess(object):
     def select(self, square):
         self.selected = square
 
-    def play(self, square):
+    def play(self, square, promotion):
         if self.selected:
             self.played = True
         return self.played

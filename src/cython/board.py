@@ -582,6 +582,26 @@ class Board(object):
     def is_endgame(self):
         return False
 
+    def get_pieces_count(self):
+        the_sum = 0
+        for i in range(14):
+            the_sum += self.pieces_count[i]
+        return the_sum
+
+
+    @staticmethod
+    def is_valid_position(position):
+        """ Check if position is inside the board """
+        return 0 <= position[0] < 8 and 0 <= position[1] < 8
+
+    @staticmethod
+    def chess_notation_to_position(chess_notation):
+        """ Convert chess notation (a1) to position (0, 0) """
+        return (
+            ord(chess_notation[0]) - 97,
+            int(chess_notation[1]) - 1
+        )
+
 
 def move_key(move):
     return move.score()

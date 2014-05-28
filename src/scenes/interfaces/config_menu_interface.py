@@ -29,9 +29,23 @@ from consts.i18n import (
     FIFTY_MOVE_DISABLE,
     JIT_DRAW_LABEL,
     JIT_DRAW_ENABLE,
-    JIT_DRAW_DISABLE
+    JIT_DRAW_DISABLE,
+    TIMEOUT_LABEL,
+    TIMEOUT_1S,
+    TIMEOUT_2S,
+    TIMEOUT_3S,
+    TIMEOUT_5S,
+    TIMEOUT_8S,
+    TIMEOUT_13S,
+    TIMEOUT_21S,
+    TIMEOUT_34S,
 )
-from consts.default import TIMER_OPTIONS, FIFTY_MOVE_OPTIONS, JIT_DRAW_OPTIONS
+from consts.default import (
+    TIMER_OPTIONS, 
+    FIFTY_MOVE_OPTIONS, 
+    JIT_DRAW_OPTIONS,
+    TIMEOUT_OPTIONS,
+)
 
 
 class ConfigMenuInterface(MenuInterface):
@@ -188,5 +202,27 @@ class ConfigMenuInterface(MenuInterface):
                 },
                 motion=self.motion_options,
                 select=self.select_jit_draw,
+            ),
+            ListOptionElement(
+                font=self.label_font,
+                label=TIMEOUT_LABEL,
+                antialias=True,
+                label_color=self.button_color,
+                option_color=self.value_color,
+                current=self.timeout,
+                x=lambda: self.game.relative_x(0.12),
+                y=lambda: self.game.relative_y(0.58),
+                options={
+                    TIMEOUT_OPTIONS["1s"]: TIMEOUT_1S,
+                    TIMEOUT_OPTIONS["2s"]: TIMEOUT_2S,
+                    TIMEOUT_OPTIONS["3s"]: TIMEOUT_3S,
+                    TIMEOUT_OPTIONS["5s"]: TIMEOUT_5S,
+                    TIMEOUT_OPTIONS["8s"]: TIMEOUT_8S,
+                    TIMEOUT_OPTIONS["13s"]: TIMEOUT_13S,
+                    TIMEOUT_OPTIONS["21s"]: TIMEOUT_21S,
+                    TIMEOUT_OPTIONS["34s"]: TIMEOUT_34S,
+                },
+                motion=self.motion_options,
+                select=self.select_timeout,
             ),
         ])
