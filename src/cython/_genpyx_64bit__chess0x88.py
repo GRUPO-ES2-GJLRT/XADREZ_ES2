@@ -1,4 +1,4 @@
-CHECKSUM = 349497899122671187030312837948508871083731796346219802757737826383390282780090
+CHECKSUM = 362290615304460678096194030033996102623432665230406356962700354520388166382371
 import cython
 
 
@@ -22,6 +22,18 @@ def chess_notation_to_0x88(cn):
 def p0x88_to_chess_notation(x):
     icol = col(x)
     irow = rank(x)
+    return chr(icol + 97) + str(irow + 1)
+
+
+def chess_notation_to_tuple(cn):
+    return (
+        ord(cn[0]) - 97,
+        int(cn[1]) - 1
+    )
+
+def tuple_to_chess_notation(position):
+    icol = position[0]
+    irow = position[1]
     return chr(icol + 97) + str(irow + 1)
 
 
@@ -314,6 +326,35 @@ class Move(object):
             PRINT_ARRAY[self.color][self.piece]
         )
 
+    def type(self):
+        flags = self.flags
+        if flags & KINGSIDE or flags & QUEENSIDE:
+            return 1
+        elif flags & EN_PASSANT:
+            return 2
+        elif flags & PROMOTION:
+            return 3
+        return 0
+
+    def set_promotion(self, new_piece):
+        if self.promotion != 0:
+            self.promotion = new_piece
+
+    def get_eliminated_pawn(self):
+        return p0x88_to_tuple(self._destination +
+                              (N if self.color == BLACK else S))
+        
+    def rook_from(self):
+        if self.flags & KINGSIDE:
+            return p0x88_to_tuple(self._destination + E)
+        else:
+            return p0x88_to_tuple(self._destination + W + W)
+
+    def rook_to(self):
+        if self.flags & KINGSIDE:
+            return p0x88_to_tuple(self._destination + W)
+        else:
+            return p0x88_to_tuple(self._destination + E)
 import re
 from collections import namedtuple
 
@@ -350,6 +391,8 @@ class Board(object):
         self.hash = 0
         self.pieces_list = []
         self.last_hash = 0
+        self.black_value = 23902
+        self.white_value = 23902
 
     def clone(self):
         result = Board(False)
@@ -372,6 +415,8 @@ class Board(object):
         result.hash = self.hash
         result.last_hash = self.last_hash
         result.pieces_list = self.pieces_list
+        result.black_value = self.black_value
+        result.white_value = self.white_value
         return result
 
     def add(self, piece, color, square):
@@ -407,12 +452,18 @@ class Board(object):
         return result
 
     def get_value(self):
+        self.white_value = 0
+        self.black_value = 0
         result = 0
         for i in range(A8, H1 + 1):
             if is_not_square(i):
                 i = i + 7
                 continue
             result += self.values[i]
+            if self.colors[i] == WHITE:
+                self.white_value += self.values[i]
+            elif self.colors[i] == BLACK:
+                self.black_value += -self.values[i]
         return result
 
     def possible_moves(self, color):
@@ -434,7 +485,7 @@ class Board(object):
     def current_king_position(self):
         return p0x88_to_tuple(self._current_king_position())
 
-    def move(self, original_position, new_position):
+    def move(self, original_position, new_position, promotion):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
             LEGAL,
@@ -444,8 +495,9 @@ class Board(object):
 
         for move in moves:
             if move.destination() == dest:
+                move.set_promotion(promotion)
                 move.do_update(self)
-                return True
+                return move
         return False
 
     def piece_moves(self, position):
@@ -453,6 +505,15 @@ class Board(object):
         color = self.colors[square]
         moves = self.generate_moves(
             LEGAL,
+            square,
+            color,
+        )
+        return moves
+
+    def piece_attack_moves(self, position):
+        square = tuple_to_0x88(position)
+        color = self.colors[square]
+        moves = self.attack_moves(
             square,
             color,
         )
@@ -839,7 +900,17 @@ class Board(object):
                 return mult * (20000 + KING_EARLYGAME_TABLE[square])
 
     def is_endgame(self):
-        return False
+        return (
+            (self.black_value < 21500 and self.white_value < 21500) or
+            (self.black_value < 21000 or self.white_value < 21000)
+        )
+
+    def get_pieces_count(self):
+        the_sum = 0
+        for i in range(14):
+            the_sum += self.pieces_count[i]
+        return the_sum
+
 
     @staticmethod
     def is_valid_position(position):

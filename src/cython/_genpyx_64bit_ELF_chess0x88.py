@@ -1,4 +1,4 @@
-CHECKSUM = 191097836114595606969951786274243230416547487474050761180956161815157982338132
+CHECKSUM = 362321825193530482965387145477461219351887081732030285389523173718579890738236
 import cython
 
 
@@ -22,6 +22,18 @@ def chess_notation_to_0x88(cn):
 def p0x88_to_chess_notation(x):
     icol = col(x)
     irow = rank(x)
+    return chr(icol + 97) + str(irow + 1)
+
+
+def chess_notation_to_tuple(cn):
+    return (
+        ord(cn[0]) - 97,
+        int(cn[1]) - 1
+    )
+
+def tuple_to_chess_notation(position):
+    icol = position[0]
+    irow = position[1]
     return chr(icol + 97) + str(irow + 1)
 
 
@@ -314,6 +326,35 @@ class Move(object):
             PRINT_ARRAY[self.color][self.piece]
         )
 
+    def type(self):
+        flags = self.flags
+        if flags & KINGSIDE or flags & QUEENSIDE:
+            return 1
+        elif flags & EN_PASSANT:
+            return 2
+        elif flags & PROMOTION:
+            return 3
+        return 0
+
+    def set_promotion(self, new_piece):
+        if self.promotion != 0:
+            self.promotion = new_piece
+
+    def get_eliminated_pawn(self):
+        return p0x88_to_tuple(self._destination +
+                              (N if self.color == BLACK else S))
+        
+    def rook_from(self):
+        if self.flags & KINGSIDE:
+            return p0x88_to_tuple(self._destination + E)
+        else:
+            return p0x88_to_tuple(self._destination + W + W)
+
+    def rook_to(self):
+        if self.flags & KINGSIDE:
+            return p0x88_to_tuple(self._destination + W)
+        else:
+            return p0x88_to_tuple(self._destination + E)
 import re
 from collections import namedtuple
 
@@ -434,7 +475,7 @@ class Board(object):
     def current_king_position(self):
         return p0x88_to_tuple(self._current_king_position())
 
-    def move(self, original_position, new_position):
+    def move(self, original_position, new_position, promotion):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
             LEGAL,
@@ -444,8 +485,9 @@ class Board(object):
 
         for move in moves:
             if move.destination() == dest:
+                move.set_promotion(promotion)
                 move.do_update(self)
-                return True
+                return move
         return False
 
     def piece_moves(self, position):
@@ -453,6 +495,15 @@ class Board(object):
         color = self.colors[square]
         moves = self.generate_moves(
             LEGAL,
+            square,
+            color,
+        )
+        return moves
+
+    def piece_attack_moves(self, position):
+        square = tuple_to_0x88(position)
+        color = self.colors[square]
+        moves = self.attack_moves(
             square,
             color,
         )
@@ -840,6 +891,13 @@ class Board(object):
 
     def is_endgame(self):
         return False
+
+    def get_pieces_count(self):
+        the_sum = 0
+        for i in range(14):
+            the_sum += self.pieces_count[i]
+        return the_sum
+
 
     @staticmethod
     def is_valid_position(position):

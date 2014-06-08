@@ -138,7 +138,7 @@ class TestPawnPromotion(unittest.TestCase):
         pos = (4, 6)
         possible_moves = moves(pos, [(4, 7)])
         self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
-        board.move((4, 6), (4, 7))
+        board.move((4, 6), (4, 7), 5)
         self.assertEqual(board.at((4, 7)), "white queen")
 
     def test_white_pawn_at_e7_with_enemy_at_f8_should_be_promoted_at_f8(self):
@@ -147,7 +147,7 @@ class TestPawnPromotion(unittest.TestCase):
         pos = (4, 6)
         possible_moves = moves(pos, [(4, 7), (5, 7)])
         self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
-        board.move((4, 6), (5, 7))
+        board.move((4, 6), (5, 7), 5)
         self.assertEqual(board.at((5, 7)), "white queen")
 
     def test_black_pawn_at_e2_should_be_promoted_at_e1(self):
@@ -156,7 +156,7 @@ class TestPawnPromotion(unittest.TestCase):
         pos = (4, 1)
         possible_moves = moves(pos, [(4, 0)])
         self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
-        board.move((4, 1), (4, 0))
+        board.move((4, 1), (4, 0), 5)
         self.assertEqual(board.at((4, 0)), "black queen")
 
     def test_black_pawn_at_e2_with_enemy_at_f1_should_be_promoted_at_f1(self):
@@ -165,7 +165,7 @@ class TestPawnPromotion(unittest.TestCase):
         pos = (4, 1)
         possible_moves = moves(pos, [(4, 0), (5, 0)])
         self.assertEqual(tuples(board.piece_moves(pos)), possible_moves)
-        board.move((4, 1), (5, 0))
+        board.move((4, 1), (5, 0), 5)
         self.assertEqual(board.at((5, 0)), "black queen")
 
 

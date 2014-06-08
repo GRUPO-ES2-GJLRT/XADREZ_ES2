@@ -19,10 +19,22 @@ JIT_DRAW_OPTIONS = {
     "enable": 1,
 }
 
+TIMEOUT_OPTIONS = {
+    "1s": 1,
+    "2s": 2,
+    "3s": 3,
+    "5s": 5,
+    "8s": 8,
+    "13s": 13,
+    "21s": 21,
+    "34s": 34,
+}
+
 TIMER = TIMER_OPTIONS["minutes_per_game"]
 MINUTES = 10
 MOVES = 10
 BONUS = 10
+TIMEOUT = 13
 FIFTY_MOVE = FIFTY_MOVE_OPTIONS["auto"]
 JIT_DRAW = JIT_DRAW_OPTIONS["enable"]
 

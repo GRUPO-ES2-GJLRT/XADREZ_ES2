@@ -9,7 +9,7 @@ import json
 
 
 from consts.default import (
-    TIMER, MINUTES, MOVES, BONUS, FIFTY_MOVE, JIT_DRAW
+    TIMER, MINUTES, MOVES, BONUS, FIFTY_MOVE, JIT_DRAW, TIMEOUT
 )
 
 
@@ -66,7 +66,8 @@ class Scene(object):
             'moves': MOVES,
             'bonus': BONUS,
             'fifty_move': FIFTY_MOVE,
-            'jit_draw': JIT_DRAW
+            'jit_draw': JIT_DRAW,
+            'timeout': TIMEOUT
         }
 
         file_path = os.path.abspath(os.path.join(self.data_dir, 'config.json'))

@@ -124,6 +124,17 @@ cdef class Move(object):
 
     cpdef readable(self)
 
+    @cython.locals(flags=cython.int)
+    cpdef int type(self)
+
+    cpdef set_promotion(self, int new_piece)
+
+    cpdef tuple get_eliminated_pawn(self)
+
+    cpdef tuple rook_from(self)
+
+    cpdef tuple rook_to(self)
+
 
 cdef class Board:
     cdef int pieces[128]
@@ -159,17 +170,20 @@ cdef class Board:
 
     cpdef list possible_moves(self, int color)
 
-    cpdef list possible_killing_moves(self, int color)
+    cpdef set possible_killing_moves(self, int color)
 
     cpdef int color(self)
 
     cpdef tuple current_king_position(self)
 
     @cython.locals(dest=cython.int)
-    cpdef move(self, tuple original_position, tuple new_position)
+    cpdef move(self, tuple original_position, tuple new_position, int promotion)
 
     @cython.locals(dest=cython.int, square=cython.int)
     cpdef list piece_moves(self, tuple position)
+
+    @cython.locals(dest=cython.int, square=cython.int)
+    cpdef list piece_attack_moves(self, tuple position)
 
     @cython.locals(square=cython.int, color=cython.int, piece=cython.int)
     cpdef at(self, tuple position)
@@ -226,6 +240,9 @@ cdef class Board:
 
     cdef int is_endgame(self)
 
+    @cython.locals(i=cython.int, the_sum=cython.int)
+    cpdef int get_pieces_count(self)
+
 
 cdef tuple p0x88_to_tuple(int position)
 
@@ -239,3 +256,5 @@ cdef p0x88_to_chess_notation(int x)
 
 
 cpdef int move_key(Move move)
+
+cdef tuple chess_notation_to_tuple(cn)

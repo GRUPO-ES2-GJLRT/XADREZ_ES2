@@ -18,33 +18,23 @@ from game_elements.player import END
 from consts.colors import BLACK, WHITE, next
 from consts.moves import CHECK, CHECKMATE, STALEMATE, FIFTY_MOVE
 from consts.default import TIMER_CLASS, FIFTY_MOVE_OPTIONS
+from consts.i18n import CONFIRM_DRAW
+from consts.end_game import (
+    GAME_DRAW, WHITE_WINS, BLACK_WINS, PAUSE, MAX_DRAW_DELTA,
+    END_GAME, WINS, CHECK_COUNTDOWN
+)
 from .interfaces.chess_interface import ChessInterface, MARGIN, BORDER
 from .pause_menu import PauseMenu
 from .end_menu import EndMenu
 from .dialog import Dialog
-from consts.i18n import CONFIRM_DRAW
-
-CHECK_COUNTDOWN = 0.5
-
-GAME_DRAW = 0
-WHITE_WINS = 1
-BLACK_WINS = 2
-PAUSE = 3
-MAX_DRAW_DELTA = 0.5
-
-
-END_GAME = [GAME_DRAW, WHITE_WINS, BLACK_WINS]
-
-WINS = {
-    WHITE: WHITE_WINS,
-    BLACK: BLACK_WINS,
-}
+from cython.functions import p0x88_to_chess_notation, tuple_to_0x88
 
 
 class Chess(Scene, ChessInterface):
 
     def __init__(self, game, level_white, level_black, *args, **kwargs):
         super(Chess, self).__init__(game, *args, **kwargs)
+        self.finished = False
         self.game = game
         self.white_minutes = lambda: "20:00"
         self.black_minutes = lambda: "20:00"
@@ -99,6 +89,7 @@ class Chess(Scene, ChessInterface):
         self.config = self.load_stored_config()
         self.fifty_move = self.config['fifty_move']
         self.jit_draw = self.config['jit_draw']
+        self.ai_timeout = self.config['timeout']
         self.board = Board(True)
         # Marked squares
         self.selected = None
@@ -170,28 +161,39 @@ class Chess(Scene, ChessInterface):
                 self.pause()
 
     def select(self, square):
+        self.snap_board.dynamic()
         self.selected = square
         self.do_jit_draw()
 
-    def play(self, square, skip_validation=False):
+    def play(self, square, promotion=5):
+        selected = self.selected
+        self.selected = None
         self.fail = None
         self.check = None
-
-        movement = self.board.move(self.selected, square)
+        self.snap_board.dynamic()
         self.do_jit_draw()
+        self.snap_board.snap()
+        movement = self.do_move(selected, square, promotion)
         if movement:
-            self.change_turn(square)
+            self.snap_board.dynamic()
+            self.do_jit_draw()
+            self.change_turn(selected, square)
             self.verify_status(self.board.status(None))
+            
             return True
-
+        self.selected = selected
         self.fail = square
+        self.do_jit_draw()
+        self.snap_board.dynamic()
         self.do_jit_draw()
         return False
 
-    def change_turn(self, square):
-        from cython.functions import *
+    def do_move(self, selected, square, promotion=5):
+        return self.board.move(selected, square, promotion)
+
+    def change_turn(self, selected, square):
         opening = ''.join([
-            p0x88_to_chess_notation(tuple_to_0x88(self.selected)),
+            p0x88_to_chess_notation(tuple_to_0x88(selected)),
             p0x88_to_chess_notation(tuple_to_0x88(square))
         ])
         self.selected = None
@@ -213,16 +215,21 @@ class Chess(Scene, ChessInterface):
             self.countdown = CHECK_COUNTDOWN
         elif status == CHECKMATE:
             self.current_player.lose()
+            return True
         elif status == STALEMATE:
             self.end_game(GAME_DRAW)
+            return True
         elif status == FIFTY_MOVE:
             if self.fifty_move == FIFTY_MOVE_OPTIONS["auto"]:
                 self.end_game(GAME_DRAW)
+                return True
+        return False
 
     def win(self, color):
         self.end_game(WINS[color])
 
     def end_game(self, state):
+        self.finished = True
         for player in self.players.values():
             player.state = END
         self.state = state
@@ -270,3 +277,9 @@ class Chess(Scene, ChessInterface):
 
     def deny_draw(self, player):
         self.denied_countdown = CHECK_COUNTDOWN
+
+    @property
+    def running(self):
+        return self.game.running and not self.finished
+
+    

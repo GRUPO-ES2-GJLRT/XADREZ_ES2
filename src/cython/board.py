@@ -175,7 +175,7 @@ class Board(object):
     def current_king_position(self):
         return p0x88_to_tuple(self._current_king_position())
 
-    def move(self, original_position, new_position):
+    def move(self, original_position, new_position, promotion):
         dest = tuple_to_0x88(new_position)
         moves = self.generate_moves(
             LEGAL,
@@ -185,8 +185,9 @@ class Board(object):
 
         for move in moves:
             if move.destination() == dest:
+                move.set_promotion(promotion)
                 move.do_update(self)
-                return True
+                return move
         return False
 
     def piece_moves(self, position):
@@ -194,6 +195,15 @@ class Board(object):
         color = self.colors[square]
         moves = self.generate_moves(
             LEGAL,
+            square,
+            color,
+        )
+        return moves
+
+    def piece_attack_moves(self, position):
+        square = tuple_to_0x88(position)
+        color = self.colors[square]
+        moves = self.attack_moves(
             square,
             color,
         )
@@ -584,6 +594,13 @@ class Board(object):
             (self.black_value < 21500 and self.white_value < 21500) or
             (self.black_value < 21000 or self.white_value < 21000)
         )
+
+    def get_pieces_count(self):
+        the_sum = 0
+        for i in range(14):
+            the_sum += self.pieces_count[i]
+        return the_sum
+
 
     @staticmethod
     def is_valid_position(position):
