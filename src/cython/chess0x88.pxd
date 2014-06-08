@@ -139,6 +139,8 @@ cdef class Board:
     cdef list pieces_list
     cdef unsigned long long last_hash
     cdef int pieces_count[14]
+    cdef int white_value
+    cdef int black_value
 
     @cython.locals(i=cython.int)
     cpdef clear(self)

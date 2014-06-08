@@ -81,6 +81,8 @@ class Board(object):
         self.hash = 0
         self.pieces_list = []
         self.last_hash = 0
+        self.black_value = 23902
+        self.white_value = 23902
 
     def clone(self):
         result = Board(False)
@@ -103,6 +105,8 @@ class Board(object):
         result.hash = self.hash
         result.last_hash = self.last_hash
         result.pieces_list = self.pieces_list
+        result.black_value = self.black_value
+        result.white_value = self.white_value
         return result
 
     def add(self, piece, color, square):
@@ -138,12 +142,18 @@ class Board(object):
         return result
 
     def get_value(self):
+        self.white_value = 0
+        self.black_value = 0
         result = 0
         for i in range(A8, H1 + 1):
             if is_not_square(i):
                 i = i + 7
                 continue
             result += self.values[i]
+            if self.colors[i] == WHITE:
+                self.white_value += self.values[i]
+            elif self.colors[i] == BLACK:
+                self.black_value += -self.values[i]
         return result
 
     def possible_moves(self, color):
@@ -570,7 +580,10 @@ class Board(object):
                 return mult * (20000 + KING_EARLYGAME_TABLE[square])
 
     def is_endgame(self):
-        return False
+        return (
+            (self.black_value < 21500 and self.white_value < 21500) or
+            (self.black_value < 21000 or self.white_value < 21000)
+        )
 
     @staticmethod
     def is_valid_position(position):
