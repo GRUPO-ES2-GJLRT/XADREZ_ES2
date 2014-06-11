@@ -70,12 +70,12 @@ A instalação do Cython é opcional, sua vantagem é deixar a inteligência art
 **Abrindo o jogo pelo terminal**
 
 1. Abra o terminal
-2. Dirija-se a pasta do projeto
+2. Dirija-se a pasta src
 3. Execute o comando: python game.py
 
 **Executando os testes**
 
 1. Abra o terminal
-2. Dirija-se a pasta do projeto
+2. Dirija-se a pasta src
 3. Execute o comando: python run_tests.py
 
