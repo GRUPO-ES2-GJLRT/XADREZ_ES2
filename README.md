@@ -56,6 +56,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 **Instalação do Cython (Opcional)**
 
 A instalação do Cython é opcional, sua vantagem é deixar a inteligência artificial mais eficiente.
+
 1. Dirija-se ao site http://cython.org/#download
 2. Baixe o arquivo
 3. Abra o arquivo baixado 
@@ -63,20 +64,18 @@ A instalação do Cython é opcional, sua vantagem é deixar a inteligência art
 5. Abra o arquivo “INSTALL”
 6. Siga as instruções a partir de lá
 7. Abra a pasta do Cython no projeto
-8. Execute o comando:
-python setup.py build_ext --inplace
+8. Execute o comando: python setup.py build_ext --inplace
 
 
 **Abrindo o jogo pelo terminal**
 
 1. Abra o terminal
 2. Dirija-se a pasta do projeto
-3. Execute o comando:
-python game.py
+3. Execute o comando: python game.py
 
 **Executando os testes**
+
 1. Abra o terminal
 2. Dirija-se a pasta do projeto
-3. Execute o comando:
-python run_tests.py
+3. Execute o comando: python run_tests.py
 
