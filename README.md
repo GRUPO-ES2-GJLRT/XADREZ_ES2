@@ -1,4 +1,4 @@
-#Sobre
+﻿#Sobre
 
 XADREZ_ES2 é o projeto da disciplina de Engenharia de Software 2, do desenvolvimento de um jogo de xadrez.
 
@@ -34,3 +34,49 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+#Manual de Instalação
+
+**Instalação do Python**
+
+1. Dirija-se ao website https://www.python.org/download/
+2. Dentre as opções apresentadas, escolha a mais adequada ao seu computador
+3. Baixe o arquivo escolhido
+4. Abra o arquivo baixado 
+5. Siga com a instalação do arquivo até o final
+
+**Instalação do Pygame**
+
+1. Dirija-se ao site http://www.pygame.org/download.shtml
+2. Dentre as opções apresentadas, escolha a mais adequada ao seu computador
+3. Baixe o arquivo escolhido
+4. Abra o arquivo baixado
+5. Siga com a instalação do arquivo até o final
+
+**Instalação do Cython (Opcional)**
+
+A instalação do Cython é opcional, sua vantagem é deixar a inteligência artificial mais eficiente.
+1. Dirija-se ao site http://cython.org/#download
+2. Baixe o arquivo
+3. Abra o arquivo baixado 
+4. Extraia para a pasta desejada
+5. Abra o arquivo “INSTALL”
+6. Siga as instruções a partir de lá
+7. Abra a pasta do Cython no projeto
+8. Execute o comando:
+python setup.py build_ext --inplace
+
+
+**Abrindo o jogo pelo terminal**
+
+1. Abra o terminal
+2. Dirija-se a pasta do projeto
+3. Execute o comando:
+python game.py
+
+**Executando os testes**
+1. Abra o terminal
+2. Dirija-se a pasta do projeto
+3. Execute o comando:
+python run_tests.py
+
